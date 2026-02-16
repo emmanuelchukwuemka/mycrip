@@ -72,7 +72,7 @@
         </div>
     </div>
 
-    <!-- Featured Properties Section -->
+            <!-- Featured Properties Section -->
     <div class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in-up">
@@ -83,25 +83,16 @@
             </div>
 
             <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Property Cards with Hover Animation -->
-                <div class="group animate-fade-in-up animation-delay-300">
-                    <x-property-card />
+                @forelse($featuredProperties as $index => $property)
+                <div class="group animate-fade-in-up animation-delay-{{ ($index + 1) * 300 }}">
+                    <x-property-card :property="$property" />
                 </div>
-                <div class="group animate-fade-in-up animation-delay-600">
-                    <x-property-card />
+                @empty
+                <div class="col-span-3 text-center py-8">
+                    <p class="text-gray-500 text-lg">No featured properties at the moment.</p>
+                    <a href="{{ route('properties.index') }}" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800">Browse all properties →</a>
                 </div>
-                <div class="group animate-fade-in-up animation-delay-900">
-                    <x-property-card />
-                </div>
-                <div class="group animate-fade-in-up animation-delay-1200">
-                    <x-property-card />
-                </div>
-                <div class="group animate-fade-in-up animation-delay-1500">
-                    <x-property-card />
-                </div>
-                <div class="group animate-fade-in-up animation-delay-1800">
-                    <x-property-card />
-                </div>
+                @endforelse
             </div>
 
             <div class="mt-16 text-center animate-fade-in-up animation-delay-2100">
@@ -111,6 +102,94 @@
             </div>
         </div>
     </div>
+    
+    <!-- Recently Added Properties Section -->
+    @if($recentProperties->count() > 0)
+    <div class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in-up">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Recently Added</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+                    Check out the latest property listings.
+                </p>
+            </div>
+
+            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                @foreach($recentProperties as $property)
+                <div class="group">
+                    <x-property-card :property="$property" />
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
+    
+    <!-- Rental Properties Section -->
+    @if($rentalProperties->count() > 0)
+    <div class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center animate-fade-in-up">
+                <div>
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Rentals</h2>
+                    <p class="mt-4 text-xl text-gray-600">
+                        Find properties to rent.
+                    </p>
+                </div>
+                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300">
+                    View All
+                </a>
+            </div>
+
+            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                @foreach($rentalProperties as $property)
+                <div class="group">
+                    <x-property-card :property="$property" />
+                </div>
+                @endforeach
+            </div>
+            
+            <div class="mt-8 text-center md:hidden">
+                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600">
+                    View All Rentals
+                </a>
+            </div>
+        </div>
+    </div>
+    @endif
+    
+    <!-- Purchase Properties Section -->
+    @if($purchaseProperties->count() > 0)
+    <div class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center animate-fade-in-up">
+                <div>
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">For Sale</h2>
+                    <p class="mt-4 text-xl text-gray-600">
+                        Properties available for purchase.
+                    </p>
+                </div>
+                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 transition-all duration-300">
+                    View All
+                </a>
+            </div>
+
+            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                @foreach($purchaseProperties as $property)
+                <div class="group">
+                    <x-property-card :property="$property" />
+                </div>
+                @endforeach
+            </div>
+            
+            <div class="mt-8 text-center md:hidden">
+                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-green-600 to-teal-600">
+                    View All Sales
+                </a>
+            </div>
+        </div>
+    </div>
+    @endif
 
     <!-- Categories Section -->
     <div class="bg-white py-20">

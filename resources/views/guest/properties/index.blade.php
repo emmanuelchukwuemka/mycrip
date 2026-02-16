@@ -32,67 +32,61 @@
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                             <div>
                                 <h2 class="text-2xl font-bold text-gray-900">Properties for Sale & Rent</h2>
-                                <p class="text-gray-600 mt-1">Discover 1,234+ premium listings</p>
+                                <p class="text-gray-600 mt-1">Discover {{ $properties->total() }} premium listings</p>
                             </div>
                             
                             <!-- Sort Options -->
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <select class="bg-white border border-gray-200 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300">
-                                    <option>Sort by: Newest</option>
-                                    <option>Price: Low to High</option>
-                                    <option>Price: High to Low</option>
-                                    <option>Bedrooms: High to Low</option>
-                                    <option>Size: Large to Small</option>
+                            <form action="{{ route('properties.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3">
+                                @if(request('category'))<input type="hidden" name="category" value="{{ request('category') }}">@endif
+                                @if(request('state'))<input type="hidden" name="state" value="{{ request('state') }}">@endif
+                                @if(request('city'))<input type="hidden" name="city" value="{{ request('city') }}">@endif
+                                @if(request('min_price'))<input type="hidden" name="min_price" value="{{ request('min_price') }}">@endif
+                                @if(request('max_price'))<input type="hidden" name="max_price" value="{{ request('max_price') }}">@endif
+                                @if(request('search'))<input type="hidden" name="search" value="{{ request('search') }}">@endif
+                                
+                                <select name="sort" onchange="this.form.submit()" class="bg-white border border-gray-200 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300">
+                                    <option value="latest" {{ request('sort', 'latest') == 'latest' ? 'selected' : '' }}>Sort by: Newest</option>
+                                    <option value="price_low" {{ request('sort') == 'price_low' ? 'selected' : '' }}>Price: Low to High</option>
+                                    <option value="price_high" {{ request('sort') == 'price_high' ? 'selected' : '' }}>Price: High to Low</option>
                                 </select>
                                 
                                 <div class="flex bg-gray-100 rounded-lg p-1">
-                                    <button class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white rounded-md shadow-sm">
+                                    <button type="button" class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white rounded-md shadow-sm">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>
                                         </svg>
                                         Grid
                                     </button>
-                                    <button class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                                    <button type="button" class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                                         </svg>
                                         List
                                     </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
                     <!-- Property Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                        <!-- Property Cards -->
-                        <x-property-card />
-                        <x-property-card />
-                        <x-property-card />
-                        <x-property-card />
-                        <x-property-card />
-                        <x-property-card />
+                        @forelse($properties as $property)
+                            <x-property-card :property="$property" />
+                        @empty
+                            <div class="col-span-full text-center py-12">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                                </svg>
+                                <h3 class="mt-4 text-lg font-medium text-gray-900">No properties found</h3>
+                                <p class="mt-2 text-gray-500">Try adjusting your search or filter criteria.</p>
+                                <a href="{{ route('properties.index') }}" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800">Clear filters →</a>
+                            </div>
+                        @endforelse
                     </div>
 
                     <!-- Pagination -->
                     <div class="mt-12 flex justify-center">
-                        <nav class="relative z-0 inline-flex rounded-xl shadow-lg bg-white border border-gray-200 overflow-hidden">
-                            <a href="#" class="relative inline-flex items-center px-4 py-3 border-r border-gray-200 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all duration-300">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                                </svg>
-                                Previous
-                            </a>
-                            <a href="#" class="relative inline-flex items-center px-4 py-3 border-r border-gray-200 bg-indigo-50 text-sm font-medium text-indigo-700 hover:bg-indigo-100 transition-all duration-300">1</a>
-                            <a href="#" class="relative inline-flex items-center px-4 py-3 border-r border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-300">2</a>
-                            <a href="#" class="relative inline-flex items-center px-4 py-3 border-r border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-300">3</a>
-                            <a href="#" class="relative inline-flex items-center px-4 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-300">
-                                Next
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </nav>
+                        {{ $properties->links() }}
                     </div>
                 </div>
             </div>

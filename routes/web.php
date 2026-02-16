@@ -16,6 +16,12 @@ Route::prefix('properties')->name('properties.')->group(function () {
     Route::get('/houses', [PropertyController::class, 'houses'])->name('houses');
     Route::get('/land', [PropertyController::class, 'land'])->name('land');
     Route::get('/commercial', [PropertyController::class, 'commercial'])->name('commercial');
+    
+    // Save/unsave property (requires auth)
+    Route::post('/{id}/save', [PropertyController::class, 'toggleSave'])->name('save');
+    
+    // Submit inquiry
+    Route::post('/{id}/inquiry', [PropertyController::class, 'inquiry'])->name('inquiry');
 });
 
 Route::get('/agents', [App\Http\Controllers\Guest\AgentController::class, 'index'])->name('agents.index');

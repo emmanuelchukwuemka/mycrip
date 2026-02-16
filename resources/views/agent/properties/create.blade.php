@@ -5,6 +5,23 @@
             <p class="text-gray-600 mt-2">Add your property listing with all the essential details</p>
         </div>
 
+        <!-- Error/Success Messages -->
+        @if(session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+                <ul class="list-disc list-inside">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
                 <h2 class="text-white text-xl font-semibold">Property Details</h2>
@@ -26,29 +43,29 @@
                                     Property Title
                                 </span>
                             </label>
-                            <input type="text" name="title" id="title" 
+                            <input type="text" name="title" id="title" value="{{ old('title') }}"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                                placeholder="e.g. Modern 3 Bedroom Flat with Balcony">
+                                placeholder="e.g. Modern 3 Bedroom Flat with Balcony" required>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                                <select name="category" id="category" 
-                                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200">
-                                    <option value="apartment">Apartment</option>
-                                    <option value="house">House</option>
-                                    <option value="land">Land</option>
-                                    <option value="commercial">Commercial</option>
+                                <select name="category" id="category" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200" required>
+                                    <option value="">Select Category</option>
+                                    <option value="house_rental" {{ old('category') == 'house_rental' ? 'selected' : '' }}>House Rental</option>
+                                    <option value="house_purchase" {{ old('category') == 'house_purchase' ? 'selected' : '' }}>House Purchase</option>
+                                    <option value="land_purchase" {{ old('category') == 'land_purchase' ? 'selected' : '' }}>Land Purchase</option>
+                                    <option value="shop_rental" {{ old('category') == 'shop_rental' ? 'selected' : '' }}>Shop Rental (Commercial)</option>
+                                    <option value="student_lodge" {{ old('category') == 'student_lodge' ? 'selected' : '' }}>Student Lodge</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
-                                <select name="type" id="type" 
-                                    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200">
-                                    <option value="rent">For Rent</option>
-                                    <option value="sale">For Sale</option>
-                                    <option value="short_let">Short Let</option>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Price Type</label>
+                                <select name="price_type" id="price_type" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200" required>
+                                    <option value="fixed" {{ old('price_type') == 'fixed' ? 'selected' : '' }}>Fixed Price</option>
+                                    <option value="monthly" {{ old('price_type') == 'monthly' ? 'selected' : '' }}>Per Month</option>
+                                    <option value="yearly" {{ old('price_type') == 'yearly' ? 'selected' : '' }}>Per Year</option>
                                 </select>
                             </div>
                         </div>
@@ -66,66 +83,71 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <span class="text-gray-500 text-sm">₦</span>
                                 </div>
-                                <input type="number" name="price" id="price" 
+                                <input type="number" name="price" id="price" value="{{ old('price') }}"
                                     class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                                    placeholder="0.00">
+                                    placeholder="0.00" min="0" step="0.01" required>
                             </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                            <textarea name="description" id="description" rows="4"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 resize-none"
+                                placeholder="Describe the property, its features, neighborhood, and any other important details..." required>{{ old('description') }}</textarea>
                         </div>
                     </div>
 
                     <!-- Property Images -->
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Property Images</label>
-                        <div class="space-y-4">
-                            <!-- Main Image Upload -->
-                            <div class="relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-indigo-400 transition-colors duration-200">
-                                <input type="file" name="main_image" id="main_image" class="hidden" accept="image/*">
-                                <label for="main_image" class="cursor-pointer">
-                                    <div class="text-center">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                                        </svg>
-                                        <div class="mt-4 text-sm text-gray-600">
-                                            <span class="font-medium text-indigo-600 hover:text-indigo-500">Click to upload</span> or drag and drop
-                                        </div>
-                                        <p class="text-xs text-gray-500 mt-1">PNG, JPG, GIF up to 10MB</p>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <!-- Additional Images -->
-                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4">
-                                <input type="file" name="images[]" id="additional_images" multiple class="hidden" accept="image/*">
-                                <label for="additional_images" class="cursor-pointer flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Property Images <span class="text-red-500">*</span>
+                        </label>
+                        <p class="text-sm text-gray-500 mb-4">Upload at least one image. Maximum 10 images. Duplicate images will be rejected.</p>
+                        
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-indigo-400 transition-colors duration-200">
+                            <input type="file" name="images[]" id="images" multiple class="hidden" accept="image/*" data-max-files="10">
+                            <label for="images" class="cursor-pointer">
+                                <div class="text-center">
+                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                                     </svg>
-                                    Add More Images
-                                </label>
-                            </div>
+                                    <div class="mt-4 text-sm text-gray-600">
+                                        <span class="font-medium text-indigo-600 hover:text-indigo-500">Click to upload</span> or drag and drop
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">PNG, JPG, JPEG, WEBP up to 5MB each</p>
+                                    <p class="text-xs text-gray-500 mt-1" id="file-count">No files selected</p>
+                                </div>
+                            </label>
                         </div>
+                        <div id="image-preview" class="mt-4 grid grid-cols-4 gap-2"></div>
                     </div>
                 </div>
 
                 <!-- Location Section -->
                 <div class="border-t border-gray-200 pt-8 mb-8">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Location Details</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
-                            <input type="text" name="state" id="state" 
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Country</label>
+                            <input type="text" name="country" id="country" value="{{ old('country', 'Nigeria') }}"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                                placeholder="e.g. Lagos, Abuja, Rivers">
+                                placeholder="Nigeria" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
-                            <input type="text" name="city" id="city" 
+                            <label class="block text-sm font-medium text-gray-700 mb-2">State <span class="text-red-500">*</span></label>
+                            <input type="text" name="state" id="state" value="{{ old('state') }}"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                                placeholder="e.g. Lekki, Victoria Island">
+                                placeholder="e.g. Lagos, Abuja, Rivers" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">City <span class="text-red-500">*</span></label>
+                            <input type="text" name="city" id="city" value="{{ old('city') }}"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
+                                placeholder="e.g. Lekki, Victoria Island" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
-                            <input type="text" name="address" id="address" 
+                            <input type="text" name="address" id="address" value="{{ old('address') }}"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
                                 placeholder="Full street address">
                         </div>
@@ -135,82 +157,62 @@
                 <!-- Features Section -->
                 <div class="border-t border-gray-200 pt-8 mb-8">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Property Features</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Bedrooms</label>
-                            <input type="number" name="bedrooms" id="bedrooms" min="0" max="20"
+                            <input type="number" name="bedrooms" id="bedrooms" value="{{ old('bedrooms') }}" min="0" max="20"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
                                 placeholder="0">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Bathrooms</label>
-                            <input type="number" name="bathrooms" id="bathrooms" min="0" max="20"
+                            <input type="number" name="bathrooms" id="bathrooms" value="{{ old('bathrooms') }}" min="0" max="20"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
                                 placeholder="0">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Toilets</label>
-                            <input type="number" name="toilets" id="toilets" min="0" max="20"
+                            <input type="number" name="toilets" id="toilets" value="{{ old('toilets') }}" min="0" max="20"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
                                 placeholder="0">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Size (sqm)</label>
-                            <input type="number" name="size" id="size" min="0"
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Size</label>
+                            <input type="text" name="size" id="size" value="{{ old('size') }}"
                                 class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400"
-                                placeholder="0">
+                                placeholder="e.g. 120 sqm">
                         </div>
                     </div>
 
                     <!-- Amenities -->
                     <div class="mt-6">
                         <label class="block text-sm font-medium text-gray-700 mb-4">Amenities</label>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
                             <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="swimming_pool" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <span class="text-sm text-gray-700">Swimming Pool</span>
+                                <input type="checkbox" name="furnished" value="1" {{ old('furnished') ? 'checked' : '' }} class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <span class="text-sm text-gray-700">Furnished</span>
                             </label>
                             <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="gym" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <span class="text-sm text-gray-700">Gym</span>
+                                <input type="checkbox" name="serviced" value="1" {{ old('serviced') ? 'checked' : '' }} class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <span class="text-sm text-gray-700">Serviced</span>
                             </label>
                             <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="generator" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <span class="text-sm text-gray-700">24/7 Power</span>
-                            </label>
-                            <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="security" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <span class="text-sm text-gray-700">Security</span>
-                            </label>
-                            <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="parking" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <input type="checkbox" name="parking" value="1" {{ old('parking') ? 'checked' : '' }} class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
                                 <span class="text-sm text-gray-700">Parking</span>
                             </label>
                             <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="wifi" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <span class="text-sm text-gray-700">WiFi</span>
+                                <input type="checkbox" name="security" value="1" {{ old('security') ? 'checked' : '' }} class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <span class="text-sm text-gray-700">Security</span>
                             </label>
                             <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="air_conditioning" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <span class="text-sm text-gray-700">Air Conditioning</span>
+                                <input type="checkbox" name="water_supply" value="1" {{ old('water_supply') ? 'checked' : '' }} class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <span class="text-sm text-gray-700">Water Supply</span>
                             </label>
                             <label class="flex items-center space-x-3 cursor-pointer">
-                                <input type="checkbox" name="amenities[]" value="furnished" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                                <span class="text-sm text-gray-700">Furnished</span>
+                                <input type="checkbox" name="power_supply" value="1" {{ old('power_supply') ? 'checked' : '' }} class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <span class="text-sm text-gray-700">Power Supply</span>
                             </label>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Description Section -->
-                <div class="border-t border-gray-200 pt-8 mb-8">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Property Description</h3>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                        <textarea name="description" id="description" rows="6"
-                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 resize-none"
-                            placeholder="Describe the property, its features, neighborhood, and any other important details..."></textarea>
-                        <p class="mt-2 text-sm text-gray-500">Tip: Include key selling points, nearby amenities, and unique features</p>
                     </div>
                 </div>
 
@@ -235,4 +237,33 @@
             </form>
         </div>
     </div>
+
+    <script>
+        // Image preview and count
+        document.getElementById('images').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const countSpan = document.getElementById('file-count');
+            const previewDiv = document.getElementById('image-preview');
+            
+            if (files.length > 0) {
+                countSpan.textContent = files.length + ' file(s) selected';
+                
+                // Show preview
+                previewDiv.innerHTML = '';
+                for (let i = 0; i < Math.min(files.length, 8); i++) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'w-full h-16 object-cover rounded';
+                        previewDiv.appendChild(img);
+                    };
+                    reader.readAsDataURL(files[i]);
+                }
+            } else {
+                countSpan.textContent = 'No files selected';
+                previewDiv.innerHTML = '';
+            }
+        });
+    </script>
 </x-agent-layout>
