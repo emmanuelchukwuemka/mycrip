@@ -1,55 +1,74 @@
 <x-app-layout>
-    <!-- Hero Section with Animation -->
+    <!-- Hero Section with Professional Slider -->
     <div class="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0">
-            <div class="absolute top-0 left-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply dark:purple-400 dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob"></div>
-            <div class="absolute top-0 right-0 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply dark:yellow-400 dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-            <div class="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply dark:pink-400 dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-        </div>
+        <!-- Hero Slider -->
+        <div class="relative h-screen">
+            <!-- Slide 1 -->
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Luxury Apartment" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 opacity-0 transition-opacity duration-1000">
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Modern House" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 opacity-0 transition-opacity duration-1000">
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Commercial Property" class="w-full h-full object-cover">
+            </div>
 
-        <!-- Hero Content -->
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-            <div class="text-center">
-                <!-- Animated Title -->
-                <div class="animate-fade-in-up">
-                    <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl">
-                        <span class="block">Find Your Perfect</span>
-                        <span class="block bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                            Home in Africa
-                        </span>
-                    </h1>
-                    <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 animate-fade-in-up animation-delay-300">
-                        Discover the best properties for sale and rent across the continent. Verified listings, trusted agents, seamless experience.
-                    </p>
-                </div>
+            <!-- Animated Background Elements -->
+            <div class="absolute inset-0">
+                <div class="absolute top-0 left-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply dark:purple-400 dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob"></div>
+                <div class="absolute top-0 right-0 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply dark:yellow-400 dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+                <div class="absolute bottom-0 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply dark:pink-400 dark:mix-blend-soft-light filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+            </div>
 
-                <!-- Animated Search Section -->
-                <div class="mt-12 animate-fade-in-up animation-delay-600">
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/20">
-                        <livewire:property-search />
+            <!-- Hero Content -->
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                <div class="text-center w-full">
+                    <!-- Animated Title -->
+                    <div class="animate-fade-in-up">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                            <span class="block">Find Your Perfect</span>
+                            <span class="block bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                                Home in Africa
+                            </span>
+                        </h1>
+                        <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 animate-fade-in-up animation-delay-300">
+                            Discover the best properties for sale and rent across the continent. Verified listings, trusted agents, seamless experience.
+                        </p>
+                    </div>
+
+                    <!-- Animated Search Section -->
+                    <div class="mt-12 animate-fade-in-up animation-delay-600">
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/20">
+                            <livewire:property-search />
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="mt-10 animate-fade-in-up animation-delay-900">
+                        <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            Start Your Search
+                        </a>
                     </div>
                 </div>
-
-                <!-- Call to Action -->
-                <div class="mt-10 animate-fade-in-up animation-delay-900">
-                    <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                        Start Your Search
-                    </a>
-                </div>
             </div>
-        </div>
 
-        <!-- Floating Elements -->
-        <div class="absolute bottom-0 left-0 right-0">
-            <svg class="w-full h-24 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#fff"></path>
-                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#fff"></path>
-                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86-7 170.73-18.5,257.44-39.1C1292,39.93,1368.36,35,1465,29.72V0Z" fill="#fff"></path>
-            </svg>
+            <!-- Slider Navigation -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
+                <button class="slider-nav-btn active w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-all duration-300" data-slide="0"></button>
+                <button class="slider-nav-btn w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-all duration-300" data-slide="1"></button>
+                <button class="slider-nav-btn w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-all duration-300" data-slide="2"></button>
+            </div>
         </div>
     </div>
 
@@ -259,12 +278,28 @@
             }
         }
 
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .animate-blob {
             animation: blob 7s infinite;
         }
 
         .animate-fade-in-up {
             animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.8s ease-out forwards;
             opacity: 0;
         }
 
@@ -278,4 +313,65 @@
         .animation-delay-2000 { animation-delay: 2s; }
         .animation-delay-4000 { animation-delay: 4s; }
     </style>
+
+    <!-- JavaScript for Hero Slider -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.relative > div[class*="bg-gradient-to-br"]:not(:first-child)');
+            const navButtons = document.querySelectorAll('.slider-nav-btn');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.add('opacity-0');
+                    slide.classList.remove('opacity-100');
+                });
+                
+                // Remove active class from all nav buttons
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Show current slide
+                if (slides[index]) {
+                    slides[index].classList.remove('opacity-0');
+                    slides[index].classList.add('opacity-100');
+                }
+                
+                // Add active class to current nav button
+                navButtons[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Initialize slider
+            showSlide(0);
+            
+            // Start auto-rotation
+            slideInterval = setInterval(nextSlide, 5000);
+
+            // Add click events to nav buttons
+            navButtons.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
+
+            // Pause on hover
+            const sliderContainer = document.querySelector('.relative.h-screen');
+            sliderContainer.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            sliderContainer.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        });
+    </script>
 </x-app-layout>
