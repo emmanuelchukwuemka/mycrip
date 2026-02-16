@@ -50,13 +50,21 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:admin,agent,tenant',
-            'agent_verification_document' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
-        ]);
+        ];
+
+        // Add agent-specific validation
+        if ($request->role === 'agent') {
+            $rules['agent_nin'] = 'required|string|max:20';
+            $rules['agent_phone'] = 'required|string|max:20';
+            $rules['agent_verification_document'] = 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048';
+        }
+
+        $request->validate($rules);
 
         $data = [
             'name' => $request->name,
@@ -65,11 +73,17 @@ class AuthController extends Controller
             'role' => $request->role,
         ];
 
-        // Handle agent verification document upload
-        if ($request->hasFile('agent_verification_document') && $request->role === 'agent') {
-            $path = $request->file('agent_verification_document')->store('agent-documents', 'public');
-            $data['agent_verification_document'] = $path;
+        // Handle agent-specific fields
+        if ($request->role === 'agent') {
+            $data['agent_nin'] = $request->agent_nin;
+            $data['agent_phone'] = $request->agent_phone;
             $data['agent_verification_status'] = 'pending';
+            
+            // Handle verification document upload
+            if ($request->hasFile('agent_verification_document')) {
+                $path = $request->file('agent_verification_document')->store('agent-documents', 'public');
+                $data['agent_verification_document'] = $path;
+            }
         }
 
         $user = User::create($data);
