@@ -1,22 +1,22 @@
 <x-app-layout>
     <!-- Hero Section with Professional Slider -->
-    <div class="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden">
+    <div class="relative overflow-hidden" style="background-color: #001F3F;">
         <!-- Hero Slider -->
         <div class="relative h-screen">
             <!-- Slide 1 -->
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+            <div class="absolute inset-0" style="background-color: #001F3F;">
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Luxury Apartment" class="w-full h-full object-cover">
             </div>
             
             <!-- Slide 2 -->
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 opacity-0 transition-opacity duration-1000">
+            <div class="absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-color: #001F3F;">
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Modern House" class="w-full h-full object-cover">
             </div>
             
             <!-- Slide 3 -->
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 opacity-0 transition-opacity duration-1000">
+            <div class="absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-color: #001F3F;">
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Commercial Property" class="w-full h-full object-cover">
             </div>
@@ -35,7 +35,7 @@
                     <div class="animate-fade-in-up">
                         <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl">
                             <span class="block">Find Your Perfect</span>
-                            <span class="block bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                            <span class="block" style="color: #C6A664;">
                                 Home in Africa
                             </span>
                         </h1>
@@ -53,7 +53,7 @@
 
                     <!-- Call to Action -->
                     <div class="mt-10 animate-fade-in-up animation-delay-900">
-                        <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                        <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" style="background-color: #C6A664;" onmouseover="this.style.backgroundColor='#B89654'" onmouseout="this.style.backgroundColor='#C6A664'">
                             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
@@ -76,8 +76,8 @@
     <div class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in-up">
-                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Featured Properties</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Featured Properties</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #1A1A1A;">
                     Handpicked premium listings just for you.
                 </p>
             </div>
@@ -90,13 +90,13 @@
                 @empty
                 <div class="col-span-3 text-center py-8">
                     <p class="text-gray-500 text-lg">No featured properties at the moment.</p>
-                    <a href="{{ route('properties.index') }}" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800">Browse all properties →</a>
+                    <a href="{{ route('properties.index') }}" class="mt-4 inline-block" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">Browse all properties →</a>
                 </div>
                 @endforelse
             </div>
 
             <div class="mt-16 text-center animate-fade-in-up animation-delay-2100">
-                <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
                     View All Properties
                 </a>
             </div>
@@ -108,8 +108,8 @@
     <div class="bg-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in-up">
-                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Recently Added</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Recently Added</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #1A1A1A;">
                     Check out the latest property listings.
                 </p>
             </div>
@@ -131,12 +131,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center animate-fade-in-up">
                 <div>
-                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Rentals</h2>
-                    <p class="mt-4 text-xl text-gray-600">
+                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Rentals</h2>
+                    <p class="mt-4 text-xl" style="color: #1A1A1A;">
                         Find properties to rent.
                     </p>
                 </div>
-                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300">
+                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white transition-all duration-300" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
                     View All
                 </a>
             </div>
@@ -150,7 +150,7 @@
             </div>
             
             <div class="mt-8 text-center md:hidden">
-                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600">
+                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white" style="background-color: #001F3F;">
                     View All Rentals
                 </a>
             </div>
@@ -164,12 +164,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center animate-fade-in-up">
                 <div>
-                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">For Sale</h2>
-                    <p class="mt-4 text-xl text-gray-600">
+                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">For Sale</h2>
+                    <p class="mt-4 text-xl" style="color: #1A1A1A;">
                         Properties available for purchase.
                     </p>
                 </div>
-                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 transition-all duration-300">
+                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white transition-all duration-300" style="background-color: #C6A664;" onmouseover="this.style.backgroundColor='#B89654'" onmouseout="this.style.backgroundColor='#C6A664'">
                     View All
                 </a>
             </div>
@@ -183,7 +183,7 @@
             </div>
             
             <div class="mt-8 text-center md:hidden">
-                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-green-600 to-teal-600">
+                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white" style="background-color: #C6A664;">
                     View All Sales
                 </a>
             </div>
@@ -195,8 +195,8 @@
     <div class="bg-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in-up">
-                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Browse by Category</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Browse by Category</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #1A1A1A;">
                     Find the perfect property type for your needs.
                 </p>
             </div>
@@ -204,7 +204,7 @@
             <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Category Cards with Enhanced Animation -->
                 <div class="animate-fade-in-up animation-delay-300">
-                    <a href="{{ route('properties.apartments') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <a href="{{ route('properties.categories.apartments') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
                         <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Apartments" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
                             <div class="p-6">
@@ -216,7 +216,7 @@
                 </div>
                 
                 <div class="animate-fade-in-up animation-delay-600">
-                    <a href="{{ route('properties.houses') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <a href="{{ route('properties.categories.houses') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
                         <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Houses" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
                             <div class="p-6">
@@ -228,7 +228,7 @@
                 </div>
 
                 <div class="animate-fade-in-up animation-delay-900">
-                    <a href="{{ route('properties.land') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <a href="{{ route('properties.categories.land') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
                         <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Land" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
                             <div class="p-6">
@@ -240,7 +240,7 @@
                 </div>
 
                 <div class="animate-fade-in-up animation-delay-1200">
-                    <a href="{{ route('properties.commercial') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <a href="{{ route('properties.categories.commercial') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
                         <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Commercial" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
                             <div class="p-6">
@@ -255,11 +255,11 @@
     </div>
 
     <!-- Why Choose Us Section -->
-    <div class="bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-700 py-20">
+    <div class="py-20" style="background-color: #001F3F;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-fade-in-up">
                 <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Why Choose MyCrib Africa?</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-indigo-200">
+                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #FFFFFF; opacity: 0.9;">
                     We provide the best real estate experience in Africa.
                 </p>
             </div>
@@ -267,7 +267,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="animate-fade-in-up animation-delay-300">
                     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white mb-6 shadow-lg">
+                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #C6A664;">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
@@ -281,7 +281,7 @@
 
                 <div class="animate-fade-in-up animation-delay-600">
                     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-500 text-white mb-6 shadow-lg">
+                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #C6A664;">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
@@ -295,7 +295,7 @@
 
                 <div class="animate-fade-in-up animation-delay-900">
                     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl bg-gradient-to-r from-green-500 to-blue-500 text-white mb-6 shadow-lg">
+                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #C6A664;">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
                             </svg>
@@ -311,7 +311,7 @@
     </div>
 
     <!-- CTA Section -->
-    <div class="bg-gradient-to-r from-gray-900 to-black py-20">
+    <div class="py-20" style="background-color: #000000;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="animate-fade-in-up">
                 <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Ready to Find Your Dream Home?</h2>
@@ -320,7 +320,7 @@
                 </p>
                 
                 <div class="mt-12 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex sm:justify-center">
-                    <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                    <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" style="background-color: #C6A664;" onmouseover="this.style.backgroundColor='#B89654'" onmouseout="this.style.backgroundColor='#C6A664'">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                         </svg>

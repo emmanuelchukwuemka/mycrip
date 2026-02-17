@@ -9,13 +9,15 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('properties')->name('properties.')->group(function () {
     Route::get('/', [PropertyController::class, 'index'])->name('index');
-    Route::get('/{id}', [PropertyController::class, 'show'])->name('show');
     
-    // Category-specific routes
-    Route::get('/apartments', [PropertyController::class, 'apartments'])->name('apartments');
-    Route::get('/houses', [PropertyController::class, 'houses'])->name('houses');
-    Route::get('/land', [PropertyController::class, 'land'])->name('land');
-    Route::get('/commercial', [PropertyController::class, 'commercial'])->name('commercial');
+    // Category-specific routes (MUST be before /{id} route)
+    Route::get('/categories/apartments', [PropertyController::class, 'apartments'])->name('categories.apartments');
+    Route::get('/categories/houses', [PropertyController::class, 'houses'])->name('categories.houses');
+    Route::get('/categories/land', [PropertyController::class, 'land'])->name('categories.land');
+    Route::get('/categories/commercial', [PropertyController::class, 'commercial'])->name('categories.commercial');
+    
+    // Dynamic property ID route (MUST be after specific routes)
+    Route::get('/{id}', [PropertyController::class, 'show'])->name('show');
     
     // Save/unsave property (requires auth)
     Route::post('/{id}/save', [PropertyController::class, 'toggleSave'])->name('save');

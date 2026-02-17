@@ -1,17 +1,17 @@
 <x-app-layout>
-    <div class="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-indigo-50">
+    <div class="min-h-screen" style="background: linear-gradient(to bottom right, #F5F5F5, #FFFFFF, #F5F5F5);">
         <!-- Hero Section -->
         <div class="relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-green-600/20 to-blue-600/20"></div>
+            <div class="absolute inset-0" style="background-color: #001F3F; opacity: 0.1;"></div>
             <div class="relative max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg">
-                        <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                        <div class="w-2 h-2 rounded-full mr-2" style="background-color: #C6A664;"></div>
                         <span class="text-sm font-medium text-gray-700">Family Living</span>
                     </div>
                     <h1 class="mt-6 text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight">
                         Dream
-                        <span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Homes</span>
+                        <span class="bg-clip-text text-transparent" style="background: linear-gradient(to right, #001F3F, #C6A664); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Homes</span>
                     </h1>
                     <p class="mt-6 max-w-3xl mx-auto text-xl md:text-2xl text-gray-600 leading-relaxed">
                         Discover spacious family homes with beautiful yards, modern amenities, and the perfect setting for creating lasting memories.
@@ -63,7 +63,7 @@
                     <div class="p-6">
                         <div class="space-y-4">
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-200">
+                                <h3 class="text-xl font-bold text-gray-900 transition-colors duration-200" style="" onmouseover="this.parentElement.parentElement.parentElement.classList.contains('group') && (this.style.color='#001F3F')" onmouseout="this.style.color=''">
                                     Suburban Family Home
                                 </h3>
                                 <p class="text-sm text-gray-600">Greenwood Estates</p>
@@ -81,7 +81,7 @@
                                 </div>
                                 <a 
                                     href="#" 
-                                    class="inline-flex items-center px-4 py-2.5 bg-gradient-to-r from-green-600 to-blue-600 text-white font-medium rounded-lg hover:from-green-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                                    class="inline-flex items-center px-4 py-2.5 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'"
                                 >
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -237,10 +237,10 @@
             <!-- Call to Action -->
             <div class="mt-16 text-center">
                 <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Find Your Dream Home</h2>
+                    <h2 class="text-3xl font-bold mb-4" style="color: #001F3F;">Find Your Dream Home</h2>
                     <p class="text-gray-600 mb-8">Explore our complete collection of family homes and find the perfect place to build your future.</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="{{ route('properties.index') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <a href="{{ route('properties.index') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>

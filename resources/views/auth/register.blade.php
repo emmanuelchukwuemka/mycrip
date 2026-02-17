@@ -1,9 +1,9 @@
 <x-guest-layout>
-    <div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex">
+    <div class="min-h-screen flex" style="background: linear-gradient(to bottom right, #F5F5F5, #FFFFFF, #F5F5F5);">
         <!-- Left Side: Image -->
         <div class="hidden lg:block relative w-0 flex-1">
             <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Luxury Real Estate">
-            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/80 to-purple-600/80"></div>
+            <div class="absolute inset-0" style="background-color: #001F3F; opacity: 0.9;"></div>
             <div class="absolute inset-0 bg-black/20"></div>
         </div>
 
@@ -11,7 +11,7 @@
         <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div class="mx-auto w-full max-w-md lg:w-96">
                 <div class="text-center mb-8">
-                    <a href="{{ route('home') }}" class="inline-flex items-center text-indigo-600 hover:text-indigo-700 transition-colors">
+                    <a href="{{ route('home') }}" class="inline-flex items-center transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
@@ -38,10 +38,10 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <label class="relative cursor-pointer group">
                                     <input type="radio" name="role" value="user" checked class="sr-only peer">
-                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:border-indigo-500 peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300">
+                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#C6A664'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#001F3F" data-checked-bg="rgba(0, 31, 63, 0.05)">
                                         <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
-                                                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3" style="background-color: #F5F5F5;">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #001F3F;">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                                                 </svg>
                                             </div>
@@ -55,10 +55,10 @@
 
                                 <label class="relative cursor-pointer group">
                                     <input type="radio" name="role" value="agent" class="sr-only peer">
-                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:border-indigo-500 peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300">
+                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#C6A664'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#001F3F" data-checked-bg="rgba(0, 31, 63, 0.05)">
                                         <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                                                <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3" style="background-color: #F5F5F5;">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #C6A664;">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                                 </svg>
                                             </div>
@@ -146,7 +146,7 @@
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Already have an account? 
-                            <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-700 transition-colors">
+                            <a href="{{ route('login') }}" class="font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
                                 Sign in here
                             </a>
                         </p>

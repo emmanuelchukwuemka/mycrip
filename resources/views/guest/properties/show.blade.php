@@ -38,7 +38,7 @@
                             <div class="p-4 grid grid-cols-4 gap-4">
                                 @foreach($property->images as $index => $image)
                                     <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                         class="w-full h-24 object-cover rounded cursor-pointer hover:opacity-75 transition {{ $index === 0 ? 'ring-2 ring-indigo-500' : '' }}"
+                                         class="w-full h-24 object-cover rounded cursor-pointer hover:opacity-75 transition {{ $index === 0 ? 'ring-2' : '' }}" style="{{ $index === 0 ? 'border-color: #C6A664;' : '' }}"
                                          onclick="document.getElementById('mainImage').src = this.src">
                                 @endforeach
                             </div>
@@ -49,10 +49,10 @@
                     <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
                         <div class="flex justify-between items-start mb-6">
                             <div>
-                                <span class="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full mb-2">
+                                <span class="inline-block text-sm font-semibold px-3 py-1 rounded-full mb-2" style="background-color: #F5F5F5; color: #001F3F;">
                                     {{ $property->category_display_name }}
                                 </span>
-                                <h1 class="text-3xl font-bold text-gray-900">{{ $property->title }}</h1>
+                                <h1 class="text-3xl font-bold" style="color: #001F3F;">{{ $property->title }}</h1>
                                 <p class="text-gray-500 mt-2 flex items-center">
                                     <svg class="h-5 w-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -62,7 +62,7 @@
                                 </p>
                             </div>
                             <div class="text-right">
-                                <p class="text-3xl font-bold text-indigo-600">{{ $property->formatted_price }}</p>
+                                <p class="text-3xl font-bold" style="color: #001F3F;">{{ $property->formatted_price }}</p>
                                 @if($property->price_type !== 'fixed')
                                     <p class="text-gray-500">{{ ucfirst($property->price_type) }}</p>
                                 @endif
@@ -159,8 +159,8 @@
                             @if($property->user && $property->user->agent_image)
                                 <img class="h-16 w-16 rounded-full object-cover mr-4" src="{{ $property->user->agent_image_url }}" alt="{{ $property->user->name }}">
                             @else
-                                <div class="h-16 w-16 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
-                                    <svg class="h-8 w-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="h-16 w-16 rounded-full flex items-center justify-center mr-4" style="background-color: #F5F5F5;">
+                                    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #001F3F;">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                     </svg>
                                 </div>
@@ -201,14 +201,14 @@
                                 <textarea name="message" rows="3" required
                                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">I am interested in this property...</textarea>
                             </div>
-                            <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-150">
+                            <button type="submit" class="w-full text-white font-bold py-2 px-4 rounded-md transition duration-150" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
                                 Send Inquiry
                             </button>
                         </form>
                         
                         @if($property->user)
                         <div class="mt-6 border-t pt-6 text-center">
-                            <a href="{{ route('agents.index') }}?agent={{ $property->user->id }}" class="text-indigo-600 font-medium hover:text-indigo-800">View Agent Profile</a>
+                            <a href="{{ route('agents.index') }}?agent={{ $property->user->id }}" class="font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">View Agent Profile</a>
                         </div>
                         @endif
                     </div>
@@ -256,7 +256,7 @@
             <!-- Related Properties -->
             @if($relatedProperties->count() > 0)
             <div class="mt-16">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Related Properties</h2>
+                <h2 class="text-2xl font-bold mb-8" style="color: #001F3F;">Related Properties</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach($relatedProperties as $related)
                         <x-property-card :property="$related" />

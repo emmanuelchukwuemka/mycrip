@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden">
+    <div class="relative overflow-hidden" style="background-color: #001F3F;">
         <div class="absolute inset-0 bg-black opacity-40"></div>
         <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Properties" class="w-full h-96 object-cover">
         
@@ -31,8 +31,8 @@
                     <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 border border-gray-100">
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-900">Properties for Sale & Rent</h2>
-                                <p class="text-gray-600 mt-1">Discover {{ $properties->total() }} premium listings</p>
+                                <h2 class="text-2xl font-bold" style="color: #001F3F;">Properties for Sale & Rent</h2>
+                                <p class="mt-1" style="color: #1A1A1A;">Discover {{ $properties->total() }} premium listings</p>
                             </div>
                             
                             <!-- Sort Options -->
@@ -44,7 +44,7 @@
                                 @if(request('max_price'))<input type="hidden" name="max_price" value="{{ request('max_price') }}">@endif
                                 @if(request('search'))<input type="hidden" name="search" value="{{ request('search') }}">@endif
                                 
-                                <select name="sort" onchange="this.form.submit()" class="bg-white border border-gray-200 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300">
+                                <select name="sort" onchange="this.form.submit()" class="bg-white border rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 transition-all duration-300" style="border-color: #C6A664;" onfocus="this.style.borderColor='#001F3F'" onblur="this.style.borderColor='#C6A664'">
                                     <option value="latest" {{ request('sort', 'latest') == 'latest' ? 'selected' : '' }}>Sort by: Newest</option>
                                     <option value="price_low" {{ request('sort') == 'price_low' ? 'selected' : '' }}>Price: Low to High</option>
                                     <option value="price_high" {{ request('sort') == 'price_high' ? 'selected' : '' }}>Price: High to Low</option>
@@ -79,7 +79,7 @@
                                 </svg>
                                 <h3 class="mt-4 text-lg font-medium text-gray-900">No properties found</h3>
                                 <p class="mt-2 text-gray-500">Try adjusting your search or filter criteria.</p>
-                                <a href="{{ route('properties.index') }}" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800">Clear filters →</a>
+                                <a href="{{ route('properties.index') }}" class="mt-4 inline-block" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">Clear filters →</a>
                             </div>
                         @endforelse
                     </div>

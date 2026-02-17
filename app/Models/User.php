@@ -28,6 +28,7 @@ class User extends Authenticatable
         'agent_id_document',
         'agent_id_number',
         'agent_phone',
+        'agent_whatsapp',
         'agent_address',
         'agent_verification_status',
         'agent_verification_notes',
