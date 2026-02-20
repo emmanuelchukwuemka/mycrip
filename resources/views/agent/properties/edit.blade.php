@@ -1,11 +1,35 @@
 <x-agent-layout>
     <div class="max-w-6xl mx-auto">
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Upload New Property</h1>
-            <p class="text-gray-600 mt-2">Add your property listing with all the essential details</p>
+        <div class="mb-8 flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">Edit Property</h1>
+                <p class="text-gray-600 mt-2">Update your property listing details and media</p>
+            </div>
+            <a href="{{ route('agent.properties.index') }}" 
+                class="inline-flex items-center px-6 py-3 border border-gray-200 text-gray-500 bg-white rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-sm font-bold text-xs uppercase tracking-wider">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Listings
+            </a>
         </div>
 
         <!-- Error/Success Messages -->
+        @if(session('success'))
+            <div class="bg-emerald-50 border-l-4 border-emerald-500 text-emerald-700 px-6 py-4 rounded-xl shadow-sm mb-6">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium">{{ session('success') }}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         @if(session('error'))
             <div class="bg-red-50 border-l-4 border-red-500 text-red-700 px-6 py-4 rounded-xl shadow-sm mb-6">
                 <div class="flex">
@@ -45,23 +69,24 @@
                 <div class="flex items-center space-x-4">
                     <div class="p-3 bg-white/10 rounded-2xl backdrop-blur-sm">
                         <svg class="w-8 h-8 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
                     </div>
                     <div>
-                        <h2 class="text-white text-2xl font-bold tracking-tight">Property Details</h2>
-                        <p class="text-gray-300 text-sm mt-1">Fill in all the information to create a compelling listing</p>
+                        <h2 class="text-white text-2xl font-bold tracking-tight">Modify Listing</h2>
+                        <p class="text-gray-300 text-sm mt-1">Review and update your property details</p>
                     </div>
                 </div>
             </div>
 
-            <form action="{{ route('agent.properties.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
+            <form action="{{ route('agent.properties.update', $property->id) }}" method="POST" enctype="multipart/form-data" class="p-8">
                 @csrf
+                @method('PUT')
                 
                 <!-- Basic Information Section -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12" x-data="{ 
-                    category: '{{ old('category', '') }}',
-                    priceType: '{{ old('price_type', 'fixed') }}'
+                    category: '{{ old('category', $property->category) }}',
+                    priceType: '{{ old('price_type', $property->price_type) }}'
                 }">
                     <div class="space-y-8">
                         <div>
@@ -71,7 +96,7 @@
                                 </span>
                                 Property Title
                             </label>
-                            <input type="text" name="title" id="title" value="{{ old('title') }}"
+                            <input type="text" name="title" id="title" value="{{ old('title', $property->title) }}"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
                                 placeholder="e.g. Modern 3 Bedroom Flat with Balcony" required>
                         </div>
@@ -131,7 +156,7 @@
                                 <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                                     <span class="text-[#C6A664] font-bold text-xl">₦</span>
                                 </div>
-                                <input type="number" name="price" id="price" value="{{ old('price') }}"
+                                <input type="number" name="price" id="price" value="{{ old('price', $property->price) }}"
                                     class="w-full pl-14 pr-5 py-5 border-2 border-gray-100 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none font-bold text-2xl text-gray-900 bg-white shadow-inner"
                                     placeholder="0" step="0.01" required>
                             </div>
@@ -141,37 +166,55 @@
                             <label class="block text-sm font-semibold text-gray-700 mb-3">Description</label>
                             <textarea name="description" id="description" rows="6"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 resize-none outline-none shadow-sm"
-                                placeholder="Describe the property, its features, neighborhood, and any other important details..." required>{{ old('description') }}</textarea>
+                                placeholder="Describe the property..." required>{{ old('description', $property->description) }}</textarea>
                         </div>
                     </div>
 
-                    <!-- Property Images -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            <span class="flex items-center tracking-wide uppercase text-xs text-gray-400 mb-1">
-                                Media Selection
-                            </span>
-                            Property Images <span class="text-red-500">*</span>
-                        </label>
-                        
-                        <div class="group relative border-4 border-dashed border-gray-100 rounded-3xl p-8 text-center hover:border-[#C6A664]/30 hover:bg-gray-50/50 transition-all duration-300">
-                            <input type="file" name="images[]" id="images" multiple class="hidden" accept="image/*" data-max-files="10">
-                            <label for="images" class="cursor-pointer">
-                                <div class="text-center">
-                                    <div class="mx-auto w-20 h-20 bg-gray-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                                        <svg class="h-10 w-10 text-gray-300 group-hover:text-[#C6A664]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                    </div>
-                                    <div class="text-sm text-gray-600">
-                                        <span class="font-bold text-[#001F3F] hover:text-[#C6A664]">Click to upload</span> or drag and drop
-                                    </div>
-                                    <p class="text-xs text-gray-400 mt-2 font-medium">PNG, JPG, JPEG, WEBP</p>
-                                    <p class="text-xs text-[#C6A664] mt-2 font-bold bg-[#C6A664]/10 inline-block px-3 py-1 rounded-full" id="file-count">No files selected</p>
-                                </div>
+                    <!-- Property Media Management -->
+                    <div class="space-y-8">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-5">
+                                <span class="flex items-center tracking-wide uppercase text-xs text-gray-400 mb-1">
+                                    Existing Media
+                                </span>
+                                Manage Images
                             </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+                                @foreach($property->images as $image)
+                                    <div class="relative group aspect-square rounded-2xl overflow-hidden border-2 border-gray-100">
+                                        <img src="{{ $image->image_url }}" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-2">
+                                            <form action="{{ route('agent.properties.images.delete', [$property->id, $image->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-200" title="Delete Image">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                        <div id="image-preview" class="mt-6 grid grid-cols-4 gap-4"></div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Add New Images</label>
+                            <div class="group relative border-4 border-dashed border-gray-100 rounded-3xl p-8 text-center hover:border-[#C6A664]/30 hover:bg-gray-50/50 transition-all duration-300 font-bold">
+                                <input type="file" name="images[]" id="images" multiple class="hidden" accept="image/*">
+                                <label for="images" class="cursor-pointer">
+                                    <div class="text-center">
+                                        <div class="mx-auto w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                            <svg class="h-8 w-8 text-gray-300 group-hover:text-[#C6A664]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                            </svg>
+                                        </div>
+                                        <div class="text-sm text-gray-600">
+                                            <span class="text-[#001F3F]">Click to add more images</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -181,7 +224,6 @@
                         <span class="w-8 h-8 rounded-lg bg-[#001F3F]/5 flex items-center justify-center mr-3">
                             <svg class="w-5 h-5 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </span>
                         Location Details
@@ -189,26 +231,23 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Country</label>
-                            <input type="text" name="country" id="country" value="{{ old('country', 'Nigeria') }}"
+                            <input type="text" name="country" id="country" value="{{ old('country', $property->country) }}"
                                 class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">State <span class="text-red-500">*</span></label>
-                            <input type="text" name="state" id="state" value="{{ old('state') }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400"
-                                placeholder="e.g. Lagos" required>
+                            <input type="text" name="state" id="state" value="{{ old('state', $property->state) }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">City <span class="text-red-500">*</span></label>
-                            <input type="text" name="city" id="city" value="{{ old('city') }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400"
-                                placeholder="e.g. Lekki" required>
+                            <input type="text" name="city" id="city" value="{{ old('city', $property->city) }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
-                            <input type="text" name="address" id="address" value="{{ old('address') }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400"
-                                placeholder="Street name and number">
+                            <input type="text" name="address" id="address" value="{{ old('address', $property->address) }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400">
                         </div>
                     </div>
                 </div>
@@ -226,27 +265,23 @@
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Bedrooms</label>
-                            <input type="number" name="bedrooms" id="bedrooms" value="{{ old('bedrooms') }}" min="0" max="20"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
-                                placeholder="0">
+                            <input type="number" name="bedrooms" value="{{ old('bedrooms', $property->bedrooms) }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Bathrooms</label>
-                            <input type="number" name="bathrooms" id="bathrooms" value="{{ old('bathrooms') }}" min="0" max="20"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
-                                placeholder="0">
+                            <input type="number" name="bathrooms" value="{{ old('bathrooms', $property->bathrooms) }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Toilets</label>
-                            <input type="number" name="toilets" id="toilets" value="{{ old('toilets') }}" min="0" max="20"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
-                                placeholder="0">
+                            <input type="number" name="toilets" value="{{ old('toilets', $property->toilets) }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Size (sqm)</label>
-                            <input type="text" name="size" id="size" value="{{ old('size') }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
-                                placeholder="e.g. 120">
+                            <input type="text" name="size" value="{{ old('size', $property->size) }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
                         </div>
                     </div>
 
@@ -264,7 +299,7 @@
                             ] as $field => $label)
                                 <label class="flex items-center space-x-4 cursor-pointer group">
                                     <div class="relative">
-                                        <input type="checkbox" name="{{ $field }}" value="1" {{ old($field) ? 'checked' : '' }} 
+                                        <input type="checkbox" name="{{ $field }}" value="1" {{ old($field, $property->$field) ? 'checked' : '' }} 
                                             class="peer h-6 w-6 border-2 border-gray-300 rounded-lg text-[#C6A664] focus:ring-0 transition-colors duration-200">
                                         <div class="absolute inset-0 bg-[#C6A664] scale-0 peer-checked:scale-100 rounded-lg transition-transform duration-200 flex items-center justify-center">
                                             <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -281,62 +316,17 @@
 
                 <!-- Submit Section -->
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-100 pt-10">
-                    <a href="{{ route('agent.properties.index') }}" 
-                        class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border-2 border-gray-200 text-gray-600 font-bold rounded-2xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
+                    <button type="button" onclick="window.history.back()"
+                        class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border-2 border-gray-200 text-gray-500 font-bold rounded-2xl hover:bg-gray-50 transition-all duration-200">
                         Discard Changes
-                    </a>
+                    </button>
                     
                     <button type="submit"
                         class="w-full sm:w-auto inline-flex items-center justify-center px-12 py-4 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#C6A664]/20" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%); border-bottom: 4px solid #C6A664;">
-                        <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                        Post Listing Now
+                        Update Property Listing
                     </button>
                 </div>
             </form>
         </div>
     </div>
-
-    <script>
-        // Image preview and count enhancement
-        document.getElementById('images').addEventListener('change', function(e) {
-            const files = e.target.files;
-            const countSpan = document.getElementById('file-count');
-            const previewDiv = document.getElementById('image-preview');
-            
-            if (files.length > 0) {
-                countSpan.textContent = files.length + ' file(s) selected';
-                
-                // Show preview with animation
-                previewDiv.innerHTML = '';
-                for (let i = 0; i < Math.min(files.length, 12); i++) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const container = document.createElement('div');
-                        container.className = 'relative group aspect-square rounded-2xl overflow-hidden shadow-md border-2 border-white transform hover:scale-105 transition-all duration-300';
-                        
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.className = 'w-full h-full object-cover';
-                        
-                        const overlay = document.createElement('div');
-                        overlay.className = 'absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300';
-                        
-                        container.appendChild(img);
-                        container.appendChild(overlay);
-                        previewDiv.appendChild(container);
-                    };
-                    reader.readAsDataURL(files[i]);
-                }
-            } else {
-                countSpan.textContent = 'No files selected';
-                previewDiv.innerHTML = '';
-            }
-        });
-    </script>
 </x-agent-layout>
-

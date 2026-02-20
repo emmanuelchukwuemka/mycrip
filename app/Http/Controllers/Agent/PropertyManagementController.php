@@ -53,7 +53,7 @@ class PropertyManagementController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|min:20',
+            'description' => 'required|string',
             'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge',
             'country' => 'required|string|max:100',
             'state' => 'required|string|max:100',
@@ -73,8 +73,8 @@ class PropertyManagementController extends Controller
             'security' => 'boolean',
             'water_supply' => 'boolean',
             'power_supply' => 'boolean',
-            'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:5120',
-            'images' => 'required|array|min:1',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp',
+            'images' => 'nullable|array',
         ]);
 
         // Create property
@@ -164,7 +164,7 @@ class PropertyManagementController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|min:20',
+            'description' => 'required|string',
             'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge',
             'country' => 'required|string|max:100',
             'state' => 'required|string|max:100',
@@ -204,8 +204,8 @@ class PropertyManagementController extends Controller
         $property = Auth::user()->properties()->findOrFail($id);
 
         $request->validate([
-            'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:5120',
-            'images' => 'required|array|min:1',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp',
+            'images' => 'nullable|array',
         ]);
 
         $duplicateWarnings = [];
