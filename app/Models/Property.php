@@ -93,11 +93,21 @@ class Property extends Model
     public function getFeaturedImageUrlAttribute(): ?string
     {
         if ($this->featured_image) {
+            if (filter_var($this->featured_image, FILTER_VALIDATE_URL)) {
+                return $this->featured_image;
+            }
             return asset('storage/' . $this->featured_image);
         }
         
         $firstImage = $this->images()->first();
-        return $firstImage ? asset('storage/' . $firstImage->image_path) : null;
+        if ($firstImage) {
+            if (filter_var($firstImage->image_path, FILTER_VALIDATE_URL)) {
+                return $firstImage->image_path;
+            }
+            return asset('storage/' . $firstImage->image_path);
+        }
+
+        return null;
     }
 
     /**

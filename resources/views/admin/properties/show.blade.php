@@ -55,7 +55,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @forelse($property->images as $image)
                     <div class="aspect-video rounded-2xl overflow-hidden border">
-                        <img src="{{ asset('storage/' . $image->image_path) }}" class="w-full h-full object-cover" alt="">
+                        <img src="{{ $image->image_url }}" class="w-full h-full object-cover" alt="">
                     </div>
                     @empty
                     <div class="col-span-2 py-12 flex flex-col items-center justify-center bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">

@@ -69,6 +69,9 @@ class PropertyImage extends Model
      */
     public function getImageUrlAttribute(): string
     {
+        if (filter_var($this->image_path, FILTER_VALIDATE_URL)) {
+            return $this->image_path;
+        }
         return asset('storage/' . $this->image_path);
     }
 
