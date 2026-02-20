@@ -28,6 +28,10 @@ Route::prefix('properties')->name('properties.')->group(function () {
 
 Route::get('/agents', [App\Http\Controllers\Guest\AgentController::class, 'index'])->name('agents.index');
 
+Route::get('/privacy-policy', function () {
+    return view('guest.privacy-policy');
+})->name('privacy.policy');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -38,7 +42,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::prefix('agent')->name('agent.')->group(function () {
+Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Agent\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('properties', App\Http\Controllers\Agent\PropertyManagementController::class);
     
@@ -67,7 +71,7 @@ Route::prefix('agent')->name('agent.')->group(function () {
     })->name('inquiries.show');
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('properties', App\Http\Controllers\Admin\PropertyController::class)->only(['index', 'show']);
     Route::post('/properties/{id}/verify', [App\Http\Controllers\Admin\PropertyController::class, 'verify'])->name('properties.verify');
@@ -80,7 +84,9 @@ Route::controller(App\Http\Controllers\AuthController::class)->group(function ()
     Route::post('/login', 'login');
     Route::get('/register', 'showRegistrationForm')->name('register');
     Route::post('/register', 'register');
-    Route::post('/logout', 'logout')->name('logout');
+    Route::match(['get', 'post'], '/logout', 'logout')->name('logout');
 });
 
-
+// Google OAuth Routes
+Route::get('/auth/google/redirect', [App\Http\Controllers\GoogleAuthController::class, 'redirect'])->name('google.redirect');
+Route::get('/auth/google/callback', [App\Http\Controllers\GoogleAuthController::class, 'callback'])->name('google.callback');

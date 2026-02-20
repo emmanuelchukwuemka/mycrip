@@ -24,7 +24,7 @@
                     <li><a href="#" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">About Us</a></li>
                     <li><a href="#" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Careers</a></li>
                     <li><a href="#" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Contact</a></li>
-                    <li><a href="#" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Privacy Policy</a></li>
+                    <li><a href="{{ route('privacy.policy') }}" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Privacy Policy</a></li>
                 </ul>
             </div>
 

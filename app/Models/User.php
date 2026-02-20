@@ -24,6 +24,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'google_id',
+        'google_avatar',
         'agent_image',
         'agent_id_document',
         'agent_id_number',
