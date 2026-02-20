@@ -72,11 +72,16 @@ Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('properties', App\Http\Controllers\Admin\PropertyController::class)->only(['index', 'show']);
     Route::post('/properties/{id}/verify', [App\Http\Controllers\Admin\PropertyController::class, 'verify'])->name('properties.verify');
     Route::post('/properties/{id}/reject', [App\Http\Controllers\Admin\PropertyController::class, 'reject'])->name('properties.reject');
     Route::resource('users', App\Http\Controllers\Admin\UserController::class)->only(['index', 'show', 'destroy']);
+    Route::post('/users/{id}/verify', [App\Http\Controllers\Admin\UserController::class, 'verify'])->name('users.verify');
+    Route::post('/users/{id}/reject', [App\Http\Controllers\Admin\UserController::class, 'reject'])->name('users.reject');
 });
 
 Route::controller(App\Http\Controllers\AuthController::class)->group(function () {

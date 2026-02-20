@@ -20,7 +20,8 @@ class DashboardController extends Controller
         ];
 
         $newestUsers = User::latest()->take(5)->get();
+        $pendingProperties = Property::with(['user', 'images'])->where('status', 'pending')->latest()->take(5)->get();
 
-        return view('admin.dashboard', compact('stats', 'newestUsers'));
+        return view('admin.dashboard', compact('stats', 'newestUsers', 'pendingProperties'));
     }
 }

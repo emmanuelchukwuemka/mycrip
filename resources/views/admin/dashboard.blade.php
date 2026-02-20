@@ -206,46 +206,86 @@
         </div>
     </div>
 
-    <!-- Property Distribution Chart + Quick Stats -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <!-- Property Distribution Doughnut -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <h4 class="text-lg font-bold mb-6" style="color: #001F3F;">Property Distribution</h4>
-            <div class="relative h-56 flex items-center justify-center">
-                <canvas id="propertyDistChart"></canvas>
-            </div>
-            <div class="mt-6 grid grid-cols-2 gap-3">
-                <div class="flex items-center">
-                    <span class="w-3 h-3 rounded-full mr-2" style="background-color: #001F3F;"></span>
-                    <span class="text-sm text-gray-600">Apartments</span>
+    <!-- Property Approvals Table + Newest Members Section -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
+        <!-- Property Approvals -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h4 class="text-lg font-bold" style="color: #001F3F;">Property Approvals</h4>
+                        <p class="text-sm text-gray-500">Listings awaiting verification</p>
+                    </div>
                 </div>
-                <div class="flex items-center">
-                    <span class="w-3 h-3 rounded-full mr-2" style="background-color: #C6A664;"></span>
-                    <span class="text-sm text-gray-600">Houses</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="w-3 h-3 rounded-full mr-2 bg-emerald-500"></span>
-                    <span class="text-sm text-gray-600">Land</span>
-                </div>
-                <div class="flex items-center">
-                    <span class="w-3 h-3 rounded-full mr-2 bg-amber-500"></span>
-                    <span class="text-sm text-gray-600">Commercial</span>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr style="background-color: #F8F9FC;">
+                                <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Property</th>
+                                <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Agent</th>
+                                <th class="px-4 py-3 text-right text-xs font-bold uppercase tracking-wider text-gray-500">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            @forelse($pendingProperties as $property)
+                            <tr class="hover:bg-gray-50 transition-colors duration-150">
+                                <td class="px-4 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="h-12 w-16 rounded-lg overflow-hidden flex-shrink-0 border bg-gray-50">
+                                            @if($property->featured_image)
+                                                <img class="h-full w-full object-cover" src="{{ asset('storage/' . $property->featured_image) }}" alt="">
+                                            @else
+                                                <div class="h-full w-full flex items-center justify-center text-gray-300">
+                                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="ml-4 max-w-[200px]">
+                                            <div class="text-sm font-semibold truncate text-[#001F3F]">{{ $property->title }}</div>
+                                            <div class="text-xs text-gray-500 truncate">{{ $property->city }}, {{ $property->state }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    {{ $property->user->name }}
+                                </td>
+                                <td class="px-4 py-4 whitespace-nowrap text-right space-x-2">
+                                    <form action="{{ route('admin.properties.verify', $property->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        <button type="submit" class="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors" title="Approve">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('admin.properties.reject', $property->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        <button type="submit" class="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-colors" title="Reject">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="px-4 py-8 text-center text-gray-400 text-sm">
+                                    No properties awaiting approval
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- Newest Members Table — spans 2 cols -->
-        <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <!-- Newest Members Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="p-6 pb-0">
                 <div class="flex items-center justify-between mb-6">
                     <div>
                         <h4 class="text-lg font-bold" style="color: #001F3F;">Newest Members</h4>
                         <p class="text-sm text-gray-500">Recent user registrations</p>
                     </div>
-                    <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border" style="color: #001F3F; border-color: rgba(0, 31, 63, 0.2);" onmouseover="this.style.backgroundColor='#001F3F'; this.style.color='#fff'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#001F3F'">
-                        View All
-                        <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
                 </div>
             </div>
             <div class="overflow-x-auto">
@@ -255,8 +295,7 @@
                             <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">User</th>
                             <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Role</th>
                             <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Status</th>
-                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Joined</th>
-                            <th class="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Action</th>
+                            <th class="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -291,40 +330,48 @@
                                 @if($user->role === 'agent')
                                     @if($user->agent_verification_status === 'approved')
                                         <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-emerald-100 text-emerald-700">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 mt-1"></span>
                                             Verified
                                         </span>
                                     @elseif($user->agent_verification_status === 'rejected')
                                         <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-red-100 text-red-700">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5 mt-1"></span>
                                             Rejected
                                         </span>
                                     @else
                                         <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-amber-100 text-amber-700">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5 mt-1"></span>
                                             Pending
                                         </span>
                                     @endif
                                 @else
                                     <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-emerald-100 text-emerald-700">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 mt-1"></span>
                                         Active
                                     </span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $user->created_at->format('M d, Y') }}
-                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
-                                @if($user->role === 'agent' && $user->agent_id_document)
-                                    <a href="{{ asset('storage/' . $user->agent_id_document) }}" target="_blank" class="inline-flex items-center px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors text-xs font-medium">
-                                        View ID
-                                    </a>
+                                @if($user->role === 'agent' && $user->agent_verification_status === 'pending')
+                                    @if($user->agent_id_document)
+                                        <a href="{{ asset('storage/' . $user->agent_id_document) }}" target="_blank" class="inline-flex items-center px-2 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors text-xs font-medium">
+                                            View ID
+                                        </a>
+                                    @endif
+                                    
+                                    <div class="inline-flex space-x-1">
+                                        <form action="{{ route('admin.users.verify', $user->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit" class="p-1 rounded bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors" title="Approve Agent">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('admin.users.reject', $user->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit" class="p-1 rounded bg-red-50 text-red-600 hover:bg-red-100 transition-colors" title="Reject Agent">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                            </button>
+                                        </form>
+                                    </div>
                                 @endif
-                                <a href="#" class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200" style="color: #C6A664;" onmouseover="this.style.backgroundColor='rgba(198, 166, 100, 0.08)'" onmouseout="this.style.backgroundColor='transparent'">
-                                    <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                                    Edit
-                                </a>
+                                
+                                <a href="{{ route('admin.users.show', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">Details</a>
                             </td>
                         </tr>
                         @endforeach
