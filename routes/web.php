@@ -33,8 +33,7 @@ Route::get('/privacy-policy', function () {
 })->name('privacy.policy');
 
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
+    'auth',
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
@@ -46,6 +45,13 @@ Route::middleware([
     Route::post('/chat/start', [App\Http\Controllers\Guest\ChatController::class, 'start'])->name('chat.start');
     Route::get('/chat/{id}', [App\Http\Controllers\Guest\ChatController::class, 'show'])->name('chat.show');
     Route::post('/chat/{id}/reply', [App\Http\Controllers\Guest\ChatController::class, 'reply'])->name('chat.reply');
+
+    // Saved Properties
+    Route::get('/my-saved-properties', [PropertyController::class, 'savedIndex'])->name('properties.saved');
+
+    // Customer Inquiries
+    Route::get('/my-inquiries', [App\Http\Controllers\Guest\InquiryController::class, 'index'])->name('inquiries.index');
+    Route::get('/my-inquiries/{id}', [App\Http\Controllers\Guest\InquiryController::class, 'show'])->name('inquiries.show');
 });
 
 Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {

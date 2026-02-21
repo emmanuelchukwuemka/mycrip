@@ -116,13 +116,14 @@
                         <span class="text-sm font-semibold text-gray-700 group-hover:text-gray-900">Sign in with Google</span>
                     </a>
 
-                    <div class="mt-6 text-center">
-                        <p class="text-sm text-gray-600">
-                            Don't have an account? 
-                            <a href="{{ route('register') }}" class="font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
-                                Sign up for free
+                    <div class="mt-8 pt-6 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 text-center mb-4 font-medium uppercase tracking-widest">Need an account?</p>
+                        <div class="space-y-3">
+                            <a href="{{ route('register', ['role' => 'user']) }}" id="register-link" 
+                               class="w-full flex items-center justify-center px-4 py-3 bg-[#001F3F] text-white rounded-lg font-bold shadow-md hover:bg-[#00152B] transition-all transform active:scale-95">
+                                Sign up as Buyer
                             </a>
-                        </p>
+                        </div>
                     </div>
             </div>
         </div>
@@ -134,6 +135,7 @@
             const title = document.getElementById('login-title');
             const subtitle = document.getElementById('login-subtitle');
             const submitBtn = document.getElementById('submit-btn');
+            const registerLink = document.getElementById('register-link');
 
             if (role === 'user') {
                 userBtn.classList.add('bg-white', 'shadow-sm', 'text-[#001F3F]');
@@ -144,6 +146,9 @@
                 title.innerText = 'Welcome Back';
                 subtitle.innerText = 'Sign in as a Buyer or Renter';
                 submitBtn.innerText = 'Sign In as User';
+                
+                registerLink.innerText = 'Sign up as Buyer';
+                registerLink.href = "{{ route('register', ['role' => 'user']) }}";
             } else {
                 agentBtn.classList.add('bg-white', 'shadow-sm', 'text-[#001F3F]');
                 agentBtn.classList.remove('text-gray-500');
@@ -153,6 +158,9 @@
                 title.innerText = 'Agent Portal';
                 subtitle.innerText = 'Manage your property listings and inquiries';
                 submitBtn.innerText = 'Sign In as Agent';
+
+                registerLink.innerText = 'Register as Agent';
+                registerLink.href = "{{ route('register', ['role' => 'agent']) }}";
             }
         }
     </script>

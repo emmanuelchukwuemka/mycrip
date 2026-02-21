@@ -47,7 +47,7 @@
                             <p class="text-sm text-gray-600 mb-4">Select how you want to use MyCrib Africa</p>
                             <div class="grid grid-cols-2 gap-4">
                                 <label class="relative cursor-pointer group">
-                                    <input type="radio" name="role" value="user" checked class="sr-only peer">
+                                    <input type="radio" name="role" value="user" {{ request()->get('role') !== 'agent' ? 'checked' : '' }} class="sr-only peer">
                                     <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#C6A664'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#001F3F" data-checked-bg="rgba(0, 31, 63, 0.05)">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3" style="background-color: #F5F5F5;">
@@ -64,7 +64,7 @@
                                 </label>
 
                                 <label class="relative cursor-pointer group">
-                                    <input type="radio" name="role" value="agent" class="sr-only peer">
+                                    <input type="radio" name="role" value="agent" {{ request()->get('role') === 'agent' ? 'checked' : '' }} class="sr-only peer">
                                     <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#C6A664'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#001F3F" data-checked-bg="rgba(0, 31, 63, 0.05)">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3" style="background-color: #F5F5F5;">
@@ -152,8 +152,9 @@
                                     <input id="agent_image" name="agent_image" type="file" accept="image/*" 
                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm">
                                     <p class="mt-2 text-sm text-gray-600">Upload a professional profile picture for your agent account.</p>
-                                </div>
                             </div>
+                        </div>
+                        </div>
                         </div>
 
                         <!-- Agent Verification Document -->
@@ -167,7 +168,7 @@
                         </div>
 
                         <div>
-<button type="submit" 
+                            <button type="submit" id="submit-btn" 
                                     class="w-full btn-auth text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#001F3F] focus:ring-offset-2">
                                 Create Account
                             </button>
@@ -218,12 +219,16 @@
             
             function toggleAgentSections() {
                 const selectedRole = document.querySelector('input[name="role"]:checked').value;
+                const submitBtn = document.getElementById('submit-btn');
+                
                 if (selectedRole === 'agent') {
                     agentProfileSection.classList.remove('hidden');
                     agentDocumentSection.classList.remove('hidden');
+                    submitBtn.innerText = 'Register as Agent';
                 } else {
                     agentProfileSection.classList.add('hidden');
                     agentDocumentSection.classList.add('hidden');
+                    submitBtn.innerText = 'Sign up as Buyer';
                     // Reset preview when switching away from agent
                     profilePreview.innerHTML = '<svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>';
                 }

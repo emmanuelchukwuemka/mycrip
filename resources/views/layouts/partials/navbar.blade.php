@@ -55,6 +55,20 @@
                 </a>
                 
                 @auth
+                    <!-- Notifications/Icons -->
+                    <div class="flex items-center space-x-2 mr-4">
+                        <a href="{{ route('chat.index') }}" class="p-2 text-gray-400 hover:text-[#C6A664] transition-colors relative" title="Messages">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                        </a>
+                        <a href="{{ route('properties.saved') }}" class="p-2 text-gray-400 hover:text-[#C6A664] transition-colors" title="Saved Properties">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </a>
+                    </div>
+
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center space-x-3 bg-white border-2 px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-md" style="border-color: #C6A664;" onmouseover="this.style.borderColor='#001F3F'" onmouseout="this.style.borderColor='#C6A664'">
                             <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold" style="background-color: #001F3F;">
@@ -66,28 +80,57 @@
                             </svg>
                         </button>
                         
-                        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50" style="display: none;">
-                            <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50">
+                        <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 py-3 z-50 overflow-hidden" style="display: none;">
+                            <div class="px-4 py-2 border-b border-gray-50 mb-2">
+                                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">My Account</p>
+                            </div>
+                            
+                            <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
                                 <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
-                                Profile
+                                <span class="font-semibold text-sm">Profile</span>
                             </a>
+
+                            <a href="{{ route('chat.index') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
+                                <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                                <span class="font-semibold text-sm">My Messages</span>
+                            </a>
+
+                            <a href="{{ route('properties.saved') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
+                                <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                                <span class="font-semibold text-sm">Saved Properties</span>
+                            </a>
+
+                            <a href="{{ route('inquiries.index') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
+                                <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                                <span class="font-semibold text-sm">My Inquiries</span>
+                            </a>
+
+                            <div class="border-t border-gray-50 my-2"></div>
+
                             @if(auth()->user()->role === 'agent')
-                                <a href="{{ route('agent.dashboard') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50">
+                                <a href="{{ route('agent.dashboard') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
                                     <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                                     </svg>
-                                    Dashboard
+                                    <span class="font-bold text-sm">Agent Dashboard</span>
                                 </a>
                             @endif
-                            <form method="POST" action="{{ route('logout') }}" class="px-4 py-2">
+
+                            <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="w-full flex items-center text-left text-gray-700 hover:bg-gray-50">
-                                    <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <button type="submit" class="w-full flex items-center px-4 py-2.5 text-red-600 hover:bg-red-50 transition-colors">
+                                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                                     </svg>
-                                    Sign Out
+                                    <span class="font-bold text-sm">Sign Out</span>
                                 </button>
                             </form>
                         </div>
@@ -157,11 +200,35 @@
                 </div>
                 <div class="mt-3 space-y-1 px-2">
                     <a href="#" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300">
+                        <svg class="w-5 h-5 inline mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
                         Profile
                     </a>
+                    <a href="{{ route('chat.index') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300">
+                        <svg class="w-5 h-5 inline mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                        My Messages
+                    </a>
+                    <a href="{{ route('properties.saved') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300">
+                        <svg class="w-5 h-5 inline mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                        Saved Properties
+                    </a>
+                    <a href="{{ route('inquiries.index') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300">
+                        <svg class="w-5 h-5 inline mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                        My Inquiries
+                    </a>
                     @if(auth()->user()->role === 'agent')
-                        <a href="{{ route('agent.dashboard') }}" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-300">
-                            Dashboard
+                        <a href="{{ route('agent.dashboard') }}" class="block px-3 py-2 text-base font-bold text-[#C6A664] hover:bg-gray-50 rounded-md transition-colors duration-300">
+                            <svg class="w-5 h-5 inline mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            Agent Dashboard
                         </a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}" class="px-3 py-2">

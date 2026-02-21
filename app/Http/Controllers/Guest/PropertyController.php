@@ -165,6 +165,20 @@ class PropertyController extends Controller
     }
 
     /**
+     * List all properties saved by the authenticated user.
+     */
+    public function savedIndex()
+    {
+        $user = Auth::user();
+        $savedProperties = SavedProperty::where('user_id', $user->id)
+            ->with(['property.images', 'property.user'])
+            ->latest()
+            ->paginate(12);
+
+        return view('guest.properties.saved', compact('savedProperties'));
+    }
+
+    /**
      * Toggle save/unsave a property.
      */
     public function toggleSave($propertyId)
