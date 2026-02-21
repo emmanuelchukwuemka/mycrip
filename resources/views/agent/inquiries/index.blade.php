@@ -1,63 +1,78 @@
 <x-agent-layout>
     <div class="max-w-7xl mx-auto">
-        <!-- Header Section -->
-        <div class="mb-8">
-            <div class="flex items-center justify-between">
+        <!-- Hero Header -->
+        <div class="relative overflow-hidden rounded-3xl p-8 mb-8 text-white shadow-2xl" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%);">
+            <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-[#C6A664] opacity-15 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-[#C6A664] opacity-10 rounded-full blur-3xl"></div>
+            
+            <div class="relative flex flex-col md:flex-row items-center justify-between z-10">
                 <div>
-                    <h1 class="text-4xl font-bold text-gray-900">Property Inquiries</h1>
-                    <p class="text-gray-600 mt-2">Manage client inquiries for your properties</p>
+                    <h1 class="text-4xl font-bold tracking-tight">Property Inquiries</h1>
+                    <p class="text-white/60 mt-2 text-sm">Manage and respond to client inquiries for your properties</p>
                 </div>
-                <div class="flex space-x-4">
-                    <a href="{{ route('agent.dashboard') }}" 
-                       class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-all duration-200 shadow-sm">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
-                        Back to Dashboard
-                    </a>
-                </div>
+                <a href="{{ route('agent.dashboard') }}" 
+                   class="mt-4 md:mt-0 inline-flex items-center px-6 py-3 bg-[#C6A664] text-[#001F3F] font-bold rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Dashboard
+                </a>
             </div>
         </div>
 
         <!-- Stats Overview -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-600">Total Inquiries</p>
-                        <p class="text-3xl font-bold text-gray-900 mt-1">48</p>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Inquiries</p>
+                        <h3 class="text-3xl font-bold mt-1" style="color: #001F3F;">{{ $totalInquiries }}</h3>
                     </div>
-                    <div class="bg-blue-100 p-3 rounded-full">
-                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(0, 31, 63, 0.08); color: #001F3F;">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                         </svg>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-600">New Today</p>
-                        <p class="text-3xl font-bold text-green-600 mt-1">12</p>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">New Today</p>
+                        <h3 class="text-3xl font-bold mt-1" style="color: #C6A664;">{{ $newInquiries }}</h3>
                     </div>
-                    <div class="bg-green-100 p-3 rounded-full">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(198, 166, 100, 0.12); color: #C6A664;">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                         </svg>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-600">Response Rate</p>
-                        <p class="text-3xl font-bold text-purple-600 mt-1">85%</p>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Read</p>
+                        <h3 class="text-3xl font-bold text-emerald-600 mt-1">{{ $readInquiries }}</h3>
                     </div>
-                    <div class="bg-purple-100 p-3 rounded-full">
-                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    <div class="p-3 rounded-xl bg-emerald-50 text-emerald-600 transition-all duration-300">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Replied</p>
+                        <h3 class="text-3xl font-bold text-amber-500 mt-1">{{ $repliedInquiries }}</h3>
+                    </div>
+                    <div class="p-3 rounded-xl bg-amber-50 text-amber-500 transition-all duration-300">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
                         </svg>
                     </div>
                 </div>
@@ -65,163 +80,125 @@
         </div>
 
         <!-- Inquiries Table -->
-        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="px-8 py-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-white text-2xl font-bold">Recent Inquiries</h2>
-                        <p class="text-indigo-100 text-sm mt-1">Manage and respond to client inquiries</p>
-                    </div>
-                    <div class="hidden md:block">
-                        <svg class="w-16 h-16 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="flex items-center justify-between px-8 py-6 border-b border-gray-50 bg-gray-50/50">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800">Recent Inquiries</h3>
+                    <p class="text-xs text-gray-400 mt-1">Manage and respond to client inquiries</p>
+                </div>
+                <div class="hidden md:flex items-center space-x-3">
+                    <div class="flex items-center px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm text-gray-500">
+                        <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
+                        <span>{{ $totalInquiries }} total</span>
                     </div>
                 </div>
             </div>
 
-            <div class="p-8">
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Message</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
-                                            JD
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">John Doe</div>
-                                            <div class="text-sm text-gray-500">john@example.com</div>
-                                        </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-xs font-bold uppercase tracking-wider text-gray-400" style="background-color: #F8F9FC;">
+                            <th class="px-8 py-4">Client</th>
+                            <th class="px-8 py-4">Property</th>
+                            <th class="px-8 py-4">Message</th>
+                            <th class="px-8 py-4">Date</th>
+                            <th class="px-8 py-4 text-center">Status</th>
+                            <th class="px-8 py-4 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-50">
+                        @forelse($inquiries as $inquiry)
+                        <tr class="hover:bg-gray-50/80 transition-colors group">
+                            <td class="px-8 py-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-xl flex items-center justify-center text-white font-bold text-sm" style="background-color: #001F3F;">
+                                        {{ strtoupper(substr($inquiry->guest_name, 0, 2)) }}
                                     </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Modern Apartment in Lekki</div>
-                                    <div class="text-sm text-gray-500">Lekki, Lagos</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900 max-w-xs truncate">
-                                        I'm interested in viewing this property. Can we schedule a viewing this weekend?
+                                    <div class="ml-4">
+                                        <div class="text-sm font-bold text-gray-800 group-hover:text-[#C6A664] transition-colors">{{ $inquiry->guest_name }}</div>
+                                        <div class="text-xs text-gray-400">{{ $inquiry->guest_email }}</div>
                                     </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    2 hours ago
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                </div>
+                            </td>
+                            <td class="px-8 py-6">
+                                <div class="text-sm font-medium text-gray-800">{{ $inquiry->property->title ?? 'N/A' }}</div>
+                                <div class="text-xs text-gray-400">{{ $inquiry->property->city ?? '' }}{{ $inquiry->property->state ? ', ' . $inquiry->property->state : '' }}</div>
+                            </td>
+                            <td class="px-8 py-6">
+                                <div class="text-sm text-gray-600 max-w-xs truncate leading-relaxed">
+                                    {{ $inquiry->message }}
+                                </div>
+                            </td>
+                            <td class="px-8 py-6 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">{{ $inquiry->created_at->diffForHumans() }}</div>
+                                <div class="text-[10px] text-gray-300 mt-0.5">{{ $inquiry->created_at->format('M d, Y') }}</div>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                @if($inquiry->status === 'new')
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold uppercase" style="background: rgba(198, 166, 100, 0.12); color: #C6A664;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-[#C6A664] mr-2 animate-pulse"></span>
                                         New
                                     </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div class="flex space-x-2">
-                                        <a href="{{ route('agent.inquiries.show', 1) }}" 
-                                           class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors duration-200">
-                                            View Details
-                                        </a>
-                                        <button class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 bg-white text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                @elseif($inquiry->status === 'read')
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-emerald-50 text-emerald-700 uppercase">
+                                        Read
+                                    </span>
+                                @elseif($inquiry->status === 'replied')
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 uppercase">
+                                        Replied
+                                    </span>
+                                @elseif($inquiry->status === 'closed')
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-gray-100 text-gray-600 uppercase">
+                                        Closed
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-700 uppercase">
+                                        {{ ucfirst($inquiry->status) }}
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="px-8 py-6 text-right">
+                                <div class="flex items-center justify-end space-x-2">
+                                    <a href="{{ route('agent.inquiries.show', $inquiry->id) }}" 
+                                       class="inline-flex items-center px-4 py-2 text-white text-sm font-bold rounded-xl hover:shadow-lg transition-all duration-200" style="background-color: #001F3F;">
+                                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        View
+                                    </a>
+                                    @if($inquiry->status === 'new')
+                                    <form action="{{ route('agent.inquiries.show', $inquiry->id) }}" method="GET">
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 border text-sm font-medium rounded-xl hover:bg-gray-50 transition-all duration-200" style="border-color: #C6A664; color: #C6A664;">
+                                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
                                             Mark Read
                                         </button>
+                                    </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="px-8 py-16 text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-gray-200 mb-4" style="background: rgba(0, 31, 63, 0.04);">
+                                        <svg class="h-10 w-10" style="color: rgba(0, 31, 63, 0.15);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                        </svg>
                                     </div>
-                                </td>
-                            </tr>
-                            
-                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
-                                            SA
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Sarah Ahmed</div>
-                                            <div class="text-sm text-gray-500">sarah@example.com</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Luxury Villa in Maitama</div>
-                                    <div class="text-sm text-gray-500">Maitama, Abuja</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900 max-w-xs truncate">
-                                        Please send me more photos and the full property details. I'm considering this for investment.
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    1 day ago
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        Responded
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div class="flex space-x-2">
-                                        <a href="{{ route('agent.inquiries.show', 2) }}" 
-                                           class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors duration-200">
-                                            View Details
-                                        </a>
-                                        <button class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 bg-white text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                                            Send Reply
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            
-                            <tr class="hover:bg-gray-50 transition-colors duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10 bg-gradient-to-r from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-semibold">
-                                            MK
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Michael Kola</div>
-                                            <div class="text-sm text-gray-500">michael@example.com</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Commercial Space in Victoria Island</div>
-                                    <div class="text-sm text-gray-500">Victoria Island, Lagos</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900 max-w-xs truncate">
-                                        I need to know the rental terms and available amenities. Can you provide a detailed breakdown?
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    3 days ago
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                        Pending
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div class="flex space-x-2">
-                                        <a href="{{ route('agent.inquiries.show', 3) }}" 
-                                           class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors duration-200">
-                                            View Details
-                                        </a>
-                                        <button class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 bg-white text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                                            Mark Read
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                    <p class="text-gray-400 font-medium">No inquiries yet.</p>
+                                    <p class="text-gray-300 text-sm mt-1">When clients inquire about your properties, they'll appear here.</p>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

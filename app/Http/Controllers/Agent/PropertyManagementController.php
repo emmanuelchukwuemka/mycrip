@@ -184,9 +184,44 @@ class PropertyManagementController extends Controller
             'security' => 'boolean',
             'water_supply' => 'boolean',
             'power_supply' => 'boolean',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp',
+            'images' => 'nullable|array',
         ]);
 
         $property->update($validated);
+
+        // Handle new image uploads
+        if ($request->hasFile('images')) {
+            $currentMaxOrder = $property->images()->max('order') ?? -1;
+            
+            foreach ($request->file('images') as $index => $image) {
+                // Generate hash for duplicate detection
+                $hash = PropertyImage::generateHash($image);
+                
+                // Check if hash already exists for THIS property (to allow same image on different properties if needed, 
+                // but usually hashExists check is global as per store method)
+                if (PropertyImage::hashExists($hash)) {
+                    continue;
+                }
+                
+                // Store the image
+                $path = $image->store('properties/' . $property->id, 'public');
+                
+                // Create image record
+                PropertyImage::create([
+                    'property_id' => $property->id,
+                    'image_path' => $path,
+                    'image_hash' => $hash,
+                    'order' => $currentMaxOrder + $index + 1,
+                    'is_featured' => false,
+                ]);
+
+                // If no featured image exists, set this one
+                if (!$property->featured_image) {
+                    $property->update(['featured_image' => $path]);
+                }
+            }
+        }
 
         // If property was rejected, reset to pending for re-approval
         if ($property->status === 'rejected') {

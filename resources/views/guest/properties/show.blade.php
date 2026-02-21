@@ -206,6 +206,37 @@
                             </button>
                         </form>
                         
+                        <!-- Chat with Agent -->
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            @auth
+                                @if(auth()->user()->id !== ($property->user->id ?? null))
+                                    <form action="{{ route('chat.start') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="agent_id" value="{{ $property->user->id ?? '' }}">
+                                        <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                        <div class="mb-3">
+                                            <textarea name="message" rows="2" required
+                                                class="w-full rounded-md border-gray-300 shadow-sm focus:border-[#C6A664] focus:ring-[#C6A664] text-sm"
+                                                placeholder="Hi, I'd like to chat about this property..."></textarea>
+                                        </div>
+                                        <button type="submit" class="w-full flex items-center justify-center text-white font-bold py-2.5 px-4 rounded-md transition-all duration-200 transform hover:scale-[1.02]" style="background-color: #C6A664;" onmouseover="this.style.backgroundColor='#B89654'" onmouseout="this.style.backgroundColor='#C6A664'">
+                                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                            </svg>
+                                            Chat with Agent
+                                        </button>
+                                    </form>
+                                @endif
+                            @else
+                                <a href="{{ route('login') }}" class="w-full flex items-center justify-center text-white font-bold py-2.5 px-4 rounded-md transition-all duration-200" style="background-color: #C6A664;">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                    Login to Chat
+                                </a>
+                            @endauth
+                        </div>
+
                         @if($property->user)
                         <div class="mt-6 border-t pt-6 text-center">
                             <a href="{{ route('agents.index') }}?agent={{ $property->user->id }}" class="font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">View Agent Profile</a>

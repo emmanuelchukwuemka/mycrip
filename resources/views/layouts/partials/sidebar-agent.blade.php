@@ -22,11 +22,11 @@
             <p class="text-xs font-semibold uppercase tracking-widest px-4 mb-3" style="color: rgba(198, 166, 100, 0.6);">Main Menu</p>
         </div>
 
-        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.dashboard') ? 'text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}" 
+        <a class="sidebar-link flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.dashboard') ? 'text-white' : '' }}" 
            href="{{ route('agent.dashboard') }}" 
-           style="{{ request()->routeIs('agent.dashboard') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : '' }}">
-            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.dashboard') ? '#C6A664' : 'rgba(255,255,255,0.1)' }};">
-                <svg class="h-5 w-5 {{ request()->routeIs('agent.dashboard') ? 'text-white' : 'text-white' }}" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+           style="{{ request()->routeIs('agent.dashboard') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : 'color: #C6A664;' }}">
+            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.dashboard') ? '#C6A664' : 'rgba(198, 166, 100, 0.15)' }};">
+                <svg class="h-5 w-5" style="color: {{ request()->routeIs('agent.dashboard') ? '#fff' : '#C6A664' }};" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M4 5a1 1 0 011-1h4a1 1 0 011 1v5a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 12a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1v-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
@@ -40,22 +40,22 @@
             <p class="text-xs font-semibold uppercase tracking-widest px-4 mb-3" style="color: rgba(198, 166, 100, 0.6);">Listings Management</p>
         </div>
 
-        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.properties.index') ? 'text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}" 
+        <a class="sidebar-link flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.properties.index') ? 'text-white' : '' }}" 
            href="{{ route('agent.properties.index') }}"
-           style="{{ request()->routeIs('agent.properties.index') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : '' }}">
-            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.properties.index') ? '#C6A664' : 'rgba(255,255,255,0.1)' }};">
-                <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+           style="{{ request()->routeIs('agent.properties.index') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : 'color: #C6A664;' }}">
+            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.properties.index') ? '#C6A664' : 'rgba(198, 166, 100, 0.15)' }};">
+                <svg class="h-5 w-5" style="color: {{ request()->routeIs('agent.properties.index') ? '#fff' : '#C6A664' }};" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
             <span class="font-medium">My Properties</span>
         </a>
 
-        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.properties.create') ? 'text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}" 
+        <a class="sidebar-link flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.properties.create') ? 'text-white' : '' }}" 
            href="{{ route('agent.properties.create') }}"
-           style="{{ request()->routeIs('agent.properties.create') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : '' }}">
-            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.properties.create') ? '#C6A664' : 'rgba(255,255,255,0.1)' }};">
-                <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           style="{{ request()->routeIs('agent.properties.create') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : 'color: #C6A664;' }}">
+            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.properties.create') ? '#C6A664' : 'rgba(198, 166, 100, 0.15)' }};">
+                <svg class="h-5 w-5" style="color: {{ request()->routeIs('agent.properties.create') ? '#fff' : '#C6A664' }};" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
             </div>
@@ -69,12 +69,12 @@
             <p class="text-xs font-semibold uppercase tracking-widest px-4 mb-3" style="color: rgba(198, 166, 100, 0.6);">Interactions</p>
         </div>
 
-        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.inquiries.index') ? 'text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}" 
-           href="{{ route('agent.inquiries.index') }}"
-           style="{{ request()->routeIs('agent.inquiries.index') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : '' }}">
-            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.inquiries.index') ? '#C6A664' : 'rgba(255,255,255,0.1)' }};">
-                <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <a class="sidebar-link flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.messages.*') ? 'text-white' : '' }}" 
+           href="{{ route('agent.messages.index') }}"
+           style="{{ request()->routeIs('agent.messages.*') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : 'color: #C6A664;' }}">
+            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.messages.*') ? '#C6A664' : 'rgba(198, 166, 100, 0.15)' }};">
+                <svg class="h-5 w-5" style="color: {{ request()->routeIs('agent.messages.*') ? '#fff' : '#C6A664' }};" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
             <span class="font-medium">Messages</span>
@@ -87,11 +87,11 @@
             <p class="text-xs font-semibold uppercase tracking-widest px-4 mb-3" style="color: rgba(198, 166, 100, 0.6);">Settings</p>
         </div>
 
-        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.profile.edit') ? 'text-white' : 'text-white/70 hover:bg-white/10 hover:text-white' }}" 
+        <a class="sidebar-link flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 {{ request()->routeIs('agent.profile.edit') ? 'text-white' : '' }}" 
            href="{{ route('agent.profile.edit') }}"
-           style="{{ request()->routeIs('agent.profile.edit') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : '' }}">
-            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.profile.edit') ? '#C6A664' : 'rgba(255,255,255,0.1)' }};">
-                <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           style="{{ request()->routeIs('agent.profile.edit') ? 'background: rgba(198, 166, 100, 0.15); border: 1px solid rgba(198, 166, 100, 0.2);' : 'color: #C6A664;' }}">
+            <div class="p-2 rounded-lg mr-3 shadow-sm" style="background-color: {{ request()->routeIs('agent.profile.edit') ? '#C6A664' : 'rgba(198, 166, 100, 0.15)' }};">
+                <svg class="h-5 w-5" style="color: {{ request()->routeIs('agent.profile.edit') ? '#fff' : '#C6A664' }};" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                 </svg>
             </div>
@@ -117,3 +117,13 @@
         </div>
     </div>
 </div>
+
+<style>
+    .sidebar-link:not(.text-white):hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.08);
+    }
+    .sidebar-link:not(.text-white):hover svg {
+        color: #ffffff !important;
+    }
+</style>

@@ -34,6 +34,12 @@ class User extends Authenticatable
         'agent_address',
         'agent_verification_status',
         'agent_verification_notes',
+        'bio',
+        'agent_promise',
+        'experience_years',
+        'specialties',
+        'license_number',
+        'profile_photo_path',
     ];
 
     /**

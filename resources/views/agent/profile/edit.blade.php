@@ -41,12 +41,37 @@
             <form action="{{ route('agent.profile.update') }}" method="POST" class="p-8" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
+                @if(session('success'))
+                    <div class="mb-6 flex items-center p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                        <svg class="w-5 h-5 text-emerald-600 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="text-emerald-700 font-medium text-sm">{{ session('success') }}</p>
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="mb-6 flex items-start p-4 rounded-xl bg-red-50 border border-red-200">
+                        <svg class="w-5 h-5 text-red-600 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <p class="text-red-700 font-medium text-sm">Please fix the following errors:</p>
+                            <ul class="mt-1 list-disc list-inside text-red-600 text-xs">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
                 
                 <!-- Profile Picture Section -->
                 <div class="border-t border-gray-200 pt-8 mb-8">
                     <div class="flex flex-col md:flex-row items-center gap-8">
                         <div class="relative group">
-                            <img src="{{ auth()->check() && auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name ?? 'Agent') . '&background=001F3F&color=fff&size=200' }}"
+                            <img src="{{ auth()->user()->agent_image_url ?? (auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name ?? 'Agent') . '&background=001F3F&color=fff&size=200') }}"
                                  alt="Profile Picture"
                                  class="h-32 w-32 rounded-full object-cover border-4 border-gray-100 shadow-lg group-hover:border-[#C6A664] transition-all duration-300"
                                  id="profile-preview">
@@ -99,7 +124,7 @@
                                 </svg>
                                 Full Name
                             </label>
-                            <input type="text" name="name" value="{{ auth()->user()->name ?? '' }}"
+                            <input type="text" name="name" value="{{ old('name', auth()->user()->name ?? '') }}"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="Your full name">
                         </div>
@@ -111,7 +136,7 @@
                                 </svg>
                                 Email Address
                             </label>
-                            <input type="email" name="email" value="{{ auth()->user()->email ?? '' }}"
+                            <input type="email" name="email" value="{{ old('email', auth()->user()->email ?? '') }}"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="your.email@example.com">
                         </div>
@@ -125,7 +150,7 @@
                                 </svg>
                                 Phone Number
                             </label>
-                            <input type="tel" name="phone" value="{{ auth()->user()->phone ?? '' }}"
+                            <input type="tel" name="phone" value="{{ old('phone', auth()->user()->agent_phone ?? '') }}"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="+234 800 000 0000">
                         </div>
@@ -137,7 +162,7 @@
                                 </svg>
                                 License Number
                             </label>
-                            <input type="text" name="license_number" value="{{ auth()->user()->license_number ?? '' }}"
+                            <input type="text" name="license_number" value="{{ old('license_number', auth()->user()->license_number ?? '') }}"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="Real Estate License Number">
                         </div>
@@ -156,7 +181,7 @@
                             </label>
                             <textarea name="bio" rows="5"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 resize-none text-lg outline-none"
-                                placeholder="Tell clients about your experience, specialties, and what makes you unique as a real estate agent...">{{ auth()->user()->bio ?? '' }}</textarea>
+                                placeholder="Tell clients about your experience, specialties, and what makes you unique as a real estate agent...">{{ old('bio', auth()->user()->bio ?? '') }}</textarea>
                             <p class="mt-2 text-sm text-gray-500">This bio will be displayed on your agent profile page</p>
                         </div>
                     </div>
@@ -179,7 +204,7 @@
                             <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">Your Promise Statement</label>
                             <textarea name="agent_promise" rows="4"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 resize-none text-lg outline-none"
-                                placeholder="e.g. 'I promise to find you the perfect home with exceptional service and local expertise'">{{ auth()->user()->agent_promise ?? '' }}</textarea>
+                                placeholder="e.g. 'I promise to find you the perfect home with exceptional service and local expertise'">{{ old('agent_promise', auth()->user()->agent_promise ?? '') }}</textarea>
                             <p class="mt-2 text-sm text-gray-500">This will appear on your profile and property listings</p>
                         </div>
 
@@ -191,7 +216,7 @@
                                     </svg>
                                     Years of Experience
                                 </label>
-                                <input type="number" name="experience_years" value="{{ auth()->user()->experience_years ?? '' }}"
+                                <input type="number" name="experience_years" value="{{ old('experience_years', auth()->user()->experience_years ?? '') }}"
                                     class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                     placeholder="5">
                             </div>
@@ -202,7 +227,7 @@
                                     </svg>
                                     Specialties
                                 </label>
-                                <input type="text" name="specialties" value="{{ auth()->user()->specialties ?? '' }}"
+                                <input type="text" name="specialties" value="{{ old('specialties', auth()->user()->specialties ?? '') }}"
                                     class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                     placeholder="Luxury Homes, First-time Buyers, Investment Properties">
                             </div>

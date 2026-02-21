@@ -40,21 +40,22 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Customer Chat Routes
+    Route::get('/my-messages', [App\Http\Controllers\Guest\ChatController::class, 'index'])->name('chat.index');
+    Route::post('/chat/start', [App\Http\Controllers\Guest\ChatController::class, 'start'])->name('chat.start');
+    Route::get('/chat/{id}', [App\Http\Controllers\Guest\ChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/{id}/reply', [App\Http\Controllers\Guest\ChatController::class, 'reply'])->name('chat.reply');
 });
 
 Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Agent\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('properties', App\Http\Controllers\Agent\PropertyManagementController::class);
+    Route::delete('properties/{id}/images/{imageId}', [App\Http\Controllers\Agent\PropertyManagementController::class, 'deleteImage'])->name('properties.images.delete');
     
     // Profile Routes
-    Route::get('/profile/edit', function () {
-        return view('agent.profile.edit');
-    })->name('profile.edit');
-    
-    Route::put('/profile', function () {
-        // Handle profile update logic here
-        return redirect()->route('agent.dashboard')->with('success', 'Profile updated successfully');
-    })->name('profile.update');
+    Route::get('/profile/edit', [App\Http\Controllers\Agent\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [App\Http\Controllers\Agent\ProfileController::class, 'update'])->name('profile.update');
     
     // Add missing profile show route
     Route::get('/profile', function () {
@@ -62,13 +63,13 @@ Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     })->name('profile');
     
     // Inquiries Routes
-    Route::get('/inquiries', function () {
-        return view('agent.inquiries.index');
-    })->name('inquiries.index');
-    
-    Route::get('/inquiries/{id}', function ($id) {
-        return view('agent.inquiries.show', ['inquiry' => $id]);
-    })->name('inquiries.show');
+    Route::get('/inquiries', [App\Http\Controllers\Agent\InquiryController::class, 'index'])->name('inquiries.index');
+    Route::get('/inquiries/{id}', [App\Http\Controllers\Agent\InquiryController::class, 'show'])->name('inquiries.show');
+
+    // Chat / Messages Routes
+    Route::get('/messages', [App\Http\Controllers\Agent\ChatController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{id}', [App\Http\Controllers\Agent\ChatController::class, 'show'])->name('messages.show');
+    Route::post('/messages/{id}/reply', [App\Http\Controllers\Agent\ChatController::class, 'reply'])->name('messages.reply');
 });
 
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
