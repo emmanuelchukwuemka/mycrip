@@ -162,11 +162,127 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-3">Description</label>
+                        <div x-data="{ aiModalOpen: false, keywords: '', categories: [], location: '', loading: false }">
+                            <div class="flex items-center justify-between mb-3">
+                                <label class="block text-sm font-semibold text-gray-700">Description</label>
+                                <button type="button" @click="aiModalOpen = true" 
+                                        class="flex items-center text-xs font-bold text-[#001F3F] hover:text-[#C6A664] transition-colors bg-[#C6A664]/10 px-3 py-1.5 rounded-lg border border-[#C6A664]/20">
+                                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                    Refine with AI
+                                </button>
+                            </div>
                             <textarea name="description" id="description" rows="6"
                                 class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 resize-none outline-none shadow-sm"
                                 placeholder="Describe the property..." required>{{ old('description', $property->description) }}</textarea>
+
+                            <!-- AI Modal -->
+                            <div x-show="aiModalOpen" 
+                                 class="fixed inset-0 z-[60] overflow-y-auto" 
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="transition ease-in duration-200"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0"
+                                 style="display: none;">
+                                <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75" @click="aiModalOpen = false"></div>
+                                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+                                    
+                                    <div class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-[40px] shadow-2xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-gray-100">
+                                        <div class="px-8 pt-8 pb-6 bg-[#001F3F]">
+                                            <div class="flex items-center space-x-4">
+                                                <div class="p-3 bg-[#C6A664] rounded-2xl">
+                                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <h3 class="text-xl font-bold text-white">AI Assistant</h3>
+                                                    <p class="text-gray-300 text-xs">Instantly generate a premium property description</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="p-8 space-y-6">
+                                            <div>
+                                                <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Key Features (comma separated)</label>
+                                                <input type="text" x-model="keywords" placeholder="e.g. pool, modern kitchen, marble floors, sea view"
+                                                       class="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/10 focus:border-[#C6A664] outline-none transition-all text-sm">
+                                            </div>
+
+                                            <div class="flex flex-col gap-3">
+                                                <button type="button" 
+                                                        @click="
+                                                            loading = true;
+                                                            fetch('{{ route('agent.ai.generate') }}', {
+                                                                method: 'POST',
+                                                                headers: {
+                                                                    'Content-Type': 'application/json',
+                                                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                                                },
+                                                                body: JSON.stringify({
+                                                                    keywords: keywords,
+                                                                    category: category,
+                                                                    location: city.value + ', ' + state.value
+                                                                })
+                                                            })
+                                                            .then(res => res.json())
+                                                            .then(data => {
+                                                                if(data.success) {
+                                                                    document.getElementById('description').value = data.description;
+                                                                    aiModalOpen = false;
+                                                                }
+                                                            })
+                                                            .finally(() => loading = false);
+                                                        "
+                                                        :disabled="loading || !keywords"
+                                                        class="w-full py-4 bg-[#001F3F] text-white font-bold rounded-2xl hover:bg-[#C6A664] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                                                    <template x-if="!loading">
+                                                        <span>Generate Description</span>
+                                                    </template>
+                                                    <template x-if="loading">
+                                                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                        </svg>
+                                                    </template>
+                                                </button>
+                                                <button type="button" @click="aiModalOpen = false" class="w-full py-4 text-gray-400 font-bold text-sm hover:text-gray-600 transition-colors">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Virtual Tours & Video Section -->
+                        <div class="pt-6 space-y-6">
+                            <h4 class="text-sm font-bold text-[#001F3F] uppercase tracking-wider flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                                Virtual Tours & Video
+                            </h4>
+                            
+                            <div class="grid grid-cols-1 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Video Walkthrough URL (YouTube/Vimeo)</label>
+                                    <input type="url" name="video_url" id="video_url" value="{{ old('video_url', $property->video_url) }}"
+                                        class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
+                                        placeholder="https://www.youtube.com/watch?v=...">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">360° Virtual Tour URL</label>
+                                    <input type="url" name="virtual_tour_url" id="virtual_tour_url" value="{{ old('virtual_tour_url', $property->virtual_tour_url) }}"
+                                        class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
+                                        placeholder="https://my.matterport.com/show/?m=...">
+                                </div>
+                            </div>
                         </div>
                     </div>
 

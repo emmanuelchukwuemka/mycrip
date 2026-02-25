@@ -37,6 +37,19 @@
                         </svg>
                         Agents
                     </a>
+                    <a href="{{ route('blog.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h3m-3 4h10m-10 4h10"/>
+                        </svg>
+                        News & Guides
+                    </a>
+                    <a href="{{ route('requests.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        Buyer Wall
+                    </a>
                     @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #C6A664;" onmouseover="this.style.borderColor='#C6A664'" onmouseout="this.style.borderColor='transparent'">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,6 +70,45 @@
                 @auth
                     <!-- Notifications/Icons -->
                     <div class="flex items-center space-x-2 mr-4">
+                        <!-- Notification Dropdown -->
+                        <div class="relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="p-2 text-gray-400 hover:text-[#C6A664] transition-colors relative" title="Notifications">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                                </svg>
+                                @if(auth()->user()->unreadNotifications->count() > 0)
+                                    <span class="absolute top-1.5 right-1.5 block h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-white"></span>
+                                @endif
+                            </button>
+
+                            <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 py-3 z-50 overflow-hidden" style="display: none;">
+                                <div class="px-4 py-2 border-b border-gray-50 mb-2 flex justify-between items-center">
+                                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Notifications</p>
+                                    @if(auth()->user()->unreadNotifications->count() > 0)
+                                        <a href="#" class="text-[10px] font-bold text-[#C6A664] hover:underline uppercase tracking-tighter">Mark all as read</a>
+                                    @endif
+                                </div>
+                                
+                                <div class="max-h-96 overflow-y-auto">
+                                    @forelse(auth()->user()->unreadNotifications->take(5) as $notification)
+                                        <div class="px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0">
+                                            <p class="text-sm font-semibold text-[#001F3F] mb-1">{{ $notification->data['message'] ?? 'New Notification' }}</p>
+                                            <p class="text-xs text-gray-500">{{ $notification->created_at->diffForHumans() }}</p>
+                                        </div>
+                                    @empty
+                                        <div class="px-4 py-8 text-center">
+                                            <svg class="w-10 h-10 text-gray-200 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                                            <p class="text-xs text-gray-400 font-medium">All caught up!</p>
+                                        </div>
+                                    @endforelse
+                                </div>
+
+                                <div class="px-4 pt-3 border-t border-gray-50">
+                                    <a href="#" class="block text-center text-xs font-bold text-[#001F3F] hover:text-[#C6A664] transition-colors">View All Notifications</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <a href="{{ route('chat.index') }}" class="p-2 text-gray-400 hover:text-[#C6A664] transition-colors relative" title="Messages">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>

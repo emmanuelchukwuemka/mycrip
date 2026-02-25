@@ -148,6 +148,33 @@
                         High-Speed WiFi
                     </label>
                 </div>
+                <div class="flex items-center space-x-3">
+                    <input wire:model.live="amenities" value="serviced" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded transition-all duration-300">
+                    <label class="flex items-center text-sm text-gray-900 cursor-pointer hover:text-indigo-600 transition-colors duration-300">
+                        <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        Serviced
+                    </label>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <input wire:model.live="amenities" value="power_supply" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded transition-all duration-300">
+                    <label class="flex items-center text-sm text-gray-900 cursor-pointer hover:text-indigo-600 transition-colors duration-300">
+                        <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        Power Supply
+                    </label>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <input wire:model.live="amenities" value="water_supply" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded transition-all duration-300">
+                    <label class="flex items-center text-sm text-gray-900 cursor-pointer hover:text-indigo-600 transition-colors duration-300">
+                        <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4a2 2 0 012-2m16 0h-2m-2 0H6m-2 0H2m4 0h12"/>
+                        </svg>
+                        Water Supply
+                    </label>
+                </div>
             </div>
         </div>
 

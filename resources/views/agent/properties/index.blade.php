@@ -150,6 +150,25 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
+                                @if(!$property->is_featured || (now() > $property->featured_until))
+                                    <form action="{{ route('agent.properties.promote', $property->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-[#C6A664] text-[#C6A664] rounded-xl hover:bg-[#C6A664] hover:text-white transition-all duration-300 font-bold text-xs uppercase tracking-wider" title="Promote property using Paystack">
+                                            <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                            </svg>
+                                            Promote
+                                        </button>
+                                    </form>
+                                @else
+                                    <span class="inline-flex items-center px-4 py-2 bg-indigo-50 text-indigo-600 rounded-xl font-bold text-xs uppercase tracking-wider border border-indigo-100" title="Promoted until {{ \Carbon\Carbon::parse($property->featured_until)->format('M d, Y') }}">
+                                        <svg class="w-3.5 h-3.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Featured
+                                    </span>
+                                @endif
+
                                 <a href="{{ route('agent.properties.edit', $property->id) }}" class="inline-flex items-center px-4 py-2 border border-gray-200 text-gray-500 rounded-xl hover:bg-[#001F3F] hover:text-white hover:border-[#001F3F] transition-all duration-300 font-bold text-xs uppercase tracking-wider">
                                     <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>

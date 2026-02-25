@@ -35,18 +35,23 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 
-        // Get unique states for location filter
+        // Get unique locations for filter
+        $countries = Property::approved()
+            ->distinct()
+            ->pluck('country')
+            ->filter();
+
         $states = Property::approved()
             ->distinct()
             ->pluck('state')
-            ->filter()
-            ->take(10);
+            ->filter();
 
         return view('guest.home', compact(
             'featuredProperties',
             'recentProperties',
             'rentalProperties',
             'purchaseProperties',
+            'countries',
             'states'
         ));
     }

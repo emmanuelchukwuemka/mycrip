@@ -27,10 +27,25 @@ Route::prefix('properties')->name('properties.')->group(function () {
 });
 
 Route::get('/agents', [App\Http\Controllers\Guest\AgentController::class, 'index'])->name('agents.index');
+Route::get('/agents/{id}', [App\Http\Controllers\Guest\AgentController::class, 'show'])->name('agents.show');
+Route::post('/reviews', [App\Http\Controllers\Guest\ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
 
-Route::get('/privacy-policy', function () {
-    return view('guest.privacy-policy');
-})->name('privacy.policy');
+// Blog Routes
+Route::get('/blog', [App\Http\Controllers\Guest\BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [App\Http\Controllers\Guest\BlogController::class, 'show'])->name('blog.show');
+
+// Property Request Board (Buyer Wall)
+Route::get('/requests', [App\Http\Controllers\Guest\PropertyRequestController::class, 'index'])->name('requests.index');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/requests/create', [App\Http\Controllers\Guest\PropertyRequestController::class, 'create'])->name('requests.create');
+    Route::post('/requests', [App\Http\Controllers\Guest\PropertyRequestController::class, 'store'])->name('requests.store');
+});
+
+// Land Title Verification Routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/properties/{property}/verify-title', [App\Http\Controllers\Guest\VerificationController::class, 'verify'])->name('verification.verify');
+    Route::get('/verification/callback', [App\Http\Controllers\Guest\VerificationController::class, 'callback'])->name('verification.callback');
+});
 
 Route::middleware([
     'auth',
@@ -76,6 +91,17 @@ Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     Route::get('/messages', [App\Http\Controllers\Agent\ChatController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [App\Http\Controllers\Agent\ChatController::class, 'show'])->name('messages.show');
     Route::post('/messages/{id}/reply', [App\Http\Controllers\Agent\ChatController::class, 'reply'])->name('messages.reply');
+
+    // Tours Routes
+    Route::get('/tours', [App\Http\Controllers\Agent\TourController::class, 'index'])->name('tours.index');
+    Route::patch('/tours/{tour}', [App\Http\Controllers\Agent\TourController::class, 'updateStatus'])->name('tours.update');
+
+    // Payment Routes
+    Route::post('/properties/{property}/promote', [App\Http\Controllers\Agent\PaymentController::class, 'promote'])->name('properties.promote');
+    Route::get('/payments/callback', [App\Http\Controllers\Agent\PaymentController::class, 'callback'])->name('payments.callback');
+
+    // AI Features
+    Route::post('/ai/generate-description', [App\Http\Controllers\Agent\AIController::class, 'generate'])->name('ai.generate');
 });
 
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
@@ -89,6 +115,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::resource('users', App\Http\Controllers\Admin\UserController::class)->only(['index', 'show', 'destroy']);
     Route::post('/users/{id}/verify', [App\Http\Controllers\Admin\UserController::class, 'verify'])->name('users.verify');
     Route::post('/users/{id}/reject', [App\Http\Controllers\Admin\UserController::class, 'reject'])->name('users.reject');
+    
+    // Blog CMS
+    Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
 });
 
 Route::controller(App\Http\Controllers\AuthController::class)->group(function () {
@@ -99,6 +128,15 @@ Route::controller(App\Http\Controllers\AuthController::class)->group(function ()
     Route::match(['get', 'post'], '/logout', 'logout')->name('logout');
 });
 
+// Password Reset Routes
+Route::get('password/reset', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])->name('password.update');
+
 // Google OAuth Routes
 Route::get('/auth/google/redirect', [App\Http\Controllers\GoogleAuthController::class, 'redirect'])->name('google.redirect');
 Route::get('/auth/google/callback', [App\Http\Controllers\GoogleAuthController::class, 'callback'])->name('google.callback');
+
+// Static Pages
+Route::get('/privacy-policy', [App\Http\Controllers\Guest\PageController::class, 'privacyPolicy'])->name('privacy.policy');

@@ -114,6 +114,38 @@ class User extends Authenticatable
     }
 
     /**
+     * Get reviews received as an agent.
+     */
+    public function reviewsAsAgent(): HasMany
+    {
+        return $this->hasMany(Review::class, 'agent_id');
+    }
+
+    /**
+     * Get reviews written as a reviewer.
+     */
+    public function reviewsAsReviewer(): HasMany
+    {
+        return $this->hasMany(Review::class, 'reviewer_id');
+    }
+
+    /**
+     * Get average rating as an agent.
+     */
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviewsAsAgent()->avg('rating') ?? 0;
+    }
+
+    /**
+     * Get all blog posts by this user.
+     */
+    public function blogPosts(): HasMany
+    {
+        return $this->hasMany(BlogPost::class, 'author_id');
+    }
+
+    /**
      * Get agent profile image URL.
      */
     public function getAgentImageUrlAttribute(): ?string

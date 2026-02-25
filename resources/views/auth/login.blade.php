@@ -45,17 +45,7 @@
                         @endif
                     </div>
 
-                    <!-- Role Switcher -->
-                    <div class="flex p-1 bg-gray-100 rounded-xl mb-8">
-                        <button type="button" onclick="setRole('user')" id="role-user-btn" 
-                                class="flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-200 bg-white shadow-sm text-[#001F3F]">
-                            Sign in as User
-                        </button>
-                        <button type="button" onclick="setRole('agent')" id="role-agent-btn" 
-                                class="flex-1 py-2 text-sm font-semibold rounded-lg transition-all duration-200 text-gray-500 hover:text-gray-700">
-                            Sign in as Agent
-                        </button>
-                    </div>
+
 
                     <form action="{{ route('login') }}" method="POST" class="space-y-6">
                         @csrf
@@ -82,7 +72,7 @@
                                 <span class="ml-2 text-sm text-gray-600">Remember me</span>
                             </label>
                             
-                            <a href="#" class="text-sm font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
+                            <a href="{{ route('password.request') }}" class="text-sm font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
                                 Forgot password?
                             </a>
                         </div>
@@ -90,7 +80,7 @@
                             <div>
                                 <button type="submit" id="submit-btn" 
                                         class="w-full btn-auth text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#001F3F] focus:ring-offset-2">
-                                    Sign In as User
+                                    Sign In
                                 </button>
                             </div>
                     </form>
@@ -118,50 +108,19 @@
 
                     <div class="mt-8 pt-6 border-t border-gray-100">
                         <p class="text-sm text-gray-500 text-center mb-4 font-medium uppercase tracking-widest">Need an account?</p>
-                        <div class="space-y-3">
-                            <a href="{{ route('register', ['role' => 'user']) }}" id="register-link" 
-                               class="w-full flex items-center justify-center px-4 py-3 bg-[#001F3F] text-white rounded-lg font-bold shadow-md hover:bg-[#00152B] transition-all transform active:scale-95">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <a href="{{ route('register', ['role' => 'user']) }}" 
+                               class="flex items-center justify-center px-4 py-3 bg-[#001F3F] text-white rounded-lg font-bold shadow-md hover:bg-[#00152B] transition-all transform active:scale-95 text-sm uppercase tracking-wider">
                                 Sign up as Buyer
+                            </a>
+                            <a href="{{ route('register', ['role' => 'agent']) }}" 
+                               class="flex items-center justify-center px-4 py-3 border-2 border-[#C6A664] text-[#C6A664] rounded-lg font-bold shadow-sm hover:bg-[#C6A664] hover:text-white transition-all transform active:scale-95 text-sm uppercase tracking-wider">
+                                Register as Agent
                             </a>
                         </div>
                     </div>
             </div>
         </div>
     </div>
-    <script>
-        function setRole(role) {
-            const userBtn = document.getElementById('role-user-btn');
-            const agentBtn = document.getElementById('role-agent-btn');
-            const title = document.getElementById('login-title');
-            const subtitle = document.getElementById('login-subtitle');
-            const submitBtn = document.getElementById('submit-btn');
-            const registerLink = document.getElementById('register-link');
 
-            if (role === 'user') {
-                userBtn.classList.add('bg-white', 'shadow-sm', 'text-[#001F3F]');
-                userBtn.classList.remove('text-gray-500');
-                agentBtn.classList.remove('bg-white', 'shadow-sm', 'text-[#001F3F]');
-                agentBtn.classList.add('text-gray-500');
-                
-                title.innerText = 'Welcome Back';
-                subtitle.innerText = 'Sign in as a Buyer or Renter';
-                submitBtn.innerText = 'Sign In as User';
-                
-                registerLink.innerText = 'Sign up as Buyer';
-                registerLink.href = "{{ route('register', ['role' => 'user']) }}";
-            } else {
-                agentBtn.classList.add('bg-white', 'shadow-sm', 'text-[#001F3F]');
-                agentBtn.classList.remove('text-gray-500');
-                userBtn.classList.remove('bg-white', 'shadow-sm', 'text-[#001F3F]');
-                userBtn.classList.add('text-gray-500');
-
-                title.innerText = 'Agent Portal';
-                subtitle.innerText = 'Manage your property listings and inquiries';
-                submitBtn.innerText = 'Sign In as Agent';
-
-                registerLink.innerText = 'Register as Agent';
-                registerLink.href = "{{ route('register', ['role' => 'agent']) }}";
-            }
-        }
-    </script>
 </x-guest-layout>

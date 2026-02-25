@@ -16,14 +16,23 @@ class PropertyController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Property::approved()->with('images');
+        $query = Property::approved()->with(['images', 'user']);
 
         // Apply filters
         if ($request->filled('category')) {
             $query->where('category', $request->category);
         }
 
-        if ($request->filled('country')) {
+        // Location search (broad)
+        if ($request->filled('location')) {
+            $location = $request->location;
+            $query->where(function($q) use ($location) {
+                $q->where('city', 'like', '%' . $location . '%')
+                  ->orWhere('state', 'like', '%' . $location . '%')
+                  ->orWhere('country', 'like', '%' . $location . '%')
+                  ->orWhere('address', 'like', '%' . $location . '%');
+            });
+        } elseif ($request->filled('country')) {
             $query->where('country', $request->country);
         }
 
@@ -35,12 +44,15 @@ class PropertyController extends Controller
             $query->where('city', 'like', '%' . $request->city . '%');
         }
 
-        if ($request->filled('min_price')) {
-            $query->where('price', '>=', $request->min_price);
+        // Price range
+        $minPrice = $request->minPrice ?? $request->min_price;
+        if ($minPrice) {
+            $query->where('price', '>=', $minPrice);
         }
 
-        if ($request->filled('max_price')) {
-            $query->where('price', '<=', $request->max_price);
+        $maxPrice = $request->maxPrice ?? $request->max_price;
+        if ($maxPrice) {
+            $query->where('price', '<=', $maxPrice);
         }
 
         if ($request->filled('bedrooms')) {
@@ -55,6 +67,16 @@ class PropertyController extends Controller
             $query->where('furnished', true);
         }
 
+        // Amenities (array from Livewire)
+        if ($request->filled('amenities') && is_array($request->amenities)) {
+            $booleanAmenities = ['pool', 'gym', 'security', 'parking', 'garden', 'wifi', 'serviced', 'power_supply', 'water_supply'];
+            foreach ($request->amenities as $amenity) {
+                if (in_array($amenity, $booleanAmenities)) {
+                    $query->where($amenity, true);
+                }
+            }
+        }
+
         // Search by keyword
         if ($request->filled('search')) {
             $search = $request->search;
@@ -64,6 +86,9 @@ class PropertyController extends Controller
                   ->orWhere('address', 'like', '%' . $search . '%');
             });
         }
+
+        // Featured first, then specific sort
+        $query->orderBy('is_featured', 'desc');
 
         // Sort
         $sortBy = $request->sort ?? 'latest';
@@ -80,11 +105,23 @@ class PropertyController extends Controller
 
         $properties = $query->paginate(12)->withQueryString();
 
+        // Pre-process properties for the map to avoid redundant accessor calls in the view
+        $mapProperties = $properties->map(fn($p) => [
+            'id' => $p->id,
+            'title' => $p->title,
+            'price' => $p->formatted_price,
+            'lat' => $p->latitude,
+            'lng' => $p->longitude,
+            'link' => route('properties.show', $p->id),
+            'image' => $p->featured_image_url
+        ]);
+
         // Get filter options
+        $countries = Property::approved()->distinct()->pluck('country')->filter()->sort();
         $states = Property::approved()->distinct()->pluck('state')->filter()->sort();
         $cities = Property::approved()->distinct()->pluck('city')->filter()->sort();
 
-        return view('guest.properties.index', compact('properties', 'states', 'cities'));
+        return view('guest.properties.index', compact('properties', 'countries', 'states', 'cities', 'mapProperties'));
     }
 
     /**

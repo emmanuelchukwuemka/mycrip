@@ -42,6 +42,8 @@ class Property extends Model
         'power_supply',
         'featured_image',
         'features',
+        'video_url',
+        'virtual_tour_url',
     ];
 
     /**
@@ -80,6 +82,14 @@ class Property extends Model
     }
 
     /**
+     * Get all tours for the property.
+     */
+    public function tours(): HasMany
+    {
+        return $this->hasMany(Tour::class);
+    }
+
+    /**
      * Get all inquiries for the property.
      */
     public function inquiries(): HasMany
@@ -99,7 +109,7 @@ class Property extends Model
             return asset('storage/' . $this->featured_image);
         }
         
-        $firstImage = $this->images()->first();
+        $firstImage = $this->images->first(); // Use collection's first() instead of relationship's first()
         if ($firstImage) {
             if (filter_var($firstImage->image_path, FILTER_VALIDATE_URL)) {
                 return $firstImage->image_path;
@@ -187,5 +197,41 @@ class Property extends Model
             'yearly' => '₦' . $price . '/year',
             default => '₦' . $price,
         };
+    }
+
+    /**
+     * Get YouTube ID from video_url.
+     */
+    public function getYoutubeIdAttribute(): ?string
+    {
+        if (!$this->video_url) return null;
+
+        $pattern = '/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/';
+        preg_match($pattern, $this->video_url, $matches);
+        
+        return (isset($matches[7]) && strlen($matches[7]) == 11) ? $matches[7] : null;
+    }
+
+    /**
+     * Get Vimeo ID from video_url.
+     */
+    public function getVimeoIdAttribute(): ?string
+    {
+        if (!$this->video_url) return null;
+
+        if (preg_match('/vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)/', $this->video_url, $matches)) {
+            return $matches[3];
+        }
+        
+        return null;
+    }
+
+    /**
+     * Scope for featured properties.
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true)
+                     ->where('featured_until', '>=', now());
     }
 }

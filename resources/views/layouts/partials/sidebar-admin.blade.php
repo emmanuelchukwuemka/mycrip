@@ -48,6 +48,16 @@
             <span class="font-medium">Properties</span>
         </a>
 
+        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 hover:bg-white/10 {{ Request::is('admin/blog*') ? 'bg-white/10 text-white' : '' }}" href="{{ route('admin.blog.index') }}" style="color: rgba(255,255,255,0.7);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+            <div class="p-2 rounded-lg mr-3" style="background: rgba(255,255,255,0.1);">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 8h3m-3 4h10m-10 4h10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-medium">Blog Posts</span>
+        </a>
+
         <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 hover:bg-white/10" href="#" style="color: rgba(255,255,255,0.7);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
             <div class="p-2 rounded-lg mr-3" style="background: rgba(255,255,255,0.1);">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">

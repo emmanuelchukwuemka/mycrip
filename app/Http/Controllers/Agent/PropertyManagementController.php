@@ -73,6 +73,8 @@ class PropertyManagementController extends Controller
             'security' => 'boolean',
             'water_supply' => 'boolean',
             'power_supply' => 'boolean',
+            'video_url' => 'nullable|url|max:255',
+            'virtual_tour_url' => 'nullable|url|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp',
             'images' => 'nullable|array',
         ]);
@@ -102,6 +104,8 @@ class PropertyManagementController extends Controller
             'security' => $request->boolean('security'),
             'water_supply' => $request->boolean('water_supply'),
             'power_supply' => $request->boolean('power_supply'),
+            'video_url' => $validated['video_url'] ?? null,
+            'virtual_tour_url' => $validated['virtual_tour_url'] ?? null,
         ]);
 
         // Handle image uploads with hash generation
@@ -184,6 +188,8 @@ class PropertyManagementController extends Controller
             'security' => 'boolean',
             'water_supply' => 'boolean',
             'power_supply' => 'boolean',
+            'video_url' => 'nullable|url|max:255',
+            'virtual_tour_url' => 'nullable|url|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp',
             'images' => 'nullable|array',
         ]);
