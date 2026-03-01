@@ -60,7 +60,7 @@ class PaymentController extends Controller
                     'next_payment_date' => $plan->interval === 'annually' ? $startDate->addYear() : $startDate->addMonth(),
                 ]);
                 
-                return redirect()->route('agent.billing.plans')->with('success', 'Subscription activated successfully! (Demo mode)');
+                return redirect()->route('agent.subscription')->with('success', 'Subscription activated successfully! (Demo mode)');
             } else {
                 return back()->with('error', 'Payment gateway not configured. Please contact administrator.');
             }
@@ -98,16 +98,16 @@ class PaymentController extends Controller
         $reference = $request->query('reference');
         
         if (!$reference) {
-            return redirect()->route('agent.billing.plans')->with('error', 'Invalid payment reference.');
+            return redirect()->route('agent.subscription')->with('error', 'Invalid payment reference.');
         }
 
         // Check if Paystack is configured
         if (!$this->paystack->isConfigured()) {
             // In local development, just return success since we already created the subscription
             if (app()->environment('local')) {
-                return redirect()->route('agent.billing.plans')->with('success', 'Subscription activated successfully! (Demo mode)');
+                return redirect()->route('agent.subscription')->with('success', 'Subscription activated successfully! (Demo mode)');
             } else {
-                return redirect()->route('agent.billing.plans')->with('error', 'Payment gateway not configured.');
+                return redirect()->route('agent.subscription')->with('error', 'Payment gateway not configured.');
             }
         }
 
@@ -134,10 +134,10 @@ class PaymentController extends Controller
                 'next_payment_date' => $plan->interval === 'annually' ? $startDate->addYear() : $startDate->addMonth(),
             ]);
 
-            return redirect()->route('agent.billing.plans')->with('success', 'Subscription activated successfully!');
+            return redirect()->route('agent.subscription')->with('success', 'Subscription activated successfully!');
         }
 
-        return redirect()->route('agent.billing.plans')->with('error', 'Payment verification failed.');
+        return redirect()->route('agent.subscription')->with('error', 'Payment verification failed.');
     }
 
     /**
@@ -154,7 +154,7 @@ class PaymentController extends Controller
             'cancelled_at' => now(),
         ]);
 
-        return redirect()->route('agent.billing.plans')->with('success', 'Subscription cancelled successfully.');
+        return redirect()->route('agent.subscription')->with('success', 'Subscription cancelled successfully.');
     }
 
     /**

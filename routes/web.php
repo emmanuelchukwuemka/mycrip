@@ -220,6 +220,17 @@ Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     Route::post('/message-templates', [App\Http\Controllers\Agent\MessageTemplateController::class, 'store'])->name('message-templates.store');
     Route::put('/message-templates/{template}', [App\Http\Controllers\Agent\MessageTemplateController::class, 'update'])->name('message-templates.update');
     Route::delete('/message-templates/{template}', [App\Http\Controllers\Agent\MessageTemplateController::class, 'destroy'])->name('message-templates.destroy');
+
+    // Subscription / Billing
+    Route::get('/subscription',                      [App\Http\Controllers\Agent\PaymentController::class, 'plans'])->name('subscription');
+    Route::get('/billing',                           [App\Http\Controllers\Agent\PaymentController::class, 'plans'])->name('billing');
+    Route::post('/subscription/{plan}/subscribe',    [App\Http\Controllers\Agent\PaymentController::class, 'subscribe'])->name('subscription.subscribe');
+    Route::get('/subscription/callback',             [App\Http\Controllers\Agent\PaymentController::class, 'subscriptionCallback'])->name('subscription.callback');
+    Route::delete('/subscription/{subscription}/cancel', [App\Http\Controllers\Agent\PaymentController::class, 'cancelSubscription'])->name('subscription.cancel');
+
+    // Promotion / Payments
+    Route::post('/properties/{property}/promote',    [App\Http\Controllers\Agent\PaymentController::class, 'promote'])->name('properties.promote');
+    Route::get('/payments/callback',                 [App\Http\Controllers\Agent\PaymentController::class, 'callback'])->name('payments.callback');
 });
 
 // ── Admin Extended ────────────────────────────────────────────────────────────

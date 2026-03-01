@@ -145,13 +145,13 @@
                :class="sidebarCollapsed ? 'opacity-0 h-0 mb-0' : 'opacity-100 h-auto'">Payments</p>
             <div class="space-y-0.5">
                 @include('layouts.partials.sidebar-agent-item', [
-                    'href'   => url('/agent/subscription'),
+                    'href'   => route('agent.subscription'),
                     'label'  => 'Subscription',
                     'active' => request()->routeIs('agent.payments.*') || request()->is('agent/subscription*'),
                     'icon'   => '<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/>',
                 ])
                 @include('layouts.partials.sidebar-agent-item', [
-                    'href'   => url('/agent/billing'),
+                    'href'   => route('agent.billing'),
                     'label'  => 'Billing History',
                     'active' => request()->is('agent/billing*'),
                     'icon'   => '<path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"/>',
@@ -206,15 +206,15 @@
         <div class="group relative flex items-center gap-3 rounded-xl p-3 transition-all duration-200 hover:bg-white/5 cursor-pointer overflow-hidden">
             {{-- Avatar --}}
             <div class="relative flex-shrink-0">
-                <div class="w-9 h-9 rounded-xl overflow-hidden ring-2 ring-white/10 group-hover:ring-white/25 transition-all duration-300 flex items-center justify-center"
-                     style="background:linear-gradient(135deg,#1e3a5f,#0b1d35)">
+                <div class="w-8 h-8 rounded-lg overflow-hidden ring-1 ring-white/20 group-hover:ring-white/40 transition-all duration-300 flex items-center justify-center"
+                     style="background:linear-gradient(135deg,#C6A664,#a8894e)">
                     @if(Auth::user()->agent_image)
                         <img class="w-full h-full object-cover" src="{{ Auth::user()->agent_image_url }}" alt="{{ Auth::user()->name }}">
                     @else
-                        <span class="text-sm font-bold text-white">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
+                        <span class="text-xs font-black text-white">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
                     @endif
                 </div>
-                <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full ring-2 ring-[#071528]"></span>
+                <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full ring-1 ring-[#001F3F]"></span>
             </div>
 
             {{-- Name / Role --}}

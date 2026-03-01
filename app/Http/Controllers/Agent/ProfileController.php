@@ -27,7 +27,7 @@ class ProfileController extends Controller
             'agent_promise' => 'nullable|string|max:500',
             'experience_years' => 'nullable|integer|min:0|max:99',
             'specialties' => 'nullable|string|max:500',
-            'profile_photo' => 'nullable|image|max:5120',
+            'profile_photo' => 'nullable|image',
         ]);
 
         // Update basic info

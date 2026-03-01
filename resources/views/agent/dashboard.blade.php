@@ -195,7 +195,7 @@
                     <p class="text-xs text-gray-500 mt-0.5">Upgrade to unlock featured listings, priority placement, and advanced analytics.</p>
                 </div>
             </div>
-            <a href="{{ url('/agent/subscription') }}"
+            <a href="{{ route('agent.subscription') }}"
                class="flex-shrink-0 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
                style="background:linear-gradient(135deg,#C6A664,#a8894e); color:#001F3F;">
                 Upgrade Plan
