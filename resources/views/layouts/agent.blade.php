@@ -18,7 +18,9 @@
     @livewireStyles
 </head>
 <body class="font-sans antialiased bg-gray-100">
-    <div class="min-h-screen flex bg-gray-100" x-data="{ sidebarOpen: false }">
+    <div class="min-h-screen flex bg-gray-100"
+         x-data="{ sidebarOpen: false, sidebarCollapsed: false }"
+         style="--sidebar-w: 288px">
         
         <!-- Sidebar -->
         @include('layouts.partials.sidebar-agent')

@@ -42,9 +42,18 @@ return [
     ],
 
     'paystack' => [
-        'public_key' => env('PAYSTACK_PUBLIC_KEY'),
-        'secret_key' => env('PAYSTACK_SECRET_KEY'),
+        'public_key'     => env('PAYSTACK_PUBLIC_KEY'),
+        'secret_key'     => env('PAYSTACK_SECRET_KEY'),
         'merchant_email' => env('PAYSTACK_MERCHANT_EMAIL'),
     ],
 
+    'openai' => [
+        'key' => env('OPENAI_API_KEY'),
+    ],
+
+    'gemini' => [
+        'key' => env('GEMINI_API_KEY'),
+    ],
+
 ];
+

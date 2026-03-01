@@ -130,25 +130,100 @@ class PropertyController extends Controller
     public function show($id)
     {
         $property = Property::with(['images', 'user'])->findOrFail($id);
-        
+
+        // Track view count (once per session per property)
+        $viewedKey = 'viewed_properties';
+        $viewed = session($viewedKey, []);
+        if (!in_array($id, $viewed)) {
+            $property->increment('view_count');
+            $viewed[] = $id;
+            session([$viewedKey => array_slice($viewed, -50)]); // keep last 50
+        }
+
+        // Track recently viewed (for "Recently Viewed" widget, last 8)
+        $recentKey = 'recently_viewed';
+        $recent = session($recentKey, []);
+        $recent = array_filter($recent, fn($rid) => $rid != $id); // remove if already there
+        array_unshift($recent, (int)$id);
+        session([$recentKey => array_slice($recent, 0, 8)]);
+
         // Check if user has saved this property
         $isSaved = false;
         if (Auth::check()) {
             $isSaved = SavedProperty::isSaved(Auth::id(), $property->id);
         }
 
-        // Get related properties in same category and location
-        $relatedProperties = Property::approved()
+        // Similar properties: same category + location, ±30% price range
+        $similar = Property::approved()
             ->where('id', '!=', $property->id)
-            ->where(function ($query) use ($property) {
-                $query->where('category', $property->category)
-                      ->orWhere('city', $property->city);
-            })
+            ->where('category', $property->category)
+            ->when($property->location, fn($q) => $q->where('location', 'like', '%' . explode(',', $property->location)[0] . '%'))
+            ->where('price', '>=', $property->price * 0.7)
+            ->where('price', '<=', $property->price * 1.3)
             ->with('images')
             ->take(4)
             ->get();
 
-        return view('guest.properties.show', compact('property', 'isSaved', 'relatedProperties'));
+        // If not enough similar, fall back to same category
+        if ($similar->count() < 2) {
+            $similar = Property::approved()
+                ->where('id', '!=', $property->id)
+                ->where('category', $property->category)
+                ->with('images')
+                ->take(4)
+                ->get();
+        }
+
+        // Price estimate (median of similar properties)
+        $priceEstimate = Property::approved()
+            ->where('category', $property->category)
+            ->where('id', '!=', $property->id)
+            ->avg('price');
+
+        return view('guest.properties.show', compact('property', 'isSaved', 'similar', 'priceEstimate'));
+    }
+
+    /**
+     * Return map-ready JSON of all active properties with geo data.
+     */
+    public function mapData()
+    {
+        $properties = Property::approved()
+            ->whereNotNull('latitude')
+            ->whereNotNull('longitude')
+            ->with('images')
+            ->get(['id','title','price','location','category','latitude','longitude','is_featured']);
+
+        return response()->json($properties->map(fn($p) => [
+            'id'       => $p->id,
+            'title'    => $p->title,
+            'price'    => number_format($p->price),
+            'location' => $p->location,
+            'category' => $p->category,
+            'lat'      => (float) $p->latitude,
+            'lng'      => (float) $p->longitude,
+            'featured' => (bool) $p->is_featured,
+            'url'      => route('properties.show', $p->id),
+            'image'    => $p->images->first()?->image_url ?? null,
+        ]));
+    }
+
+    /**
+     * Property map page.
+     */
+    public function map()
+    {
+        return view('guest.properties.map');
+    }
+
+    /**
+     * Property comparison page (up to 3 properties).
+     */
+    public function compare(Request $request)
+    {
+        $ids = array_slice((array) $request->input('ids', []), 0, 3);
+        $properties = Property::with('images')->findMany($ids);
+        return view('guest.properties.compare', compact('properties'));
     }
 
     /**

@@ -99,6 +99,13 @@ Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     // Payment Routes
     Route::post('/properties/{property}/promote', [App\Http\Controllers\Agent\PaymentController::class, 'promote'])->name('properties.promote');
     Route::get('/payments/callback', [App\Http\Controllers\Agent\PaymentController::class, 'callback'])->name('payments.callback');
+    
+    // Billing & Subscription Routes
+    Route::get('/billing/plans', [App\Http\Controllers\Agent\PaymentController::class, 'plans'])->name('billing.plans');
+    Route::post('/subscribe/{plan}', [App\Http\Controllers\Agent\PaymentController::class, 'subscribe'])->name('agent.subscribe');
+    Route::get('/subscription/callback', [App\Http\Controllers\Agent\PaymentController::class, 'subscriptionCallback'])->name('agent.subscription.callback');
+    Route::delete('/subscription/{subscription}/cancel', [App\Http\Controllers\Agent\PaymentController::class, 'cancelSubscription'])->name('agent.subscription.cancel');
+    Route::get('/billing/history', [App\Http\Controllers\Agent\PaymentController::class, 'billingHistory'])->name('agent.billing.history');
 
     // AI Features
     Route::post('/ai/generate-description', [App\Http\Controllers\Agent\AIController::class, 'generate'])->name('ai.generate');
@@ -118,6 +125,19 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     
     // Blog CMS
     Route::resource('blog', App\Http\Controllers\Admin\BlogController::class);
+});
+
+// 2FA Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/2fa/setup', [App\Http\Controllers\Auth\TwoFactorController::class, 'showSetupForm'])->name('2fa.setup');
+    Route::post('/2fa/enable', [App\Http\Controllers\Auth\TwoFactorController::class, 'enable'])->name('2fa.enable');
+    Route::post('/2fa/disable', [App\Http\Controllers\Auth\TwoFactorController::class, 'disable'])->name('2fa.disable');
+    Route::get('/2fa/recovery-codes', [App\Http\Controllers\Auth\TwoFactorController::class, 'showRecoveryCodes'])->name('2fa.recovery');
+    Route::post('/2fa/regenerate-codes', [App\Http\Controllers\Auth\TwoFactorController::class, 'regenerateRecoveryCodes'])->name('2fa.regenerate');
+    
+    Route::get('/2fa/verify', [App\Http\Controllers\Auth\TwoFactorVerificationController::class, 'showVerificationForm'])->name('2fa.verify');
+    Route::post('/2fa/verify', [App\Http\Controllers\Auth\TwoFactorVerificationController::class, 'verify'])->name('2fa.verify.post');
+    Route::post('/2fa/resend', [App\Http\Controllers\Auth\TwoFactorVerificationController::class, 'resend'])->name('2fa.resend');
 });
 
 Route::controller(App\Http\Controllers\AuthController::class)->group(function () {
@@ -140,3 +160,118 @@ Route::get('/auth/google/callback', [App\Http\Controllers\GoogleAuthController::
 
 // Static Pages
 Route::get('/privacy-policy', [App\Http\Controllers\Guest\PageController::class, 'privacyPolicy'])->name('privacy.policy');
+
+// Webhook Routes
+Route::post('/webhooks/paystack', [App\Http\Controllers\Webhook\PaystackController::class, 'handle'])->name('webhooks.paystack');
+
+// ── Map & Discovery ───────────────────────────────────────────────────────────
+Route::get('/properties/map', [App\Http\Controllers\Guest\PropertyController::class, 'map'])->name('properties.map');
+Route::get('/properties/compare', [App\Http\Controllers\Guest\PropertyController::class, 'compare'])->name('properties.compare');
+Route::get('/api/properties/map-data', [App\Http\Controllers\Guest\PropertyController::class, 'mapData'])->name('properties.map-data');
+
+// ── Account / Privacy ─────────────────────────────────────────────────────────
+Route::middleware('auth')->prefix('account')->name('account.')->group(function () {
+    Route::get('/privacy',    [App\Http\Controllers\AccountController::class, 'privacy'])->name('privacy');
+    Route::get('/activity',   [App\Http\Controllers\AccountController::class, 'activity'])->name('activity');
+    Route::get('/security',   [App\Http\Controllers\AccountController::class, 'security'])->name('security');
+    Route::get('/export',     [App\Http\Controllers\AccountController::class, 'export'])->name('export');
+    Route::get('/delete',     [App\Http\Controllers\AccountController::class, 'deleteShow'])->name('delete.show');
+    Route::post('/delete',    [App\Http\Controllers\AccountController::class, 'deleteAccount'])->name('delete');
+    Route::post('/feedback',  [App\Http\Controllers\AccountController::class, 'feedback'])->name('feedback');
+});
+
+// ── Saved Searches ────────────────────────────────────────────────────────────
+Route::middleware('auth')->prefix('saved-searches')->name('saved-searches.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Guest\SavedSearchController::class, 'index'])->name('index');
+    Route::post('/', [App\Http\Controllers\Guest\SavedSearchController::class, 'store'])->name('store');
+    Route::delete('/{savedSearch}', [App\Http\Controllers\Guest\SavedSearchController::class, 'destroy'])->name('destroy');
+});
+
+// ── Disputes ──────────────────────────────────────────────────────────────────
+Route::middleware('auth')->prefix('disputes')->name('disputes.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Guest\DisputeController::class, 'index'])->name('index');
+    Route::post('/', [App\Http\Controllers\Guest\DisputeController::class, 'store'])->name('store');
+});
+
+// ── Newsletter ────────────────────────────────────────────────────────────────
+Route::post('/newsletter/subscribe', [App\Http\Controllers\Guest\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/newsletter/unsubscribe/{token}', [App\Http\Controllers\Guest\NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
+
+// ── Support / FAQ / Tickets ───────────────────────────────────────────────────
+Route::get('/faq', [App\Http\Controllers\Guest\SupportController::class, 'faq'])->name('faq');
+Route::middleware('auth')->prefix('support')->name('support.')->group(function () {
+    Route::get('/tickets',            [App\Http\Controllers\Guest\SupportController::class, 'tickets'])->name('tickets');
+    Route::get('/tickets/create',     [App\Http\Controllers\Guest\SupportController::class, 'createTicket'])->name('tickets.create');
+    Route::post('/tickets',           [App\Http\Controllers\Guest\SupportController::class, 'storeTicket'])->name('tickets.store');
+    Route::get('/tickets/{ticket}',   [App\Http\Controllers\Guest\SupportController::class, 'showTicket'])->name('tickets.show');
+    Route::post('/tickets/{ticket}/reply', [App\Http\Controllers\Guest\SupportController::class, 'replyTicket'])->name('tickets.reply');
+});
+
+// ── Agent Analytics & New Features ───────────────────────────────────────────
+Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
+    Route::get('/analytics', [App\Http\Controllers\Agent\AnalyticsController::class, 'index'])->name('analytics');
+
+    // Property Document Management
+    Route::post('/properties/{property}/documents', [App\Http\Controllers\Agent\PropertyDocumentController::class, 'store'])->name('properties.documents.store');
+    Route::delete('/properties/{property}/documents/{document}', [App\Http\Controllers\Agent\PropertyDocumentController::class, 'destroy'])->name('properties.documents.destroy');
+
+    // Message Templates
+    Route::get('/message-templates', [App\Http\Controllers\Agent\MessageTemplateController::class, 'index'])->name('message-templates.index');
+    Route::post('/message-templates', [App\Http\Controllers\Agent\MessageTemplateController::class, 'store'])->name('message-templates.store');
+    Route::put('/message-templates/{template}', [App\Http\Controllers\Agent\MessageTemplateController::class, 'update'])->name('message-templates.update');
+    Route::delete('/message-templates/{template}', [App\Http\Controllers\Agent\MessageTemplateController::class, 'destroy'])->name('message-templates.destroy');
+});
+
+// ── Admin Extended ────────────────────────────────────────────────────────────
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+    // Support Tickets
+    Route::get('/tickets', [App\Http\Controllers\Admin\AdminSupportController::class, 'tickets'])->name('tickets');
+    Route::get('/tickets/{ticket}', [App\Http\Controllers\Admin\AdminSupportController::class, 'showTicket'])->name('tickets.show');
+    Route::post('/tickets/{ticket}/reply', [App\Http\Controllers\Admin\AdminSupportController::class, 'replyTicket'])->name('tickets.reply');
+    // Disputes
+    Route::get('/disputes', [App\Http\Controllers\Admin\AdminSupportController::class, 'disputes'])->name('disputes');
+    Route::patch('/disputes/{dispute}/resolve', [App\Http\Controllers\Admin\AdminSupportController::class, 'resolveDispute'])->name('disputes.resolve');
+    // FAQs
+    Route::get('/faqs', [App\Http\Controllers\Admin\AdminSupportController::class, 'faqs'])->name('faqs');
+    Route::post('/faqs', [App\Http\Controllers\Admin\AdminSupportController::class, 'storeFaq'])->name('faqs.store');
+    Route::put('/faqs/{faq}', [App\Http\Controllers\Admin\AdminSupportController::class, 'updateFaq'])->name('faqs.update');
+    Route::delete('/faqs/{faq}', [App\Http\Controllers\Admin\AdminSupportController::class, 'destroyFaq'])->name('faqs.destroy');
+    // Newsletter
+    Route::get('/newsletter', [App\Http\Controllers\Admin\AdminSupportController::class, 'newsletter'])->name('newsletter');
+    Route::post('/newsletter/send', [App\Http\Controllers\Admin\AdminSupportController::class, 'sendNewsletter'])->name('newsletter.send');
+    // Market Insights
+    Route::get('/insights', [App\Http\Controllers\Admin\AdminSupportController::class, 'insights'])->name('insights');
+    // Log Viewer
+    Route::get('/logs', [App\Http\Controllers\Admin\AdminSupportController::class, 'logs'])->name('logs');
+    // Property Documents
+    Route::get('/documents', [App\Http\Controllers\Admin\AdminSupportController::class, 'pendingDocuments'])->name('documents');
+    Route::patch('/documents/{document}/verify', [App\Http\Controllers\Admin\AdminSupportController::class, 'verifyDocument'])->name('documents.verify');
+});
+
+// ── Sitemap ───────────────────────────────────────────────────────────────────
+Route::get('/sitemap.xml', function () {
+    $properties = App\Models\Property::approved()->get(['id','updated_at']);
+    $agents     = App\Models\User::where('role','agent')->get(['id','updated_at']);
+    $posts      = App\Models\BlogPost::where('is_published', true)->get(['slug','updated_at']);
+
+    $content = '<?xml version="1.0" encoding="UTF-8"?>';
+    $content .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+    $staticPages = ['/', '/properties', '/agents', '/blog', '/faq'];
+    foreach ($staticPages as $page) {
+        $content .= "<url><loc>" . url($page) . "</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>";
+    }
+    foreach ($properties as $p) {
+        $content .= "<url><loc>" . route('properties.show', $p->id) . "</loc><lastmod>" . $p->updated_at->toAtomString() . "</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>";
+    }
+    foreach ($agents as $a) {
+        $content .= "<url><loc>" . route('agents.show', $a->id) . "</loc><lastmod>" . $a->updated_at->toAtomString() . "</lastmod><priority>0.6</priority></url>";
+    }
+    foreach ($posts as $post) {
+        $content .= "<url><loc>" . route('blog.show', $post->slug) . "</loc><lastmod>" . $post->updated_at->toAtomString() . "</lastmod><priority>0.6</priority></url>";
+    }
+    $content .= '</urlset>';
+
+    return response($content, 200)->header('Content-Type', 'application/xml');
+})->name('sitemap');
+

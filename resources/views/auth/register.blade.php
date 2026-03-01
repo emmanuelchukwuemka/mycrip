@@ -103,7 +103,19 @@
                                 Password
                             </label>
                             <input id="password" name="password" type="password" autocomplete="new-password" required 
-                                   class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm">
+                                   class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                                   oninput="checkPasswordStrength(this.value)">
+                            
+                            <!-- Password Strength Indicator -->
+                            <div id="password-strength" class="mt-2 hidden">
+                                <div class="flex space-x-1 mb-2">
+                                    <div class="strength-bar flex-1 h-1.5 rounded-full bg-gray-200"></div>
+                                    <div class="strength-bar flex-1 h-1.5 rounded-full bg-gray-200"></div>
+                                    <div class="strength-bar flex-1 h-1.5 rounded-full bg-gray-200"></div>
+                                    <div class="strength-bar flex-1 h-1.5 rounded-full bg-gray-200"></div>
+                                </div>
+                                <p id="strength-text" class="text-xs text-gray-500"></p>
+                            </div>
                         </div>
 
                         <div>
@@ -111,7 +123,9 @@
                                 Confirm Password
                             </label>
                             <input id="password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" required 
-                                   class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm">
+                                   class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                                   oninput="checkPasswordMatch()">
+                            <p id="password-match" class="mt-1 text-xs hidden"></p>
                         </div>
 
                         <!-- Agent Details Section (Only shown for agents) -->
@@ -210,6 +224,92 @@
 
     <!-- JavaScript for showing/hiding agent sections and profile preview -->
     <script>
+        // Password strength checking
+        function checkPasswordStrength(password) {
+            const strengthIndicator = document.getElementById('password-strength');
+            const strengthBars = document.querySelectorAll('.strength-bar');
+            const strengthText = document.getElementById('strength-text');
+            
+            if (!password) {
+                strengthIndicator.classList.add('hidden');
+                return;
+            }
+            
+            strengthIndicator.classList.remove('hidden');
+            
+            // Calculate strength score (0-4)
+            let score = 0;
+            
+            // Length check
+            if (password.length >= 8) score++;
+            
+            // Uppercase letter
+            if (/[A-Z]/.test(password)) score++;
+            
+            // Lowercase letter
+            if (/[a-z]/.test(password)) score++;
+            
+            // Number
+            if (/[0-9]/.test(password)) score++;
+            
+            // Special character
+            if (/[!@#$%^&*()\-_=+{}|\[\]:;"\'<>?,.\/]/.test(password)) score++;
+            
+            // Weak passwords
+            const weakPasswords = ['password', '12345678', 'qwertyui', 'letmein123', 'welcome123', 'admin123'];
+            if (weakPasswords.includes(password.toLowerCase())) {
+                score = Math.min(score, 1);
+            }
+            
+            // Update visual indicator
+            strengthBars.forEach((bar, index) => {
+                if (index < score) {
+                    // Color based on strength
+                    if (score <= 2) {
+                        bar.classList.remove('bg-gray-200', 'bg-yellow-400', 'bg-green-500');
+                        bar.classList.add('bg-red-500');
+                    } else if (score <= 3) {
+                        bar.classList.remove('bg-gray-200', 'bg-red-500', 'bg-green-500');
+                        bar.classList.add('bg-yellow-400');
+                    } else {
+                        bar.classList.remove('bg-gray-200', 'bg-red-500', 'bg-yellow-400');
+                        bar.classList.add('bg-green-500');
+                    }
+                } else {
+                    bar.classList.remove('bg-red-500', 'bg-yellow-400', 'bg-green-500');
+                    bar.classList.add('bg-gray-200');
+                }
+            });
+            
+            // Update text
+            const strengthLabels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+            const strengthColors = ['text-red-600', 'text-red-600', 'text-yellow-600', 'text-yellow-600', 'text-green-600'];
+            
+            strengthText.textContent = strengthLabels[Math.min(score, 4)];
+            strengthText.className = `text-xs ${strengthColors[Math.min(score, 4)]}`;
+        }
+        
+        function checkPasswordMatch() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('password_confirmation').value;
+            const matchText = document.getElementById('password-match');
+            
+            if (!confirmPassword) {
+                matchText.classList.add('hidden');
+                return;
+            }
+            
+            matchText.classList.remove('hidden');
+            
+            if (password === confirmPassword) {
+                matchText.textContent = 'Passwords match';
+                matchText.className = 'mt-1 text-xs text-green-600';
+            } else {
+                matchText.textContent = 'Passwords do not match';
+                matchText.className = 'mt-1 text-xs text-red-600';
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             const roleRadios = document.querySelectorAll('input[name="role"]');
             const agentProfileSection = document.getElementById('agent-profile-section');

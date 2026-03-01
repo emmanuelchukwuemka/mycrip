@@ -30,7 +30,10 @@ class DashboardController extends Controller
         })->with('property')->latest()->take(5)->get();
         
         $newInquiries = $inquiries->where('status', 'new')->count();
-
+        
+        // Get subscription information
+        $currentSubscription = $user->currentSubscription;
+        
         return view('agent.dashboard', compact(
             'user',
             'totalProperties',
@@ -39,7 +42,8 @@ class DashboardController extends Controller
             'rejectedProperties',
             'recentProperties',
             'inquiries',
-            'newInquiries'
+            'newInquiries',
+            'currentSubscription'
         ));
     }
 }

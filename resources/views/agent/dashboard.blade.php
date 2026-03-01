@@ -1,176 +1,285 @@
 <x-agent-layout>
-    <!-- Welcome Section with Profile -->
-    <div class="relative overflow-hidden rounded-3xl p-8 mb-8 text-white shadow-2xl" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%);">
-        <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-[#C6A664] opacity-15 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-[#C6A664] opacity-10 rounded-full blur-3xl"></div>
-        
-        <div class="relative flex flex-col md:flex-row items-center justify-between z-10">
-            <div class="flex items-center space-x-8 mb-6 md:mb-0">
-                <div class="relative">
+<div class="space-y-6">
+
+    {{-- ═══════════════════════════════════════════════════════
+         TOP HERO BAR  (compact, professional)
+    ═══════════════════════════════════════════════════════ --}}
+    <div class="relative overflow-hidden rounded-2xl px-8 py-6 flex items-center justify-between gap-6"
+         style="background:linear-gradient(135deg,#001F3F 0%,#00152B 60%,#001a35 100%);">
+
+        {{-- Background decoration --}}
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-8 -right-8 w-48 h-48 rounded-full opacity-10"
+                 style="background:radial-gradient(circle,#C6A664,transparent)"></div>
+            <div class="absolute -bottom-8 left-1/3 w-32 h-32 rounded-full opacity-5"
+                 style="background:radial-gradient(circle,#C6A664,transparent)"></div>
+            {{-- grid pattern --}}
+            <svg class="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+                <defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+                    <path d="M 32 0 L 0 0 0 32" fill="none" stroke="white" stroke-width="0.5"/>
+                </pattern></defs>
+                <rect width="100%" height="100%" fill="url(#grid)"/>
+            </svg>
+        </div>
+
+        {{-- Left: avatar + name --}}
+        <div class="relative z-10 flex items-center gap-5">
+            {{-- Avatar (compact) --}}
+            <div class="relative flex-shrink-0">
+                <div class="w-14 h-14 rounded-xl overflow-hidden ring-2 ring-white/20 shadow-xl">
                     @if($user->agent_image)
-                        <img src="{{ $user->agent_image_url }}" alt="{{ $user->name }}" class="w-28 h-28 rounded-2xl border-4 border-white/20 object-cover shadow-2xl">
+                        <img src="{{ $user->agent_image_url }}" alt="{{ $user->name }}"
+                             class="w-full h-full object-cover">
                     @else
-                        <div class="w-28 h-28 rounded-2xl border-4 border-white/20 bg-white/10 flex items-center justify-center shadow-2xl">
-                            <svg class="w-14 h-14 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                            </svg>
+                        <div class="w-full h-full flex items-center justify-center text-xl font-black text-white"
+                             style="background:linear-gradient(135deg,#C6A664,#a8894e)">
+                            {{ strtoupper(substr($user->name, 0, 1)) }}
                         </div>
                     @endif
-                    <div class="absolute -bottom-2 -right-2 p-1.5 rounded-lg border-2 border-[#001F3F] shadow-lg {{ $user->agent_verification_status === 'approved' ? 'bg-green-500' : ($user->agent_verification_status === 'pending' ? 'bg-yellow-500' : 'bg-red-500') }}">
-                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            @if($user->agent_verification_status === 'approved')
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            @elseif($user->agent_verification_status === 'pending')
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                            @else
-                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            @endif
-                        </svg>
-                    </div>
                 </div>
-                <div>
-                    <h2 class="text-4xl font-bold tracking-tight">Bonjour, {{ $user->name }}!</h2>
-                    <div class="flex items-center mt-3 space-x-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white/10 border border-white/20">
-                            {{ $user->agent_verification_status ?? 'Member' }} Agent
+                {{-- Online dot --}}
+                <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-[#001F3F]"></span>
+            </div>
+
+            {{-- Name & meta --}}
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <h1 class="text-lg font-bold text-white leading-tight tracking-tight">{{ $user->name }}</h1>
+                    @if($user->agent_verification_status === 'approved')
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-400/20 text-emerald-300 border border-emerald-400/30">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Verified
                         </span>
-                        @if($user->agent_phone)
-                            <span class="flex items-center text-sm text-white/70">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                {{ $user->agent_phone }}
-                            </span>
-                        @endif
-                    </div>
+                    @elseif($user->agent_verification_status === 'pending')
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30">Pending</span>
+                    @else
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-400/20 text-red-300 border border-red-400/30">Unverified</span>
+                    @endif
+                </div>
+                <div class="flex items-center gap-4 text-xs text-white/50">
+                    <span class="flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        Real Estate Agent
+                    </span>
+                    @if($user->agent_phone)
+                        <span class="flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            {{ $user->agent_phone }}
+                        </span>
+                    @endif
                 </div>
             </div>
-            <a href="{{ route('agent.profile.edit') }}" class="inline-flex items-center px-6 py-3 bg-[#C6A664] text-[#001F3F] font-bold rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+        </div>
+
+        {{-- Right: quick-action buttons --}}
+        <div class="relative z-10 flex items-center gap-3">
+            <a href="{{ route('agent.properties.create') }}"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+               style="background:linear-gradient(135deg,#C6A664,#a8894e); color:#001F3F;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                </svg>
+                New Listing
+            </a>
+            <a href="{{ route('agent.profile.edit') }}"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/10 hover:bg-white/20 text-white transition-all duration-200 border border-white/10">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z"/>
                 </svg>
                 Edit Profile
             </a>
         </div>
     </div>
 
-    <!-- Stats Overview -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
-            <div class="flex items-center justify-between">
+    {{-- ═══════════════════════════════════════════════════════
+         KPI STAT CARDS
+    ═══════════════════════════════════════════════════════ --}}
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+        {{-- Total Properties --}}
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group">
+            <div class="flex items-start justify-between">
                 <div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Properties</p>
-                    <h3 class="text-3xl font-bold mt-1" style="color: #001F3F;">{{ $totalProperties }}</h3>
+                    <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">Total Listings</p>
+                    <p class="text-3xl font-black text-gray-900 leading-none">{{ $totalProperties }}</p>
                 </div>
-                <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(0, 31, 63, 0.08); color: #001F3F;">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
+                     style="background:rgba(0,31,63,0.08)">
+                    <svg class="w-5 h-5" style="color:#001F3F" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/>
+                    </svg>
                 </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-50">
+                <span class="text-xs text-gray-400 font-medium">All time</span>
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
-            <div class="flex items-center justify-between">
+        {{-- Active Listings --}}
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group">
+            <div class="flex items-start justify-between">
                 <div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Active Listings</p>
-                    <h3 class="text-3xl font-bold text-emerald-600 mt-1">{{ $approvedProperties }}</h3>
+                    <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">Live Now</p>
+                    <p class="text-3xl font-black text-emerald-600 leading-none">{{ $approvedProperties }}</p>
                 </div>
-                <div class="p-3 rounded-xl bg-emerald-50 text-emerald-600 transition-all duration-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-emerald-50 transition-all duration-300 group-hover:scale-110">
+                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
                 </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-50 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-xs text-emerald-500 font-semibold">Active & visible</span>
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
-            <div class="flex items-center justify-between">
+        {{-- Pending --}}
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group">
+            <div class="flex items-start justify-between">
                 <div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Pending Review</p>
-                    <h3 class="text-3xl font-bold text-amber-500 mt-1">{{ $pendingProperties }}</h3>
+                    <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">Pending Review</p>
+                    <p class="text-3xl font-black text-amber-500 leading-none">{{ $pendingProperties }}</p>
                 </div>
-                <div class="p-3 rounded-xl bg-amber-50 text-amber-500 transition-all duration-300">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-amber-50 transition-all duration-300 group-hover:scale-110">
+                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
                 </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-50">
+                <span class="text-xs text-gray-400 font-medium">Awaiting approval</span>
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
-            <div class="flex items-center justify-between">
+        {{-- New Inquiries --}}
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group relative overflow-hidden">
+            {{-- Glow for >0 inquiries --}}
+            @if($newInquiries > 0)
+                <div class="absolute inset-0 opacity-[0.04] pointer-events-none"
+                     style="background:radial-gradient(circle at top right,#C6A664,transparent)"></div>
+            @endif
+            <div class="relative flex items-start justify-between">
                 <div>
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">New Inquiries</p>
-                    <h3 class="text-3xl font-bold mt-1" style="color: #C6A664;">{{ $newInquiries }}</h3>
+                    <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">New Inquiries</p>
+                    <p class="text-3xl font-black leading-none" style="color:#C6A664">{{ $newInquiries }}</p>
                 </div>
-                <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(198, 166, 100, 0.12); color: #C6A664;">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
+                     style="background:rgba(198,166,100,0.12)">
+                    <svg class="w-5 h-5" style="color:#C6A664" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                    </svg>
                 </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-gray-50">
+                <a href="{{ route('agent.inquiries.index') }}" class="text-xs font-semibold hover:underline transition-colors" style="color:#C6A664">View all →</a>
             </div>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Recent Properties -->
+    {{-- ═══════════════════════════════════════════════════════
+         SUBSCRIPTION BANNER (only if inactive)
+    ═══════════════════════════════════════════════════════ --}}
+    @if(!$currentSubscription || !$currentSubscription->isActive())
+        <div class="flex items-center justify-between gap-4 px-6 py-4 rounded-2xl border"
+             style="background:rgba(198,166,100,0.06); border-color:rgba(198,166,100,0.25)">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                     style="background:rgba(198,166,100,0.15)">
+                    <svg class="w-4 h-4" style="color:#C6A664" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-gray-800">You're on the Free Tier</p>
+                    <p class="text-xs text-gray-500 mt-0.5">Upgrade to unlock featured listings, priority placement, and advanced analytics.</p>
+                </div>
+            </div>
+            <a href="{{ url('/agent/subscription') }}"
+               class="flex-shrink-0 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+               style="background:linear-gradient(135deg,#C6A664,#a8894e); color:#001F3F;">
+                Upgrade Plan
+            </a>
+        </div>
+    @endif
+
+    {{-- ═══════════════════════════════════════════════════════
+         MAIN CONTENT GRID
+    ═══════════════════════════════════════════════════════ --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        {{-- Recent Properties (2/3 width) --}}
         <div class="lg:col-span-2">
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="flex items-center justify-between px-8 py-6 border-b border-gray-50 bg-gray-50/50">
-                    <h3 class="text-xl font-bold text-gray-800">My Recent Properties</h3>
-                    <a href="{{ route('agent.properties.create') }}" class="inline-flex items-center px-4 py-2 bg-[#001F3F] text-white text-sm font-bold rounded-xl hover:shadow-lg transition-all duration-300">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        Add New
-                    </a>
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-50">
+                    <h2 class="text-sm font-bold text-gray-800 tracking-wide">Recent Listings</h2>
+                    <a href="{{ route('agent.properties.index') }}"
+                       class="text-xs font-semibold hover:underline" style="color:#C6A664">View All →</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead>
-                            <tr class="text-xs font-bold uppercase tracking-wider text-gray-400" style="background-color: #F8F9FC;">
-                                <th class="px-8 py-4">Property</th>
-                                <th class="px-8 py-4 text-center">Status</th>
-                                <th class="px-8 py-4">Price</th>
-                                <th class="px-8 py-4 text-right">Actions</th>
+                            <tr class="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-gray-50/70">
+                                <th class="px-6 py-3">Property</th>
+                                <th class="px-6 py-3 text-center">Status</th>
+                                <th class="px-6 py-3">Price</th>
+                                <th class="px-6 py-3 text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-50">
                             @forelse($recentProperties as $property)
-                            <tr class="hover:bg-gray-50/80 transition-colors group">
-                                <td class="px-8 py-6">
-                                    <div class="flex items-center">
-                                        <div class="h-12 w-16 rounded-xl overflow-hidden shadow-sm flex-shrink-0">
+                            <tr class="hover:bg-gray-50/60 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
                                             @if($property->featured_image_url)
-                                                <img class="h-full w-full object-cover" src="{{ $property->featured_image_url }}" alt="">
+                                                <img src="{{ $property->featured_image_url }}"
+                                                     class="w-full h-full object-cover" alt="">
                                             @else
-                                                <div class="h-full w-full bg-gray-100 flex items-center justify-center">
-                                                    <svg class="h-6 w-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                                <div class="w-full h-full flex items-center justify-center text-gray-300">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                                                 </div>
                                             @endif
                                         </div>
-                                        <div class="ml-4">
-                                            <p class="text-sm font-bold text-gray-800 group-hover:text-[#C6A664] transition-colors">{{ $property->title }}</p>
-                                            <p class="text-xs text-gray-400 mt-0.5">{{ $property->city }}, {{ $property->state }}</p>
+                                        <div class="min-w-0">
+                                            <p class="text-sm font-semibold text-gray-800 truncate max-w-[180px] group-hover:text-[#C6A664] transition-colors">{{ $property->title }}</p>
+                                            <p class="text-[11px] text-gray-400 mt-0.5 truncate">{{ $property->city }}, {{ $property->state }}</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-8 py-6 text-center">
+                                <td class="px-6 py-4 text-center">
                                     @if($property->status === 'approved')
-                                        <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-emerald-50 text-emerald-700 uppercase">Live</span>
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-50 text-emerald-700 uppercase tracking-wide">Live</span>
                                     @elseif($property->status === 'pending')
-                                        <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-amber-50 text-amber-700 uppercase">Pending</span>
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-50 text-amber-700 uppercase tracking-wide">Pending</span>
                                     @else
-                                        <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold bg-red-50 text-red-700 uppercase">Rejected</span>
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-red-50 text-red-700 uppercase tracking-wide">Rejected</span>
                                     @endif
                                 </td>
-                                <td class="px-8 py-6">
+                                <td class="px-6 py-4">
                                     <span class="text-sm font-bold text-gray-700">{{ $property->formatted_price }}</span>
                                 </td>
-                                <td class="px-8 py-6 text-right">
-                                    <a href="{{ route('agent.properties.edit', $property->id) }}" class="p-2 rounded-lg bg-gray-50 text-gray-400 hover:text-white transition-all duration-200 inline-flex items-center" onmouseover="this.style.backgroundColor='#001F3F'" onmouseout="this.style.backgroundColor=''">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <td class="px-6 py-4 text-right">
+                                    <a href="{{ route('agent.properties.edit', $property->id) }}"
+                                       class="inline-flex items-center p-2 rounded-lg text-gray-400 hover:text-white hover:bg-[#001F3F] transition-all duration-200">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z"/>
+                                        </svg>
                                     </a>
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4" class="px-8 py-16 text-center">
-                                    <div class="flex flex-col items-center">
-                                        <div class="w-20 h-20 rounded-full bg-gray-50 flex items-center justify-center text-gray-200 mb-4">
-                                            <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <td colspan="4" class="px-6 py-16 text-center">
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-200">
+                                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/>
+                                            </svg>
                                         </div>
-                                        <p class="text-gray-400 font-medium">No properties yet.</p>
-                                        <a href="{{ route('agent.properties.create') }}" class="mt-4 text-[#C6A664] font-bold hover:underline">+ Create Your First Listing</a>
+                                        <p class="text-sm font-medium text-gray-400">No listings yet</p>
+                                        <a href="{{ route('agent.properties.create') }}"
+                                           class="text-sm font-bold hover:underline" style="color:#C6A664">+ Create your first listing</a>
                                     </div>
                                 </td>
                             </tr>
@@ -181,42 +290,71 @@
             </div>
         </div>
 
-        <!-- Recent Inquiries -->
-        <div class="lg:col-span-1">
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden h-full">
-                <div class="flex items-center justify-between px-8 py-6 border-b border-gray-50 bg-gray-50/50">
-                    <h3 class="text-xl font-bold text-gray-800">Recent Inquiries</h3>
-                    <a href="{{ route('agent.inquiries.index') }}" class="text-sm font-bold text-[#C6A664] hover:text-[#001F3F] transition-colors">View All</a>
+        {{-- Right Column --}}
+        <div class="space-y-5">
+
+            {{-- Recent Inquiries --}}
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="flex items-center justify-between px-5 py-4 border-b border-gray-50">
+                    <h2 class="text-sm font-bold text-gray-800">Inquiries</h2>
+                    <a href="{{ route('agent.inquiries.index') }}" class="text-xs font-semibold hover:underline" style="color:#C6A664">View All →</a>
                 </div>
-                <div class="p-4 overflow-y-auto max-h-[600px]">
-                    <div class="space-y-4">
-                        @forelse($inquiries as $inquiry)
-                        <div class="p-4 rounded-2xl border border-gray-50 hover:border-[#C6A664]/20 hover:bg-gray-50/50 transition-all duration-300 group">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 rounded-lg bg-[#001F3F]/5 text-[#001F3F] flex items-center justify-center font-bold text-xs">
-                                        {{ strtoupper(substr($inquiry->guest_name, 0, 1)) }}
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="text-sm font-bold text-gray-800 line-clamp-1">{{ $inquiry->guest_name }}</p>
-                                        <p class="text-[10px] text-gray-400">{{ $inquiry->created_at->diffForHumans() }}</p>
-                                    </div>
+                <div class="divide-y divide-gray-50">
+                    @forelse($inquiries as $inquiry)
+                        <div class="px-5 py-3.5 hover:bg-gray-50/50 transition-colors">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center text-xs font-black text-white"
+                                     style="background:linear-gradient(135deg,#001F3F,#003366)">
+                                    {{ strtoupper(substr($inquiry->guest_name ?? 'U', 0, 1)) }}
                                 </div>
-                                @if($inquiry->status === 'new')
-                                    <span class="w-2 h-2 rounded-full bg-[#C6A664] shadow-[0_0_8px_rgba(198,166,100,0.8)] animate-pulse"></span>
-                                @endif
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <p class="text-xs font-bold text-gray-800 truncate">{{ $inquiry->guest_name }}</p>
+                                        @if($inquiry->status === 'new')
+                                            <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#C6A664"></span>
+                                        @endif
+                                    </div>
+                                    <p class="text-[11px] text-gray-400 mt-0.5 truncate italic">{{ $inquiry->property->title ?? '' }}</p>
+                                    <p class="text-[11px] text-gray-500 mt-1 line-clamp-1">{{ $inquiry->message }}</p>
+                                </div>
                             </div>
-                            <p class="text-xs font-bold text-gray-500 line-clamp-1 italic">Re: {{ $inquiry->property->title }}</p>
-                            <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">{{ $inquiry->message }}</p>
                         </div>
-                        @empty
-                        <div class="text-center py-12">
-                            <p class="text-gray-400 text-sm">No recent inquiries.</p>
-                        </div>
-                        @endforelse
-                    </div>
+                    @empty
+                        <div class="px-5 py-10 text-center text-sm text-gray-400">No recent inquiries</div>
+                    @endforelse
                 </div>
             </div>
+
+            {{-- Quick Links --}}
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                <h2 class="text-sm font-bold text-gray-800 mb-3">Quick Actions</h2>
+                <div class="space-y-2">
+                    @foreach([
+                        ['route' => 'agent.messages.index',    'label' => 'Messages',         'icon' => 'M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z'],
+                        ['route' => 'agent.tours.index',       'label' => 'Tour Requests',    'icon' => 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5'],
+                        ['route' => 'agent.analytics',         'label' => 'Analytics',        'icon' => 'M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z'],
+                        ['route' => 'agent.profile.edit',      'label' => 'Edit Profile',     'icon' => 'M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z'],
+                    ] as $link)
+                        <a href="{{ route($link['route']) }}"
+                           class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 transition-colors group">
+                            <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-[#001F3F]"
+                                 style="background:rgba(0,31,63,0.07)">
+                                <svg class="w-3.5 h-3.5 group-hover:text-white transition-colors" style="color:#001F3F"
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="{{ $link['icon'] }}"/>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold text-gray-700 group-hover:text-gray-900">{{ $link['label'] }}</span>
+                            <svg class="w-3 h-3 text-gray-300 ml-auto group-hover:text-gray-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                            </svg>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
         </div>
     </div>
+
+</div>
 </x-agent-layout>

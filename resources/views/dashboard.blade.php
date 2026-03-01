@@ -15,6 +15,64 @@
                 </div>
             </div>
 
+            <!-- Security Section -->
+            <div class="bg-white rounded-[2rem] p-8 mb-12 shadow-sm border border-gray-100">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-black text-[#001F3F]">Security Settings</h2>
+                    <div class="flex items-center space-x-2">
+                        @if(Auth::user()->hasTwoFactorEnabled())
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                2FA Enabled
+                            </span>
+                        @else
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                </svg>
+                                2FA Disabled
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Two-Factor Authentication</h3>
+                        <p class="text-gray-600 text-sm mb-4">Add an extra layer of security to your account</p>
+                        @if(Auth::user()->hasTwoFactorEnabled())
+                            <div class="space-y-3">
+                                <a href="{{ route('2fa.recovery') }}" class="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                                    View Recovery Codes
+                                </a>
+                                <form method="POST" action="{{ route('2fa.disable') }}" class="inline-block">
+                                    @csrf
+                                    <button type="submit" 
+                                            onclick="return confirm('Are you sure you want to disable 2FA?')"
+                                            class="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors ml-2">
+                                        Disable 2FA
+                                    </button>
+                                </form>
+                            </div>
+                        @else
+                            <a href="{{ route('2fa.setup') }}" class="inline-block px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors">
+                                Enable 2FA
+                            </a>
+                        @endif
+                    </div>
+                    
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Password Security</h3>
+                        <p class="text-gray-600 text-sm mb-4">Last changed: {{ Auth::user()->updated_at->format('M d, Y') }}</p>
+                        <a href="#" class="inline-block px-4 py-2 bg-gray-600 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors">
+                            Change Password
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <!-- Quick Stats/Actions Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <!-- Messages Card -->
