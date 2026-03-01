@@ -4,9 +4,9 @@
     <!-- Image Section -->
     <div class="relative overflow-hidden flex-shrink-0">
         @if($property && $property->featured_image_url)
-            <img class="h-56 w-full object-cover group-hover:scale-110 transition-transform duration-700" src="{{ $property->featured_image_url }}" alt="{{ $property->title }}">
+            <img class="h-64 w-full object-cover group-hover:scale-110 transition-transform duration-700" src="{{ $property->featured_image_url }}" alt="{{ $property->title }}">
         @else
-            <img class="h-56 w-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Property Image">
+            <img class="h-64 w-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Property Image">
         @endif
         
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
