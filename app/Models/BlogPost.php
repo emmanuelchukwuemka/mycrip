@@ -37,6 +37,12 @@ class BlogPost extends Model
                 $post->slug = Str::slug($post->title);
             }
         });
+
+        static::saving(function ($post) {
+            if ($post->status === 'published' && empty($post->published_at)) {
+                $post->published_at = now();
+            }
+        });
     }
 
     /**

@@ -10,22 +10,22 @@
     if ($active) {
         $btnClass  = $baseBtn . ' bg-white/10 shadow-inner';
         $iconClass = $iconBox . ' bg-[#C6A664] text-white shadow-lg shadow-[#C6A664]/20';
-        $textClass = 'text-white font-semibold';
+        $textClass = 'text-white font-bold';
     } elseif ($accent) {
-        $btnClass  = $baseBtn . ' text-white/90 hover:text-white hover:bg-white/[0.08]';
-        $iconClass = $iconBox . ' bg-[#C6A664]/30 text-[#C6A664] group-hover:bg-[#C6A664] group-hover:text-white';
-        $textClass = 'font-semibold text-[#C6A664] group-hover:text-white transition-colors duration-150';
+        $btnClass  = $baseBtn . ' text-white hover:bg-white/[0.08]';
+        $iconClass = $iconBox . ' bg-[#C6A664]/20 text-[#C6A664] group-hover:bg-[#C6A664] group-hover:text-white';
+        $textClass = 'font-bold text-[#C6A664] group-hover:text-white transition-colors duration-150';
     } else {
-        $btnClass  = $baseBtn . ' text-white/80 hover:text-white hover:bg-white/[0.07]';
-        $iconClass = $iconBox . ' bg-white/10 text-white/75 group-hover:bg-white/20 group-hover:text-white';
-        $textClass = 'font-medium text-white/80 group-hover:text-white transition-colors duration-150';
+        $btnClass  = $baseBtn . ' text-white/90 hover:text-white hover:bg-white/[0.07]';
+        $iconClass = $iconBox . ' bg-white/10 text-white group-hover:bg-white/20 group-hover:text-white';
+        $textClass = 'font-semibold text-white/90 group-hover:text-white transition-colors duration-150';
     }
 @endphp
 
 <a href="{{ $href }}" class="{{ $btnClass }}" data-sidebar-tooltip="{{ $label }}">
     {{-- Icon --}}
     <div class="{{ $iconClass }}">
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.75" stroke="currentColor">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             {!! $icon !!}
         </svg>
     </div>

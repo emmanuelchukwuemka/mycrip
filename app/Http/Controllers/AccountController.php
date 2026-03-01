@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AccountController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /** Privacy settings dashboard */
     public function privacy()

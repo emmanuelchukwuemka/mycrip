@@ -21,7 +21,6 @@ class SupportController extends Controller
     /** User's support tickets list */
     public function tickets()
     {
-        $this->middleware('auth');
         $tickets = Auth::user()->tickets()->orderByDesc('created_at')->paginate(10);
         return view('guest.support.tickets', compact('tickets'));
     }

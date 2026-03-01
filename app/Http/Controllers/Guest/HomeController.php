@@ -46,13 +46,19 @@ class HomeController extends Controller
             ->pluck('state')
             ->filter();
 
+        $recentPosts = \App\Models\BlogPost::published()
+            ->latest()
+            ->take(3)
+            ->get();
+
         return view('guest.home', compact(
             'featuredProperties',
             'recentProperties',
             'rentalProperties',
             'purchaseProperties',
             'countries',
-            'states'
+            'states',
+            'recentPosts'
         ));
     }
 }

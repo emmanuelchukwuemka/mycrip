@@ -310,6 +310,57 @@
         </div>
     </div>
 
+
+    <!-- Latest Blog Posts Section -->
+    @if($recentPosts->count() > 0)
+    <div class="bg-gray-50 py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 animate-fade-in-up">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight mb-4">Latest from our <span style="color: #C6A664;">Blog</span></h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">Expert insights, market trends, and professional advice to help you navigate the African real estate landscape.</p>
+                </div>
+                <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#001F3F] hover:text-[#C6A664] transition-colors group">
+                    Explore All Articles
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                @foreach($recentPosts as $index => $post)
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 group animate-fade-in-up" style="animation-delay: {{ 200 * ($index + 1) }}ms">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-[#001F3F] shadow-sm">
+                                Insights
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-4 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+                            <span>{{ $post->published_at->format('M d, Y') }}</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                            <span>{{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#C6A664] transition-colors mb-4 line-clamp-2">
+                            <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
+                        </h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
+                            {{ Str::limit(strip_tags($post->content), 120) }}
+                        </p>
+                        <a href="{{ route('blog.show', $post->slug) }}" class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#C6A664] hover:text-[#00152B] transition-colors">
+                            Read Article
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
+
     <!-- CTA Section -->
     <div class="py-20" style="background-color: #000000;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

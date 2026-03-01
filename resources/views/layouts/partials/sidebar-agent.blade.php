@@ -30,8 +30,8 @@
         {{-- Brand text --}}
         <div class="ml-3 overflow-hidden transition-all duration-300 whitespace-nowrap"
              :class="sidebarCollapsed ? 'w-0 opacity-0 ml-0' : 'w-auto opacity-100'">
-            <p class="text-white font-extrabold text-base tracking-tight leading-none">MyCrip</p>
-            <p class="text-[10px] font-bold tracking-[.18em] mt-0.5" style="color:#C6A664">AGENT PORTAL</p>
+            <p class="text-white font-extrabold text-base tracking-tight leading-none uppercase">MyCrip</p>
+            <p class="text-[11px] font-black tracking-[.2em] mt-1" style="color:#C6A664">AGENT PORTAL</p>
         </div>
 
         {{-- Collapse toggle (desktop) --}}
@@ -60,7 +60,7 @@
 
         {{-- MAIN --}}
         <div>
-            <p class="sidebar-group-label px-3 mb-2 text-[9px] font-black uppercase tracking-[.2em] text-white/50 transition-all duration-300 whitespace-nowrap overflow-hidden"
+            <p class="sidebar-group-label px-3 mb-2 text-[10px] font-black uppercase tracking-[.2em] text-white/70 transition-all duration-300 whitespace-nowrap overflow-hidden"
                :class="sidebarCollapsed ? 'opacity-0 h-0 mb-0' : 'opacity-100 h-auto'">Main</p>
             <div class="space-y-0.5">
                 @include('layouts.partials.sidebar-agent-item', [
@@ -74,7 +74,7 @@
 
         {{-- REAL ESTATE --}}
         <div>
-            <p class="sidebar-group-label px-3 mb-2 text-[9px] font-black uppercase tracking-[.2em] text-white/50 transition-all duration-300 whitespace-nowrap overflow-hidden"
+            <p class="sidebar-group-label px-3 mb-2 text-[10px] font-black uppercase tracking-[.2em] text-white/70 transition-all duration-300 whitespace-nowrap overflow-hidden"
                :class="sidebarCollapsed ? 'opacity-0 h-0 mb-0' : 'opacity-100 h-auto'">Real Estate</p>
             <div class="space-y-0.5">
                 @include('layouts.partials.sidebar-agent-item', [
@@ -95,7 +95,7 @@
 
         {{-- COMMUNICATION --}}
         <div>
-            <p class="sidebar-group-label px-3 mb-2 text-[9px] font-black uppercase tracking-[.2em] text-white/50 transition-all duration-300 whitespace-nowrap overflow-hidden"
+            <p class="sidebar-group-label px-3 mb-2 text-[10px] font-black uppercase tracking-[.2em] text-white/70 transition-all duration-300 whitespace-nowrap overflow-hidden"
                :class="sidebarCollapsed ? 'opacity-0 h-0 mb-0' : 'opacity-100 h-auto'">Communication</p>
             <div class="space-y-0.5">
                 @include('layouts.partials.sidebar-agent-item', [
@@ -127,7 +127,7 @@
 
         {{-- ANALYTICS --}}
         <div>
-            <p class="sidebar-group-label px-3 mb-2 text-[9px] font-black uppercase tracking-[.2em] text-white/50 transition-all duration-300 whitespace-nowrap overflow-hidden"
+            <p class="sidebar-group-label px-3 mb-2 text-[10px] font-black uppercase tracking-[.2em] text-white/70 transition-all duration-300 whitespace-nowrap overflow-hidden"
                :class="sidebarCollapsed ? 'opacity-0 h-0 mb-0' : 'opacity-100 h-auto'">Analytics</p>
             <div class="space-y-0.5">
                 @include('layouts.partials.sidebar-agent-item', [
@@ -221,11 +221,11 @@
             <div class="min-w-0 flex-1 overflow-hidden transition-all duration-300 whitespace-nowrap"
                  :class="sidebarCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'">
                 <p class="text-xs font-bold text-white truncate leading-tight">{{ Auth::user()->name }}</p>
-                <p class="text-[9px] text-white/40 font-semibold uppercase tracking-widest mt-0.5">
+                <p class="text-[9px] text-white/60 font-semibold uppercase tracking-widest mt-0.5">
                     @if(Auth::user()->agent_verification_status === 'approved')
-                        <span class="text-emerald-400">✓ Verified Agent</span>
+                        <span class="text-emerald-400 font-bold">✓ Verified Agent</span>
                     @else
-                        Agent
+                        <span class="text-white/70">Real Estate Agent</span>
                     @endif
                 </p>
             </div>
