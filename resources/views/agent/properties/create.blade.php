@@ -86,7 +86,9 @@
                                     'house_purchase' => ['label' => 'House Sales', 'icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
                                     'land_purchase' => ['label' => 'Land Sales', 'icon' => 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7'],
                                     'shop_rental' => ['label' => 'Commercial', 'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'],
-                                    'student_lodge' => ['label' => 'Student Lodge', 'icon' => 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253']
+                                    'student_lodge' => ['label' => 'Student Lodge', 'icon' => 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'],
+                                    'hotel' => ['label' => 'Hotel', 'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'],
+                                    'lodge' => ['label' => 'Lodge', 'icon' => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'],
                                 ] as $value => $data)
                                     <button type="button" 
                                         @click="category = '{{ $value }}'"
@@ -291,6 +293,69 @@
                     </div>
                 </div>
 
+                <!-- Sub-Galleries Section -->
+                <div class="border-t border-gray-100 pt-10 mb-10" x-data="{ 
+                    subGalleries: [],
+                    addGallery() {
+                        this.subGalleries.push({ id: Date.now(), label: '' });
+                    },
+                    removeGallery(index) {
+                        this.subGalleries.splice(index, 1);
+                    }
+                }">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-bold text-[#001F3F] flex items-center">
+                            <span class="w-8 h-8 rounded-lg bg-[#001F3F]/5 flex items-center justify-center mr-3">
+                                <svg class="w-5 h-5 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </span>
+                            Sub-Galleries (Optional)
+                        </h3>
+                        <button type="button" @click="addGallery()" 
+                                class="inline-flex items-center px-4 py-2 bg-[#C6A664] text-white text-sm font-bold rounded-xl hover:bg-[#B89654] transition-all shadow-lg shadow-[#C6A664]/20">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            Add New Gallery
+                        </button>
+                    </div>
+
+                    <p class="text-gray-500 text-sm mb-6">Create separate galleries for specific areas like "Master Bedroom", "Kitchen", or "Hotel Lobby".</p>
+
+                    <div class="space-y-6">
+                        <template x-for="(gallery, index) in subGalleries" :key="gallery.id">
+                            <div class="p-6 bg-gray-50 rounded-3xl border border-gray-100 relative group transition-all hover:shadow-md">
+                                <button type="button" @click="removeGallery(index)" 
+                                        class="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div class="md:col-span-1">
+                                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Gallery Label</label>
+                                        <input type="text" :name="'sub_galleries[' + index + '][label]'" 
+                                               x-model="gallery.label"
+                                               placeholder="e.g. Master Bedroom"
+                                               class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-4 focus:ring-[#C6A664]/10 focus:border-[#C6A664] outline-none transition-all text-sm font-semibold" required>
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Upload Gallery Images</label>
+                                        <input type="file" :name="'sub_galleries[' + index + '][images][]'" multiple accept="image/*"
+                                               class="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-xl focus:ring-4 focus:ring-[#C6A664]/10 outline-none transition-all text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#001F3F] file:text-white hover:file:bg-[#C6A664] cursor-pointer" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div x-show="subGalleries.length === 0" class="text-center py-10 border-2 border-dashed border-gray-100 rounded-3xl bg-gray-50/30">
+                            <p class="text-gray-400 text-sm font-medium">No sub-galleries added yet. Click "Add New Gallery" to categorize your photos.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Location Section -->
                 <div class="border-t border-gray-100 pt-10 mb-10">
                     <h3 class="text-xl font-bold text-[#001F3F] mb-6 flex items-center">
@@ -366,6 +431,33 @@
                         </div>
                     </div>
 
+                    <!-- Hospitality Specific Fields (Conditional) -->
+                    <div x-show="category === 'hotel' || category === 'lodge'" x-transition class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-6 bg-[#C6A664]/5 rounded-3xl border border-[#C6A664]/20">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Total Rooms / Units</label>
+                            <input type="number" name="total_rooms" id="total_rooms" value="{{ old('total_rooms') }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
+                                placeholder="e.g. 50">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Security Level</label>
+                            <select name="security_level" id="security_level" 
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
+                                <option value="">Select Level</option>
+                                <option value="standard" {{ old('security_level') === 'standard' ? 'selected' : '' }}>Standard</option>
+                                <option value="enhanced" {{ old('security_level') === 'enhanced' ? 'selected' : '' }}>Enhanced (CCTV)</option>
+                                <option value="premium" {{ old('security_level') === 'premium' ? 'selected' : '' }}>Premium (24/7 Guards + CCTV)</option>
+                                <option value="elite" {{ old('security_level') === 'elite' ? 'selected' : '' }}>Elite (Armed Security)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Parking Capacity (Cars)</label>
+                            <input type="number" name="parking_capacity" id="parking_capacity" value="{{ old('parking_capacity') }}"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
+                                placeholder="e.g. 20">
+                        </div>
+                    </div>
+
                     <!-- Amenities -->
                     <div class="bg-gray-50/50 rounded-3xl p-8">
                         <label class="block text-sm font-bold text-[#001F3F] mb-6 uppercase tracking-wider">Amenities & Services</label>
@@ -379,6 +471,27 @@
                                 'power_supply' => 'Constant Power'
                             ] as $field => $label)
                                 <label class="flex items-center space-x-4 cursor-pointer group">
+                                    <div class="relative">
+                                        <input type="checkbox" name="{{ $field }}" value="1" {{ old($field) ? 'checked' : '' }} 
+                                            class="peer h-6 w-6 border-2 border-gray-300 rounded-lg text-[#C6A664] focus:ring-0 transition-colors duration-200">
+                                        <div class="absolute inset-0 bg-[#C6A664] scale-0 peer-checked:scale-100 rounded-lg transition-transform duration-200 flex items-center justify-center">
+                                            <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-semibold text-gray-600 group-hover:text-[#001F3F] transition-colors duration-200">{{ $label }}</span>
+                                </label>
+                            @endforeach
+                            
+                            <!-- Hospitality Amenities (Conditional) -->
+                            @foreach([
+                                'has_pool' => 'Swimming Pool',
+                                'has_gym' => 'Fitness Gym',
+                                'has_conference_room' => 'Conference Room',
+                                'has_restaurant' => 'Restaurant/Bar'
+                            ] as $field => $label)
+                                <label class="flex items-center space-x-4 cursor-pointer group" x-show="category === 'hotel' || category === 'lodge'">
                                     <div class="relative">
                                         <input type="checkbox" name="{{ $field }}" value="1" {{ old($field) ? 'checked' : '' }} 
                                             class="peer h-6 w-6 border-2 border-gray-300 rounded-lg text-[#C6A664] focus:ring-0 transition-colors duration-200">

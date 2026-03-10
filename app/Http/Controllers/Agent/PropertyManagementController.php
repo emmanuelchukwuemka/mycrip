@@ -54,7 +54,7 @@ class PropertyManagementController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge',
+            'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge,hotel,lodge',
             'country' => 'required|string|max:100',
             'state' => 'required|string|max:100',
             'city' => 'required|string|max:100',
@@ -77,6 +77,10 @@ class PropertyManagementController extends Controller
             'virtual_tour_url' => 'nullable|url|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp',
             'images' => 'nullable|array',
+            'sub_galleries' => 'nullable|array',
+            'sub_galleries.*.label' => 'required_with:sub_galleries|string|max:100',
+            'sub_galleries.*.images' => 'required_with:sub_galleries|array',
+            'sub_galleries.*.images.*' => 'image|mimes:jpeg,png,jpg,webp',
         ]);
 
         // Create property
@@ -118,7 +122,7 @@ class PropertyManagementController extends Controller
                 
                 // Check for duplicate
                 if (PropertyImage::hashExists($hash)) {
-                    $duplicateWarnings[] = "Image " . ($index + 1) . " appears to be a duplicate and was not uploaded.";
+                    $duplicateWarnings[] = "General Gallery Image " . ($index + 1) . " appears to be a duplicate.";
                     continue;
                 }
                 
@@ -132,11 +136,40 @@ class PropertyManagementController extends Controller
                     'image_hash' => $hash,
                     'order' => $index,
                     'is_featured' => $index === 0,
+                    'label' => 'General',
                 ]);
                 
                 // Set first image as featured
                 if ($index === 0) {
                     $property->update(['featured_image' => $path]);
+                }
+            }
+        }
+
+        // Handle sub-galleries
+        if ($request->has('sub_galleries')) {
+            $currentOrder = $property->images()->max('order') ?? -1;
+            foreach ($request->file('sub_galleries') as $galleryIndex => $galleryData) {
+                if (isset($galleryData['images'])) {
+                    $label = $request->input("sub_galleries.{$galleryIndex}.label");
+                    foreach ($galleryData['images'] as $imageIndex => $image) {
+                        $hash = PropertyImage::generateHash($image);
+                        
+                        if (PropertyImage::hashExists($hash)) {
+                            $duplicateWarnings[] = "Gallery '{$label}' Image " . ($imageIndex + 1) . " appears to be a duplicate.";
+                            continue;
+                        }
+                        
+                        $path = $image->store('properties/' . $property->id, 'public');
+                        PropertyImage::create([
+                            'property_id' => $property->id,
+                            'image_path' => $path,
+                            'image_hash' => $hash,
+                            'order' => ++$currentOrder,
+                            'is_featured' => false,
+                            'label' => $label,
+                        ]);
+                    }
                 }
             }
         }
@@ -169,7 +202,7 @@ class PropertyManagementController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge',
+            'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge,hotel,lodge',
             'country' => 'required|string|max:100',
             'state' => 'required|string|max:100',
             'city' => 'required|string|max:100',
@@ -192,6 +225,10 @@ class PropertyManagementController extends Controller
             'virtual_tour_url' => 'nullable|url|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp',
             'images' => 'nullable|array',
+            'sub_galleries' => 'nullable|array',
+            'sub_galleries.*.label' => 'required_with:sub_galleries|string|max:100',
+            'sub_galleries.*.images' => 'required_with:sub_galleries|array',
+            'sub_galleries.*.images.*' => 'image|mimes:jpeg,png,jpg,webp',
         ]);
 
         $property->update($validated);
@@ -204,8 +241,6 @@ class PropertyManagementController extends Controller
                 // Generate hash for duplicate detection
                 $hash = PropertyImage::generateHash($image);
                 
-                // Check if hash already exists for THIS property (to allow same image on different properties if needed, 
-                // but usually hashExists check is global as per store method)
                 if (PropertyImage::hashExists($hash)) {
                     continue;
                 }
@@ -220,11 +255,39 @@ class PropertyManagementController extends Controller
                     'image_hash' => $hash,
                     'order' => $currentMaxOrder + $index + 1,
                     'is_featured' => false,
+                    'label' => 'General',
                 ]);
 
                 // If no featured image exists, set this one
                 if (!$property->featured_image) {
                     $property->update(['featured_image' => $path]);
+                }
+            }
+        }
+
+        // Handle sub-galleries additions in update
+        if ($request->has('sub_galleries')) {
+            $currentMaxOrder = $property->images()->max('order') ?? -1;
+            foreach ($request->file('sub_galleries') as $galleryIndex => $galleryData) {
+                if (isset($galleryData['images'])) {
+                    $label = $request->input("sub_galleries.{$galleryIndex}.label");
+                    foreach ($galleryData['images'] as $imageIndex => $image) {
+                        $hash = PropertyImage::generateHash($image);
+                        
+                        if (PropertyImage::hashExists($hash)) {
+                            continue;
+                        }
+                        
+                        $path = $image->store('properties/' . $property->id, 'public');
+                        PropertyImage::create([
+                            'property_id' => $property->id,
+                            'image_path' => $path,
+                            'image_hash' => $hash,
+                            'order' => ++$currentMaxOrder,
+                            'is_featured' => false,
+                            'label' => $label,
+                        ]);
+                    }
                 }
             }
         }

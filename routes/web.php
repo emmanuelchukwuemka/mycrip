@@ -15,6 +15,8 @@ Route::prefix('properties')->name('properties.')->group(function () {
     Route::get('/categories/houses', [PropertyController::class, 'houses'])->name('categories.houses');
     Route::get('/categories/land', [PropertyController::class, 'land'])->name('categories.land');
     Route::get('/categories/commercial', [PropertyController::class, 'commercial'])->name('categories.commercial');
+    Route::get('/categories/hotels', [PropertyController::class, 'hotels'])->name('categories.hotels');
+    Route::get('/categories/lodges', [PropertyController::class, 'lodges'])->name('categories.lodges');
     
     // Dynamic property ID route (MUST be after specific routes)
     Route::get('/{id}', [PropertyController::class, 'show'])->name('show');

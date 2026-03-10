@@ -69,10 +69,20 @@ class PropertyController extends Controller
 
         // Amenities (array from Livewire)
         if ($request->filled('amenities') && is_array($request->amenities)) {
-            $booleanAmenities = ['pool', 'gym', 'security', 'parking', 'garden', 'wifi', 'serviced', 'power_supply', 'water_supply'];
+            $booleanAmenities = [
+                'pool', 'gym', 'security', 'parking', 'garden', 'wifi', 'serviced', 'power_supply', 'water_supply',
+                'has_pool', 'has_gym', 'has_conference_room', 'has_restaurant'
+            ];
             foreach ($request->amenities as $amenity) {
                 if (in_array($amenity, $booleanAmenities)) {
-                    $query->where($amenity, true);
+                    // Map legacy 'pool' filter to new 'has_pool' if necessary, or just check both
+                    if ($amenity === 'pool') {
+                        $query->where(function($q) {
+                            $q->where('pool', true)->orWhere('has_pool', true);
+                        });
+                    } else {
+                        $query->where($amenity, true);
+                    }
                 }
             }
         }
@@ -247,6 +257,16 @@ class PropertyController extends Controller
     public function commercial(Request $request)
     {
         return $this->index($request->merge(['category' => 'shop_rental']));
+    }
+
+    public function hotels(Request $request)
+    {
+        return $this->index($request->merge(['category' => 'hotel']));
+    }
+
+    public function lodges(Request $request)
+    {
+        return $this->index($request->merge(['category' => 'lodge']));
     }
 
     /**

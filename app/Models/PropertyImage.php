@@ -19,6 +19,7 @@ class PropertyImage extends Model
      */
     protected $fillable = [
         'property_id',
+        'label',
         'image_path',
         'image_hash',
         'order',

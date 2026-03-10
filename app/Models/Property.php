@@ -44,6 +44,13 @@ class Property extends Model
         'features',
         'video_url',
         'virtual_tour_url',
+        'total_rooms',
+        'has_pool',
+        'has_gym',
+        'has_conference_room',
+        'has_restaurant',
+        'security_level',
+        'parking_capacity',
     ];
 
     /**
@@ -60,8 +67,14 @@ class Property extends Model
             'security' => 'boolean',
             'water_supply' => 'boolean',
             'power_supply' => 'boolean',
+            'has_pool' => 'boolean',
+            'has_gym' => 'boolean',
+            'has_conference_room' => 'boolean',
+            'has_restaurant' => 'boolean',
             'features' => 'array',
             'price' => 'decimal:2',
+            'total_rooms' => 'integer',
+            'parking_capacity' => 'integer',
         ];
     }
 
@@ -181,6 +194,8 @@ class Property extends Model
             'land_purchase' => 'Land Purchase',
             'shop_rental' => 'Shop Rental',
             'student_lodge' => 'Student Lodge',
+            'hotel' => 'Hotel',
+            'lodge' => 'Lodge',
             default => $this->category,
         };
     }

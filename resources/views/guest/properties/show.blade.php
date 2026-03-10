@@ -41,27 +41,62 @@
                 <!-- Main Content -->
                 <div class="lg:col-span-2">
                     <!-- Image Gallery -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8" x-data="{ activeImage: '{{ $property->images->where('label', 'General')->first()?->image_url ?? ($property->images->first()?->image_url ?? $property->featured_image_url) }}' }">
                         <!-- Main Image -->
-                        @if($property->images->count() > 0)
-                            <img src="{{ asset('storage/' . $property->images->first()->image_path) }}" alt="{{ $property->title }}" class="w-full h-96 object-cover" id="mainImage">
-                        @elseif($property->featured_image)
-                            <img src="{{ asset('storage/' . $property->featured_image) }}" alt="{{ $property->title }}" class="w-full h-96 object-cover" id="mainImage">
-                        @else
-                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="{{ $property->title }}" class="w-full h-96 object-cover" id="mainImage">
-                        @endif
+                        <div class="relative h-[28rem] group">
+                            <img :src="activeImage" alt="{{ $property->title }}" class="w-full h-full object-cover transition-all duration-500">
+                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                                <span class="bg-[#C6A664] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Explore Property</span>
+                            </div>
+                        </div>
                         
-                        <!-- Thumbnail Images -->
-                        @if($property->images->count() > 1)
-                            <div class="p-4 grid grid-cols-4 gap-4">
-                                @foreach($property->images as $index => $image)
-                                    <img src="{{ asset('storage/' . $image->image_path) }}" 
-                                         class="w-full h-24 object-cover rounded cursor-pointer hover:opacity-75 transition {{ $index === 0 ? 'ring-2' : '' }}" style="{{ $index === 0 ? 'border-color: #C6A664;' : '' }}"
-                                         onclick="document.getElementById('mainImage').src = this.src">
+                        <!-- General Gallery Thumbnails -->
+                        @php
+                            $generalImages = $property->images->where('label', 'General');
+                        @endphp
+                        
+                        @if($generalImages->count() > 1)
+                            <div class="p-4 bg-gray-50 flex space-x-4 overflow-x-auto scrollbar-hide">
+                                @foreach($generalImages as $index => $image)
+                                    <div class="flex-shrink-0 w-24 h-20 rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-200"
+                                         :class="activeImage === '{{ $image->image_url }}' ? 'border-[#C6A664] scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'"
+                                         @click="activeImage = '{{ $image->image_url }}'">
+                                        <img src="{{ $image->image_url }}" class="w-full h-full object-cover">
+                                    </div>
                                 @endforeach
                             </div>
                         @endif
                     </div>
+
+                    <!-- Categorized Galleries -->
+                    @php
+                        $subGalleries = $property->images->where('label', '!=', 'General')->groupBy('label');
+                    @endphp
+
+                    @if($subGalleries->count() > 0)
+                        <div class="mb-8 space-y-6">
+                            @foreach($subGalleries as $label => $images)
+                                <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                                    <div class="flex items-center justify-between mb-4 border-l-4 border-[#C6A664] pl-4">
+                                        <h3 class="text-lg font-bold text-[#001F3F]">{{ $label }}</h3>
+                                        <span class="text-xs font-bold text-gray-400">{{ $images->count() }} Photos</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                        @foreach($images as $image)
+                                            <a href="{{ $image->image_url }}" target="_blank" class="block aspect-square rounded-xl overflow-hidden group relative">
+                                                <img src="{{ $image->image_url }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                                                    </svg>
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
 
                     <!-- Video & Virtual Tour Content -->
                     @if($property->video_url || $property->virtual_tour_url)
