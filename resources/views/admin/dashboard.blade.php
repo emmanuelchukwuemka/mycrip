@@ -453,10 +453,10 @@
             new Chart(dctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Apartments', 'Houses', 'Land', 'Commercial'],
+                    labels: ['Apartments', 'Houses', 'Land', 'Shops', 'Warehouses'],
                     datasets: [{
-                        data: [42, 28, 18, 12],
-                        backgroundColor: ['#001F3F', '#C6A664', '#10B981', '#F59E0B'],
+                        data: [42, 28, 18, 8, 4],
+                        backgroundColor: ['#001F3F', '#C6A664', '#10B981', '#F59E0B', '#6366F1'],
                         borderWidth: 0,
                         hoverOffset: 8
                     }]

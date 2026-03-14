@@ -85,7 +85,8 @@
                                     'house_rental' => ['label' => 'House Rental', 'icon' => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'],
                                     'house_purchase' => ['label' => 'House Sales', 'icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
                                     'land_purchase' => ['label' => 'Land Sales', 'icon' => 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7'],
-                                    'shop_rental' => ['label' => 'Commercial', 'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'],
+                                    'shop' => ['label' => 'Shop', 'icon' => 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'],
+                                    'warehouse' => ['label' => 'Warehouse', 'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'],
                                     'student_lodge' => ['label' => 'Student Lodge', 'icon' => 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'],
                                     'hotel' => ['label' => 'Hotel', 'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'],
                                     'lodge' => ['label' => 'Lodge', 'icon' => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'],
@@ -404,7 +405,7 @@
                         </span>
                         Property Features
                     </h3>
-                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Bedrooms</label>
                             <input type="number" name="bedrooms" id="bedrooms" value="{{ old('bedrooms') }}" min="0" max="20"
@@ -428,6 +429,18 @@
                             <input type="text" name="size" id="size" value="{{ old('size') }}"
                                 class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
                                 placeholder="e.g. 120">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Shops</label>
+                            <input type="number" name="shops" id="shops" value="{{ old('shops') }}" min="0" max="100"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
+                                placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Warehouses</label>
+                            <input type="number" name="warehouses" id="warehouses" value="{{ old('warehouses') }}" min="0" max="100"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
+                                placeholder="0">
                         </div>
                     </div>
 

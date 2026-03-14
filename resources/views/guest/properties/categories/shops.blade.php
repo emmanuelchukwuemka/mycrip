@@ -7,15 +7,15 @@
                 <div class="text-center">
                     <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg">
                         <div class="w-2 h-2 rounded-full mr-2" style="background-color: #C6A664;"></div>
-                        <span class="text-sm font-medium text-gray-700">Business Investment</span>
+                        <span class="text-sm font-medium text-gray-700">Retail Excellence</span>
                     </div>
                     <h1 class="mt-6 text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight">
                         Premium
-                        <span class="bg-clip-text text-transparent" style="background: linear-gradient(to right, #001F3F, #C6A664); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Commercial</span>
-                        Properties
+                        <span class="bg-clip-text text-transparent" style="background: linear-gradient(to right, #001F3F, #C6A664); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Shops</span>
+                        for Rent
                     </h1>
                     <p class="mt-6 max-w-3xl mx-auto text-xl md:text-2xl text-gray-600 leading-relaxed">
-                        Discover prime commercial real estate opportunities designed for business growth, strategic locations, and exceptional returns.
+                        Find the perfect retail space for your business. Explore high-traffic locations and modern shop designs tailored for success.
                     </p>
                 </div>
             </div>
@@ -232,14 +232,14 @@
             <!-- Call to Action -->
             <div class="mt-16 text-center">
                 <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-                    <h2 class="text-3xl font-bold mb-4" style="color: #001F3F;">Invest in Commercial Real Estate</h2>
-                    <p class="text-gray-600 mb-8">Explore our complete collection of commercial properties and find the perfect space for your business growth.</p>
+                    <h2 class="text-3xl font-bold mb-4" style="color: #001F3F;">Launch Your Business in Style</h2>
+                    <p class="text-gray-600 mb-8">Explore our complete collection of shops and retail spaces to find the perfect location for your brand.</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="{{ route('properties.index') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
-                            Browse All Commercial
+                            Browse All Shops
                         </a>
                         <a href="{{ route('agents.index') }}" class="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -50,13 +50,19 @@
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            @if($property->status === 'approved')
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-emerald-100 text-emerald-700">Live</span>
-                            @elseif($property->status === 'rejected')
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-red-100 text-red-700">Rejected</span>
-                            @else
-                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-amber-100 text-amber-700">Pending</span>
-                            @endif
+                            <div class="flex flex-col space-y-1">
+                                @if($property->status === 'approved')
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-emerald-100 text-emerald-700">Live</span>
+                                @elseif($property->status === 'rejected')
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-red-100 text-red-700">Rejected</span>
+                                @else
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg bg-amber-100 text-amber-700">Pending</span>
+                                @endif
+
+                                @if($property->is_suspicious)
+                                    <span class="px-3 py-1 inline-flex text-[10px] leading-4 font-black uppercase rounded-lg bg-red-600 text-white animate-pulse">Suspicious</span>
+                                @endif
+                            </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-[#001F3F]">
                             {{ $property->formatted_price }}

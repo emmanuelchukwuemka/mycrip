@@ -88,7 +88,7 @@
                                         Residential Sales
                                     </span>
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium" style="background-color: #F5F5F5; color: #001F3F;">
-                                        Commercial
+                                        Shops & Warehouses
                                     </span>
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium" style="background-color: #F5F5F5; color: #001F3F;">
                                         Investment

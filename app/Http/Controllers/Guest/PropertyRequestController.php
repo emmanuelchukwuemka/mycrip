@@ -36,7 +36,7 @@ class PropertyRequestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category' => 'required|string|in:apartment,house,land,commercial',
+            'category' => 'required|string|in:apartment,house,land,shop,warehouse',
             'location' => 'required|string|max:255',
             'min_price' => 'nullable|numeric|min:0',
             'max_price' => 'nullable|numeric|min:0|gte:min_price',

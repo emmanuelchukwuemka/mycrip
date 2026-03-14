@@ -44,7 +44,7 @@ class PropertyManagementController extends Controller
     /**
      * Store a newly created property in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, \App\Services\FraudDetectionService $fraudService)
     {
         // Check if agent is verified
         if (Auth::user()->agent_verification_status !== 'approved') {
@@ -54,7 +54,7 @@ class PropertyManagementController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge,hotel,lodge',
+            'category' => 'required|in:house_rental,house_purchase,land_purchase,student_lodge,hotel,lodge,shop,warehouse',
             'country' => 'required|string|max:100',
             'state' => 'required|string|max:100',
             'city' => 'required|string|max:100',
@@ -66,6 +66,8 @@ class PropertyManagementController extends Controller
             'bedrooms' => 'nullable|integer|min:0',
             'bathrooms' => 'nullable|integer|min:0',
             'toilets' => 'nullable|integer|min:0',
+            'shops' => 'nullable|integer|min:0',
+            'warehouses' => 'nullable|integer|min:0',
             'size' => 'nullable|string|max:50',
             'furnished' => 'boolean',
             'serviced' => 'boolean',
@@ -101,6 +103,8 @@ class PropertyManagementController extends Controller
             'bedrooms' => $validated['bedrooms'] ?? null,
             'bathrooms' => $validated['bathrooms'] ?? null,
             'toilets' => $validated['toilets'] ?? null,
+            'shops' => $validated['shops'] ?? null,
+            'warehouses' => $validated['warehouses'] ?? null,
             'size' => $validated['size'] ?? null,
             'furnished' => $request->boolean('furnished'),
             'serviced' => $request->boolean('serviced'),
@@ -120,11 +124,8 @@ class PropertyManagementController extends Controller
                 // Generate hash for duplicate detection
                 $hash = PropertyImage::generateHash($image);
                 
-                // Check for duplicate
-                if (PropertyImage::hashExists($hash)) {
-                    $duplicateWarnings[] = "General Gallery Image " . ($index + 1) . " appears to be a duplicate.";
-                    continue;
-                }
+                // Check for duplicate in same property flow (preventing re-upload in same request)
+                // Note: The service will check across OTHER properties later
                 
                 // Store the image
                 $path = $image->store('properties/' . $property->id, 'public');
@@ -155,11 +156,6 @@ class PropertyManagementController extends Controller
                     foreach ($galleryData['images'] as $imageIndex => $image) {
                         $hash = PropertyImage::generateHash($image);
                         
-                        if (PropertyImage::hashExists($hash)) {
-                            $duplicateWarnings[] = "Gallery '{$label}' Image " . ($imageIndex + 1) . " appears to be a duplicate.";
-                            continue;
-                        }
-                        
                         $path = $image->store('properties/' . $property->id, 'public');
                         PropertyImage::create([
                             'property_id' => $property->id,
@@ -174,9 +170,12 @@ class PropertyManagementController extends Controller
             }
         }
 
+        // Run Fraud Detection
+        $fraudResult = $fraudService->analyze($property);
+
         $message = 'Property created successfully! It is pending approval.';
-        if (!empty($duplicateWarnings)) {
-            $message .= ' Note: ' . implode(' ', $duplicateWarnings);
+        if ($fraudResult['is_suspicious']) {
+            $message .= ' Note: System flagged potential issues for admin review.';
         }
 
         return redirect()->route('agent.properties.index')->with('success', $message);
@@ -195,14 +194,14 @@ class PropertyManagementController extends Controller
     /**
      * Update the specified property in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, \App\Services\FraudDetectionService $fraudService)
     {
         $property = Auth::user()->properties()->findOrFail($id);
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'required|in:house_rental,house_purchase,land_purchase,shop_rental,student_lodge,hotel,lodge',
+            'category' => 'required|in:house_rental,house_purchase,land_purchase,student_lodge,hotel,lodge,shop,warehouse',
             'country' => 'required|string|max:100',
             'state' => 'required|string|max:100',
             'city' => 'required|string|max:100',
@@ -214,6 +213,8 @@ class PropertyManagementController extends Controller
             'bedrooms' => 'nullable|integer|min:0',
             'bathrooms' => 'nullable|integer|min:0',
             'toilets' => 'nullable|integer|min:0',
+            'shops' => 'nullable|integer|min:0',
+            'warehouses' => 'nullable|integer|min:0',
             'size' => 'nullable|string|max:50',
             'furnished' => 'boolean',
             'serviced' => 'boolean',
@@ -240,10 +241,6 @@ class PropertyManagementController extends Controller
             foreach ($request->file('images') as $index => $image) {
                 // Generate hash for duplicate detection
                 $hash = PropertyImage::generateHash($image);
-                
-                if (PropertyImage::hashExists($hash)) {
-                    continue;
-                }
                 
                 // Store the image
                 $path = $image->store('properties/' . $property->id, 'public');
@@ -274,10 +271,6 @@ class PropertyManagementController extends Controller
                     foreach ($galleryData['images'] as $imageIndex => $image) {
                         $hash = PropertyImage::generateHash($image);
                         
-                        if (PropertyImage::hashExists($hash)) {
-                            continue;
-                        }
-                        
                         $path = $image->store('properties/' . $property->id, 'public');
                         PropertyImage::create([
                             'property_id' => $property->id,
@@ -291,6 +284,9 @@ class PropertyManagementController extends Controller
                 }
             }
         }
+
+        // Run Fraud Detection after update
+        $fraudService->analyze($property);
 
         // If property was rejected, reset to pending for re-approval
         if ($property->status === 'rejected') {

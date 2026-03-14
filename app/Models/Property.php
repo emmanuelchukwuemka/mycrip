@@ -33,6 +33,8 @@ class Property extends Model
         'bedrooms',
         'bathrooms',
         'toilets',
+        'shops',
+        'warehouses',
         'size',
         'furnished',
         'serviced',
@@ -51,6 +53,8 @@ class Property extends Model
         'has_restaurant',
         'security_level',
         'parking_capacity',
+        'is_suspicious',
+        'suspicion_reasons',
     ];
 
     /**
@@ -73,8 +77,12 @@ class Property extends Model
             'has_restaurant' => 'boolean',
             'features' => 'array',
             'price' => 'decimal:2',
+            'shops' => 'integer',
+            'warehouses' => 'integer',
             'total_rooms' => 'integer',
             'parking_capacity' => 'integer',
+            'is_suspicious' => 'boolean',
+            'suspicion_reasons' => 'array',
         ];
     }
 
@@ -190,9 +198,10 @@ class Property extends Model
     {
         return match($this->category) {
             'house_rental' => 'House Rental',
-            'house_purchase' => 'House Purchase',
-            'land_purchase' => 'Land Purchase',
-            'shop_rental' => 'Shop Rental',
+            'house_purchase' => 'House Sales',
+            'land_purchase' => 'Land Sales',
+            'shop' => 'Shop',
+            'warehouse' => 'Warehouse',
             'student_lodge' => 'Student Lodge',
             'hotel' => 'Hotel',
             'lodge' => 'Lodge',

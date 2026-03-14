@@ -165,8 +165,8 @@
                         </div>
 
                         <!-- Property Features -->
-                        @if($property->bedrooms || $property->bathrooms || $property->size)
-                        <div class="grid grid-cols-3 gap-6 mb-8 border-t border-b py-6 text-center">
+                        @if($property->bedrooms || $property->bathrooms || $property->shops || $property->warehouses || $property->size)
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8 border-t border-b py-6 text-center">
                             @if($property->bedrooms)
                             <div>
                                 <span class="block text-2xl font-bold text-gray-800">{{ $property->bedrooms }}</span>
@@ -179,10 +179,22 @@
                                 <span class="text-gray-500">Bathrooms</span>
                             </div>
                             @endif
+                            @if($property->shops)
+                            <div>
+                                <span class="block text-2xl font-bold text-gray-800">{{ $property->shops }}</span>
+                                <span class="text-gray-500">Shops</span>
+                            </div>
+                            @endif
+                            @if($property->warehouses)
+                            <div>
+                                <span class="block text-2xl font-bold text-gray-800">{{ $property->warehouses }}</span>
+                                <span class="text-gray-500">Warehouses</span>
+                            </div>
+                            @endif
                             @if($property->size)
                             <div>
                                 <span class="block text-2xl font-bold text-gray-800">{{ $property->size }}</span>
-                                <span class="text-gray-500">Size</span>
+                                <span class="text-gray-500">Size (sqm)</span>
                             </div>
                             @endif
                         </div>

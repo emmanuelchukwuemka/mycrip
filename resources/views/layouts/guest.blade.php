@@ -14,7 +14,11 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
-    <!-- Styles -->
+    <!-- PWA -->
+    <meta name="theme-color" content="#001F3F">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/images/icons/icon-192.png">
+
     @livewireStyles
 </head>
 <body class="font-sans antialiased text-gray-900 bg-gray-50">
@@ -23,5 +27,12 @@
     </div>
 
     @livewireScripts
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 </body>
 </html>

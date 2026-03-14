@@ -11,7 +11,7 @@ class PropertyFilters extends Component
     public $location = '';
 
     #[Url(history: true)]
-    public $type = '';
+    public $category = '';
 
     #[Url(history: true)]
     public $minPrice = '';
@@ -29,7 +29,7 @@ class PropertyFilters extends Component
     {
         // Initialize state from request if not already set by #[Url]
         $this->location = request('location', $this->location);
-        $this->type = request('type', $this->type);
+        $this->category = request('category', $this->category);
         $this->minPrice = request('minPrice', $this->minPrice);
         $this->maxPrice = request('maxPrice', $this->maxPrice);
         $this->bedrooms = request('bedrooms', $this->bedrooms);
@@ -40,7 +40,7 @@ class PropertyFilters extends Component
     {
         $params = [
             'location' => $this->location,
-            'type' => $this->type,
+            'category' => $this->category,
             'minPrice' => $this->minPrice,
             'maxPrice' => $this->maxPrice,
             'bedrooms' => $this->bedrooms,
@@ -52,7 +52,7 @@ class PropertyFilters extends Component
 
     public function resetFilters()
     {
-        $this->reset(['location', 'type', 'minPrice', 'maxPrice', 'bedrooms', 'amenities']);
+        $this->reset(['location', 'category', 'minPrice', 'maxPrice', 'bedrooms', 'amenities']);
         return redirect()->route('properties.index');
     }
 

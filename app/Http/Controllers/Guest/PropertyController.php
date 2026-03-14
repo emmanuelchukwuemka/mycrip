@@ -163,8 +163,8 @@ class PropertyController extends Controller
             $isSaved = SavedProperty::isSaved(Auth::id(), $property->id);
         }
 
-        // Similar properties: same category + location, ±30% price range
-        $similar = Property::approved()
+        // Related properties: same category + location, ±30% price range
+        $relatedProperties = Property::approved()
             ->where('id', '!=', $property->id)
             ->where('category', $property->category)
             ->when($property->location, fn($q) => $q->where('location', 'like', '%' . explode(',', $property->location)[0] . '%'))
@@ -174,9 +174,9 @@ class PropertyController extends Controller
             ->take(4)
             ->get();
 
-        // If not enough similar, fall back to same category
-        if ($similar->count() < 2) {
-            $similar = Property::approved()
+        // If not enough related, fall back to same category
+        if ($relatedProperties->count() < 2) {
+            $relatedProperties = Property::approved()
                 ->where('id', '!=', $property->id)
                 ->where('category', $property->category)
                 ->with('images')
@@ -184,13 +184,13 @@ class PropertyController extends Controller
                 ->get();
         }
 
-        // Price estimate (median of similar properties)
+        // Price estimate (median of related properties)
         $priceEstimate = Property::approved()
             ->where('category', $property->category)
             ->where('id', '!=', $property->id)
             ->avg('price');
 
-        return view('guest.properties.show', compact('property', 'isSaved', 'similar', 'priceEstimate'));
+        return view('guest.properties.show', compact('property', 'isSaved', 'relatedProperties', 'priceEstimate'));
     }
 
     /**
@@ -254,9 +254,14 @@ class PropertyController extends Controller
         return $this->index($request->merge(['category' => 'land_purchase']));
     }
 
-    public function commercial(Request $request)
+    public function shops(Request $request)
     {
-        return $this->index($request->merge(['category' => 'shop_rental']));
+        return $this->index($request->merge(['category' => 'shop']));
+    }
+
+    public function warehouses(Request $request)
+    {
+        return $this->index($request->merge(['category' => 'warehouse']));
     }
 
     public function hotels(Request $request)

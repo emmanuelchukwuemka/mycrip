@@ -35,10 +35,42 @@
                     <div class="animate-fade-in-up">
                         <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl">
                             <span class="block">Find Your Perfect</span>
-                            <span class="block" style="color: #C6A664;">
-                                Home in Africa
-                            </span>
+                            <span id="typing-text-home" class="block after:content-['|'] after:animate-ping after:text-[#C6A664] after:ml-1" style="color: #C6A664; min-height: 1.2em;"></span>
                         </h1>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const texts = ['Home in Africa', 'Investment Property', 'Shop or Warehouse', 'Vacation Rental'];
+                                const el = document.getElementById('typing-text-home');
+                                let textIndex = 0;
+                                let charIndex = 0;
+                                let isTyping = true;
+                                
+                                function type() {
+                                    if (!el) return;
+                                    if (isTyping) {
+                                        if (charIndex < texts[textIndex].length) {
+                                            el.textContent += texts[textIndex].charAt(charIndex);
+                                            charIndex++;
+                                            setTimeout(type, 100);
+                                        } else {
+                                            isTyping = false;
+                                            setTimeout(type, 2000);
+                                        }
+                                    } else {
+                                        if (charIndex > 0) {
+                                            el.textContent = el.textContent.substring(0, el.textContent.length - 1);
+                                            charIndex--;
+                                            setTimeout(type, 50);
+                                        } else {
+                                            isTyping = true;
+                                            textIndex = (textIndex + 1) % texts.length;
+                                            setTimeout(type, 500);
+                                        }
+                                    }
+                                }
+                                type();
+                            });
+                        </script>
                         <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 animate-fade-in-up animation-delay-300">
                             Discover the best properties for sale and rent across the continent. Verified listings, trusted agents, seamless experience.
                         </p>
@@ -240,12 +272,24 @@
                 </div>
 
                 <div class="animate-fade-in-up animation-delay-1200">
-                    <a href="{{ route('properties.categories.commercial') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
-                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Commercial" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <a href="{{ route('properties.categories.shops') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Shop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
                             <div class="p-6">
-                                <h3 class="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Commercial</h3>
-                                <p class="text-gray-200 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">Business spaces</p>
+                                <h3 class="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Shops</h3>
+                                <p class="text-gray-200 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">Premium retail spaces</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="animate-fade-in-up animation-delay-1500">
+                    <a href="{{ route('properties.categories.warehouses') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Warehouse" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Warehouses</h3>
+                                <p class="text-gray-200 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">Large industrial storage</p>
                             </div>
                         </div>
                     </a>

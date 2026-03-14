@@ -7,10 +7,44 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div class="text-center">
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-                    Discover Your Dream Property
+                    Discover Your Dream <span id="typing-text-listing" class="after:content-['|'] after:animate-ping after:text-[#C6A664] after:ml-1" style="color: #C6A664;"></span>
                 </h1>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const texts = ['Home', 'Apartment', 'Land', 'Shop', 'Warehouse'];
+                        const el = document.getElementById('typing-text-listing');
+                        let textIndex = 0;
+                        let charIndex = 0;
+                        let isTyping = true;
+                        
+                        function type() {
+                            if (!el) return;
+                            if (isTyping) {
+                                if (charIndex < texts[textIndex].length) {
+                                    el.textContent += texts[textIndex].charAt(charIndex);
+                                    charIndex++;
+                                    setTimeout(type, 150);
+                                } else {
+                                    isTyping = false;
+                                    setTimeout(type, 2000);
+                                }
+                            } else {
+                                if (charIndex > 0) {
+                                    el.textContent = texts[textIndex].substring(0, charIndex - 1);
+                                    charIndex--;
+                                    setTimeout(type, 100);
+                                } else {
+                                    isTyping = true;
+                                    textIndex = (textIndex + 1) % texts.length;
+                                    setTimeout(type, 500);
+                                }
+                            }
+                        }
+                        type();
+                    });
+                </script>
                 <p class="text-xl text-white/90 max-w-3xl mx-auto">
-                    Browse through thousands of premium listings across Africa. Find your perfect home, investment, or commercial space.
+                    Browse through thousands of premium listings across Africa. Find your perfect home, investment, or shops and warehouses.
                 </p>
             </div>
         </div>

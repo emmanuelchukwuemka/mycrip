@@ -1,48 +1,45 @@
 const CACHE_NAME = 'mycrip-v1';
-const STATIC_ASSETS = [
+const ASSETS_TO_CACHE = [
     '/',
-    '/properties',
-    '/agents',
-    '/manifest.json',
+    '/offline',
+    '/resources/css/app.css',
+    '/resources/js/app.js',
+    '/images/icons/icon-192.png',
+    '/images/icons/icon-512.png'
 ];
 
-self.addEventListener('install', event => {
+// Install Event
+self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll(ASSETS_TO_CACHE);
+        })
     );
-    self.skipWaiting();
 });
 
-self.addEventListener('activate', event => {
+// Activate Event
+self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then(keys =>
-            Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-        )
+        caches.keys().then((keys) => {
+            return Promise.all(
+                keys.filter((key) => key !== CACHE_NAME)
+                    .map((key) => caches.delete(key))
+            );
+        })
     );
-    self.clients.claim();
 });
 
-self.addEventListener('fetch', event => {
-    if (event.request.method !== 'GET') return;
-
-    const url = new URL(event.request.url);
-
-    // Network-first for API/dynamic requests
-    if (url.pathname.startsWith('/api') || url.pathname.includes('admin') || url.pathname.includes('agent')) {
-        event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
-        return;
-    }
-
-    // Cache-first for static assets
+// Fetch Event (Stale-While-Revalidate)
+self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request).then(cached => {
-            return cached || fetch(event.request).then(response => {
-                if (response.ok) {
-                    const clone = response.clone();
-                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-                }
-                return response;
+        caches.match(event.request).then((cachedResponse) => {
+            const fetchPromise = fetch(event.request).then((networkResponse) => {
+                caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(event.request, networkResponse.clone());
+                });
+                return networkResponse;
             });
+            return cachedResponse || fetchPromise;
         })
     );
 });

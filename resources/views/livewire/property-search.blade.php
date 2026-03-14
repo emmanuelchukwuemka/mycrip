@@ -26,7 +26,8 @@
                     <option value="apartment">Apartment</option>
                     <option value="house">House</option>
                     <option value="land">Land</option>
-                    <option value="commercial">Commercial</option>
+                    <option value="shop">Shop</option>
+                    <option value="warehouse">Warehouse</option>
                 </select>
             </div>
 
@@ -63,8 +64,8 @@
             <button type="button" wire:click="$set('location', 'Abuja Central')" class="px-4 py-2 bg-white text-indigo-600 rounded-full text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 transition-all duration-300 shadow-sm border border-gray-200 transform hover:scale-105">
                 Abuja Central
             </button>
-            <button type="button" wire:click="$set('type', 'apartment')" class="px-4 py-2 bg-white text-purple-600 rounded-full text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition-all duration-300 shadow-sm border border-gray-200 transform hover:scale-105">
-                2 Bedroom Apartment
+            <button type="button" wire:click="$set('category', 'house_rental')" class="px-4 py-2 bg-white text-purple-600 rounded-full text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition-all duration-300 shadow-sm border border-gray-200 transform hover:scale-105">
+                Rentals
             </button>
         </div>
     </form>

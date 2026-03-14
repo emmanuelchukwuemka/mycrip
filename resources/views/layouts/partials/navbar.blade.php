@@ -18,7 +18,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden md:ml-12 md:flex md:space-x-8">
+                <div class="hidden lg:ml-10 md:ml-4 lg:flex lg:space-x-6 md:flex md:space-x-3">
                     <a href="{{ route('home') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#001F3F'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -50,17 +50,23 @@
                         </svg>
                         Buyer Wall
                     </a>
-                    <a href="{{ route('properties.categories.hotels') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                    <a href="{{ route('properties.categories.shops') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        Shops
+                    </a>
+                    <a href="{{ route('properties.categories.warehouses') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
-                        Hotels
+                        Warehouses
                     </a>
-                    <a href="{{ route('properties.categories.lodges') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                    <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        Lodges
+                        About Us
                     </a>
                     @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #C6A664;" onmouseover="this.style.borderColor='#C6A664'" onmouseout="this.style.borderColor='transparent'">
@@ -75,7 +81,7 @@
 
             <div class="hidden md:flex md:items-center md:space-x-4">
                 <!-- CTA Buttons -->
-                <a href="{{ route('register') }}" class="text-white px-6 py-2 rounded-lg font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
+                <a href="{{ route('register') }}" class="text-white lg:px-6 md:px-4 py-2 rounded-lg font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl shrink-0" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
                     Get Started
                 </a>
                 
@@ -240,6 +246,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
                 </svg>
                 Agents
+            </a>
+            <a href="{{ route('about') }}" class="block pl-4 pr-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600 transition-colors duration-300">
+                <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                About Us
             </a>
             @if(auth()->check() && auth()->user()->role === 'admin')
                 <a href="{{ route('admin.dashboard') }}" class="block pl-4 pr-3 py-2 text-base font-medium text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors duration-300">

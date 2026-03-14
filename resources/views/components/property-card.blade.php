@@ -79,7 +79,7 @@
         </div>
         
         <!-- Features -->
-        <div class="grid grid-cols-3 gap-2 mb-4 text-xs text-gray-600">
+        <div class="flex flex-wrap gap-x-3 gap-y-2 mb-4 text-xs text-gray-600">
             @if($property->bedrooms)
             <div class="flex items-center">
                 <svg class="h-4 w-4 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #C6A664;">
@@ -94,6 +94,22 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
                 </svg>
                 <span>{{ $property->bathrooms }} {{ Str::plural('Bath', $property->bathrooms) }}</span>
+            </div>
+            @endif
+            @if($property->shops)
+            <div class="flex items-center">
+                <svg class="h-4 w-4 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #C6A664;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                <span>{{ $property->shops }} {{ Str::plural('Shop', $property->shops) }}</span>
+            </div>
+            @endif
+            @if($property->warehouses)
+            <div class="flex items-center">
+                <svg class="h-4 w-4 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #C6A664;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                <span>{{ $property->warehouses }} {{ Str::plural('Warehouse', $property->warehouses) }}</span>
             </div>
             @endif
             @if($property->size)

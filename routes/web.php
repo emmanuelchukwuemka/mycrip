@@ -14,7 +14,8 @@ Route::prefix('properties')->name('properties.')->group(function () {
     Route::get('/categories/apartments', [PropertyController::class, 'apartments'])->name('categories.apartments');
     Route::get('/categories/houses', [PropertyController::class, 'houses'])->name('categories.houses');
     Route::get('/categories/land', [PropertyController::class, 'land'])->name('categories.land');
-    Route::get('/categories/commercial', [PropertyController::class, 'commercial'])->name('categories.commercial');
+    Route::get('/categories/shops', [PropertyController::class, 'shops'])->name('categories.shops');
+    Route::get('/categories/warehouses', [PropertyController::class, 'warehouses'])->name('categories.warehouses');
     Route::get('/categories/hotels', [PropertyController::class, 'hotels'])->name('categories.hotels');
     Route::get('/categories/lodges', [PropertyController::class, 'lodges'])->name('categories.lodges');
     
@@ -161,7 +162,8 @@ Route::get('/auth/google/redirect', [App\Http\Controllers\GoogleAuthController::
 Route::get('/auth/google/callback', [App\Http\Controllers\GoogleAuthController::class, 'callback'])->name('google.callback');
 
 // Static Pages
-Route::get('/privacy-policy', [App\Http\Controllers\Guest\PageController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('/privacy-policy', [\App\Http\Controllers\Guest\PageController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('/about-us', [\App\Http\Controllers\Guest\PageController::class, 'aboutUs'])->name('about');
 
 // Webhook Routes
 Route::post('/webhooks/paystack', [App\Http\Controllers\Webhook\PaystackController::class, 'handle'])->name('webhooks.paystack');

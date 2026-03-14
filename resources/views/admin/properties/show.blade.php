@@ -46,6 +46,23 @@
         @endif
     </div>
 
+    @if($property->is_suspicious)
+        <div class="mb-8 p-6 bg-red-50 border-2 border-red-200 rounded-3xl flex items-start space-x-4 animate-pulse">
+            <div class="p-3 bg-red-600 rounded-2xl text-white shadow-lg shadow-red-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            </div>
+            <div>
+                <h4 class="text-lg font-black text-red-700 uppercase tracking-tight">System Fraud Alert</h4>
+                <p class="text-sm text-red-600 font-bold mb-3">Our AI detection system flagged this listing for the following reasons:</p>
+                <ul class="list-disc list-inside text-sm text-red-700 space-y-1 font-medium">
+                    @foreach($property->suspicion_reasons as $reason)
+                        <li>{{ $reason }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Main Content (Left) -->
         <div class="lg:col-span-2 space-y-8">

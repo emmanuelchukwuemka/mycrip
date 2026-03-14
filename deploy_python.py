@@ -10,6 +10,7 @@ import sys
 import time
 import tarfile
 import io
+import traceback
 
 # Server Configuration
 CONFIG = {
@@ -70,9 +71,14 @@ def connect_ssh():
             print_error(f"SSH key auth also failed: {e2}")
             return None
 
-def run_command(client, command, timeout=30):
+def run_command(client, command, timeout=30, background=False):
     """Run a command on the server"""
+    print(f"Executing: {command}")
     stdin, stdout, stderr = client.exec_command(command, timeout=timeout)
+    
+    if background:
+        return "", ""
+        
     output = stdout.read().decode('utf-8')
     error = stderr.read().decode('utf-8')
     return output, error
@@ -168,13 +174,15 @@ def start_server(client, port):
     
     print_info(f"Starting Laravel server on port {port}...")
     
-    # Kill any existing process on this port
+    # Kill any existing process on this port more aggressively
+    run_command(client, f"fuser -k {port}/tcp 2>/dev/null || true")
     run_command(client, f"pkill -f 'artisan serve.*port={port}' 2>/dev/null || true")
-    time.sleep(1)
+    run_command(client, f"pkill -f 'php.*-S.*:{port}' 2>/dev/null || true")
+    time.sleep(2)
     
     # Start the server in background
-    command = f"cd {deploy_path} && nohup php artisan serve --host=0.0.0.0 --port={port} > /var/log/{app_name}-{port}.log 2>&1 &"
-    run_command(client, command)
+    command = f"cd {deploy_path} && nohup php artisan serve --host=0.0.0.0 --port={port} < /dev/null > /var/log/{app_name}-{port}.log 2>&1 &"
+    run_command(client, command, background=True)
     
     # Wait a moment
     time.sleep(3)
@@ -245,6 +253,7 @@ def main():
             
     except Exception as e:
         print_error(f"Deployment error: {e}")
+        traceback.print_exc()
         return False
     
     finally:

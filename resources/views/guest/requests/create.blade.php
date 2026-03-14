@@ -17,7 +17,8 @@
                                 <option value="apartment">Apartment</option>
                                 <option value="house">House</option>
                                 <option value="land">Land</option>
-                                <option value="commercial">Commercial</option>
+                                <option value="shop">Shop</option>
+                                <option value="warehouse">Warehouse</option>
                             </select>
                             @error('category') <p class="text-red-500 text-xs mt-2">{{ $message }}</p> @enderror
                         </div>
