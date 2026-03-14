@@ -50,18 +50,56 @@
                         </svg>
                         Buyer Wall
                     </a>
-                    <a href="{{ route('properties.categories.shops') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        </svg>
-                        Shops
-                    </a>
-                    <a href="{{ route('properties.categories.warehouses') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                        Warehouses
-                    </a>
+                    <!-- Categories Dropdown -->
+                    <div class="relative" x-data="{ open: false }">
+                        <button @click="open = !open" 
+                                class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" 
+                                style="color: #1A1A1A;" 
+                                :style="open ? 'color: #C6A664; border-color: #C6A664' : ''"
+                                onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" 
+                                onmouseout="if(!Alpine.find($el)._x_dataStack[0].open) { this.style.color='#1A1A1A'; this.style.borderColor='transparent' }">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                            </svg>
+                            Categories
+                            <svg class="ml-1 w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        
+                        <div x-show="open" 
+                             @click.away="open = false"
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100"
+                             class="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
+                            
+                            <a href="{{ route('properties.categories.lodges') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                                <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                Lodges
+                            </a>
+                            <a href="{{ route('properties.categories.shops') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                                <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                Shops
+                            </a>
+                            <a href="{{ route('properties.categories.warehouses') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                                <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4a2 2 0 012-2m16 0h-2m-2 0H6m-2 0H2m4 0h12"/>
+                                </svg>
+                                Warehouses
+                            </a>
+                            <a href="{{ route('properties.categories.land') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                                <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                                Land
+                            </a>
+                        </div>
+                    </div>
                     <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -247,6 +285,26 @@
                 </svg>
                 Agents
             </a>
+            <!-- Categories Collapsible (Mobile) -->
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full flex justify-between items-center pl-4 pr-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600 transition-colors duration-300">
+                    <span class="flex items-center">
+                        <svg class="w-5 h-5 inline mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                        </svg>
+                        Categories
+                    </span>
+                    <svg class="w-4 h-4 transition-transform duration-200" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="open" class="pl-8 bg-gray-50/50 py-1">
+                    <a href="{{ route('properties.categories.lodges') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Lodges</a>
+                    <a href="{{ route('properties.categories.shops') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Shops</a>
+                    <a href="{{ route('properties.categories.warehouses') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Warehouses</a>
+                    <a href="{{ route('properties.categories.land') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Land</a>
+                </div>
+            </div>
             <a href="{{ route('about') }}" class="block pl-4 pr-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600 transition-colors duration-300">
                 <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
