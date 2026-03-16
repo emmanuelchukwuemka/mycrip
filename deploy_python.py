@@ -157,9 +157,10 @@ def deploy_laravel(client, port):
     print_info("Generating application key...")
     output, _ = run_command(client, f"cd {deploy_path} && php artisan key:generate --force")
     
-    # Run migrations
-    print_info("Running database migrations...")
-    output, _ = run_command(client, f"cd {deploy_path} && php artisan migrate --force 2>&1")
+    # Run migrations (Removed as per user request to avoid data loss)
+    # print_info("Running database migrations...")
+    # output, _ = run_command(client, f"cd {deploy_path} && php artisan migrate --force 2>&1")
+
     
     # Clear cache
     print_info("Optimizing application...")

@@ -261,7 +261,13 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     // Property Documents
     Route::get('/documents', [App\Http\Controllers\Admin\AdminSupportController::class, 'pendingDocuments'])->name('documents');
     Route::patch('/documents/{document}/verify', [App\Http\Controllers\Admin\AdminSupportController::class, 'verifyDocument'])->name('documents.verify');
+
+    // Announcements
+    Route::patch('/announcements/{announcement}/toggle', [App\Http\Controllers\Admin\AnnouncementController::class, 'toggleStatus'])->name('announcements.toggle');
+    Route::resource('announcements', App\Http\Controllers\Admin\AnnouncementController::class);
+
 });
+
 
 // ── Sitemap ───────────────────────────────────────────────────────────────────
 Route::get('/sitemap.xml', function () {

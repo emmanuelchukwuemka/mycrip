@@ -58,6 +58,17 @@
             <span class="font-medium">Blog Posts</span>
         </a>
 
+        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 hover:bg-white/10 {{ Request::is('admin/announcements*') ? 'bg-white/10 text-white' : '' }}" href="{{ route('admin.announcements.index') }}" style="color: rgba(255,255,255,0.7);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+            <div class="p-2 rounded-lg mr-3" style="background: rgba(255,255,255,0.1);">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.459l-9 9V15.5h2.103l9-9-2.103-2.102zm-1.75-1.75l2 2L13 3.5l-2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M18 13a3 3 0 100-6m0 6c1.105 0 2-.895 2-2s-.895-2-2-2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-medium">Announcements</span>
+        </a>
+
+
         <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 hover:bg-white/10" href="#" style="color: rgba(255,255,255,0.7);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
             <div class="p-2 rounded-lg mr-3" style="background: rgba(255,255,255,0.1);">
                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">

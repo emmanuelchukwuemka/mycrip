@@ -22,7 +22,9 @@
     @livewireStyles
 </head>
 <body class="font-sans antialiased text-gray-900 bg-gray-50">
+    @include('layouts.partials._announcement_ticker')
     <div class="font-sans text-gray-900 antialiased">
+
         {{ $slot }}
     </div>
 
