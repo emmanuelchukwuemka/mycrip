@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MyCrip Africa</string>
+    <string name="title_activity_main">MyCrip Africa</string>
+    <string name="package_name">africa.mycrib.app</string>
+    <string name="custom_url_scheme">africa.mycrib.app</string>
+</resources>

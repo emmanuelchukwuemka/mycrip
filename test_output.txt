@@ -1,0 +1,29 @@
+
+   FAIL  Tests\Feature\Auth\PasswordResetOtpTest
+  Γ£ô user can reΓÇª 1.17s  
+  Γ£ô user cannotΓÇª 0.05s  
+  Γ£ô user can veΓÇª 0.06s  
+  Γ£ô user cannotΓÇª 0.05s  
+  Γ¿» user can reΓÇª 0.09s  
+  ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ  
+   FAILED  TeΓÇª  Error   
+  Class "App\Http\Controllers\Auth\User" not found
+
+  at app\Http\Controllers\Auth\ResetPasswordController.php:38
+     34Γûò             'password' => 'required|confirmed|min:8',
+     35Γûò         ]);
+     36Γûò 
+     37Γûò         if ($request->token === 'otp-verified') {
+  Γ₧£  38Γûò             $user = User::where('email', $request->email)->first();
+     39Γûò             if (!$user) {
+     40Γûò                 return back()->withErrors(['email' => 'User not found.']);
+     41Γûò             }
+     42Γûò
+
+  1   app\Http\Controllers\Auth\ResetPasswordController.php:38
+  2   vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php:46
+
+
+  Tests:    1 failed, 4 passed (12 assertions)
+  Duration: 1.77s
+

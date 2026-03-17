@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
@@ -15,8 +16,14 @@ class ResetPasswordController extends Controller
 
     public function showResetForm(Request $request, $token = null)
     {
+        $email = $request->email ?: session('reset_email');
+        
+        if ($token === 'otp-verified' && !$email) {
+            return redirect()->route('password.request')->withErrors(['email' => 'Session expired. Please request a new code.']);
+        }
+
         return view('auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
+            ['token' => $token, 'email' => $email]
         );
     }
 
@@ -28,9 +35,26 @@ class ResetPasswordController extends Controller
             'password' => 'required|confirmed|min:8',
         ]);
 
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
+        if ($request->token === 'otp-verified') {
+            $user = User::where('email', $request->email)->first();
+            if (!$user) {
+                return back()->withErrors(['email' => 'User not found.']);
+            }
+
+            $user->forceFill([
+                'password' => Hash::make($request->password),
+                'remember_token' => Str::random(60),
+            ])->save();
+
+            event(new PasswordReset($user));
+            
+            // Clear session
+            session()->forget('reset_email');
+
+            return redirect($this->redirectTo)->with('status', 'Your password has been reset successfully.');
+        }
+
+        // Fallback to default Laravel token logic if needed
         $response = Password::broker()->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
@@ -43,9 +67,6 @@ class ResetPasswordController extends Controller
             }
         );
 
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
         return $response == Password::PASSWORD_RESET
                     ? redirect($this->redirectTo)->with('status', __($response))
                     : back()->withInput($request->only('email'))
