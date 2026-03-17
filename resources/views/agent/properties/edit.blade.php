@@ -315,6 +315,15 @@
                                                 <div class="relative group aspect-square rounded-xl overflow-hidden border border-white shadow-sm transition-transform hover:scale-[1.02]">
                                                     <img src="{{ $image->image_url }}" class="w-full h-full object-cover">
                                                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-2">
+                                                        <form action="{{ route('agent.properties.images.toggle360', [$property->id, $image->id]) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="p-2 {{ $image->is_360 ? 'bg-blue-500' : 'bg-gray-500' }} text-white rounded-lg hover:scale-110 transition-all duration-200" title="{{ $image->is_360 ? 'Disable 360' : 'Mark as 360' }}">
+                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                                </svg>
+                                                            </button>
+                                                        </form>
                                                         <form action="{{ route('agent.properties.images.delete', [$property->id, $image->id]) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
@@ -323,6 +332,9 @@
                                                             </button>
                                                         </form>
                                                     </div>
+                                                    @if($image->is_360)
+                                                        <div class="absolute top-1 right-1 bg-blue-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-sm">360°</div>
+                                                    @endif
                                                 </div>
                                             @endforeach
                                         </div>

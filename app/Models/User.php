@@ -27,6 +27,7 @@ class User extends Authenticatable
         'specialties', 'license_number', 'profile_photo_path',
         'login_locked_until', 'last_login_at', 'last_login_ip', 'last_login_device',
         'referral_code', 'account_deleted', 'account_deleted_at',
+        'last_seen_at',
     ];
 
     protected static function booted(): void
@@ -60,6 +61,7 @@ class User extends Authenticatable
             'password'            => 'hashed',
             'login_locked_until'  => 'datetime',
             'last_login_at'       => 'datetime',
+            'last_seen_at'        => 'datetime',
             'account_deleted'     => 'boolean',
             'account_deleted_at'  => 'datetime',
         ];
@@ -217,5 +219,29 @@ class User extends Authenticatable
     public function isLocked(): bool
     {
         return $this->login_locked_until && $this->login_locked_until->isFuture();
+    }
+
+    /**
+     * Check if user is currently online (seen in last 5 minutes).
+     */
+    public function isOnline(): bool
+    {
+        return $this->last_seen_at && $this->last_seen_at->gt(now()->subMinutes(5));
+    }
+
+    /**
+     * Get user's online status string.
+     */
+    public function getPresenceStatusAttribute(): string
+    {
+        if ($this->isOnline()) {
+            return 'Online';
+        }
+        
+        if ($this->last_seen_at) {
+            return 'Last seen ' . $this->last_seen_at->diffForHumans();
+        }
+        
+        return 'Offline';
     }
 }

@@ -16,6 +16,14 @@
         <meta property="twitter:title" content="{{ $property->title }} | MyCrib Africa">
         <meta property="twitter:description" content="{{ Str::limit($property->description, 160) }}">
         <meta property="twitter:image" content="{{ $property->featured_image_url }}">
+        
+        <!-- Pannellum for 360° Virtual Tours -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+        <style>
+            #pannellum-viewer { width: 100%; height: 100%; }
+            .pnlm-load-button { background-color: #C6A664 !important; }
+        </style>
     @endsection
     <div class="bg-gray-100 min-h-screen py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,7 +118,12 @@
                                     @endif
                                     @if($property->virtual_tour_url)
                                         <button @click="activeMedia = 'tour'" :class="activeMedia === 'tour' ? 'border-b-2 border-[#001F3F] text-[#001F3F]' : 'text-gray-500'" class="px-6 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 outline-none">
-                                            360° Virtual Tour
+                                            Matterport Tour
+                                        </button>
+                                    @endif
+                                    @if($property->images->where('is_360', true)->count() > 0)
+                                        <button @click="activeMedia = 'internal_360'; initPannellum()" :class="activeMedia === 'internal_360' ? 'border-b-2 border-[#001F3F] text-[#001F3F]' : 'text-gray-500'" class="px-6 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-200 outline-none">
+                                            360° Photos
                                         </button>
                                     @endif
                                 </div>
@@ -135,8 +148,41 @@
                                             <iframe src="{{ $property->virtual_tour_url }}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
                                         </div>
                                     @endif
+
+                                    <!-- 360 Image Viewer (Internal) -->
+                                    @if($property->images->where('is_360', true)->count() > 0)
+                                        <div x-show="activeMedia === 'internal_360'" class="aspect-video rounded-xl overflow-hidden shadow-inner bg-black relative">
+                                            <div id="pannellum-viewer"></div>
+                                            <div class="absolute bottom-4 left-4 flex space-x-2 overflow-x-auto max-w-[80%]" x-data="{ current360: '' }">
+                                                @foreach($property->images->where('is_360', true) as $img)
+                                                    <button @click="load360('{{ asset('storage/' . $img->image_path) }}')" 
+                                                            class="flex-shrink-0 w-12 h-12 rounded border-2 border-white/50 hover:border-white transition-all overflow-hidden">
+                                                        <img src="{{ asset('storage/' . $img->image_path) }}" class="w-full h-full object-cover">
+                                                    </button>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
+                        </div>
+                    @endif
+
+                    <!-- External 360 Check if no virtual_tour_url but has is_360 images -->
+                    @if(!$property->virtual_tour_url && $property->images->where('is_360', true)->count() > 0 && !$property->video_url)
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+                             <div class="px-6 py-4 border-b flex items-center justify-between">
+                                <h3 class="font-bold text-[#001F3F] uppercase tracking-wider text-sm flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                    Interactive 360° Walkthrough
+                                </h3>
+                             </div>
+                             <div class="aspect-video relative bg-black">
+                                <div id="pannellum-viewer-standalone" class="w-full h-full"></div>
+                             </div>
                         </div>
                     @endif
 
@@ -543,4 +589,47 @@
             @endif
         </div>
     </div>
+    <script>
+        let viewer = null;
+        
+        function initPannellum() {
+            if (viewer) return;
+            @php
+                $first360 = $property->images->where('is_360', true)->first();
+            @endphp
+            @if($first360)
+                setTimeout(() => {
+                    viewer = pannellum.viewer('pannellum-viewer', {
+                        "type": "equirectangular",
+                        "panorama": "{{ asset('storage/' . $first360->image_path) }}",
+                        "autoLoad": true,
+                        "compass": true
+                    });
+                }, 100);
+            @endif
+        }
+
+        @if(!$property->virtual_tour_url && $property->images->where('is_360', true)->count() > 0 && !$property->video_url)
+            window.addEventListener('load', function() {
+                pannellum.viewer('pannellum-viewer-standalone', {
+                    "type": "equirectangular",
+                    "panorama": "{{ asset('storage/' . $property->images->where('is_360', true)->first()->image_path) }}",
+                    "autoLoad": true,
+                    "compass": true
+                });
+            });
+        @endif
+
+        function load360(url) {
+            if (viewer) {
+                viewer.destroy();
+            }
+            viewer = pannellum.viewer('pannellum-viewer', {
+                "type": "equirectangular",
+                "panorama": url,
+                "autoLoad": true,
+                "compass": true
+            });
+        }
+    </script>
 </x-app-layout>

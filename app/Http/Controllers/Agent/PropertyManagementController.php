@@ -369,6 +369,21 @@ class PropertyManagementController extends Controller
     }
 
     /**
+     * Toggle the 360 status of an image.
+     */
+    public function toggle360(string $id, string $imageId)
+    {
+        $property = Auth::user()->properties()->findOrFail($id);
+        $image = $property->images()->findOrFail($imageId);
+
+        $image->update([
+            'is_360' => !$image->is_360
+        ]);
+
+        return back()->with('success', 'Image 360 status updated.');
+    }
+
+    /**
      * Remove the specified property from storage.
      */
     public function destroy(string $id)

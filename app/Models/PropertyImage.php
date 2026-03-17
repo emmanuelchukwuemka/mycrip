@@ -25,6 +25,7 @@ class PropertyImage extends Model
         'order',
         'is_featured',
         'caption',
+        'is_360',
     ];
 
     /**
@@ -36,6 +37,7 @@ class PropertyImage extends Model
     {
         return [
             'is_featured' => 'boolean',
+            'is_360' => 'boolean',
             'order' => 'integer',
         ];
     }

@@ -19,7 +19,8 @@ class ChatController extends Controller
         $request->validate([
             'agent_id' => 'required|exists:users,id',
             'property_id' => 'nullable|exists:properties,id',
-            'message' => 'required|string|max:5000',
+            'message' => 'nullable|string|max:5000',
+            'attachment' => 'nullable|file|max:10240', // 10MB limit
         ]);
 
         $user = Auth::user();
@@ -37,11 +38,22 @@ class ChatController extends Controller
         );
 
         // Create the first message
-        Message::create([
+        $messageData = [
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
-            'body' => $request->message,
-        ]);
+            'body' => $request->message ?? '',
+        ];
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $path = $file->store('chat_attachments/' . $conversation->id, 'public');
+            $messageData['attachment_path'] = $path;
+            $messageData['attachment_name'] = $file->getClientOriginalName();
+            $messageData['attachment_type'] = $file->getClientMimeType();
+            $messageData['file_size'] = $file->getSize();
+        }
+
+        Message::create($messageData);
 
         $conversation->update(['last_message_at' => now()]);
 
@@ -76,14 +88,30 @@ class ChatController extends Controller
         $conversation = Conversation::forCustomer($user->id)->findOrFail($id);
 
         $request->validate([
-            'body' => 'required|string|max:5000',
+            'body' => 'nullable|string|max:5000',
+            'attachment' => 'nullable|file|max:10240',
         ]);
 
-        Message::create([
+        if (!$request->body && !$request->hasFile('attachment')) {
+            return back()->with('error', 'Message or attachment is required.');
+        }
+
+        $messageData = [
             'conversation_id' => $conversation->id,
             'sender_id' => $user->id,
-            'body' => $request->body,
-        ]);
+            'body' => $request->body ?? '',
+        ];
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $path = $file->store('chat_attachments/' . $conversation->id, 'public');
+            $messageData['attachment_path'] = $path;
+            $messageData['attachment_name'] = $file->getClientOriginalName();
+            $messageData['attachment_type'] = $file->getClientMimeType();
+            $messageData['file_size'] = $file->getSize();
+        }
+
+        Message::create($messageData);
 
         $conversation->update(['last_message_at' => now()]);
 

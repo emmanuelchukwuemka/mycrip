@@ -76,6 +76,7 @@ Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Agent\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('properties', App\Http\Controllers\Agent\PropertyManagementController::class);
     Route::delete('properties/{id}/images/{imageId}', [App\Http\Controllers\Agent\PropertyManagementController::class, 'deleteImage'])->name('properties.images.delete');
+    Route::post('properties/{id}/images/{imageId}/toggle-360', [App\Http\Controllers\Agent\PropertyManagementController::class, 'toggle360'])->name('properties.images.toggle360');
     
     // Profile Routes
     Route::get('/profile/edit', [App\Http\Controllers\Agent\ProfileController::class, 'edit'])->name('profile.edit');
