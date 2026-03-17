@@ -190,7 +190,10 @@ class PropertyController extends Controller
             ->where('id', '!=', $property->id)
             ->avg('price');
 
-        return view('guest.properties.show', compact('property', 'isSaved', 'relatedProperties', 'priceEstimate'));
+        // Property reviews
+        $reviews = $property->reviews()->with('reviewer')->latest()->paginate(10);
+
+        return view('guest.properties.show', compact('property', 'isSaved', 'relatedProperties', 'priceEstimate', 'reviews'));
     }
 
     /**

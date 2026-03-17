@@ -213,6 +213,12 @@ Route::middleware('auth')->prefix('support')->name('support.')->group(function (
     Route::post('/tickets/{ticket}/reply', [App\Http\Controllers\Guest\SupportController::class, 'replyTicket'])->name('tickets.reply');
 });
 
+// ── Reviews ──────────────────────────────────────────────────────────────────
+Route::middleware('auth')->group(function () {
+    Route::post('/reviews', [App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
+    Route::delete('/reviews/{review}', [App\Http\Controllers\ReviewController::class, 'destroy'])->name('reviews.destroy');
+});
+
 // ── Agent Analytics & New Features ───────────────────────────────────────────
 Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     Route::get('/analytics', [App\Http\Controllers\Agent\AnalyticsController::class, 'index'])->name('analytics');
@@ -226,6 +232,8 @@ Route::prefix('agent')->name('agent.')->middleware('auth')->group(function () {
     Route::post('/message-templates', [App\Http\Controllers\Agent\MessageTemplateController::class, 'store'])->name('message-templates.store');
     Route::put('/message-templates/{template}', [App\Http\Controllers\Agent\MessageTemplateController::class, 'update'])->name('message-templates.update');
     Route::delete('/message-templates/{template}', [App\Http\Controllers\Agent\MessageTemplateController::class, 'destroy'])->name('message-templates.destroy');
+
+
 
     // Subscription / Billing
     Route::get('/subscription',                      [App\Http\Controllers\Agent\PaymentController::class, 'plans'])->name('subscription');

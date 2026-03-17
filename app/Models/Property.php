@@ -251,11 +251,18 @@ class Property extends Model
     }
 
     /**
-     * Scope for featured properties.
+     * Get all reviews for the property.
      */
-    public function scopeFeatured($query)
+    public function reviews(): HasMany
     {
-        return $query->where('is_featured', true)
-                     ->where('featured_until', '>=', now());
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Get average rating for the property.
+     */
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviews()->avg('rating') ?? 0;
     }
 }

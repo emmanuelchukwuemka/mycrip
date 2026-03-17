@@ -207,8 +207,8 @@
                         </div>
 
                         <!-- Amenities/Features -->
-                        <div class="mt-8">
-                            <h3 class="text-xl font-semibold mb-4">Amenities</h3>
+                        <div class="mt-8 pb-8 border-b border-gray-100">
+                            <h3 class="text-xl font-semibold mb-4 text-[#001F3F]">Amenities</h3>
                             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 @if($property->furnished)
                                 <div class="flex items-center text-gray-600">
@@ -247,6 +247,106 @@
                                 </div>
                                 @endif
                             </div>
+                        </div>
+
+                        <!-- Reviews Section -->
+                        <div id="reviews" class="mt-8">
+                            <div class="flex items-center justify-between mb-8">
+                                <h3 class="text-xl font-bold text-[#001F3F]">Property Reviews</h3>
+                                <div class="flex items-center">
+                                    <div class="flex text-yellow-400 mr-2">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <svg class="w-4 h-4 {{ $i <= round($property->average_rating) ? 'fill-current' : 'text-gray-200' }}" viewBox="0 0 20 20">
+                                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                            </svg>
+                                        @endfor
+                                    </div>
+                                    <span class="text-sm font-bold text-[#001F3F]">{{ number_format($property->average_rating, 1) }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Review List -->
+                            <div class="space-y-6 mb-10">
+                                @forelse($reviews as $review)
+                                    <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 transition-hover duration-300 hover:shadow-md">
+                                        <div class="flex items-start justify-between mb-3">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 rounded-full bg-[#001F3F] text-white flex items-center justify-center font-bold text-sm">
+                                                    {{ substr($review->reviewer->name, 0, 1) }}
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h4 class="text-sm font-bold text-[#001F3F]">{{ $review->reviewer->name }}</h4>
+                                                    <p class="text-[10px] text-gray-400 font-medium uppercase tracking-wider">{{ $review->created_at->format('M d, Y') }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex text-yellow-400">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <svg class="w-4 h-4 {{ $i <= $review->rating ? 'fill-current' : 'text-gray-200' }}" viewBox="0 0 20 20">
+                                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                    </svg>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-600 text-sm leading-relaxed italic">
+                                            "{{ $review->comment }}"
+                                        </p>
+                                    </div>
+                                @empty
+                                    <div class="text-center py-10 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+                                        <svg class="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                                        <p class="text-gray-400 text-xs font-bold uppercase tracking-widest">No reviews yet. Share your experience!</p>
+                                    </div>
+                                @endforelse
+                            </div>
+
+                            <div class="mb-10">
+                                {{ $reviews->links() }}
+                            </div>
+
+                            <!-- Review Form -->
+                            @auth
+                                @if(auth()->user()->id !== ($property->user->id ?? null))
+                                    <div class="bg-white rounded-3xl border border-gray-100 p-8 shadow-sm">
+                                        <h4 class="text-lg font-bold text-[#001F3F] mb-6">Rate this Property</h4>
+                                        <form action="{{ route('reviews.store') }}" method="POST" class="space-y-6">
+                                            @csrf
+                                            <input type="hidden" name="agent_id" value="{{ $property->user->id ?? '' }}">
+                                            <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                            
+                                            <div x-data="{ rating: 0 }" class="space-y-3">
+                                                <label class="block text-xs font-black uppercase tracking-[0.2em] text-gray-400">Rating Score</label>
+                                                <div class="flex gap-2">
+                                                    <template x-for="i in 5">
+                                                        <button type="button" @click="rating = i" class="outline-none transition-transform duration-200 hover:scale-125">
+                                                            <svg class="w-10 h-10 cursor-pointer" :class="i <= rating ? 'text-yellow-400 fill-current' : 'text-gray-200 fill-current'" viewBox="0 0 20 20">
+                                                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                                            </svg>
+                                                        </button>
+                                                    </template>
+                                                    <input type="hidden" name="rating" :value="rating" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-y-3">
+                                                <label class="block text-xs font-black uppercase tracking-[0.2em] text-gray-400">Write your Review</label>
+                                                <textarea name="comment" rows="4" class="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/10 focus:border-[#C6A664] transition-all duration-300 outline-none placeholder-gray-400 text-sm" placeholder="How was the property inspection? Any details for other seekers?"></textarea>
+                                            </div>
+
+                                            <button type="submit" class="inline-flex items-center px-8 py-4 bg-[#001F3F] text-white font-bold rounded-2xl hover:bg-[#C6A664] transition-all duration-300 shadow-xl shadow-[#001F3F]/20 active:scale-95">
+                                                Post Review
+                                                <svg class="w-4 h-4 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
+                            @else
+                                <div class="text-center p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                                    <p class="text-gray-500 text-sm font-medium mb-4 italic">Login to share your thoughts on this property.</p>
+                                    <a href="{{ route('login') }}" class="inline-flex items-center px-6 py-3 bg-[#001F3F] text-white font-bold rounded-xl hover:bg-[#C6A664] transition-all duration-300">
+                                        Login to Rate
+                                    </a>
+                                </div>
+                            @endauth
                         </div>
                     </div>
 
