@@ -1,0 +1,180 @@
+# MyCrip Africa - Flutter Mobile App Comprehensive Blueprint
+
+This document outlines the complete feature set, user experience, and technical specifications for the MyCrip Africa mobile application.
+
+---
+
+## 📱 1. Core App Modules & Features
+
+### A. Authentication & Security
+- **Multi-Method Login**: Email/Password and Google OAuth integration.
+- **Biometric Auth**: Fingerprint/FaceID for quick access (Flutter local_auth).
+- **Two-Factor Authentication (2FA)**: Support for the Laravel-based 2FA setup.
+- **OTP Recovery**: Password reset flow with the recently fixed OTP mail system.
+- **Secure Sessions**: JWT/Sanctum token management with encrypted local storage.
+
+### B. Property Discovery (Guest/User)
+- **Advanced Search**: Filter by categories (Apartments, Land, Shops, etc.), price, location, and features.
+- **Map View**: Interactive map showing properties nearby using Google Maps API.
+- **Property Comparison**: Side-by-side comparison of up to 3 properties.
+- **360° Virtual Tours**: Integrated viewer for 360-degree property images.
+- **Livestreaming**: Join property walkthroughs hosted by agents (Agora integration).
+- **Land Title Verification**: In-app bridge to verify property titles.
+
+### C. Networking & Communication
+- **Real-time Chat**: Direct messaging between Buyers and Agents with push notifications.
+- **Inquiry System**: Submit formal inquiries on properties.
+- **Property Request Board**: Post "What I'm looking for" requests for agents to see.
+- **Reviews & Ratings**: Rate and review agents and properties.
+
+### D. Agent Tools (Professional Suite)
+- **Dashboard**: Track property views, inquiries, and earnings.
+- **Property Management**: 
+    - Full CRUD for listings.
+    - **Camera Integration**: Take and upload photos directly from the app.
+    - **AI Description**: One-tap generate property descriptions using the Laravel AI feature.
+- **Promotions & Billing**:
+    - Paystack integration for property promotion.
+    - Subscription management (Standard, Premium, Gold plans).
+- **Tour Scheduling**: Manage and confirm physical tour requests from users.
+
+---
+
+## 🛣️ 2. Detailed User Flows
+
+```mermaid
+graph TD
+    A[Splash Screen] --> B{Auth Status?}
+    B -- No --> C[Onboarding / Login]
+    B -- Yes --> D[Main Dashboard]
+    
+    C --> E[Properties Map/List]
+    D --> F[Home Feed]
+    
+    F --> G[Property Details]
+    G --> H[360 Tour]
+    G --> I[Join Livestream]
+    G --> J[Start Chat with Agent]
+    
+    subgraph "Agent Only"
+    K[List Property] --> L[Select Photos]
+    L --> M[AI Generate Desc]
+    M --> N[Publish]
+    end
+```
+
+---
+
+## 🛠️ 3. Technical Requirements
+
+### Frontend Stack
+- **Framework**: Flutter (latest stable).
+- **Language**: Dart.
+- **State Management**: **Bloc/Cubit** (Recommended for complex data flows like Chat and Listings).
+- **Local Database**: **Hive** or **Isar** for offline caching of property data.
+
+### Backend Bridge
+- **Base URL**: `https://cloud.bloomzon.com` (as per migration goals).
+- **API Architecture**: RESTful JSON API.
+- **WebSockets**: Laravel Reverb or Pusher for real-time chat/notifications.
+
+---
+
+## 🚀 4. "WOW" Features (The Competitive Edge)
+
+1.  **Immersive UI**:
+    - Glassmorphism effects for cards.
+    - Lottie animations for "success" actions (e.g., successful listing).
+    - Dark & Light mode support.
+2.  **Offline-First Discovery**:
+    - Users can browse "Saved Properties" and previously viewed listings without internet.
+3.  **Smart Notifications**:
+    - Alerts when a property matching a "Saved Search" is uploaded.
+    - Reminders for upcoming scheduled property tours.
+
+---
+
+## 👥 6. User Personas & Permissions
+
+### 👤 Guest (Unauthenticated)
+- Browse listings with limited details.
+- Use basic search and filters.
+- View real-time map with property clusters.
+- View 360° Tours (Optional/Teaser).
+
+### 🏠 Customer (Authenticated)
+- All Guest features + full property details.
+- **Saved Properties**: Sync across devices.
+- **Saved Searches**: Get push notifications for new matches.
+- **Direct Messaging**: Chat with agents.
+- **Property Requests**: Post detailed requirements to the Buyer Wall.
+- **Reviews**: Rate properties and agents after interaction.
+
+### 👔 Agent (Professional)
+- **Inventory Management**: Create/Edit/Delete listings.
+- **Lead Management**: View inquiries and chat with interested buyers.
+- **Virtual Tours**: Mark images as 360° for immersive viewing.
+- **AI Enhancement**: Auto-generate marketing copy for listings.
+- **Subscription Perks**: Access to "Featured" slots and analytics.
+
+---
+
+## 💰 7. Monetization & Growth Strategies
+
+1.  **Subscription Models**:
+    - **Free**: Limited active listings (e.g., 2).
+    - **Premium**: Unlimited listings, AI description tool.
+    - **Gold**: Featured status, priority in search results, analytics dashboard.
+2.  **A-La-Carte Promotions**: Pay per property to "Boost" it to the top of the feed for 7 days.
+3.  **Referral Program**: Reward users for referring new agents with subscription discounts.
+4.  **Ad Placements**: Subtle "Sponsored" property cards in the home feed.
+
+---
+
+## 📡 8. Advanced Technical Specifications
+
+### A. Push Notifications (FCM)
+- **Transaction Alerts**: Notify users of new chat messages or inquiry updates.
+- **Marketing Alerts**: Notify users of price drops on "Saved Properties".
+- **Geo-Fencing**: (Optional) Notify users of open houses when they are nearby.
+
+### B. Deep Linking
+- Share a property link from the web/app. When the recipient clicks, it opens directly to that property screen in the app.
+
+### C. Image & Video Optimization
+- **WebP Support**: Use WebP format for fast loading and low data usage.
+- **Lazy Loading**: Only load images when they enter the viewport.
+- **Video Caching**: Prevent re-buffering of property walkthrough videos.
+
+---
+
+## 🛡️ 9. Quality, Testing & Maintenance
+
+1.  **CI/CD Pipeline**: GitHub Actions to automatically run tests and build APKs/IPAs on every push.
+2.  **Error Tracking**: **Sentry** or **Firebase Crashlytics** to monitor app crashes in real-time.
+3.  **Analytics**: **Google Analytics for Firebase** to track user behavior (e.g., which property types are most popular).
+4.  **Automated Testing**:
+    - **Unit Tests**: For core logic and data mapping.
+    - **Widget Tests**: For UI components.
+    - **Integration Tests**: For end-to-end flows (Login -> Search -> Inquiry).
+
+---
+
+## 📅 10. Implementation Roadmap (Updated)
+
+| Phase | Focus | Key Features |
+| :--- | :--- | :--- |
+| **Phase 1** | Foundation | Auth, Store Listing, Base Navigation, Home Feed. |
+| **Phase 2** | Discovery | Advanced Filters, Map View, Property Details, 360 Tours. |
+| **Phase 3** | Interactive | Chat System, Inquiries, Property Requests, Reviews. |
+| **Phase 4** | Agent Suite | Listing Management, AI Tools, Billing/Payments. |
+| **Phase 5** | Immersive | Livestreaming, Push Notifications, Performance Optimization. |
+
+---
+
+## 📌 6. Next Steps
+1.  **App Setup**: Initialize Flutter repository.
+2.  **API Documentation**: Define all endpoints if not already documented.
+3.  **Design Tokens**: Define the HSL color palette and typography in `theme.dart`.
+
+**Ready to start?** Tell me which Phase or specific Feature you want to dive into first!

@@ -134,16 +134,23 @@ def deploy_laravel(client, port):
     git_repo = 'https://github.com/emmanuelchukwuemka/mycrip.git'
     
     print_info("Cloning/pulling from git repository...")
-    output, error = run_command(client, f"cd {deploy_path} && git clone {git_repo} . 2>/dev/null || git pull origin main 2>/dev/null || git pull origin master")
+    run_command(client, f"git config --global --add safe.directory {deploy_path}")
+    output, error = run_command(client, f"cd {deploy_path} && (git pull origin main || git pull origin master || (git clone {git_repo} .))")
     
-    if error and 'fatal' in error.lower():
-        print_warning("Git clone/pull may have issues, continuing...")
+    if error and 'fatal' in error.lower() and 'already exists' not in error.lower():
+        print_warning(f"Git error: {error}")
     
     # Setup Laravel
     print_info("Setting up Laravel...")
     
-    # Copy env file
-    run_command(client, f"cd {deploy_path} && cp .env.example .env 2>/dev/null || true")
+    # Copy env file only if missing
+    run_command(client, f"cd {deploy_path} && [ ! -f .env ] && cp .env.example .env || echo '.env exists'")
+    
+    # Update SMTP settings to port 465 / SSL (verified open on server)
+    print_info("Configuring SMTP for Gmail (465/SSL)...")
+    run_command(client, f"cd {deploy_path} && sed -i 's/MAIL_PORT=.*/MAIL_PORT=465/' .env")
+    run_command(client, f"cd {deploy_path} && sed -i 's/MAIL_ENCRYPTION=.*/MAIL_ENCRYPTION=ssl/' .env")
+    run_command(client, f"cd {deploy_path} && sed -i 's/MAIL_MAILER=.*/MAIL_MAILER=smtp/' .env")
     
     # Set permissions
     run_command(client, f"chmod -R 775 {deploy_path}/storage {deploy_path}/bootstrap/cache 2>/dev/null || true")
