@@ -4,6 +4,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../features/properties/presentation/screens/property_details_screen.dart';
 import '../../../../features/search/presentation/screens/search_filter_screen.dart';
 import '../../../../shared/widgets/glass_card.dart';
+import '../../../../features/search/presentation/screens/ai_conversational_search_screen.dart';
 
 import '../../../../features/properties/presentation/screens/property_listing_screen.dart';
 import '../../../../features/properties/presentation/screens/saved_properties_screen.dart';
@@ -68,6 +69,15 @@ class HomeScreen extends StatelessWidget {
                                 border: InputBorder.none,
                               ),
                             ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.auto_awesome_rounded, color: AppColors.accentGold),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const AIConversationalSearchScreen()),
+                              );
+                            },
                           ),
                           IconButton(
                             icon: const Icon(Icons.tune_rounded, color: AppColors.primaryNavy),

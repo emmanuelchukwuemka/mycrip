@@ -74,6 +74,16 @@ class _ARTourScreenState extends State<ARTourScreen> {
                     style: TextStyle(color: Colors.white70, fontSize: 14),
                   ),
                   const SizedBox(height: 24),
+
+                  // AR Tools
+                  Row(
+                    children: [
+                      _buildARToolButton(Icons.chair_alt_rounded, 'Place Furniture'),
+                      const SizedBox(width: 12),
+                      _buildARToolButton(Icons.color_lens_rounded, 'Wall Paint'),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
                   
                   // Navigation Hotspots Mini-Map (Mock)
                   Row(
@@ -119,6 +129,24 @@ class _ARTourScreenState extends State<ARTourScreen> {
           fontWeight: FontWeight.bold,
           fontSize: 12,
         ),
+      ),
+    );
+  }
+
+  Widget _buildARToolButton(IconData icon, String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: AppColors.primaryNavy.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.white, size: 18),
+          const SizedBox(width: 8),
+          Text(label, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
+        ],
       ),
     );
   }

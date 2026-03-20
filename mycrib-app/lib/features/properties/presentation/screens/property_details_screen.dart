@@ -4,6 +4,9 @@ import '../../../../core/utils/mock_data.dart';
 import '../../../../shared/widgets/glass_card.dart';
 import 'comparison_screen.dart';
 import 'ar_tour_screen.dart';
+import 'lawyer_verification_screen.dart';
+import '../../../finance/presentation/screens/rent_financing_screen.dart';
+import '../../../finance/presentation/screens/mortgage_calculator_screen.dart';
 import '../../../agent/presentation/screens/agent_profile_screen.dart';
 
 class PropertyDetailsScreen extends StatelessWidget {
@@ -154,9 +157,29 @@ class PropertyDetailsScreen extends StatelessWidget {
                     ),
                     
                     const SizedBox(height: 32),
-                    const Text(
-                      'Agent Information',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryNavy),
+                    // Agent Information
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Agent Information',
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryNavy),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.green.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Row(
+                            children: [
+                              Icon(Icons.verified_user_rounded, color: Colors.green, size: 14),
+                              SizedBox(width: 4),
+                              Text('VERIFIED', style: TextStyle(color: Colors.green, fontSize: 10, fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16),
                     InkWell(
@@ -217,7 +240,41 @@ class PropertyDetailsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
                     
-                    // WOW Features Placeholder
+                    // Localized Context Ratings
+                    const Text(
+                      'Neighborhood Insights',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryNavy),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildInsightRating(Icons.bolt_rounded, 'Power', '4.5/5'),
+                        _buildInsightRating(Icons.water_drop_rounded, 'Water', '3.8/5'),
+                        _buildInsightRating(Icons.security_rounded, 'Safety', '4.2/5'),
+                        _buildInsightRating(Icons.solar_power_rounded, 'Solar', '92%'),
+                      ],
+                    ),
+                    const SizedBox(height: 32),
+                    const Text(
+                      'Financing Options',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryNavy),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Expanded(child: _buildActionButton(Icons.account_balance_rounded, 'Rent Finance', () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => RentFinancingScreen()));
+                        })),
+                        const SizedBox(width: 12),
+                        Expanded(child: _buildActionButton(Icons.calculate_rounded, 'Mortgage Calc', () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MortgageCalculatorScreen()));
+                        })),
+                      ],
+                    ),
+                    const SizedBox(height: 32),
+                    
+                    // WOW Features
                     Row(
                       children: [
                         Expanded(child: _buildActionButton(Icons.compare_arrows_rounded, 'Compare', () {
@@ -237,6 +294,15 @@ class PropertyDetailsScreen extends StatelessWidget {
                         })),
                       ],
                     ),
+                    const SizedBox(height: 16),
+                    _buildActionButton(Icons.gavel_rounded, 'Verify with Lawyer', () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LawyerVerificationScreen(propertyTitle: property.title),
+                        ),
+                      );
+                    }, isPrimary: true),
                     const SizedBox(height: 100),
                   ],
                 ),
@@ -299,22 +365,60 @@ class PropertyDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton(IconData icon, String label, VoidCallback onPressed) {
-    return OutlinedButton(
-      onPressed: onPressed,
-      style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        side: const BorderSide(color: AppColors.primaryNavy),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  Widget _buildInsightRating(IconData icon, String label, String rating) {
+    return Container(
+      width: 80,
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 4)),
+        ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
         children: [
-          Icon(icon, color: AppColors.primaryNavy),
-          const SizedBox(width: 8),
-          Text(label, style: const TextStyle(color: AppColors.primaryNavy, fontWeight: FontWeight.bold)),
+          Icon(icon, color: AppColors.accentGold, size: 24),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+          const SizedBox(height: 4),
+          Text(rating, style: const TextStyle(fontWeight: FontWeight.bold, color: AppColors.primaryNavy)),
         ],
       ),
     );
+  }
+
+  Widget _buildActionButton(IconData icon, String label, VoidCallback onPressed, {bool isPrimary = false}) {
+    return isPrimary 
+      ? SizedBox(
+          width: double.infinity,
+          child: ElevatedButton.icon(
+              onPressed: onPressed,
+              icon: Icon(icon, color: Colors.white),
+              label: Text(label, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryNavy,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              ),
+            ),
+        )
+      : OutlinedButton(
+          onPressed: onPressed,
+          style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            side: const BorderSide(color: AppColors.primaryNavy),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: AppColors.primaryNavy),
+              const SizedBox(width: 8),
+              Text(label, style: const TextStyle(color: AppColors.primaryNavy, fontWeight: FontWeight.bold)),
+            ],
+          ),
+        );
   }
 }

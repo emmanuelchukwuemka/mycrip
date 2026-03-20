@@ -8,6 +8,7 @@ class GlassCard extends StatelessWidget {
   final BorderRadius? borderRadius;
   final double? blur;
   final EdgeInsetsGeometry? padding;
+  final Gradient? gradient;
 
   const GlassCard({
     super.key,
@@ -17,6 +18,7 @@ class GlassCard extends StatelessWidget {
     this.borderRadius,
     this.blur,
     this.padding,
+    this.gradient,
   });
 
   @override
@@ -49,7 +51,7 @@ class GlassCard extends StatelessWidget {
                   color: Colors.white.withOpacity(0.2),
                   width: 1.5,
                 ),
-                gradient: LinearGradient(
+                gradient: gradient ?? LinearGradient(
                   colors: [
                     Colors.white.withOpacity(0.2),
                     Colors.white.withOpacity(0.1),
