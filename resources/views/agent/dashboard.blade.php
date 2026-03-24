@@ -96,22 +96,23 @@
     ═══════════════════════════════════════════════════════ --}}
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
 
-        {{-- Total Properties --}}
+        {{-- Buyer Requests (Actionable) --}}
         <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group">
             <div class="flex items-start justify-between">
                 <div>
-                    <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">Total Listings</p>
-                    <p class="text-3xl font-black text-gray-900 leading-none">{{ $totalProperties }}</p>
+                    <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">Buyer Requests</p>
+                    <p class="text-3xl font-black text-gray-900 leading-none">{{ $totalActiveRequests }}</p>
                 </div>
                 <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110"
-                     style="background:rgba(0,31,63,0.08)">
-                    <svg class="w-5 h-5" style="color:#001F3F" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/>
+                     style="background:rgba(198,166,100,0.1)">
+                    <svg class="w-5 h-5 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
                     </svg>
                 </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-gray-50">
-                <span class="text-xs text-gray-400 font-medium">All time</span>
+            <div class="mt-4 pt-3 border-t border-gray-50 flex items-center justify-between">
+                <span class="text-xs text-gray-400 font-medium">On Buyer Wall</span>
+                <a href="{{ route('requests.index') }}" class="text-[10px] font-bold text-[#C6A664] bg-[#C6A664]/10 px-2 py-0.5 rounded uppercase tracking-tighter hover:bg-[#C6A664] hover:text-white transition-all">Browse Wall</a>
             </div>
         </div>
 
@@ -209,83 +210,41 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {{-- Recent Properties (2/3 width) --}}
-        <div class="lg:col-span-2">
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-50">
-                    <h2 class="text-sm font-bold text-gray-800 tracking-wide">Recent Listings</h2>
-                    <a href="{{ route('agent.properties.index') }}"
-                       class="text-xs font-semibold hover:underline" style="color:#C6A664">View All →</a>
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-6">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-50 bg-[#FDFCF9]/50">
+                    <h2 class="text-sm font-bold text-gray-800 tracking-wide flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-[#C6A664]"></span>
+                        Recent Buyer Requests
+                    </h2>
+                    <a href="{{ route('requests.index') }}"
+                       class="text-xs font-semibold hover:underline px-3 py-1 bg-[#C6A664]/10 rounded-full text-[#C6A664]" style="color:#C6A664">Buyer Wall →</a>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-gray-50/70">
-                                <th class="px-6 py-3">Property</th>
-                                <th class="px-6 py-3 text-center">Status</th>
-                                <th class="px-6 py-3">Price</th>
-                                <th class="px-6 py-3 text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-50">
-                            @forelse($recentProperties as $property)
-                            <tr class="hover:bg-gray-50/60 transition-colors group">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
-                                            @if($property->featured_image_url)
-                                                <img src="{{ $property->featured_image_url }}"
-                                                     class="w-full h-full object-cover" alt="">
-                                            @else
-                                                <div class="w-full h-full flex items-center justify-center text-gray-300">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div class="min-w-0">
-                                            <p class="text-sm font-semibold text-gray-800 truncate max-w-[180px] group-hover:text-[#C6A664] transition-colors">{{ $property->title }}</p>
-                                            <p class="text-[11px] text-gray-400 mt-0.5 truncate">{{ $property->city }}, {{ $property->state }}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    @if($property->status === 'approved')
-                                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-50 text-emerald-700 uppercase tracking-wide">Live</span>
-                                    @elseif($property->status === 'pending')
-                                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-50 text-amber-700 uppercase tracking-wide">Pending</span>
-                                    @else
-                                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold bg-red-50 text-red-700 uppercase tracking-wide">Rejected</span>
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="text-sm font-bold text-gray-700">{{ $property->formatted_price }}</span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <a href="{{ route('agent.properties.edit', $property->id) }}"
-                                       class="inline-flex items-center p-2 rounded-lg text-gray-400 hover:text-white hover:bg-[#001F3F] transition-all duration-200">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z"/>
-                                        </svg>
-                                    </a>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="px-6 py-16 text-center">
-                                    <div class="flex flex-col items-center gap-3">
-                                        <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-200">
-                                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/>
-                                            </svg>
-                                        </div>
-                                        <p class="text-sm font-medium text-gray-400">No listings yet</p>
-                                        <a href="{{ route('agent.properties.create') }}"
-                                           class="text-sm font-bold hover:underline" style="color:#C6A664">+ Create your first listing</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                <div class="divide-y divide-gray-50">
+                    @forelse($propertyRequests as $req)
+                    <div class="px-6 py-4 hover:bg-gray-50/50 transition-colors group">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-1">
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-[#C6A664] bg-[#C6A664]/5 px-2 py-0.5 rounded border border-[#C6A664]/10">{{ $req->category }}</span>
+                                    <p class="text-xs font-bold text-gray-800">in {{ $req->location }}</p>
+                                </div>
+                                <p class="text-xs text-gray-500 line-clamp-1 italic">"{{ $req->description }}"</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <p class="text-[10px] text-gray-400 font-bold mb-1">{{ $req->created_at->diffForHumans() }}</p>
+                                <a href="{{ route('chat.start', ['property_id' => null, 'agent_id' => auth()->id(), 'user_id' => $req->user_id]) }}" 
+                                   class="text-[10px] font-black text-[#001F3F] uppercase hover:text-[#C6A664] transition-colors flex items-center gap-1">
+                                    Contact
+                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="px-6 py-12 text-center">
+                        <p class="text-xs font-medium text-gray-400">No active buyer requests</p>
+                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

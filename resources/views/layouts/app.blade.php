@@ -39,6 +39,9 @@
         @include('layouts.partials.footer')
     </div>
 
+    {{-- AI Chat Assistant --}}
+    @include('layouts.partials.ai-chat-widget')
+
     @livewireScripts
 </body>
 </html>

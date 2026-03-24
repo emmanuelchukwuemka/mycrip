@@ -200,6 +200,9 @@ Route::middleware('auth')->prefix('disputes')->name('disputes.')->group(function
     Route::post('/', [App\Http\Controllers\Guest\DisputeController::class, 'store'])->name('store');
 });
 
+// ── AI Chat Assistant ─────────────────────────────────────────────────────────
+Route::post('/ai-chat', [App\Http\Controllers\AiChatController::class, 'chat'])->name('ai.chat');
+
 // ── Newsletter ────────────────────────────────────────────────────────────────
 Route::post('/newsletter/subscribe', [App\Http\Controllers\Guest\NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/unsubscribe/{token}', [App\Http\Controllers\Guest\NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');

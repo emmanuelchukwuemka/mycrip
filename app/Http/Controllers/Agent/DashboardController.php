@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
-use App\Models\Property;
 use App\Models\Inquiry;
+use App\Models\Property;
+use App\Models\PropertyRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,15 @@ class DashboardController extends Controller
         
         $newInquiries = $inquiries->where('status', 'new')->count();
         
+        // Get active buyer requests from the Buyer Wall
+        $propertyRequests = PropertyRequest::with('user')
+            ->where('status', 'pending')
+            ->latest()
+            ->take(5)
+            ->get();
+            
+        $totalActiveRequests = PropertyRequest::where('status', 'pending')->count();
+        
         // Get subscription information
         $currentSubscription = $user->currentSubscription;
         
@@ -43,6 +53,8 @@ class DashboardController extends Controller
             'recentProperties',
             'inquiries',
             'newInquiries',
+            'propertyRequests',
+            'totalActiveRequests',
             'currentSubscription'
         ));
     }

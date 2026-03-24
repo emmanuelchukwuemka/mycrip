@@ -19,7 +19,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.bgLight,
       appBar: AppBar(
-        title: const Text('MyCrip Africa', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.jpeg',
+              height: 32,
+              width: 32,
+              fit: BoxFit.contain,
+            ),
+            const SizedBox(width: 12),
+            const Text('MyCrip Africa', style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         foregroundColor: AppColors.primaryNavy,

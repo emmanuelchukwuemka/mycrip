@@ -1,10 +1,12 @@
 <x-app-layout>
     <!-- Hero Section -->
-    <div class="relative overflow-hidden" style="background-color: #001F3F;">
-        <div class="absolute inset-0 bg-black opacity-40"></div>
-        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Properties" class="w-full h-96 object-cover">
+    <div class="relative overflow-hidden" style="min-height:480px;">
+        <!-- Background image -->
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Properties" class="absolute inset-0 w-full h-full object-cover">
+        <!-- Dark overlay -->
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.65) 100%);"></div>
         
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center" style="min-height:480px;">
             <div class="text-center">
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
                     Discover Your Dream <span id="typing-text-listing" class="after:content-['|'] after:animate-ping after:text-[#C6A664] after:ml-1" style="color: #C6A664;"></span>

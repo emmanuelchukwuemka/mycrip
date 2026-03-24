@@ -87,6 +87,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(flex: 3),
+                    Image.asset(
+                      'assets/images/logo.jpeg',
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.contain,
+                    ),
+                    const SizedBox(height: 24),
                     Text(
                       'MyCrip Africa',
                       style: Theme.of(context).textTheme.displayLarge?.copyWith(

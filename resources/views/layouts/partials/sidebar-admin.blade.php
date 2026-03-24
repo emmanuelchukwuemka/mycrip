@@ -3,11 +3,7 @@
     <!-- Logo Section -->
     <div class="flex items-center justify-center h-20 border-b" style="border-color: rgba(198, 166, 100, 0.2);">
         <div class="flex items-center space-x-3">
-            <div class="h-10 w-10 rounded-xl flex items-center justify-center shadow-lg" style="background-color: #C6A664;">
-                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-            </div>
+            <img src="{{ asset('images/icons/logo.jpeg') }}" alt="MyCrib" class="h-12 w-auto rounded-xl shadow-lg">
             <div>
                 <span class="text-xl font-bold text-white tracking-wide">MyCrib</span>
                 <span class="text-xs block font-medium tracking-widest" style="color: #C6A664;">ADMIN PANEL</span>
@@ -46,6 +42,15 @@
                 </svg>
             </div>
             <span class="font-medium">Properties</span>
+        </a>
+
+        <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 hover:bg-white/10" href="{{ route('requests.index') }}" style="color: rgba(255,255,255,0.7);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+            <div class="p-2 rounded-lg mr-3" style="background: rgba(255,255,255,0.1);">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M9 5H7a2 2 0 00-2-2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <span class="font-medium">Buyer Wall</span>
         </a>
 
         <a class="flex items-center py-3 px-4 rounded-xl mb-2 transition-all duration-200 hover:bg-white/10 {{ Request::is('admin/blog*') ? 'bg-white/10 text-white' : '' }}" href="{{ route('admin.blog.index') }}" style="color: rgba(255,255,255,0.7);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
