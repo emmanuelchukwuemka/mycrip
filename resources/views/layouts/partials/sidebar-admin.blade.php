@@ -3,9 +3,9 @@
     <!-- Logo Section -->
     <div class="flex items-center justify-center h-20 border-b" style="border-color: rgba(198, 166, 100, 0.2);">
         <div class="flex items-center space-x-3">
-            <img src="{{ asset('images/icons/logo.jpeg') }}" alt="MyCrib" class="h-12 w-auto rounded-xl shadow-lg">
+            <img src="{{ asset('images/icons/logo_variant_1.png') }}" alt="MyCrib Africa" class="h-12 w-auto rounded-xl shadow-lg">
             <div>
-                <span class="text-xl font-bold text-white tracking-wide">MyCrib</span>
+                <span class="text-xl font-bold text-white tracking-wide">MyCrib Africa</span>
                 <span class="text-xs block font-medium tracking-widest" style="color: #C6A664;">ADMIN PANEL</span>
             </div>
         </div>

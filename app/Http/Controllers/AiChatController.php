@@ -18,15 +18,9 @@ class AiChatController extends Controller
             'history' => 'nullable|array',
         ]);
 
-        $apiKey = config('services.gemini.api_key');
-        
-        if (!$apiKey) {
-            return response()->json([
-                'reply' => 'AI assistant is currently unavailable. Please try again later.',
-            ], 503);
-        }
+        // First try local AI endpoint (built in /ai app), then fallback to Gemini if not available.
+        $localAiUrl = config('services.local_ai.url', 'http://127.0.0.1:8000/chat');
 
-        // Build the conversation context
         $systemPrompt = "You are MyCrib AI, a friendly and knowledgeable real estate assistant for MyCrib Africa — a property platform connecting buyers, renters, and agents across Nigeria and Africa.\n\n" .
             "Your role:\n" .
             "- Help users find properties, understand the platform, and answer real estate questions.\n" .
@@ -57,6 +51,26 @@ class AiChatController extends Controller
         ];
 
         try {
+            // Local AI endpoint (text retrieval/LLM pipeline)
+            $localResp = Http::timeout(30)->post($localAiUrl, [
+                'role' => 'user',
+                'question' => $request->message,
+            ]);
+
+            if ($localResp->successful()) {
+                $reply = $localResp->json()['answer'] ?? null;
+                if (!empty($reply)) {
+                    return response()->json(['reply' => $reply]);
+                }
+            }
+
+            // Fallback to Gemini if local fails
+            $apiKey = config('services.gemini.api_key');
+            if (!$apiKey) {
+                Log::error('AI local and Gemini unavailable', ['local_status' => $localResp->status()]);
+                return response()->json(['reply' => 'AI assistant is currently unavailable. Please try again later.'], 503);
+            }
+
             $response = Http::timeout(30)->post(
                 "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={$apiKey}",
                 [
@@ -75,22 +89,15 @@ class AiChatController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 $reply = $data['candidates'][0]['content']['parts'][0]['text'] ?? 'I couldn\'t generate a response. Please try again.';
-                
                 return response()->json(['reply' => $reply]);
             }
 
             Log::error('Gemini API error', ['status' => $response->status(), 'body' => $response->body()]);
-            
-            return response()->json([
-                'reply' => 'I\'m having trouble connecting right now. Please try again in a moment.',
-            ], 500);
+            return response()->json(['reply' => 'I\'m having trouble connecting right now. Please try again in a moment.'], 500);
 
         } catch (\Exception $e) {
             Log::error('AI Chat error: ' . $e->getMessage());
-            
-            return response()->json([
-                'reply' => 'Something went wrong. Please try again later.',
-            ], 500);
+            return response()->json(['reply' => 'Something went wrong. Please try again later.'], 500);
         }
     }
 }

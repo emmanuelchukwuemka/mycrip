@@ -14,7 +14,7 @@ class _AIConversationalSearchScreenState extends State<AIConversationalSearchScr
   final List<Map<String, dynamic>> _messages = [
     {
       'isUser': false,
-      'text': "Hi! I'm your MyCrip AI Assistant. Describe your dream home in your own words, and I'll find it for you.",
+      'text': "Hi! I'm your MyCrib AI Assistant. Describe your dream home in your own words, and I'll find it for you.",
     }
   ];
 

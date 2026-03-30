@@ -4,16 +4,16 @@ import 'features/onboarding/presentation/screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyCripApp());
+  runApp(const MyCribApp());
 }
 
-class MyCripApp extends StatelessWidget {
-  const MyCripApp({super.key});
+class MyCribApp extends StatelessWidget {
+  const MyCribApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MyCrip Africa',
+      title: 'MyCrib Africa',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,

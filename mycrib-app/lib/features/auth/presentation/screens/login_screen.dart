@@ -39,10 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  child: const Icon(
-                    Icons.home_work_rounded,
-                    size: 60,
-                    color: AppColors.primaryNavy,
+                  child: Image.asset(
+                    'assets/images/logo_variant_1.png',
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 const SizedBox(height: 40),

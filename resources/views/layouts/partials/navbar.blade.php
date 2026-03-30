@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
-                        <img src="{{ asset('images/icons/logo.jpeg') }}" alt="MyCrib Africa" class="h-12 w-auto rounded-xl shadow-lg group-hover:shadow-xl transform group-hover:scale-110 transition-all duration-300">
+                        <img src="{{ asset('images/icons/logo_variant_1.png') }}" alt="MyCrib Africa" class="h-12 w-auto rounded-xl shadow-lg group-hover:shadow-xl transform group-hover:scale-110 transition-all duration-300">
                         <span class="text-2xl font-bold" style="color: #001F3F;">
                             MyCrib Africa
                         </span>

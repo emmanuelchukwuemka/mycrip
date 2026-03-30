@@ -34,10 +34,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
-                    'assets/images/logo.jpeg',
+                    'assets/images/logo_variant_1.png',
                     height: 80,
                     width: 80,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -51,7 +51,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Join MyCrip Africa to find your dream home',
+                  'Join MyCrib Africa to find your dream home',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey,

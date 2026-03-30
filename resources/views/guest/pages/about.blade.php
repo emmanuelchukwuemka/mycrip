@@ -1,9 +1,9 @@
-<x-app-layout title="About Us & How it Works | MyCrip">
+<x-app-layout title="About Us & How it Works | MyCrib">
     <!-- Hero Section -->
     <div class="relative py-32 bg-[#001F3F] text-white overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0 bg-[#001F3F]">
-            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80" alt="About MyCrip" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80" alt="About MyCrib" class="w-full h-full object-cover">
         </div>
         <!-- Navy Overlay -->
         <div class="absolute inset-0 z-0 bg-[#001F3F] opacity-50 mix-blend-multiply"></div>
@@ -62,7 +62,7 @@
                 });
             </script>
             <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                MyCrip isn't just a property listing site. It's a secure, modern ecosystem designed to bring transparency and speed to the Nigerian real estate market.
+                MyCrib isn't just a property listing site. It's a secure, modern ecosystem designed to bring transparency and speed to the Nigerian real estate market.
             </p>
         </div>
     </div>
@@ -100,7 +100,7 @@
     <div class="py-24 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-[#001F3F] mb-4 uppercase tracking-tight">Why Choose MyCrip?</h2>
+                <h2 class="text-4xl font-black text-[#001F3F] mb-4 uppercase tracking-tight">Why Choose MyCrib?</h2>
                 <div class="w-24 h-1.5 bg-[#C6A664] mx-auto rounded-full"></div>
             </div>
 
@@ -123,7 +123,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-[#001F3F] mb-4">Mobile & Offline Ready</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">
-                        Install MyCrip on your phone! Our PWA technology means you can browse properties offline and receive instant push notifications.
+                        Install MyCrib on your phone! Our PWA technology means you can browse properties offline and receive instant push notifications.
                     </p>
                 </div>
 
@@ -157,7 +157,7 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-black text-[#001F3F] mb-4 uppercase tracking-tight">How It Works</h2>
-                <p class="text-gray-500 font-medium">Getting started with MyCrip is simple.</p>
+                <p class="text-gray-500 font-medium">Getting started with MyCrib is simple.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">

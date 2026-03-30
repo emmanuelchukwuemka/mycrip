@@ -5,10 +5,96 @@
             <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Luxury Real Estate">
             <div class="absolute inset-0" style="background-color: #001F3F; opacity: 0.9;"></div>
             <div class="absolute inset-0 bg-black/20"></div>
+            <!-- Logo Overlay -->
+            <div class="absolute inset-0 flex items-center justify-center p-12">
+                <div class="text-center">
+                    <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="MyCrib Africa" class="motion-logo w-2/3 h-auto max-w-md mx-auto drop-shadow-2xl">
+                    <p class="mt-12 text-white text-2xl font-bold tracking-[0.3em] uppercase opacity-80 h-8">
+                        <span id="typing-tagline" class="typing-cursor"></span>
+                    </p>
+                </div>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const taglines = [
+                        "Premium Real Estate",
+                        "Find Your Dream Home",
+                        "Modern African Living"
+                    ];
+                    const el = document.getElementById('typing-tagline');
+                    let taglineIndex = 0;
+                    let charIndex = 0;
+                    let isDeleting = false;
+                    let typeSpeed = 150;
+
+                    function type() {
+                        if (!el) return;
+                        
+                        const currentTagline = taglines[taglineIndex];
+
+                        if (isDeleting) {
+                            el.textContent = currentTagline.substring(0, charIndex--);
+                            typeSpeed = 80;
+                        } else {
+                            el.textContent = currentTagline.substring(0, charIndex++);
+                            typeSpeed = 150;
+                        }
+
+                        if (!isDeleting && charIndex > currentTagline.length) {
+                            isDeleting = true;
+                            typeSpeed = 2000; // Pause at the end
+                        } else if (isDeleting && charIndex < 0) {
+                            isDeleting = false;
+                            charIndex = 0;
+                            taglineIndex = (taglineIndex + 1) % taglines.length;
+                            typeSpeed = 500; // Pause before starting next tagline
+                        }
+
+                        setTimeout(type, typeSpeed);
+                    }
+                    type();
+                });
+            </script>
         </div>
 
         <!-- Right Side: Form -->
-        <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+        <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 scale-in-center">
+            <style>
+                @keyframes float {
+                    0% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(-20px) rotate(1deg); }
+                    100% { transform: translateY(0px) rotate(0deg); }
+                }
+                @keyframes glow {
+                    0%, 100% { filter: drop-shadow(0 0 20px rgba(198, 166, 100, 0.3)); }
+                    50% { filter: drop-shadow(0 0 40px rgba(198, 166, 100, 0.6)); }
+                }
+                @keyframes reveal {
+                    from { opacity: 0; transform: scale(0.8) translateY(20px); }
+                    to { opacity: 1; transform: scale(1) translateY(0); }
+                }
+                @keyframes breathing {
+                    0%, 100% { opacity: 0.4; transform: translateY(0px) scale(0.95); }
+                    50% { opacity: 1; transform: translateY(-20px) scale(1.05); }
+                }
+                .motion-logo {
+                    animation: breathing 5s ease-in-out infinite, glow 4s ease-in-out infinite;
+                }
+                .scale-in-center {
+                    animation: reveal 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+                }
+                .typing-cursor::after {
+                    content: '|';
+                    animation: blink 1s step-end infinite;
+                    margin-left: 4px;
+                    color: #C6A664;
+                }
+                @keyframes blink {
+                    from, to { opacity: 1; }
+                    50% { opacity: 0; }
+                }
+            </style>
             <div class="mx-auto w-full max-w-md lg:w-96">
                 <div class="text-center mb-8">
                     <a href="{{ route('home') }}" class="inline-flex items-center transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">

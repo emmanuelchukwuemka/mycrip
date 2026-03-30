@@ -85,7 +85,7 @@
                 <div class="bg-[#001F3F] rounded-[40px] shadow-2xl p-12 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
                     <div class="relative z-10">
-                        <h2 class="text-4xl font-bold text-white mb-6">List Your Hotel on MyCrip</h2>
+                        <h2 class="text-4xl font-bold text-white mb-6">List Your Hotel on MyCrib</h2>
                         <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                             Join the premier real estate network in Africa and showcase your hospitality property to thousands of high-intent users.
                         </p>

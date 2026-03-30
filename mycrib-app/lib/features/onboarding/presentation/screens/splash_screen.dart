@@ -88,14 +88,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   children: [
                     const Spacer(flex: 3),
                     Image.asset(
-                      'assets/images/logo.jpeg',
-                      height: 100,
-                      width: 100,
+                      'assets/images/logo_variant_2.png',
+                      height: 120,
+                      width: 120,
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      'MyCrip Africa',
+                      'MyCrib Africa',
                       style: Theme.of(context).textTheme.displayLarge?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

@@ -2,7 +2,9 @@
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="col-span-1 md:col-span-1">
-                <span class="text-2xl font-bold" style="color: #C6A664;">MyCrib Africa</span>
+                <a href="{{ route('home') }}" class="inline-block mb-4">
+                    <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="MyCrib Africa" class="h-20 w-auto transform hover:scale-105 transition-transform duration-300">
+                </a>
                 <p class="mt-4 text-sm" style="color: #FFFFFF; opacity: 0.8;">
                     Connecting you to your dream home across Africa. Reliable, fast, and secure property listings.
                 </p>

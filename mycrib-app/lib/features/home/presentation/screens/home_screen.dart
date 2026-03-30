@@ -22,13 +22,13 @@ class HomeScreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              'assets/images/logo.jpeg',
+              'assets/images/logo_variant_1.png',
               height: 32,
               width: 32,
               fit: BoxFit.contain,
             ),
             const SizedBox(width: 12),
-            const Text('MyCrip Africa', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('MyCrib Africa', style: TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
         backgroundColor: Colors.white,

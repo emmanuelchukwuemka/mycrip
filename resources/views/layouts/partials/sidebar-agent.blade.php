@@ -20,12 +20,12 @@
              style="background:radial-gradient(circle,#C6A664,transparent)"></div>
 
         {{-- Logo icon --}}
-        <img src="{{ asset('images/icons/logo.jpeg') }}" alt="MyCrip" class="w-10 h-10 object-contain rounded-xl shadow-xl flex-shrink-0">
+        <img src="{{ asset('images/icons/logo_variant_1.png') }}" alt="MyCrib Africa" class="w-10 h-10 object-contain rounded-xl shadow-xl flex-shrink-0">
 
         {{-- Brand text --}}
         <div class="ml-3 overflow-hidden transition-all duration-300 whitespace-nowrap"
              :class="sidebarCollapsed ? 'w-0 opacity-0 ml-0' : 'w-auto opacity-100'">
-            <p class="text-white font-extrabold text-base tracking-tight leading-none uppercase">MyCrip</p>
+            <p class="text-white font-extrabold text-base tracking-tight leading-none uppercase">MyCrib Africa</p>
             <p class="text-[11px] font-black tracking-[.2em] mt-1" style="color:#C6A664">AGENT PORTAL</p>
         </div>
 
@@ -257,7 +257,7 @@
         {{-- Version --}}
         <div class="mt-2 px-3 flex items-center justify-between transition-all duration-300 overflow-hidden"
              :class="sidebarCollapsed ? 'opacity-0 h-0' : 'opacity-100'">
-            <span class="text-[8px] font-bold tracking-[.18em] text-white/20 uppercase">MyCrip Africa</span>
+            <span class="text-[8px] font-bold tracking-[.18em] text-white/20 uppercase">MyCrib Africa</span>
             <span class="text-[8px] font-bold text-white/20">v2.1</span>
         </div>
     </div>

@@ -18,7 +18,7 @@
                     </ol>
                 </nav>
                 <h1 class="text-3xl font-black text-gray-900 tracking-tight">Privacy & Data</h1>
-                <p class="mt-2 text-gray-500 font-medium">Take control of your personal information and how it's used on MyCrip.</p>
+                <p class="mt-2 text-gray-500 font-medium">Take control of your personal information and how it's used on MyCrib.</p>
             </div>
         </div>
 
