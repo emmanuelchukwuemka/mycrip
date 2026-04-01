@@ -294,6 +294,30 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="animate-fade-in-up animation-delay-1800">
+                    <a href="{{ route('properties.categories.hotels') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Hotel" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Hotels</h3>
+                                <p class="text-gray-200 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">Luxury accommodations</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="animate-fade-in-up animation-delay-2100">
+                    <a href="{{ route('properties.categories.lodges') }}" class="group relative rounded-2xl overflow-hidden h-64 block shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lodge" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Lodges</h3>
+                                <p class="text-gray-200 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">Comfortable stays</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

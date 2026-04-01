@@ -15,9 +15,7 @@
             {{-- Button --}}
             <div class="relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(198,166,100,0.4)] group-hover:-translate-y-1 group-hover:scale-105"
                  style="background:linear-gradient(135deg,#001F3F,#003366);">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/>
-                </svg>
+                <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-8 h-8 object-contain brightness-0 invert">
                 {{-- Gold accent dot --}}
                 <div class="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-black text-white" style="background:#C6A664;">AI</div>
             </div>
@@ -39,12 +37,9 @@
 
             {{-- Header --}}
             <div class="relative px-5 py-4 flex items-center justify-between flex-shrink-0" style="background:linear-gradient(135deg,#001F3F,#003366);">
-                <div class="absolute inset-0 opacity-10" style="background:radial-gradient(circle at 20% 50%,#C6A664,transparent 60%);"></div>
                 <div class="relative flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(198,166,100,0.2);border:1px solid rgba(198,166,100,0.3);">
-                        <svg class="w-5 h-5" style="color:#C6A664" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
-                        </svg>
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 border border-white/20 shadow-inner">
+                        <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-7 h-7 object-contain">
                     </div>
                     <div>
                         <h4 class="text-sm font-bold text-white leading-none">MyCrib AI</h4>
@@ -62,8 +57,8 @@
                 <template x-if="messages.length === 0">
                     <div class="space-y-4">
                         <div class="flex gap-2.5">
-                            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#001F3F,#003366);">
-                                <svg class="w-3.5 h-3.5" style="color:#C6A664" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+                            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#001F3F,#003366);">
+                                <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
                             </div>
                             <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100 max-w-[85%]">
                                 <p class="text-sm text-gray-700 leading-relaxed">Hi! 👋 I'm <strong>MyCrib AI</strong>, your real estate assistant. I can help you:</p>
@@ -103,8 +98,8 @@
                     <div :class="msg.role === 'user' ? 'flex justify-end' : 'flex gap-2.5'">
                         {{-- AI avatar (only for AI messages) --}}
                         <template x-if="msg.role === 'assistant'">
-                            <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5" style="background:linear-gradient(135deg,#001F3F,#003366);">
-                                <svg class="w-3.5 h-3.5" style="color:#C6A664" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+                            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#001F3F,#003366);">
+                                <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
                             </div>
                         </template>
                         <div :class="msg.role === 'user'
@@ -117,9 +112,9 @@
 
                 {{-- Typing indicator --}}
                 <div x-show="loading" class="flex gap-2.5">
-                    <div class="w-7 h-7 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#001F3F,#003366);">
-                        <svg class="w-3.5 h-3.5" style="color:#C6A664" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
-                    </div>
+                        <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#001F3F,#003366);">
+                            <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
+                        </div>
                     <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100">
                         <div class="flex items-center gap-1.5">
                             <div class="w-2 h-2 rounded-full bg-gray-300 animate-bounce" style="animation-delay:0ms"></div>

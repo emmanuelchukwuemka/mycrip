@@ -70,6 +70,12 @@
                              x-transition:enter-end="opacity-100 scale-100"
                              class="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
                             
+                            <a href="{{ route('properties.categories.hotels') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                                <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                Hotels
+                            </a>
                             <a href="{{ route('properties.categories.lodges') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
                                 <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
@@ -295,6 +301,7 @@
                     </svg>
                 </button>
                 <div x-show="open" class="pl-8 bg-gray-50/50 py-1">
+                    <a href="{{ route('properties.categories.hotels') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Hotels</a>
                     <a href="{{ route('properties.categories.lodges') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Lodges</a>
                     <a href="{{ route('properties.categories.shops') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Shops</a>
                     <a href="{{ route('properties.categories.warehouses') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Warehouses</a>

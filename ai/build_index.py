@@ -35,7 +35,7 @@ if __name__ == "__main__":
     texts = [d["text"] for d in docs]
     index = build_faiss_index(texts)
 
-    faiss.write_index(index, str(BASE_DIR / "mycrip.index"))
+    faiss.write_index(index, str(BASE_DIR / "mycrib.index"))
     print("FAISS index saved to mycrip.index")
 
     with (BASE_DIR / "meta.jsonl").open("w", encoding="utf-8") as f:

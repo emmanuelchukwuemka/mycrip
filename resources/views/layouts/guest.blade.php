@@ -36,5 +36,8 @@
             });
         }
     </script>
+
+    {{-- AI Chat Assistant --}}
+    @include('layouts.partials.ai-chat-widget')
 </body>
 </html>

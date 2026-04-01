@@ -18,6 +18,8 @@
                     <li><a href="{{ route('properties.categories.shops') }}" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Shops</a></li>
                     <li><a href="{{ route('properties.categories.warehouses') }}" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Warehouses</a></li>
                     <li><a href="{{ route('properties.categories.land') }}" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Land</a></li>
+                    <li><a href="{{ route('properties.categories.hotels') }}" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Hotels</a></li>
+                    <li><a href="{{ route('properties.categories.lodges') }}" class="text-base hover:text-white" style="color: #FFFFFF; opacity: 0.8;" onmouseover="this.style.opacity='1'; this.style.color='#C6A664'" onmouseout="this.style.opacity='0.8'; this.style.color='#FFFFFF'">Lodges</a></li>
                 </ul>
             </div>
 

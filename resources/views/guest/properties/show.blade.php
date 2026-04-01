@@ -246,6 +246,97 @@
                         </div>
                         @endif
 
+                        <!-- Hotel/Lodge Hospitality Features -->
+                        @if($property->total_rooms || $property->security_level || $property->parking_capacity || $property->has_pool || $property->has_gym || $property->has_conference_room || $property->has_restaurant)
+                        <div class="mb-8 p-6 rounded-2xl border border-[#C6A664]/20" style="background: linear-gradient(135deg, #C6A664/5, #001F3F/5);">
+                            <h3 class="text-lg font-bold text-[#001F3F] mb-5 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                                Premium Features
+                            </h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+                                @if($property->total_rooms)
+                                <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-[#001F3F]/5 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-[#001F3F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="block text-2xl font-bold text-[#001F3F]">{{ $property->total_rooms }}</span>
+                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Rooms</span>
+                                </div>
+                                @endif
+                                @if($property->parking_capacity)
+                                <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-[#001F3F]/5 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-[#001F3F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8m-8 4h8m-4 4v4m-4-4h8a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="block text-2xl font-bold text-[#001F3F]">{{ $property->parking_capacity }}</span>
+                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Parking Spaces</span>
+                                </div>
+                                @endif
+                                @if($property->security_level)
+                                <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-[#001F3F]/5 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-[#001F3F]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="block text-lg font-bold text-[#001F3F] capitalize">{{ $property->security_level }}</span>
+                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Security Level</span>
+                                </div>
+                                @endif
+                                @if($property->has_pool)
+                                <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-blue-50 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="block text-sm font-bold text-[#001F3F]">Swimming Pool</span>
+                                    <span class="text-xs text-green-600 font-semibold">Available</span>
+                                </div>
+                                @endif
+                                @if($property->has_gym)
+                                <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-orange-50 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="block text-sm font-bold text-[#001F3F]">Fitness Gym</span>
+                                    <span class="text-xs text-green-600 font-semibold">Available</span>
+                                </div>
+                                @endif
+                                @if($property->has_conference_room)
+                                <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-purple-50 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="block text-sm font-bold text-[#001F3F]">Conference Room</span>
+                                    <span class="text-xs text-green-600 font-semibold">Available</span>
+                                </div>
+                                @endif
+                                @if($property->has_restaurant)
+                                <div class="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+                                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-red-50 flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="block text-sm font-bold text-[#001F3F]">Restaurant/Bar</span>
+                                    <span class="text-xs text-green-600 font-semibold">Available</span>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                        @endif
+
                         <!-- Description -->
                         <div class="prose max-w-none text-gray-700 mb-8">
                             <h3 class="text-xl font-semibold mb-4">Description</h3>
@@ -291,6 +382,43 @@
                                     <svg class="h-5 w-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                                     Power Supply
                                 </div>
+                                @endif
+                                @if($property->has_pool)
+                                <div class="flex items-center text-gray-600">
+                                    <svg class="h-5 w-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Swimming Pool
+                                </div>
+                                @endif
+                                @if($property->has_gym)
+                                <div class="flex items-center text-gray-600">
+                                    <svg class="h-5 w-5 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Fitness Gym
+                                </div>
+                                @endif
+                                @if($property->has_conference_room)
+                                <div class="flex items-center text-gray-600">
+                                    <svg class="h-5 w-5 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Conference Room
+                                </div>
+                                @endif
+                                @if($property->has_restaurant)
+                                <div class="flex items-center text-gray-600">
+                                    <svg class="h-5 w-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                    Restaurant/Bar
+                                </div>
+                                @endif
+                                @if(!empty($property->features['other_amenities']))
+                                    @php
+                                        $otherAmenities = explode(',', $property->features['other_amenities']);
+                                    @endphp
+                                    @foreach($otherAmenities as $amenity)
+                                        @if(trim($amenity))
+                                        <div class="flex items-center text-gray-600">
+                                            <svg class="h-5 w-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                            <span class="capitalize">{{ trim($amenity) }}</span>
+                                        </div>
+                                        @endif
+                                    @endforeach
                                 @endif
                             </div>
                         </div>

@@ -77,6 +77,15 @@ class PropertyManagementController extends Controller
             'power_supply' => 'boolean',
             'video_url' => 'nullable|url|max:255',
             'virtual_tour_url' => 'nullable|url|max:255',
+            // Hotel/Lodge specific fields
+            'total_rooms' => 'nullable|integer|min:0',
+            'has_pool' => 'boolean',
+            'has_gym' => 'boolean',
+            'has_conference_room' => 'boolean',
+            'has_restaurant' => 'boolean',
+            'security_level' => 'nullable|string|in:standard,enhanced,premium,elite',
+            'parking_capacity' => 'nullable|integer|min:0',
+            'other_amenities' => 'nullable|string|max:500',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp',
             'images' => 'nullable|array',
             'sub_galleries' => 'nullable|array',
@@ -114,6 +123,17 @@ class PropertyManagementController extends Controller
             'power_supply' => $request->boolean('power_supply'),
             'video_url' => $validated['video_url'] ?? null,
             'virtual_tour_url' => $validated['virtual_tour_url'] ?? null,
+            // Hotel/Lodge specific fields
+            'total_rooms' => $validated['total_rooms'] ?? null,
+            'has_pool' => $request->boolean('has_pool'),
+            'has_gym' => $request->boolean('has_gym'),
+            'has_conference_room' => $request->boolean('has_conference_room'),
+            'has_restaurant' => $request->boolean('has_restaurant'),
+            'security_level' => $validated['security_level'] ?? null,
+            'parking_capacity' => $validated['parking_capacity'] ?? null,
+            'features' => [
+                'other_amenities' => $request->input('other_amenities'),
+            ],
         ]);
 
         // Handle image uploads with hash generation
@@ -224,6 +244,15 @@ class PropertyManagementController extends Controller
             'power_supply' => 'boolean',
             'video_url' => 'nullable|url|max:255',
             'virtual_tour_url' => 'nullable|url|max:255',
+            // Hotel/Lodge specific fields
+            'total_rooms' => 'nullable|integer|min:0',
+            'has_pool' => 'boolean',
+            'has_gym' => 'boolean',
+            'has_conference_room' => 'boolean',
+            'has_restaurant' => 'boolean',
+            'security_level' => 'nullable|string|in:standard,enhanced,premium,elite',
+            'parking_capacity' => 'nullable|integer|min:0',
+            'other_amenities' => 'nullable|string|max:500',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp',
             'images' => 'nullable|array',
             'sub_galleries' => 'nullable|array',
@@ -231,6 +260,22 @@ class PropertyManagementController extends Controller
             'sub_galleries.*.images' => 'required_with:sub_galleries|array',
             'sub_galleries.*.images.*' => 'image|mimes:jpeg,png,jpg,webp',
         ]);
+
+        // Merge hotel boolean fields (checkboxes don't submit when unchecked)
+        $validated['has_pool'] = $request->boolean('has_pool');
+        $validated['has_gym'] = $request->boolean('has_gym');
+        $validated['has_conference_room'] = $request->boolean('has_conference_room');
+        $validated['has_restaurant'] = $request->boolean('has_restaurant');
+        $validated['furnished'] = $request->boolean('furnished');
+        $validated['serviced'] = $request->boolean('serviced');
+        $validated['parking'] = $request->boolean('parking');
+        $validated['security'] = $request->boolean('security');
+        $validated['water_supply'] = $request->boolean('water_supply');
+        $validated['power_supply'] = $request->boolean('power_supply');
+
+        $features = $property->features ?? [];
+        $features['other_amenities'] = $request->input('other_amenities');
+        $validated['features'] = $features;
 
         $property->update($validated);
 

@@ -53,7 +53,7 @@
                             <div x-data="{ selected: '{{ old('category', 'apartment') }}' }">
                                 <label class="block text-[11px] font-black text-gray-500 uppercase tracking-[.15em] mb-3 pl-1">Property Category <span class="text-[#C6A664]">*</span></label>
                                 <input type="hidden" name="category" :value="selected" required>
-                                <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                                <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-2">
                                     <button type="button" @click="selected = 'apartment'" 
                                             :class="selected === 'apartment' ? 'border-[#C6A664] bg-[#C6A664]/5 ring-2 ring-[#C6A664]/20' : 'border-gray-100 bg-gray-50/80 hover:border-gray-200 hover:bg-white'"
                                             class="flex flex-col items-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300">
@@ -83,6 +83,18 @@
                                             class="flex flex-col items-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300">
                                         <svg class="w-6 h-6" :class="selected === 'warehouse' ? 'text-[#C6A664]' : 'text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/></svg>
                                         <span class="text-[10px] font-bold" :class="selected === 'warehouse' ? 'text-[#001F3F]' : 'text-gray-400'">Warehouse</span>
+                                    </button>
+                                    <button type="button" @click="selected = 'hotel'" 
+                                            :class="selected === 'hotel' ? 'border-[#C6A664] bg-[#C6A664]/5 ring-2 ring-[#C6A664]/20' : 'border-gray-100 bg-gray-50/80 hover:border-gray-200 hover:bg-white'"
+                                            class="flex flex-col items-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300">
+                                        <svg class="w-6 h-6" :class="selected === 'hotel' ? 'text-[#C6A664]' : 'text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                        <span class="text-[10px] font-bold" :class="selected === 'hotel' ? 'text-[#001F3F]' : 'text-gray-400'">Hotel</span>
+                                    </button>
+                                    <button type="button" @click="selected = 'lodge'" 
+                                            :class="selected === 'lodge' ? 'border-[#C6A664] bg-[#C6A664]/5 ring-2 ring-[#C6A664]/20' : 'border-gray-100 bg-gray-50/80 hover:border-gray-200 hover:bg-white'"
+                                            class="flex flex-col items-center gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all duration-300">
+                                        <svg class="w-6 h-6" :class="selected === 'lodge' ? 'text-[#C6A664]' : 'text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                                        <span class="text-[10px] font-bold" :class="selected === 'lodge' ? 'text-[#001F3F]' : 'text-gray-400'">Lodge</span>
                                     </button>
                                 </div>
                                 @error('category') <p class="text-red-500 text-[10px] font-bold mt-2 pl-1">{{ $message }}</p> @enderror

@@ -7,7 +7,7 @@ except ImportError as e:
     print(f"WARNING: query_agent import failed: {e}")
     answer_question = None
 
-app = FastAPI(title="MyCrip Local LLM Assistant")
+app = FastAPI(title="MyCrib Local LLM Assistant")
 
 
 class ChatRequest(BaseModel):

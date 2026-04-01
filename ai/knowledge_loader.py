@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
+ROOT_DIR = BASE_DIR.parent
 
 def clean_text(text: str) -> str:
     # Remove HTML/PHP tags
@@ -58,7 +59,7 @@ def collect_corpus(output_path: Path):
     doc_id = 0
     with output_path.open("w", encoding="utf-8") as out:
         for rel in search_paths:
-            p = BASE_DIR / rel
+            p = ROOT_DIR / rel
             if p.is_file():
                 files = [p]
             elif p.is_dir():
@@ -81,7 +82,7 @@ def collect_corpus(output_path: Path):
                     doc_id += 1
                     record = {
                         "id": f"doc-{doc_id}",
-                        "source": str(f.relative_to(BASE_DIR)),
+                        "source": str(f.relative_to(ROOT_DIR)),
                         "text": chunk,
                     }
                     out.write(json.dumps(record, ensure_ascii=False) + "\n")

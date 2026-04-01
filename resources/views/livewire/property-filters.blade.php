@@ -67,10 +67,10 @@
                         </svg>
                     </div>
                 </button>
-                <button wire:click="$set('category', 'student_lodge')" class="p-3 text-left rounded-xl border-2 transition-all duration-300 hover:shadow-md {{ $category === 'student_lodge' ? 'border-[#C6A664] bg-[#C6A664]/10 text-[#001F3F]' : 'border-gray-200 bg-white text-gray-700 hover:border-[#C6A664]/40' }}">
+                <button wire:click="$set('category', 'lodge')" class="p-3 text-left rounded-xl border-2 transition-all duration-300 hover:shadow-md {{ $category === 'lodge' ? 'border-[#C6A664] bg-[#C6A664]/10 text-[#001F3F]' : 'border-gray-200 bg-white text-gray-700 hover:border-[#C6A664]/40' }}">
                     <div class="flex items-center justify-between">
                         <span class="font-medium">Lodge</span>
-                        <svg class="w-5 h-5 {{ $category === 'student_lodge' ? 'text-[#C6A664]' : 'text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 {{ $category === 'lodge' ? 'text-[#C6A664]' : 'text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253"/>
                         </svg>
                     </div>
@@ -87,6 +87,14 @@
                     <div class="flex items-center justify-between">
                         <span class="font-medium">Store</span>
                         <svg class="w-5 h-5 {{ $category === 'warehouse' ? 'text-[#C6A664]' : 'text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                </button>
+                <button wire:click="$set('category', 'hotel')" class="p-3 text-left rounded-xl border-2 transition-all duration-300 hover:shadow-md {{ $category === 'hotel' ? 'border-[#C6A664] bg-[#C6A664]/10 text-[#001F3F]' : 'border-gray-200 bg-white text-gray-700 hover:border-[#C6A664]/40' }}">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium">Hotel</span>
+                        <svg class="w-5 h-5 {{ $category === 'hotel' ? 'text-[#C6A664]' : 'text-gray-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                     </div>

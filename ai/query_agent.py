@@ -11,9 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent
 
 @lru_cache(maxsize=1)
 def load_index():
-    index_path = BASE_DIR / "mycrip.index"
+    index_path = BASE_DIR / "mycrib.index"
     if not index_path.exists():
-        raise FileNotFoundError("mycrip.index not found; run build_index.py first")
+        raise FileNotFoundError("mycrib.index not found; run build_index.py first")
 
     index = faiss.read_index(str(index_path))
     return index
@@ -39,8 +39,8 @@ def load_embedder():
 
 @lru_cache(maxsize=1)
 def load_llm():
-    model_name = "TheBloke/guanaco-7b"  # or your preferred local model
-    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+    model_name = "MBZUAI/LaMini-GPT-124M"  # Lightweight and valid for RAG
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         device_map="auto",
@@ -87,7 +87,7 @@ def answer_question(question: str, role: str = "user", top_k: int = 5):
         extrarole = "As a user-facing assistant, answer clearly with step-by-step guidance and friendly tone."
 
     prompt = (
-        "You are an expert assistant for MyCrip real estate website. Use the documented context to formulate an answer. "
+        "You are an expert assistant for MyCrib real estate website. Use the documented context to formulate an answer. "
         + extrarole
         + "\n\nCONTEXT:\n"
         + context
