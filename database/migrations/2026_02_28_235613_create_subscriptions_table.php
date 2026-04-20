@@ -21,8 +21,8 @@ return new class extends Migration
             $table->decimal('amount', 10, 2);
             $table->string('currency', 3)->default('NGN');
             $table->enum('interval', ['daily', 'weekly', 'monthly', 'annually'])->default('monthly');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->timestamp('next_payment_date')->nullable();
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamp('trial_ends_at')->nullable();
