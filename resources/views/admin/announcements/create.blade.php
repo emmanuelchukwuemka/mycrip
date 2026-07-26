@@ -1,10 +1,10 @@
 <x-admin-layout>
     <div class="mb-8">
-        <a href="{{ route('admin.announcements.index') }}" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-[#001F3F] transition-colors mb-4">
+        <a href="{{ route('admin.announcements.index') }}" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-[#A85C2E] transition-colors mb-4">
             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
             Back to List
         </a>
-        <h2 class="text-3xl font-bold" style="color: #001F3F;">Create Announcement</h2>
+        <h2 class="text-3xl font-bold" style="color: #A85C2E;">Create Announcement</h2>
         <p class="mt-1 text-gray-500">Add a new announcement to the frontend ticker.</p>
     </div>
 
@@ -17,7 +17,7 @@
                     <div>
                         <label for="content" class="block text-sm font-bold text-gray-700 mb-2">Announcement Content <span class="text-red-500">*</span></label>
                         <input type="text" name="content" id="content" required
-                               class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#001F3F] focus:border-transparent transition-all"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#A85C2E] focus:border-transparent transition-all"
                                placeholder="Enter announcement text...">
                         @error('content') <p class="mt-1 text-sm text-red-500">{{ $message }}</p> @enderror
                     </div>
@@ -25,7 +25,7 @@
                     <div>
                         <label for="link" class="block text-sm font-bold text-gray-700 mb-2">Action Link (Optional)</label>
                         <input type="url" name="link" id="link" 
-                               class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#001F3F] focus:border-transparent transition-all"
+                               class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#A85C2E] focus:border-transparent transition-all"
                                placeholder="https://example.com/promo">
                         @error('link') <p class="mt-1 text-sm text-red-500">{{ $message }}</p> @enderror
                     </div>
@@ -34,7 +34,7 @@
                         <div>
                             <label for="bg_color" class="block text-sm font-bold text-gray-700 mb-2">Background Color</label>
                             <div class="flex items-center space-x-3">
-                                <input type="color" name="bg_color" id="bg_color" value="#001F3F"
+                                <input type="color" name="bg_color" id="bg_color" value="#A85C2E"
                                        class="h-10 w-20 p-1 rounded-lg border border-gray-200 bg-white cursor-pointer">
                                 <span class="text-xs text-gray-500">Choose a background color</span>
                             </div>
@@ -53,14 +53,14 @@
                     <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
                         <input type="hidden" name="is_active" value="0">
                         <input type="checkbox" name="is_active" id="is_active" value="1" checked
-                               class="w-5 h-5 rounded border-gray-300 text-[#001F3F] focus:ring-[#001F3F]">
+                               class="w-5 h-5 rounded border-gray-300 text-[#A85C2E] focus:ring-[#A85C2E]">
                         <label for="is_active" class="text-sm font-bold text-gray-700">Display this announcement immediately</label>
                     </div>
                 </div>
             </div>
 
             <div class="flex justify-end pt-4">
-                <button type="submit" class="px-8 py-3 bg-[#001F3F] text-white rounded-xl font-bold hover:bg-[#00152B] transition-all transform hover:scale-105 shadow-lg">
+                <button type="submit" class="px-8 py-3 bg-[#A85C2E] text-white rounded-xl font-bold hover:bg-[#2B1810] transition-all transform hover:scale-105 shadow-lg">
                     Create Announcement
                 </button>
             </div>

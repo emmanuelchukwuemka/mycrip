@@ -1,9 +1,9 @@
 <x-agent-layout>
     <div class="max-w-7xl mx-auto">
         <!-- Hero Header -->
-        <div class="relative overflow-hidden rounded-3xl p-8 mb-8 text-white shadow-2xl" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%);">
-            <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-[#C6A664] opacity-15 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-[#C6A664] opacity-10 rounded-full blur-3xl"></div>
+        <div class="relative overflow-hidden rounded-3xl p-8 mb-8 text-white shadow-2xl" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%);">
+            <div class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-[#2B1810] opacity-15 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-[#2B1810] opacity-10 rounded-full blur-3xl"></div>
             
             <div class="relative flex flex-col md:flex-row items-center justify-between z-10">
                 <div>
@@ -11,7 +11,7 @@
                     <p class="text-white/60 mt-2 text-sm">Manage and respond to client inquiries for your properties</p>
                 </div>
                 <a href="{{ route('agent.dashboard') }}" 
-                   class="mt-4 md:mt-0 inline-flex items-center px-6 py-3 bg-[#C6A664] text-[#001F3F] font-bold rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                   class="mt-4 md:mt-0 inline-flex items-center px-6 py-3 bg-[#2B1810] text-[#A85C2E] font-bold rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
@@ -26,9 +26,9 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Inquiries</p>
-                        <h3 class="text-3xl font-bold mt-1" style="color: #001F3F;">{{ $totalInquiries }}</h3>
+                        <h3 class="text-3xl font-bold mt-1" style="color: #A85C2E;">{{ $totalInquiries }}</h3>
                     </div>
-                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(0, 31, 63, 0.08); color: #001F3F;">
+                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(168, 92, 46, 0.08); color: #A85C2E;">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                         </svg>
@@ -40,9 +40,9 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">New Today</p>
-                        <h3 class="text-3xl font-bold mt-1" style="color: #C6A664;">{{ $newInquiries }}</h3>
+                        <h3 class="text-3xl font-bold mt-1" style="color: #2B1810;">{{ $newInquiries }}</h3>
                     </div>
-                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(198, 166, 100, 0.12); color: #C6A664;">
+                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(43, 24, 16, 0.12); color: #2B1810;">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                         </svg>
@@ -113,11 +113,11 @@
                         <tr class="hover:bg-gray-50/80 transition-colors group">
                             <td class="px-8 py-6">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10 rounded-xl flex items-center justify-center text-white font-bold text-sm" style="background-color: #001F3F;">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-xl flex items-center justify-center text-white font-bold text-sm" style="background-color: #A85C2E;">
                                         {{ strtoupper(substr($inquiry->guest_name, 0, 2)) }}
                                     </div>
                                     <div class="ml-4">
-                                        <div class="text-sm font-bold text-gray-800 group-hover:text-[#C6A664] transition-colors">{{ $inquiry->guest_name }}</div>
+                                        <div class="text-sm font-bold text-gray-800 group-hover:text-[#2B1810] transition-colors">{{ $inquiry->guest_name }}</div>
                                         <div class="text-xs text-gray-400">{{ $inquiry->guest_email }}</div>
                                     </div>
                                 </div>
@@ -137,8 +137,8 @@
                             </td>
                             <td class="px-8 py-6 text-center">
                                 @if($inquiry->status === 'new')
-                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold uppercase" style="background: rgba(198, 166, 100, 0.12); color: #C6A664;">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-[#C6A664] mr-2 animate-pulse"></span>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold uppercase" style="background: rgba(43, 24, 16, 0.12); color: #2B1810;">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-[#2B1810] mr-2 animate-pulse"></span>
                                         New
                                     </span>
                                 @elseif($inquiry->status === 'read')
@@ -162,7 +162,7 @@
                             <td class="px-8 py-6 text-right">
                                 <div class="flex items-center justify-end space-x-2">
                                     <a href="{{ route('agent.inquiries.show', $inquiry->id) }}" 
-                                       class="inline-flex items-center px-4 py-2 text-white text-sm font-bold rounded-xl hover:shadow-lg transition-all duration-200" style="background-color: #001F3F;">
+                                       class="inline-flex items-center px-4 py-2 text-white text-sm font-bold rounded-xl hover:shadow-lg transition-all duration-200" style="background-color: #A85C2E;">
                                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
@@ -171,7 +171,7 @@
                                     </a>
                                     @if($inquiry->status === 'new')
                                     <form action="{{ route('agent.inquiries.show', $inquiry->id) }}" method="GET">
-                                        <button type="submit" class="inline-flex items-center px-4 py-2 border text-sm font-medium rounded-xl hover:bg-gray-50 transition-all duration-200" style="border-color: #C6A664; color: #C6A664;">
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 border text-sm font-medium rounded-xl hover:bg-gray-50 transition-all duration-200" style="border-color: #2B1810; color: #2B1810;">
                                             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                             </svg>
@@ -186,8 +186,8 @@
                         <tr>
                             <td colspan="6" class="px-8 py-16 text-center">
                                 <div class="flex flex-col items-center">
-                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-gray-200 mb-4" style="background: rgba(0, 31, 63, 0.04);">
-                                        <svg class="h-10 w-10" style="color: rgba(0, 31, 63, 0.15);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-gray-200 mb-4" style="background: rgba(168, 92, 46, 0.04);">
+                                        <svg class="h-10 w-10" style="color: rgba(168, 92, 46, 0.15);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                         </svg>
                                     </div>

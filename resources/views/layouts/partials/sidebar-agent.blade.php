@@ -9,7 +9,7 @@
        class="agent-sidebar fixed inset-y-0 left-0 z-40 flex flex-col transition-all duration-300 ease-in-out select-none
               lg:static lg:translate-x-0"
        :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
-       x-bind:style="`background:linear-gradient(180deg,#001F3F 0%,#00152B 100%);border-right:1px solid rgba(255,255,255,0.06);width:${sidebarCollapsed ? '72px' : 'var(--sidebar-w,288px)'}`">
+       x-bind:style="`background:linear-gradient(180deg,#A85C2E 0%,#2B1810 100%);border-right:1px solid rgba(255,255,255,0.06);width:${sidebarCollapsed ? '72px' : 'var(--sidebar-w,288px)'}`">
 
     {{-- ══════════════════════════════════════════════════════
          LOGO / HEADER
@@ -17,16 +17,16 @@
     <div class="flex-shrink-0 flex items-center h-[70px] px-5 border-b border-white/[0.07] relative overflow-hidden">
         {{-- accent glow --}}
         <div class="absolute -top-6 -left-6 w-24 h-24 rounded-full blur-2xl opacity-20"
-             style="background:radial-gradient(circle,#C6A664,transparent)"></div>
+             style="background:radial-gradient(circle,#2B1810,transparent)"></div>
 
         {{-- Logo icon --}}
-        <img src="{{ asset('images/icons/logo_variant_1.png') }}" alt="MyCrib Africa" class="w-10 h-10 object-contain rounded-xl shadow-xl flex-shrink-0">
+        <img src="{{ asset('images/icons/logo.png') }}" alt="Villa Africa" class="w-10 h-10 object-contain rounded-xl shadow-xl flex-shrink-0">
 
         {{-- Brand text --}}
         <div class="ml-3 overflow-hidden transition-all duration-300 whitespace-nowrap"
              :class="sidebarCollapsed ? 'w-0 opacity-0 ml-0' : 'w-auto opacity-100'">
-            <p class="text-white font-extrabold text-base tracking-tight leading-none uppercase">MyCrib Africa</p>
-            <p class="text-[11px] font-black tracking-[.2em] mt-1" style="color:#C6A664">AGENT PORTAL</p>
+            <p class="text-white font-extrabold text-base tracking-tight leading-none uppercase">Villa Africa</p>
+            <p class="text-[11px] font-black tracking-[.2em] mt-1" style="color:#2B1810">AGENT PORTAL</p>
         </div>
 
         {{-- Collapse toggle (desktop) --}}
@@ -208,14 +208,14 @@
             {{-- Avatar --}}
             <div class="relative flex-shrink-0">
                 <div class="w-8 h-8 rounded-lg overflow-hidden ring-1 ring-white/20 group-hover:ring-white/40 transition-all duration-300 flex items-center justify-center"
-                     style="background:linear-gradient(135deg,#C6A664,#a8894e)">
+                     style="background:linear-gradient(135deg,#2B1810,#a8894e)">
                     @if(Auth::user()->agent_image)
                         <img class="w-full h-full object-cover" src="{{ Auth::user()->agent_image_url }}" alt="{{ Auth::user()->name }}">
                     @else
                         <span class="text-xs font-black text-white">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
                     @endif
                 </div>
-                <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full ring-1 ring-[#001F3F]"></span>
+                <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full ring-1 ring-[#A85C2E]"></span>
             </div>
 
             {{-- Name / Role --}}
@@ -257,7 +257,7 @@
         {{-- Version --}}
         <div class="mt-2 px-3 flex items-center justify-between transition-all duration-300 overflow-hidden"
              :class="sidebarCollapsed ? 'opacity-0 h-0' : 'opacity-100'">
-            <span class="text-[8px] font-bold tracking-[.18em] text-white/20 uppercase">MyCrib Africa</span>
+            <span class="text-[8px] font-bold tracking-[.18em] text-white/20 uppercase">Villa Africa</span>
             <span class="text-[8px] font-bold text-white/20">v2.1</span>
         </div>
     </div>
@@ -296,7 +296,7 @@
 
 /* ── Sidebar background (kept in CSS so Alpine :style doesn't wipe it) ── */
 .agent-sidebar {
-    background: linear-gradient(180deg, #001F3F 0%, #00152B 100%) !important;
+    background: linear-gradient(180deg, #A85C2E 0%, #2B1810 100%) !important;
     border-right: 1px solid rgba(255,255,255,0.06);
     will-change: width;
 }
@@ -311,7 +311,7 @@
     left: calc(100% + 12px);
     top: 50%;
     transform: translateY(-50%);
-    background: #001F3F;
+    background: #A85C2E;
     color: #fff;
     font-size: 11px;
     font-weight: 600;

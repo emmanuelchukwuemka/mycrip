@@ -22,7 +22,7 @@
         <!-- Main Form Container -->
         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
             <!-- Header Banner -->
-            <div class="px-8 py-6" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%); border-bottom: 4px solid #C6A664;">
+            <div class="px-8 py-6" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%); border-bottom: 4px solid #2B1810;">
                 <div class="flex items-center justify-between">
                     <div>
                         <h2 class="text-white text-2xl font-bold tracking-tight">Agent Information</h2>
@@ -73,9 +73,9 @@
                         <div class="relative group">
                             <img src="{{ auth()->user()->agent_image_url ?? (auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name ?? 'Agent') . '&background=001F3F&color=fff&size=200') }}"
                                  alt="Profile Picture"
-                                 class="h-32 w-32 rounded-full object-cover border-4 border-gray-100 shadow-lg group-hover:border-[#C6A664] transition-all duration-300"
+                                 class="h-32 w-32 rounded-full object-cover border-4 border-gray-100 shadow-lg group-hover:border-[#2B1810] transition-all duration-300"
                                  id="profile-preview">
-                            <div class="absolute -bottom-3 -right-3 text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110" style="background: #001F3F;">
+                            <div class="absolute -bottom-3 -right-3 text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110" style="background: #A85C2E;">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                                 </svg>
@@ -93,8 +93,8 @@
                                        class="hidden"
                                        onchange="previewImage(event)">
                                 <label for="profile_photo" 
-                                       class="inline-flex items-center px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#C6A664]/20 cursor-pointer" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%); border-bottom: 3px solid #C6A664;">
-                                    <svg class="w-5 h-5 mr-3 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                       class="inline-flex items-center px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#2B1810]/20 cursor-pointer" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%); border-bottom: 3px solid #2B1810;">
+                                    <svg class="w-5 h-5 mr-3 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                                     </svg>
                                     Upload Photo
@@ -119,25 +119,25 @@
                     <div class="space-y-6">
                         <div>
                             <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"></path>
                                 </svg>
                                 Full Name
                             </label>
                             <input type="text" name="name" value="{{ old('name', auth()->user()->name ?? '') }}"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="Your full name">
                         </div>
                         
                         <div>
                             <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8h18M3 12h18M3 16h18"></path>
                                 </svg>
                                 Email Address
                             </label>
                             <input type="email" name="email" value="{{ old('email', auth()->user()->email ?? '') }}"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="your.email@example.com">
                         </div>
                     </div>
@@ -145,25 +145,25 @@
                     <div class="space-y-6">
                         <div>
                             <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                 </svg>
                                 Phone Number
                             </label>
                             <input type="tel" name="phone" value="{{ old('phone', auth()->user()->agent_phone ?? '') }}"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="+234 800 000 0000">
                         </div>
                         
                         <div>
                             <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                 </svg>
                                 License Number
                             </label>
                             <input type="text" name="license_number" value="{{ old('license_number', auth()->user()->license_number ?? '') }}"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                 placeholder="Real Estate License Number">
                         </div>
                     </div>
@@ -174,13 +174,13 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                 </svg>
                                 Professional Bio
                             </label>
                             <textarea name="bio" rows="5"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 resize-none text-lg outline-none"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 resize-none text-lg outline-none"
                                 placeholder="Tell clients about your experience, specialties, and what makes you unique as a real estate agent...">{{ old('bio', auth()->user()->bio ?? '') }}</textarea>
                             <p class="mt-2 text-sm text-gray-500">This bio will be displayed on your agent profile page</p>
                         </div>
@@ -188,11 +188,11 @@
                 </div>
 
                 <!-- Agent Promise Section -->
-                <div class="border-t border-gray-200 pt-8 mb-8 rounded-2xl p-6" style="background: rgba(0, 31, 63, 0.03);">
+                <div class="border-t border-gray-200 pt-8 mb-8 rounded-2xl p-6" style="background: rgba(168, 92, 46, 0.03);">
                     <div class="space-y-6">
                         <div>
-                            <h3 class="text-xl font-bold text-[#001F3F] mb-2 flex items-center">
-                                <svg class="w-6 h-6 mr-3 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <h3 class="text-xl font-bold text-[#A85C2E] mb-2 flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 Agent Promise
@@ -203,7 +203,7 @@
                         <div>
                             <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">Your Promise Statement</label>
                             <textarea name="agent_promise" rows="4"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 resize-none text-lg outline-none"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 resize-none text-lg outline-none"
                                 placeholder="e.g. 'I promise to find you the perfect home with exceptional service and local expertise'">{{ old('agent_promise', auth()->user()->agent_promise ?? '') }}</textarea>
                             <p class="mt-2 text-sm text-gray-500">This will appear on your profile and property listings</p>
                         </div>
@@ -211,24 +211,24 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-                                    <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     Years of Experience
                                 </label>
                                 <input type="number" name="experience_years" value="{{ old('experience_years', auth()->user()->experience_years ?? '') }}"
-                                    class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
+                                    class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                     placeholder="5">
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-                                    <svg class="w-5 h-5 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                                     </svg>
                                     Specialties
                                 </label>
                                 <input type="text" name="specialties" value="{{ old('specialties', auth()->user()->specialties ?? '') }}"
-                                    class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
+                                    class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 placeholder-gray-400 text-lg outline-none"
                                     placeholder="Luxury Homes, First-time Buyers, Investment Properties">
                             </div>
                         </div>
@@ -246,7 +246,7 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-green-900 text-lg">Verified Agent</h4>
-                                <p class="text-green-700">Your profile has been verified by MyCrib. This badge appears on your listings and profile.</p>
+                                <p class="text-green-700">Your profile has been verified by Villa Africa. This badge appears on your listings and profile.</p>
                             </div>
                         </div>
                     </div>
@@ -282,8 +282,8 @@
                         </a>
                         
                         <button type="submit"
-                            class="inline-flex items-center px-10 py-4 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#C6A664]/20" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%); border-bottom: 3px solid #C6A664;">
-                            <svg class="w-5 h-5 mr-3 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="inline-flex items-center px-10 py-4 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#2B1810]/20" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%); border-bottom: 3px solid #2B1810;">
+                            <svg class="w-5 h-5 mr-3 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                             </svg>
                             Update Profile
@@ -305,7 +305,7 @@
                 
                 reader.onload = function(e) {
                     preview.src = e.target.result;
-                    preview.classList.add('ring-4', 'ring-[#C6A664]', 'ring-opacity-50');
+                    preview.classList.add('ring-4', 'ring-[#2B1810]', 'ring-opacity-50');
                 }
                 
                 reader.readAsDataURL(input.files[0]);
@@ -325,7 +325,7 @@
             // Reset to default avatar
             const userName = "{{ auth()->user()->name ?? 'Agent' }}";
             preview.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=001F3F&color=fff&size=200`;
-            preview.classList.remove('ring-4', 'ring-[#C6A664]', 'ring-opacity-50');
+            preview.classList.remove('ring-4', 'ring-[#2B1810]', 'ring-opacity-50');
             
             // Clear the file input
             document.getElementById('profile_photo').value = '';

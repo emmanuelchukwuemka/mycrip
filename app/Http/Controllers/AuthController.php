@@ -86,6 +86,7 @@ class AuthController extends Controller
 
         // Add agent-specific validation
         if ($request->role === 'agent') {
+            $rules['partner_type'] = 'required|in:agent,landlord';
             $rules['agent_id_number'] = 'required|string|max:20';
             $rules['agent_phone'] = 'required|string|max:20';
             $rules['agent_image'] = 'nullable|image|max:10240';
@@ -103,6 +104,7 @@ class AuthController extends Controller
 
         // Handle agent-specific fields
         if ($request->role === 'agent') {
+            $data['partner_type'] = $request->partner_type;
             $data['agent_id_number'] = $request->agent_id_number;
             $data['agent_phone'] = $request->agent_phone;
             $data['agent_verification_status'] = 'pending';

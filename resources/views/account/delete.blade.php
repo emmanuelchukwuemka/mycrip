@@ -8,7 +8,7 @@
                 </div>
                 
                 <h1 class="text-3xl font-black text-gray-900 tracking-tight mb-4">We're sorry to see you go</h1>
-                <p class="text-gray-500 text-base leading-relaxed mb-10">Deleting your account is permanent. This will remove all your data, property listings, and subscription records from MyCrib Africa.</p>
+                <p class="text-gray-500 text-base leading-relaxed mb-10">Deleting your account is permanent. This will remove all your data, property listings, and subscription records from Villa Africa.</p>
 
                 <form action="{{ route('account.delete') }}" method="POST" class="space-y-8">
                     @csrf

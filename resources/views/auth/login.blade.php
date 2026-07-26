@@ -3,12 +3,12 @@
         <!-- Left Side: Image -->
         <div class="hidden lg:block relative w-0 flex-1">
             <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Modern Home">
-            <div class="absolute inset-0" style="background-color: #001F3F; opacity: 0.9;"></div>
+            <div class="absolute inset-0" style="background-color: #A85C2E; opacity: 0.9;"></div>
             <div class="absolute inset-0 bg-black/20"></div>
             <!-- Logo Overlay -->
             <div class="absolute inset-0 flex items-center justify-center p-12">
                 <div class="text-center">
-                    <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="MyCrib Africa" class="motion-logo w-2/3 h-auto max-w-md mx-auto drop-shadow-2xl">
+                    <img src="{{ asset('images/icons/logo.png') }}" alt="Villa Africa" class="motion-logo w-2/3 h-auto max-w-md mx-auto brightness-0 invert drop-shadow-2xl">
                     <p class="mt-12 text-white text-2xl font-bold tracking-[0.3em] uppercase opacity-80 h-8">
                         <span id="typing-tagline" class="typing-cursor"></span>
                     </p>
@@ -67,8 +67,8 @@
                     100% { transform: translateY(0px) rotate(0deg); }
                 }
                 @keyframes glow {
-                    0%, 100% { filter: drop-shadow(0 0 20px rgba(198, 166, 100, 0.3)); }
-                    50% { filter: drop-shadow(0 0 40px rgba(198, 166, 100, 0.6)); }
+                    0%, 100% { filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)); }
+                    50% { filter: brightness(0) invert(1) drop-shadow(0 0 40px rgba(255, 255, 255, 0.7)); }
                 }
                 @keyframes reveal {
                     from { opacity: 0; transform: scale(0.8) translateY(20px); }
@@ -88,7 +88,7 @@
                     content: '|';
                     animation: blink 1s step-end infinite;
                     margin-left: 4px;
-                    color: #C6A664;
+                    color: #2B1810;
                 }
                 @keyframes blink {
                     from, to { opacity: 1; }
@@ -97,7 +97,7 @@
             </style>
             <div class="mx-auto w-full max-w-md lg:w-96">
                 <div class="text-center mb-8">
-                    <a href="{{ route('home') }}" class="inline-flex items-center transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
+                    <a href="{{ route('home') }}" class="inline-flex items-center transition-colors" style="color: #A85C2E;" onmouseover="this.style.color='#2B1810'" onmouseout="this.style.color='#A85C2E'">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
@@ -111,7 +111,7 @@
                             Welcome Back
                         </h2>
                         <p id="login-subtitle" class="text-gray-600 mb-6">
-                            Sign in to your MyCrib Africa account
+                            Sign in to your Villa Africa account
                         </p>
 
                         @if (session('status'))
@@ -158,14 +158,14 @@
                                 <span class="ml-2 text-sm text-gray-600">Remember me</span>
                             </label>
                             
-                            <a href="{{ route('password.request') }}" class="text-sm font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
+                            <a href="{{ route('password.request') }}" class="text-sm font-medium transition-colors" style="color: #A85C2E;" onmouseover="this.style.color='#2B1810'" onmouseout="this.style.color='#A85C2E'">
                                 Forgot password?
                             </a>
                         </div>
 
                             <div>
                                 <button type="submit" id="submit-btn" 
-                                        class="w-full btn-auth text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#001F3F] focus:ring-offset-2">
+                                        class="w-full btn-auth text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#A85C2E] focus:ring-offset-2">
                                     Sign In
                                 </button>
                             </div>
@@ -196,11 +196,11 @@
                         <p class="text-sm text-gray-500 text-center mb-4 font-medium uppercase tracking-widest">Need an account?</p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <a href="{{ route('register', ['role' => 'user']) }}" 
-                               class="flex items-center justify-center px-4 py-3 bg-[#001F3F] text-white rounded-lg font-bold shadow-md hover:bg-[#00152B] transition-all transform active:scale-95 text-sm uppercase tracking-wider">
+                               class="flex items-center justify-center px-4 py-3 bg-[#A85C2E] text-white rounded-lg font-bold shadow-md hover:bg-[#2B1810] transition-all transform active:scale-95 text-sm uppercase tracking-wider">
                                 Sign up as Buyer
                             </a>
                             <a href="{{ route('register', ['role' => 'agent']) }}" 
-                               class="flex items-center justify-center px-4 py-3 border-2 border-[#C6A664] text-[#C6A664] rounded-lg font-bold shadow-sm hover:bg-[#C6A664] hover:text-white transition-all transform active:scale-95 text-sm uppercase tracking-wider">
+                               class="flex items-center justify-center px-4 py-3 border-2 border-[#2B1810] text-[#2B1810] rounded-lg font-bold shadow-sm hover:bg-[#2B1810] hover:text-white transition-all transform active:scale-95 text-sm uppercase tracking-wider">
                                 Register as Agent
                             </a>
                         </div>

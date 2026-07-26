@@ -65,10 +65,10 @@
         @endif
 
         <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
-            <div class="px-8 py-8" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%);">
+            <div class="px-8 py-8" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%);">
                 <div class="flex items-center space-x-4">
                     <div class="p-3 bg-white/10 rounded-2xl backdrop-blur-sm">
-                        <svg class="w-8 h-8 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-8 h-8 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
                     </div>
@@ -97,7 +97,7 @@
                                 Property Title
                             </label>
                             <input type="text" name="title" id="title" value="{{ old('title', $property->title) }}"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
                                 placeholder="e.g. Modern 3 Bedroom Flat with Balcony" required>
                         </div>
 
@@ -117,15 +117,15 @@
                                 ] as $value => $data)
                                     <button type="button" 
                                         @click="category = '{{ $value }}'"
-                                        :class="category === '{{ $value }}' ? 'border-[#C6A664] bg-[#C6A664]/5 shadow-sm ring-1 ring-[#C6A664]' : 'border-gray-100 bg-white hover:border-[#C6A664]/30 hover:bg-gray-50'"
+                                        :class="category === '{{ $value }}' ? 'border-[#2B1810] bg-[#2B1810]/5 shadow-sm ring-1 ring-[#2B1810]' : 'border-gray-100 bg-white hover:border-[#2B1810]/30 hover:bg-gray-50'"
                                         class="flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all duration-300 group">
-                                        <div :class="category === '{{ $value }}' ? 'text-[#C6A664]' : 'text-gray-400 group-hover:text-[#001F3F]'"
+                                        <div :class="category === '{{ $value }}' ? 'text-[#2B1810]' : 'text-gray-400 group-hover:text-[#A85C2E]'"
                                             class="p-2 mb-2 transition-colors duration-300">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $data['icon'] }}" />
                                             </svg>
                                         </div>
-                                        <span :class="category === '{{ $value }}' ? 'text-[#001F3F] font-bold' : 'text-gray-600 font-medium text-xs'"
+                                        <span :class="category === '{{ $value }}' ? 'text-[#A85C2E] font-bold' : 'text-gray-600 font-medium text-xs'"
                                             class="text-xs text-center transition-colors duration-300">
                                             {{ $data['label'] }}
                                         </span>
@@ -142,7 +142,7 @@
                                 @foreach(['fixed' => 'Fixed Price', 'monthly' => 'Per Month', 'yearly' => 'Per Year'] as $value => $label)
                                     <button type="button" 
                                         @click="priceType = '{{ $value }}'"
-                                        :class="priceType === '{{ $value }}' ? 'bg-[#001F3F] text-white shadow-lg' : 'text-gray-500 hover:text-[#001F3F]'"
+                                        :class="priceType === '{{ $value }}' ? 'bg-[#A85C2E] text-white shadow-lg' : 'text-gray-500 hover:text-[#A85C2E]'"
                                         class="flex-1 py-2.5 px-4 rounded-xl text-xs font-bold transition-all duration-300 outline-none">
                                         {{ $label }}
                                     </button>
@@ -156,10 +156,10 @@
                             </label>
                             <div class="relative group">
                                 <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                                    <span class="text-[#C6A664] font-bold text-xl">₦</span>
+                                    <span class="text-[#2B1810] font-bold text-xl">₦</span>
                                 </div>
                                 <input type="number" name="price" id="price" value="{{ old('price', $property->price) }}"
-                                    class="w-full pl-14 pr-5 py-5 border-2 border-gray-100 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none font-bold text-2xl text-gray-900 bg-white shadow-inner"
+                                    class="w-full pl-14 pr-5 py-5 border-2 border-gray-100 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-300 placeholder-gray-400 outline-none font-bold text-2xl text-gray-900 bg-white shadow-inner"
                                     placeholder="0" step="0.01" required>
                             </div>
                         </div>
@@ -168,7 +168,7 @@
                             <div class="flex items-center justify-between mb-3">
                                 <label class="block text-sm font-semibold text-gray-700">Description</label>
                                 <button type="button" @click="aiModalOpen = true" 
-                                        class="flex items-center text-xs font-bold text-[#001F3F] hover:text-[#C6A664] transition-colors bg-[#C6A664]/10 px-3 py-1.5 rounded-lg border border-[#C6A664]/20">
+                                        class="flex items-center text-xs font-bold text-[#A85C2E] hover:text-[#2B1810] transition-colors bg-[#2B1810]/10 px-3 py-1.5 rounded-lg border border-[#2B1810]/20">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                     </svg>
@@ -176,7 +176,7 @@
                                 </button>
                             </div>
                             <textarea name="description" id="description" rows="6"
-                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 resize-none outline-none shadow-sm"
+                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-300 placeholder-gray-400 resize-none outline-none shadow-sm"
                                 placeholder="Describe the property..." required>{{ old('description', $property->description) }}</textarea>
 
                             <!-- AI Modal -->
@@ -194,9 +194,9 @@
                                     <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
                                     
                                     <div class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-[40px] shadow-2xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-gray-100">
-                                        <div class="px-8 pt-8 pb-6 bg-[#001F3F]">
+                                        <div class="px-8 pt-8 pb-6 bg-[#A85C2E]">
                                             <div class="flex items-center space-x-4">
-                                                <div class="p-3 bg-[#C6A664] rounded-2xl">
+                                                <div class="p-3 bg-[#2B1810] rounded-2xl">
                                                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                                     </svg>
@@ -212,7 +212,7 @@
                                             <div>
                                                 <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Key Features (comma separated)</label>
                                                 <input type="text" x-model="keywords" placeholder="e.g. pool, modern kitchen, marble floors, sea view"
-                                                       class="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/10 focus:border-[#C6A664] outline-none transition-all text-sm">
+                                                       class="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/10 focus:border-[#2B1810] outline-none transition-all text-sm">
                                             </div>
 
                                             <div class="flex flex-col gap-3">
@@ -241,7 +241,7 @@
                                                             .finally(() => loading = false);
                                                         "
                                                         :disabled="loading || !keywords"
-                                                        class="w-full py-4 bg-[#001F3F] text-white font-bold rounded-2xl hover:bg-[#C6A664] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                                                        class="w-full py-4 bg-[#A85C2E] text-white font-bold rounded-2xl hover:bg-[#2B1810] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
                                                     <template x-if="!loading">
                                                         <span>Generate Description</span>
                                                     </template>
@@ -264,8 +264,8 @@
 
                         <!-- Virtual Tours & Video Section -->
                         <div class="pt-6 space-y-6">
-                            <h4 class="text-sm font-bold text-[#001F3F] uppercase tracking-wider flex items-center">
-                                <svg class="w-4 h-4 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <h4 class="text-sm font-bold text-[#A85C2E] uppercase tracking-wider flex items-center">
+                                <svg class="w-4 h-4 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                 </svg>
                                 Virtual Tours & Video
@@ -275,13 +275,13 @@
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-2">Video Walkthrough URL (YouTube/Vimeo)</label>
                                     <input type="url" name="video_url" id="video_url" value="{{ old('video_url', $property->video_url) }}"
-                                        class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
+                                        class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
                                         placeholder="https://www.youtube.com/watch?v=...">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-2">360° Virtual Tour URL</label>
                                     <input type="url" name="virtual_tour_url" id="virtual_tour_url" value="{{ old('virtual_tour_url', $property->virtual_tour_url) }}"
-                                        class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
+                                        class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-300 placeholder-gray-400 outline-none shadow-sm"
                                         placeholder="https://my.matterport.com/show/?m=...">
                                 </div>
                             </div>
@@ -305,8 +305,8 @@
                             <div class="space-y-8">
                                 @foreach($groupedImages as $label => $images)
                                     <div class="bg-gray-50/50 rounded-2xl p-6 border border-gray-100">
-                                        <h4 class="text-xs font-bold text-[#001F3F] uppercase tracking-widest mb-4 flex items-center">
-                                            <span class="w-2 h-2 rounded-full bg-[#C6A664] mr-2"></span>
+                                        <h4 class="text-xs font-bold text-[#A85C2E] uppercase tracking-widest mb-4 flex items-center">
+                                            <span class="w-2 h-2 rounded-full bg-[#2B1810] mr-2"></span>
                                             {{ $label ?: 'General' }} Gallery
                                         </h4>
                                         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -344,17 +344,17 @@
 
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Add New General Images</label>
-                            <div class="group relative border-4 border-dashed border-gray-100 rounded-3xl p-8 text-center hover:border-[#C6A664]/30 hover:bg-gray-50/50 transition-all duration-300 font-bold">
+                            <div class="group relative border-4 border-dashed border-gray-100 rounded-3xl p-8 text-center hover:border-[#2B1810]/30 hover:bg-gray-50/50 transition-all duration-300 font-bold">
                                 <input type="file" name="images[]" id="images" multiple class="hidden" accept="image/*">
                                 <label for="images" class="cursor-pointer">
                                     <div class="text-center">
                                         <div class="mx-auto w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                                            <svg class="h-8 w-8 text-gray-300 group-hover:text-[#C6A664]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg class="h-8 w-8 text-gray-300 group-hover:text-[#2B1810]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                             </svg>
                                         </div>
                                         <div class="text-sm text-gray-600">
-                                            <span class="text-[#001F3F]">Click to add more general images</span>
+                                            <span class="text-[#A85C2E]">Click to add more general images</span>
                                         </div>
                                     </div>
                                 </label>
@@ -372,14 +372,14 @@
                             }
                         }">
                             <div class="flex items-center justify-between mb-6">
-                                <h4 class="text-sm font-bold text-[#001F3F] uppercase tracking-wider flex items-center">
-                                    <svg class="w-5 h-5 mr-3 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <h4 class="text-sm font-bold text-[#A85C2E] uppercase tracking-wider flex items-center">
+                                    <svg class="w-5 h-5 mr-3 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                     </svg>
                                     Add New Categorized Galleries
                                 </h4>
                                 <button type="button" @click="addGallery()" 
-                                        class="inline-flex items-center px-4 py-2 bg-[#C6A664] text-white text-xs font-bold rounded-xl hover:bg-[#B89654] transition-all">
+                                        class="inline-flex items-center px-4 py-2 bg-[#2B1810] text-white text-xs font-bold rounded-xl hover:bg-[#A85C2E] transition-all">
                                     Add Section
                                 </button>
                             </div>
@@ -400,12 +400,12 @@
                                                 <input type="text" :name="'sub_galleries[' + index + '][label]'" 
                                                        x-model="gallery.label"
                                                        placeholder="e.g. Master Bedroom"
-                                                       class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-4 focus:ring-[#C6A664]/10 focus:border-[#C6A664] outline-none text-sm font-semibold" required>
+                                                       class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-4 focus:ring-[#2B1810]/10 focus:border-[#2B1810] outline-none text-sm font-semibold" required>
                                             </div>
                                             <div class="md:col-span-2">
                                                 <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Images</label>
                                                 <input type="file" :name="'sub_galleries[' + index + '][images][]'" multiple accept="image/*"
-                                                       class="w-full px-4 py-2 bg-white border border-gray-200 rounded-xl outline-none text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#001F3F] file:text-white hover:file:bg-[#C6A664] cursor-pointer" required>
+                                                       class="w-full px-4 py-2 bg-white border border-gray-200 rounded-xl outline-none text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#A85C2E] file:text-white hover:file:bg-[#2B1810] cursor-pointer" required>
                                             </div>
                                         </div>
                                     </div>
@@ -417,9 +417,9 @@
 
                 <!-- Location Section -->
                 <div class="border-t border-gray-100 pt-10 mb-10">
-                    <h3 class="text-xl font-bold text-[#001F3F] mb-6 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-[#001F3F]/5 flex items-center justify-center mr-3">
-                            <svg class="w-5 h-5 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <h3 class="text-xl font-bold text-[#A85C2E] mb-6 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-[#A85C2E]/5 flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             </svg>
                         </span>
@@ -429,31 +429,31 @@
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Country</label>
                             <input type="text" name="country" id="country" value="{{ old('country', $property->country) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none" required>
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">State <span class="text-red-500">*</span></label>
                             <input type="text" name="state" id="state" value="{{ old('state', $property->state) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400" required>
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none placeholder-gray-400" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">City <span class="text-red-500">*</span></label>
                             <input type="text" name="city" id="city" value="{{ old('city', $property->city) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400" required>
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none placeholder-gray-400" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Address</label>
                             <input type="text" name="address" id="address" value="{{ old('address', $property->address) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none placeholder-gray-400">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none placeholder-gray-400">
                         </div>
                     </div>
                 </div>
 
                 <!-- Features Section -->
                 <div class="border-t border-gray-100 pt-10 mb-12">
-                     <h3 class="text-xl font-bold text-[#001F3F] mb-6 flex items-center">
-                        <span class="w-8 h-8 rounded-lg bg-[#001F3F]/5 flex items-center justify-center mr-3">
-                            <svg class="w-5 h-5 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <h3 class="text-xl font-bold text-[#A85C2E] mb-6 flex items-center">
+                        <span class="w-8 h-8 rounded-lg bg-[#A85C2E]/5 flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                         </span>
@@ -463,48 +463,48 @@
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Bedrooms</label>
                             <input type="number" name="bedrooms" value="{{ old('bedrooms', $property->bedrooms) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Bathrooms</label>
                             <input type="number" name="bathrooms" value="{{ old('bathrooms', $property->bathrooms) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Toilets</label>
                             <input type="number" name="toilets" value="{{ old('toilets', $property->toilets) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Size (sqm)</label>
                             <input type="text" name="size" value="{{ old('size', $property->size) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-300 outline-none">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-300 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Shops</label>
                             <input type="number" name="shops" value="{{ old('shops', $property->shops) }}" min="0" max="100"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none"
                                 placeholder="0">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Warehouses</label>
                             <input type="number" name="warehouses" value="{{ old('warehouses', $property->warehouses) }}" min="0" max="100"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none"
                                 placeholder="0">
                         </div>
                     </div>
 
                     <!-- Hospitality Specific Fields (Conditional) -->
-                    <div x-show="category === 'hotel' || category === 'lodge'" x-transition class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-6 bg-[#C6A664]/5 rounded-3xl border border-[#C6A664]/20">
+                    <div x-show="category === 'hotel' || category === 'lodge'" x-transition class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-6 bg-[#2B1810]/5 rounded-3xl border border-[#2B1810]/20">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Total Rooms / Units</label>
                             <input type="number" name="total_rooms" id="total_rooms" value="{{ old('total_rooms', $property->total_rooms) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none">
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Security Level</label>
                             <select name="security_level" id="security_level" 
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none">
                                 <option value="">Select Level</option>
                                 <option value="standard" {{ old('security_level', $property->security_level) === 'standard' ? 'selected' : '' }}>Standard</option>
                                 <option value="enhanced" {{ old('security_level', $property->security_level) === 'enhanced' ? 'selected' : '' }}>Enhanced (CCTV)</option>
@@ -515,13 +515,13 @@
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Parking Capacity (Cars)</label>
                             <input type="number" name="parking_capacity" id="parking_capacity" value="{{ old('parking_capacity', $property->parking_capacity) }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none">
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none">
                         </div>
                     </div>
 
                     <!-- Amenities -->
                     <div class="bg-gray-50/50 rounded-3xl p-8">
-                        <label class="block text-sm font-bold text-[#001F3F] mb-6 uppercase tracking-wider">Amenities & Services</label>
+                        <label class="block text-sm font-bold text-[#A85C2E] mb-6 uppercase tracking-wider">Amenities & Services</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-8">
                             @foreach([
                                 'furnished' => 'Furnished',
@@ -534,14 +534,14 @@
                                 <label class="flex items-center space-x-4 cursor-pointer group">
                                     <div class="relative">
                                         <input type="checkbox" name="{{ $field }}" value="1" {{ old($field, $property->$field) ? 'checked' : '' }} 
-                                            class="peer h-6 w-6 border-2 border-gray-300 rounded-lg text-[#C6A664] focus:ring-0 transition-colors duration-200">
-                                        <div class="absolute inset-0 bg-[#C6A664] scale-0 peer-checked:scale-100 rounded-lg transition-transform duration-200 flex items-center justify-center">
+                                            class="peer h-6 w-6 border-2 border-gray-300 rounded-lg text-[#2B1810] focus:ring-0 transition-colors duration-200">
+                                        <div class="absolute inset-0 bg-[#2B1810] scale-0 peer-checked:scale-100 rounded-lg transition-transform duration-200 flex items-center justify-center">
                                             <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
                                     </div>
-                                    <span class="text-sm font-semibold text-gray-600 group-hover:text-[#001F3F] transition-colors duration-200">{{ $label }}</span>
+                                    <span class="text-sm font-semibold text-gray-600 group-hover:text-[#A85C2E] transition-colors duration-200">{{ $label }}</span>
                                 </label>
                             @endforeach
 
@@ -555,14 +555,14 @@
                                     <label class="flex items-center space-x-4 cursor-pointer group">
                                         <div class="relative">
                                             <input type="checkbox" name="{{ $field }}" value="1" {{ old($field, $property->$field) ? 'checked' : '' }} 
-                                                class="peer h-6 w-6 border-2 border-gray-300 rounded-lg text-[#C6A664] focus:ring-0 transition-colors duration-200">
-                                            <div class="absolute inset-0 bg-[#C6A664] scale-0 peer-checked:scale-100 rounded-lg transition-transform duration-200 flex items-center justify-center">
+                                                class="peer h-6 w-6 border-2 border-gray-300 rounded-lg text-[#2B1810] focus:ring-0 transition-colors duration-200">
+                                            <div class="absolute inset-0 bg-[#2B1810] scale-0 peer-checked:scale-100 rounded-lg transition-transform duration-200 flex items-center justify-center">
                                                 <svg class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
                                         </div>
-                                        <span class="text-sm font-semibold text-gray-600 group-hover:text-[#001F3F] transition-colors duration-200">{{ $label }}</span>
+                                        <span class="text-sm font-semibold text-gray-600 group-hover:text-[#A85C2E] transition-colors duration-200">{{ $label }}</span>
                                     </label>
                                 @endforeach
                         </div>
@@ -571,7 +571,7 @@
                         <div class="mt-8 border-t border-gray-100 pt-6">
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Other Amenities</label>
                             <input type="text" name="other_amenities" id="other_amenities" value="{{ old('other_amenities', $property->features['other_amenities'] ?? '') }}"
-                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/20 focus:border-[#C6A664] transition-all duration-200 outline-none"
+                                class="w-full px-4 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/20 focus:border-[#2B1810] transition-all duration-200 outline-none"
                                 placeholder="e.g. Balcony, Elevator, Generator (comma separated)">
                             <p class="text-xs text-gray-400 mt-2">Add any other custom amenities here separated by commas.</p>
                         </div>
@@ -586,7 +586,7 @@
                     </button>
                     
                     <button type="submit"
-                        class="w-full sm:w-auto inline-flex items-center justify-center px-12 py-4 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#C6A664]/20" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%); border-bottom: 4px solid #C6A664;">
+                        class="w-full sm:w-auto inline-flex items-center justify-center px-12 py-4 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#2B1810]/20" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%); border-bottom: 4px solid #2B1810;">
                         Update Property Listing
                     </button>
                 </div>

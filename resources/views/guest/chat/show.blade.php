@@ -3,7 +3,7 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back -->
             <div class="mb-6">
-                <a href="{{ route('chat.index') }}" class="inline-flex items-center text-sm font-medium transition-colors" style="color: #C6A664;">
+                <a href="{{ route('chat.index') }}" class="inline-flex items-center text-sm font-medium transition-colors" style="color: #2B1810;">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
@@ -14,10 +14,10 @@
             <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col" style="height: 80vh;">
                 
                 <!-- Header -->
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%);">
+                <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%);">
                     <div class="flex items-center">
                         <div class="relative">
-                            <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold mr-3" style="background: #C6A664;">
+                            <div class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold mr-3" style="background: #2B1810;">
                                 {{ strtoupper(substr($conversation->agent->name ?? 'A', 0, 1)) }}
                             </div>
                             @if($conversation->agent->isOnline())
@@ -47,13 +47,13 @@
                         <div class="flex {{ $message->sender_id === auth()->id() ? 'justify-end' : 'justify-start' }}">
                             <div class="max-w-sm lg:max-w-md {{ $message->sender_id === auth()->id() ? '' : 'flex items-start space-x-2' }}">
                                 @if($message->sender_id !== auth()->id())
-                                    <div class="flex-shrink-0 h-7 w-7 rounded-full flex items-center justify-center text-white text-xs font-bold mt-1" style="background: #C6A664;">
+                                    <div class="flex-shrink-0 h-7 w-7 rounded-full flex items-center justify-center text-white text-xs font-bold mt-1" style="background: #2B1810;">
                                         {{ strtoupper(substr($conversation->agent->name ?? 'A', 0, 1)) }}
                                     </div>
                                 @endif
                                 <div>
                                     <div class="px-4 py-3 rounded-2xl shadow-sm border {{ $message->sender_id === auth()->id() ? 'rounded-br-sm text-white' : 'rounded-bl-sm bg-white text-gray-800 border-gray-200' }}" 
-                                         style="{{ $message->sender_id === auth()->id() ? 'background: #001F3F; border-color: #001F3F;' : '' }}">
+                                         style="{{ $message->sender_id === auth()->id() ? 'background: #A85C2E; border-color: #A85C2E;' : '' }}">
                                         
                                         @if($message->attachment_path)
                                             <div class="mb-2">
@@ -101,7 +101,7 @@
                         @csrf
                         <div class="flex flex-col space-y-3">
                             <!-- Preview Area -->
-                            <div x-show="previewUrl" class="relative inline-block w-24 h-24 rounded-xl overflow-hidden border-2 border-[#C6A664]">
+                            <div x-show="previewUrl" class="relative inline-block w-24 h-24 rounded-xl overflow-hidden border-2 border-[#2B1810]">
                                 <template x-if="previewType === 'image'">
                                     <img :src="previewUrl" class="w-full h-full object-cover">
                                 </template>
@@ -117,7 +117,7 @@
                             </div>
 
                             <div class="flex items-end space-x-2">
-                                <label class="p-3 rounded-xl bg-gray-50 text-gray-400 hover:text-[#C6A664] hover:bg-gray-100 cursor-pointer transition-all border border-gray-100">
+                                <label class="p-3 rounded-xl bg-gray-50 text-gray-400 hover:text-[#2B1810] hover:bg-gray-100 cursor-pointer transition-all border border-gray-100">
                                     <input type="file" name="attachment" class="hidden" @change="handleFile($event)">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
@@ -126,7 +126,7 @@
 
                                 <div class="flex-1 relative">
                                     <textarea name="body" rows="1" 
-                                        class="w-full px-4 py-3 border border-gray-100 bg-gray-50 rounded-2xl focus:ring-4 focus:ring-[#C6A664]/5 focus:border-[#C6A664] focus:bg-white transition-all text-sm resize-none outline-none pr-12"
+                                        class="w-full px-4 py-3 border border-gray-100 bg-gray-50 rounded-2xl focus:ring-4 focus:ring-[#2B1810]/5 focus:border-[#2B1810] focus:bg-white transition-all text-sm resize-none outline-none pr-12"
                                         placeholder="Type your message..." @keydown.enter.prevent="submitForm()"></textarea>
                                     
                                     <button type="button" @click="toggleRecording()" 
@@ -139,8 +139,8 @@
                                 </div>
 
                                 <button type="submit" 
-                                    class="p-3.5 rounded-2xl text-white font-bold transition-all duration-300 shadow-lg shadow-[#C6A664]/20 hover:scale-105 active:scale-95"
-                                    style="background: #C6A664;">
+                                    class="p-3.5 rounded-2xl text-white font-bold transition-all duration-300 shadow-lg shadow-[#2B1810]/20 hover:scale-105 active:scale-95"
+                                    style="background: #2B1810;">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                                     </svg>

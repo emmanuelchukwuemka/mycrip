@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'MyCrib Africa') }} - Admin Dashboard</title>
+    <title>{{ config('app.name', 'Villa Africa') }} - Admin Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('images/icons/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,16 +30,16 @@
 
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Top Header -->
-            <header class="flex justify-between items-center h-20 px-8 bg-white shadow-sm border-b" style="border-color: rgba(0, 31, 63, 0.08);">
+            <header class="flex justify-between items-center h-20 px-8 bg-white shadow-sm border-b" style="border-color: rgba(168, 92, 46, 0.08);">
                 <div class="flex items-center">
-                    <button @click="sidebarOpen = true" class="focus:outline-none lg:hidden mr-4" style="color: #001F3F;">
+                    <button @click="sidebarOpen = true" class="focus:outline-none lg:hidden mr-4" style="color: #A85C2E;">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
 
                     <div>
-                        <h1 class="text-xl font-bold" style="color: #001F3F;">Welcome Back, Admin</h1>
+                        <h1 class="text-xl font-bold" style="color: #A85C2E;">Welcome Back, Admin</h1>
                         <p class="text-sm text-gray-500">Here's what's happening with your platform today.</p>
                     </div>
                 </div>
@@ -46,17 +50,17 @@
                         <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                         </svg>
-                        <span class="absolute top-1 right-1 h-3 w-3 rounded-full border-2 border-white" style="background-color: #C6A664;"></span>
+                        <span class="absolute top-1 right-1 h-3 w-3 rounded-full border-2 border-white" style="background-color: #2B1810;"></span>
                     </button>
 
                     <!-- Profile Dropdown -->
                     <div x-data="{ dropdownOpen: false }" class="relative">
                         <button @click="dropdownOpen = ! dropdownOpen" class="flex items-center space-x-3 p-2 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                            <div class="h-10 w-10 rounded-xl overflow-hidden shadow-sm border-2" style="border-color: #C6A664;">
+                            <div class="h-10 w-10 rounded-xl overflow-hidden shadow-sm border-2" style="border-color: #2B1810;">
                                 <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Admin avatar">
                             </div>
                             <div class="hidden md:block text-left">
-                                <p class="text-sm font-semibold" style="color: #001F3F;">Admin</p>
+                                <p class="text-sm font-semibold" style="color: #A85C2E;">Admin</p>
                                 <p class="text-xs text-gray-500">Super Admin</p>
                             </div>
                             <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

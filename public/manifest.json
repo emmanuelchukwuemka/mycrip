@@ -1,11 +1,11 @@
 {
-    "name": "MyCrip Africa",
-    "short_name": "MyCrip",
+    "name": "Villa Africa",
+    "short_name": "Villa Africa",
     "description": "Premium Real Estate Marketplace for Africa",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#001F3F",
+    "theme_color": "#A85C2E",
     "icons": [
         {
             "src": "/images/icons/icon-192.png",

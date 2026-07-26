@@ -9,7 +9,7 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center" style="min-height:480px;">
             <div class="text-center">
                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-                    Discover Your Dream <span id="typing-text-listing" class="after:content-['|'] after:animate-ping after:text-[#C6A664] after:ml-1" style="color: #C6A664;"></span>
+                    Discover Your Dream <span id="typing-text-listing" class="after:content-['|'] after:animate-ping after:text-[#2B1810] after:ml-1" style="color: #2B1810;"></span>
                 </h1>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
@@ -103,8 +103,8 @@
                     <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 border border-gray-100">
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                             <div>
-                                <h2 class="text-2xl font-bold" style="color: #001F3F;">Properties for Sale & Rent</h2>
-                                <p class="mt-1" style="color: #1A1A1A;">Discover {{ $properties->total() }} premium listings</p>
+                                <h2 class="text-2xl font-bold" style="color: #A85C2E;">Properties for Sale & Rent</h2>
+                                <p class="mt-1" style="color: #2B1810;">Discover {{ $properties->total() }} premium listings</p>
                             </div>
                             
                             <!-- Sort & View Options -->
@@ -120,7 +120,7 @@
                                         @endif
                                     @endforeach
                                     
-                                    <select name="sort" onchange="this.form.submit()" class="bg-white border rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 transition-all duration-300" style="border-color: #C6A664;">
+                                    <select name="sort" onchange="this.form.submit()" class="bg-white border rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 transition-all duration-300" style="border-color: #2B1810;">
                                         <option value="latest" {{ request('sort', 'latest') == 'latest' ? 'selected' : '' }}>Sort by: Newest</option>
                                         <option value="price_low" {{ request('sort') == 'price_low' ? 'selected' : '' }}>Price: Low to High</option>
                                         <option value="price_high" {{ request('sort') == 'price_high' ? 'selected' : '' }}>Price: High to Low</option>

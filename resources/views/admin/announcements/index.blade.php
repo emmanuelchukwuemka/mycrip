@@ -1,10 +1,10 @@
 <x-admin-layout>
     <div class="mb-8 flex justify-between items-center">
         <div>
-            <h2 class="text-3xl font-bold" style="color: #001F3F;">Announcements</h2>
+            <h2 class="text-3xl font-bold" style="color: #A85C2E;">Announcements</h2>
             <p class="mt-1 text-gray-500">Manage sliding announcements displayed on the frontend.</p>
         </div>
-        <a href="{{ route('admin.announcements.create') }}" class="inline-flex items-center px-4 py-2 bg-[#001F3F] text-white rounded-lg font-semibold hover:bg-[#00152B] transition-colors shadow-lg">
+        <a href="{{ route('admin.announcements.create') }}" class="inline-flex items-center px-4 py-2 bg-[#A85C2E] text-white rounded-lg font-semibold hover:bg-[#2B1810] transition-colors shadow-lg">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
             </svg>
@@ -78,7 +78,7 @@
                             <div class="flex flex-col items-center">
                                 <svg class="w-12 h-12 text-gray-200 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-5M16.5 3.5a2.121 2.121 0 113 3L11.707 14.707a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.39L16.5 3.5z"/></svg>
                                 <p class="text-gray-400 font-medium">No announcements found.</p>
-                                <a href="{{ route('admin.announcements.create') }}" class="mt-4 text-[#001F3F] font-bold hover:underline">Create your first announcement</a>
+                                <a href="{{ route('admin.announcements.create') }}" class="mt-4 text-[#A85C2E] font-bold hover:underline">Create your first announcement</a>
                             </div>
                         </td>
                     </tr>

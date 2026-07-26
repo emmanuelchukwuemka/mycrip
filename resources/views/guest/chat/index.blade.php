@@ -4,7 +4,7 @@
             <!-- Header -->
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <h1 class="text-3xl font-bold" style="color: #001F3F;">My Messages</h1>
+                    <h1 class="text-3xl font-bold" style="color: #A85C2E;">My Messages</h1>
                     <p class="text-gray-500 mt-1">Your conversations with agents</p>
                 </div>
                 <a href="{{ route('home') }}" class="inline-flex items-center px-4 py-2 border border-gray-200 text-gray-500 bg-white rounded-xl hover:bg-gray-50 transition-all text-sm font-medium">
@@ -24,7 +24,7 @@
                                class="flex items-center px-6 py-5 hover:bg-gray-50 transition-all {{ $conversation->unread_count > 0 ? 'bg-amber-50/40' : '' }}">
                                 
                                 <div class="flex-shrink-0 mr-4">
-                                    <div class="h-12 w-12 rounded-full flex items-center justify-center text-white font-bold" style="background: #001F3F;">
+                                    <div class="h-12 w-12 rounded-full flex items-center justify-center text-white font-bold" style="background: #A85C2E;">
                                         {{ strtoupper(substr($conversation->agent->name ?? 'A', 0, 1)) }}
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                         <span class="text-xs text-gray-400">{{ $conversation->last_message_at ? $conversation->last_message_at->diffForHumans() : '' }}</span>
                                     </div>
                                     @if($conversation->property)
-                                        <p class="text-xs font-medium mb-1" style="color: #C6A664;">{{ $conversation->property->title ?? 'Property' }}</p>
+                                        <p class="text-xs font-medium mb-1" style="color: #2B1810;">{{ $conversation->property->title ?? 'Property' }}</p>
                                     @endif
                                     <p class="text-sm text-gray-500 truncate">
                                         @if($conversation->latestMessage)
@@ -48,7 +48,7 @@
                                 </div>
 
                                 @if($conversation->unread_count > 0)
-                                    <span class="ml-3 inline-flex items-center justify-center h-6 w-6 rounded-full text-xs font-bold text-white" style="background: #C6A664;">
+                                    <span class="ml-3 inline-flex items-center justify-center h-6 w-6 rounded-full text-xs font-bold text-white" style="background: #2B1810;">
                                         {{ $conversation->unread_count }}
                                     </span>
                                 @endif
@@ -57,14 +57,14 @@
                     </div>
                 @else
                     <div class="px-8 py-16 text-center">
-                        <div class="h-16 w-16 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background: rgba(0, 31, 63, 0.05);">
-                            <svg class="h-8 w-8" style="color: #C6A664;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="h-16 w-16 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background: rgba(168, 92, 46, 0.05);">
+                            <svg class="h-8 w-8" style="color: #2B1810;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                             </svg>
                         </div>
                         <h3 class="text-lg font-bold text-gray-900 mb-2">No messages yet</h3>
                         <p class="text-gray-500 text-sm">Start a conversation by contacting an agent on any property listing.</p>
-                        <a href="{{ route('properties.index') }}" class="inline-flex items-center mt-4 text-sm font-medium" style="color: #C6A664;">
+                        <a href="{{ route('properties.index') }}" class="inline-flex items-center mt-4 text-sm font-medium" style="color: #2B1810;">
                             Browse Properties
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </a>

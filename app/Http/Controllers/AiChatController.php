@@ -21,7 +21,7 @@ class AiChatController extends Controller
         // First try local AI endpoint (built in /ai app), then fallback to Gemini if not available.
         $localAiUrl = config('services.local_ai.url', 'http://127.0.0.1:8000/chat');
 
-        $systemPrompt = "You are MyCrib AI, a friendly and knowledgeable real estate assistant for MyCrib Africa — a property platform connecting buyers, renters, and agents across Nigeria and Africa.\n\n" .
+        $systemPrompt = "You are Villa Africa AI, a friendly and knowledgeable real estate assistant for Villa Africa — a property platform connecting buyers, renters, and agents across Nigeria and Africa.\n\n" .
             "Your role:\n" .
             "- Help users find properties, understand the platform, and answer real estate questions.\n" .
             "- Guide users to post on the Buyer Wall if they're looking for a specific property.\n" .

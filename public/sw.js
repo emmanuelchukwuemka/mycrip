@@ -1,15 +1,18 @@
-const CACHE_NAME = 'mycrip-v1';
+const CACHE_NAME = 'villa-africa-v2';
 const ASSETS_TO_CACHE = [
     '/',
     '/offline',
     '/resources/css/app.css',
     '/resources/js/app.js',
+    '/images/icons/logo.png',
     '/images/icons/icon-192.png',
-    '/images/icons/icon-512.png'
+    '/images/icons/icon-512.png',
+    '/favicon.ico'
 ];
 
 // Install Event
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll(ASSETS_TO_CACHE);
@@ -25,7 +28,7 @@ self.addEventListener('activate', (event) => {
                 keys.filter((key) => key !== CACHE_NAME)
                     .map((key) => caches.delete(key))
             );
-        })
+        }).then(() => self.clients.claim())
     );
 });
 

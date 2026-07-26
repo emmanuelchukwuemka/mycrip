@@ -11,13 +11,13 @@
             style="transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
         <div class="relative">
             {{-- Pulse ring --}}
-            <div class="absolute inset-0 rounded-2xl animate-ping opacity-20" style="background:#C6A664;animation-duration:2s;"></div>
+            <div class="absolute inset-0 rounded-2xl animate-ping opacity-20" style="background:#2B1810;animation-duration:2s;"></div>
             {{-- Button --}}
-            <div class="relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(198,166,100,0.4)] group-hover:-translate-y-1 group-hover:scale-105"
-                 style="background:linear-gradient(135deg,#001F3F,#003366);">
-                <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-8 h-8 object-contain brightness-0 invert">
+            <div class="relative w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(43, 24, 16,0.4)] group-hover:-translate-y-1 group-hover:scale-105"
+                 style="background:linear-gradient(135deg,#A85C2E,#003366);">
+                <img src="{{ asset('images/icons/logo.png') }}" alt="AI" class="w-8 h-8 object-contain brightness-0 invert">
                 {{-- Gold accent dot --}}
-                <div class="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-black text-white" style="background:#C6A664;">AI</div>
+                <div class="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-black text-white" style="background:#2B1810;">AI</div>
             </div>
         </div>
     </button>
@@ -36,14 +36,14 @@
         <div class="rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.3)] border border-white/10 flex flex-col" style="height:520px;">
 
             {{-- Header --}}
-            <div class="relative px-5 py-4 flex items-center justify-between flex-shrink-0" style="background:linear-gradient(135deg,#001F3F,#003366);">
+            <div class="relative px-5 py-4 flex items-center justify-between flex-shrink-0" style="background:linear-gradient(135deg,#A85C2E,#003366);">
                 <div class="relative flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 border border-white/20 shadow-inner">
-                        <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-7 h-7 object-contain">
+                        <img src="{{ asset('images/icons/logo.png') }}" alt="AI" class="w-7 h-7 object-contain">
                     </div>
                     <div>
-                        <h4 class="text-sm font-bold text-white leading-none">MyCrib AI</h4>
-                        <p class="text-[10px] mt-0.5 font-semibold" style="color:#C6A664;">Property Assistant</p>
+                        <h4 class="text-sm font-bold text-white leading-none">Villa Africa AI</h4>
+                        <p class="text-[10px] mt-0.5 font-semibold" style="color:#2B1810;">Property Assistant</p>
                     </div>
                 </div>
                 <button @click="toggleChat()" class="relative w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all">
@@ -57,36 +57,36 @@
                 <template x-if="messages.length === 0">
                     <div class="space-y-4">
                         <div class="flex gap-2.5">
-                            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#001F3F,#003366);">
-                                <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
+                            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#A85C2E,#003366);">
+                                <img src="{{ asset('images/icons/logo.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
                             </div>
                             <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100 max-w-[85%]">
-                                <p class="text-sm text-gray-700 leading-relaxed">Hi! 👋 I'm <strong>MyCrib AI</strong>, your real estate assistant. I can help you:</p>
+                                <p class="text-sm text-gray-700 leading-relaxed">Hi! 👋 I'm <strong>Villa Africa AI</strong>, your real estate assistant. I can help you:</p>
                                 <ul class="mt-2 space-y-1.5 text-xs text-gray-500">
                                     <li class="flex items-center gap-2">
-                                        <span class="w-1 h-1 rounded-full bg-[#C6A664] flex-shrink-0"></span>
+                                        <span class="w-1 h-1 rounded-full bg-[#2B1810] flex-shrink-0"></span>
                                         Find properties in any location
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <span class="w-1 h-1 rounded-full bg-[#C6A664] flex-shrink-0"></span>
+                                        <span class="w-1 h-1 rounded-full bg-[#2B1810] flex-shrink-0"></span>
                                         Understand pricing & neighborhoods
                                     </li>
                                     <li class="flex items-center gap-2">
-                                        <span class="w-1 h-1 rounded-full bg-[#C6A664] flex-shrink-0"></span>
-                                        Navigate the MyCrib platform
+                                        <span class="w-1 h-1 rounded-full bg-[#2B1810] flex-shrink-0"></span>
+                                        Navigate the Villa Africa platform
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         {{-- Quick prompts --}}
                         <div class="flex flex-wrap gap-2 pl-9">
-                            <button @click="sendQuickPrompt('What areas in Lagos are best for renting?')" class="text-[11px] font-semibold px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:border-[#C6A664] hover:text-[#C6A664] transition-all">
+                            <button @click="sendQuickPrompt('What areas in Lagos are best for renting?')" class="text-[11px] font-semibold px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:border-[#2B1810] hover:text-[#2B1810] transition-all">
                                 🏙️ Best areas in Lagos?
                             </button>
-                            <button @click="sendQuickPrompt('How do I post a property request on the Buyer Wall?')" class="text-[11px] font-semibold px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:border-[#C6A664] hover:text-[#C6A664] transition-all">
+                            <button @click="sendQuickPrompt('How do I post a property request on the Buyer Wall?')" class="text-[11px] font-semibold px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:border-[#2B1810] hover:text-[#2B1810] transition-all">
                                 📋 How to use Buyer Wall?
                             </button>
-                            <button @click="sendQuickPrompt('What should I look for when renting an apartment in Nigeria?')" class="text-[11px] font-semibold px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:border-[#C6A664] hover:text-[#C6A664] transition-all">
+                            <button @click="sendQuickPrompt('What should I look for when renting an apartment in Nigeria?')" class="text-[11px] font-semibold px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-600 hover:border-[#2B1810] hover:text-[#2B1810] transition-all">
                                 💡 Renting tips
                             </button>
                         </div>
@@ -98,12 +98,12 @@
                     <div :class="msg.role === 'user' ? 'flex justify-end' : 'flex gap-2.5'">
                         {{-- AI avatar (only for AI messages) --}}
                         <template x-if="msg.role === 'assistant'">
-                            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#001F3F,#003366);">
-                                <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
+                            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#A85C2E,#003366);">
+                                <img src="{{ asset('images/icons/logo.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
                             </div>
                         </template>
                         <div :class="msg.role === 'user'
-                            ? 'bg-[#001F3F] text-white rounded-2xl rounded-tr-md px-4 py-3 max-w-[80%] shadow-sm'
+                            ? 'bg-[#A85C2E] text-white rounded-2xl rounded-tr-md px-4 py-3 max-w-[80%] shadow-sm'
                             : 'bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100 max-w-[85%]'">
                             <p class="text-sm leading-relaxed whitespace-pre-wrap" :class="msg.role === 'user' ? 'text-white/90' : 'text-gray-700'" x-text="msg.content"></p>
                         </div>
@@ -112,8 +112,8 @@
 
                 {{-- Typing indicator --}}
                 <div x-show="loading" class="flex gap-2.5">
-                        <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#001F3F,#003366);">
-                            <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
+                        <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center mt-0.5 shadow-sm" style="background:linear-gradient(135deg,#A85C2E,#003366);">
+                            <img src="{{ asset('images/icons/logo.png') }}" alt="AI" class="w-5 h-5 object-contain brightness-0 invert">
                         </div>
                     <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm border border-gray-100">
                         <div class="flex items-center gap-1.5">
@@ -134,7 +134,7 @@
                                placeholder="Ask me anything about properties..."
                                :disabled="loading"
                                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 text-sm text-gray-800 placeholder:text-gray-400
-                                      focus:bg-white focus:border-[#C6A664] focus:ring-2 focus:ring-[#C6A664]/10 outline-none transition-all duration-200"
+                                      focus:bg-white focus:border-[#2B1810] focus:ring-2 focus:ring-[#2B1810]/10 outline-none transition-all duration-200"
                                autocomplete="off">
                     </div>
                     <button type="submit" 
@@ -143,7 +143,7 @@
                             :class="input.trim() && !loading 
                                 ? 'text-white shadow-lg hover:-translate-y-0.5' 
                                 : 'bg-gray-100 text-gray-300 cursor-not-allowed'"
-                            :style="input.trim() && !loading ? 'background:linear-gradient(135deg,#001F3F,#003366)' : ''">
+                            :style="input.trim() && !loading ? 'background:linear-gradient(135deg,#A85C2E,#003366)' : ''">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
                         </svg>

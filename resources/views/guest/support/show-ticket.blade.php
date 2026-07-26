@@ -36,12 +36,12 @@
             
             <!-- Original User Ticket -->
             <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-xl bg-[#001F3F] text-white flex items-center justify-center flex-shrink-0 font-bold">
+                <div class="w-10 h-10 rounded-xl bg-[#A85C2E] text-white flex items-center justify-center flex-shrink-0 font-bold">
                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                 </div>
                 <div class="bg-indigo-50/50 rounded-2xl rounded-tl-none p-6 shadow-sm border border-indigo-100 flex-1">
                     <div class="flex items-center justify-between mb-3 pb-2 border-b border-indigo-100/50">
-                        <span class="text-xs font-black text-[#001F3F] uppercase tracking-widest">{{ Auth::user()->name }}</span>
+                        <span class="text-xs font-black text-[#A85C2E] uppercase tracking-widest">{{ Auth::user()->name }}</span>
                         <span class="text-[10px] text-gray-400 font-bold">{{ $ticket->created_at->diffForHumans() }}</span>
                     </div>
                     <p class="text-sm text-gray-800 leading-relaxed whitespace-pre-wrap">{{ $ticket->body }}</p>
@@ -62,7 +62,7 @@
                             <p class="text-sm text-gray-800 leading-relaxed whitespace-pre-wrap">{{ $reply->body }}</p>
                         </div>
                     @else
-                        <div class="w-10 h-10 rounded-xl bg-[#001F3F] text-white flex items-center justify-center flex-shrink-0 font-bold">
+                        <div class="w-10 h-10 rounded-xl bg-[#A85C2E] text-white flex items-center justify-center flex-shrink-0 font-bold">
                             {{ strtoupper(substr($reply->user->name, 0, 1)) }}
                         </div>
                         <div class="bg-gray-50 rounded-2xl rounded-tl-none p-6 shadow-sm border border-gray-100 flex-1">
@@ -93,7 +93,7 @@
                             @enderror
                         </div>
                         <div class="flex justify-end">
-                            <button type="submit" class="px-10 py-4 bg-[#001F3F] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] hover:shadow-xl hover:shadow-[#001F3F]/30 transition-all duration-300 active:scale-[0.98]">
+                            <button type="submit" class="px-10 py-4 bg-[#A85C2E] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] hover:shadow-xl hover:shadow-[#A85C2E]/30 transition-all duration-300 active:scale-[0.98]">
                                 Send Response
                             </button>
                         </div>

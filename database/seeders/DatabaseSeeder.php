@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // Admin
         User::create([
             'name' => 'Admin User',
-            'email' => 'admin@mycrib.africa',
+            'email' => 'admin@villaafrica.com',
             'role' => 'admin',
             'password' => Hash::make('password'),
         ]);
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         // Specific Test Agent
         User::create([
             'name' => 'Sarah Connor',
-            'email' => 'sarah@mycrib.africa',
+            'email' => 'sarah@villaafrica.com',
             'role' => 'agent',
             'password' => Hash::make('password'),
         ]);

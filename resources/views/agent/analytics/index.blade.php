@@ -86,7 +86,7 @@
         {{-- Wallet & Commissions --}}
         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
             <h2 class="text-sm font-bold text-gray-800 tracking-wide uppercase mb-6">Wallet balance</h2>
-            <div class="bg-[#001F3F] rounded-2xl p-6 text-white relative overflow-hidden mb-6">
+            <div class="bg-[#A85C2E] rounded-2xl p-6 text-white relative overflow-hidden mb-6">
                 <div class="absolute top-0 right-0 w-32 h-32 -mr-12 -mt-12 bg-white/5 rounded-full"></div>
                 <p class="text-xs font-semibold text-white/50 mb-1">Available Balance</p>
                 <p class="text-3xl font-black">₦{{ number_format($wallet->balance ?? 0, 2) }}</p>
@@ -111,7 +111,7 @@
             </div>
             @if($commissions->count() > 0)
                 <div class="mt-6 pt-4 border-t border-gray-50">
-                    <a href="#" class="text-[11px] font-bold text-[#C6A664] hover:underline uppercase tracking-wider">Full transaction history →</a>
+                    <a href="#" class="text-[11px] font-bold text-[#2B1810] hover:underline uppercase tracking-wider">Full transaction history →</a>
                 </div>
             @endif
         </div>
@@ -157,7 +157,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <a href="{{ route('agent.properties.edit', $property->id) }}" class="text-[10px] font-bold text-[#C6A664] hover:underline uppercase tracking-widest">Optimize</a>
+                            <a href="{{ route('agent.properties.edit', $property->id) }}" class="text-[10px] font-bold text-[#2B1810] hover:underline uppercase tracking-widest">Optimize</a>
                         </td>
                     </tr>
                     @endforeach
@@ -205,7 +205,7 @@
                     tooltip: {
                         mode: 'index',
                         intersect: false,
-                        backgroundColor: '#001F3F',
+                        backgroundColor: '#A85C2E',
                         titleFont: { size: 11, weight: 'bold' },
                         bodyFont: { size: 10 },
                         padding: 10,

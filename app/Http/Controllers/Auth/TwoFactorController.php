@@ -36,13 +36,13 @@ class TwoFactorController extends Controller
         }
 
         $qrCodeUrl = $this->google2fa->getQRCodeUrl(
-            'MyCrib Africa',
+            'Villa Africa',
             $user->email,
             $user2fa->secret
         );
 
         $inlineUrl = $this->google2fa->getQRCodeInline(
-            'MyCrib Africa',
+            'Villa Africa',
             $user->email,
             $user2fa->secret
         );

@@ -21,7 +21,7 @@
                 <p class="mt-2 text-gray-500 font-medium">Save time with pre-written responses for common inquiries and property details.</p>
             </div>
             
-            <button @click="$dispatch('open-modal', 'create-template')" class="inline-flex items-center gap-2 px-8 py-4 bg-[#001F3F] text-white rounded-2xl font-bold hover:bg-[#002d5c] hover:shadow-xl hover:shadow-[#001F3F]/20 transition-all duration-300 active:scale-[0.98]">
+            <button @click="$dispatch('open-modal', 'create-template')" class="inline-flex items-center gap-2 px-8 py-4 bg-[#A85C2E] text-white rounded-2xl font-bold hover:bg-[#002d5c] hover:shadow-xl hover:shadow-[#A85C2E]/20 transition-all duration-300 active:scale-[0.98]">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 New Template
             </button>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="flex justify-end gap-4 pt-4">
                                 <button type="button" @click="$dispatch('close')" class="px-8 py-4 text-gray-400 font-bold hover:text-gray-900 transition-colors">Cancel</button>
-                                <button type="submit" class="px-10 py-4 bg-[#001F3F] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] transition-all duration-300">Save Changes</button>
+                                <button type="submit" class="px-10 py-4 bg-[#A85C2E] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] transition-all duration-300">Save Changes</button>
                             </div>
                         </form>
                     </div>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="flex justify-end gap-4 pt-4">
                         <button type="button" @click="$dispatch('close')" class="px-8 py-4 text-gray-400 font-bold hover:text-gray-900 transition-colors">Cancel</button>
-                        <button type="submit" class="px-10 py-4 bg-[#001F3F] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] transition-all duration-300 shadow-xl shadow-[#001F3F]/20">Create Template</button>
+                        <button type="submit" class="px-10 py-4 bg-[#A85C2E] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] transition-all duration-300 shadow-xl shadow-[#A85C2E]/20">Create Template</button>
                     </div>
                 </form>
             </div>

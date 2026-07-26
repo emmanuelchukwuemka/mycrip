@@ -1,7 +1,7 @@
 <x-admin-layout>
     <div class="mb-8 flex justify-between items-center">
         <div>
-            <h2 class="text-3xl font-bold" style="color: #001F3F;">Property Management</h2>
+            <h2 class="text-3xl font-bold" style="color: #A85C2E;">Property Management</h2>
             <p class="mt-1 text-gray-500">Oversee and verify all property listings on the platform.</p>
         </div>
     </div>
@@ -35,7 +35,7 @@
                                     @endif
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm font-semibold text-[#001F3F]">{{ $property->title }}</div>
+                                    <div class="text-sm font-semibold text-[#A85C2E]">{{ $property->title }}</div>
                                     <div class="text-xs text-gray-500">{{ $property->city }}, {{ $property->state }}</div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                 @endif
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-[#001F3F]">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-[#A85C2E]">
                             {{ $property->formatted_price }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">

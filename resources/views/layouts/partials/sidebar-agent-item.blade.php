@@ -1,7 +1,7 @@
 {{--
   sidebar-agent-item.blade.php
   Variables: $href, $label, $active, $icon (SVG path markup), $accent (bool, optional)
-  Brand colors: #001F3F navy, #C6A664 gold
+  Brand colors: #A85C2E navy, #2B1810 gold
 --}}
 @php
     $accent  = $accent ?? false;
@@ -9,12 +9,12 @@
     $iconBox = 'flex items-center justify-center w-8 h-8 flex-shrink-0 rounded-xl transition-all duration-200';
     if ($active) {
         $btnClass  = $baseBtn . ' bg-white/10 shadow-inner';
-        $iconClass = $iconBox . ' bg-[#C6A664] text-white shadow-lg shadow-[#C6A664]/20';
+        $iconClass = $iconBox . ' bg-[#2B1810] text-white shadow-lg shadow-[#2B1810]/20';
         $textClass = 'text-white font-bold';
     } elseif ($accent) {
         $btnClass  = $baseBtn . ' text-white hover:bg-white/[0.08]';
-        $iconClass = $iconBox . ' bg-[#C6A664]/20 text-[#C6A664] group-hover:bg-[#C6A664] group-hover:text-white';
-        $textClass = 'font-bold text-[#C6A664] group-hover:text-white transition-colors duration-150';
+        $iconClass = $iconBox . ' bg-[#2B1810]/20 text-[#2B1810] group-hover:bg-[#2B1810] group-hover:text-white';
+        $textClass = 'font-bold text-[#2B1810] group-hover:text-white transition-colors duration-150';
     } else {
         $btnClass  = $baseBtn . ' text-white/90 hover:text-white hover:bg-white/[0.07]';
         $iconClass = $iconBox . ' bg-white/10 text-white group-hover:bg-white/20 group-hover:text-white';
@@ -39,12 +39,12 @@
     {{-- Active indicator dot --}}
     @if($active)
         <span class="ml-auto w-1.5 h-1.5 flex-shrink-0 rounded-full transition-all duration-300"
-              style="background:#C6A664; box-shadow:0 0 8px #C6A664;"
+              style="background:#2B1810; box-shadow:0 0 8px #2B1810;"
               :class="sidebarCollapsed ? 'hidden' : 'block'"></span>
     @endif
 
     {{-- Left accent border for active --}}
     @if($active)
-        <span class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 rounded-r-full" style="background:#C6A664;"></span>
+        <span class="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 rounded-r-full" style="background:#2B1810;"></span>
     @endif
 </a>

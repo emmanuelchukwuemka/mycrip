@@ -54,7 +54,7 @@
             <h2 class="text-2xl font-black text-gray-900 mb-2">Still need help?</h2>
             <p class="text-gray-500 mb-8 font-medium">If you couldn't find your answer, our support team is available 24/7.</p>
             <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="{{ route('support.tickets.create') }}" class="px-10 py-4 bg-[#001F3F] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] hover:shadow-xl transition-all duration-300">
+                <a href="{{ route('support.tickets.create') }}" class="px-10 py-4 bg-[#A85C2E] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] hover:shadow-xl transition-all duration-300">
                     Contact Specialist
                 </a>
                 <a href="mailto:support@mycrip.com" class="px-10 py-4 bg-white text-gray-700 border border-gray-100 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-gray-50 hover:shadow-lg transition-all duration-300">

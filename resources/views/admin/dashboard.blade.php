@@ -3,7 +3,7 @@
     <div class="mb-8">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between">
             <div>
-                <h2 class="text-3xl font-bold" style="color: #001F3F;">Dashboard Overview</h2>
+                <h2 class="text-3xl font-bold" style="color: #A85C2E;">Dashboard Overview</h2>
                 <p class="mt-1 text-gray-500">Monitor your platform's performance at a glance.</p>
             </div>
             <div class="mt-4 md:mt-0 flex items-center space-x-3">
@@ -21,8 +21,8 @@
         <!-- Total Users -->
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
             <div class="flex items-center justify-between mb-4">
-                <div class="p-3 rounded-xl" style="background: rgba(0, 31, 63, 0.08);">
-                    <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: #001F3F;">
+                <div class="p-3 rounded-xl" style="background: rgba(168, 92, 46, 0.08);">
+                    <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: #A85C2E;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                 </div>
@@ -31,18 +31,18 @@
                     5.4%
                 </span>
             </div>
-            <h4 class="text-3xl font-bold" style="color: #001F3F;">{{ number_format($stats['totalUsers']) }}</h4>
+            <h4 class="text-3xl font-bold" style="color: #A85C2E;">{{ number_format($stats['totalUsers']) }}</h4>
             <p class="text-sm text-gray-500 mt-1">Total Users</p>
             <div class="mt-4 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                <div class="h-full rounded-full" style="width: 75%; background-color: #001F3F;"></div>
+                <div class="h-full rounded-full" style="width: 75%; background-color: #A85C2E;"></div>
             </div>
         </div>
 
         <!-- Total Properties -->
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
             <div class="flex items-center justify-between mb-4">
-                <div class="p-3 rounded-xl" style="background: rgba(198, 166, 100, 0.12);">
-                    <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: #C6A664;">
+                <div class="p-3 rounded-xl" style="background: rgba(43, 24, 16, 0.12);">
+                    <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="color: #2B1810;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                     </svg>
                 </div>
@@ -51,10 +51,10 @@
                     12%
                 </span>
             </div>
-            <h4 class="text-3xl font-bold" style="color: #001F3F;">{{ number_format($stats['totalProperties']) }}</h4>
+            <h4 class="text-3xl font-bold" style="color: #A85C2E;">{{ number_format($stats['totalProperties']) }}</h4>
             <p class="text-sm text-gray-500 mt-1">Properties Listed</p>
             <div class="mt-4 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                <div class="h-full rounded-full" style="width: 88%; background-color: #C6A664;"></div>
+                <div class="h-full rounded-full" style="width: 88%; background-color: #2B1810;"></div>
             </div>
         </div>
 
@@ -70,7 +70,7 @@
                     Daily
                 </span>
             </div>
-            <h4 class="text-3xl font-bold" style="color: #001F3F;">{{ number_format($stats['verifiedAgents']) }}</h4>
+            <h4 class="text-3xl font-bold" style="color: #A85C2E;">{{ number_format($stats['verifiedAgents']) }}</h4>
             <p class="text-sm text-gray-500 mt-1">Verified Agents</p>
             <div class="mt-4 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                 <div class="h-full rounded-full bg-emerald-500" style="width: 62%;"></div>
@@ -89,7 +89,7 @@
                     Action Needed
                 </span>
             </div>
-            <h4 class="text-3xl font-bold" style="color: #001F3F;">{{ number_format($stats['pendingAgents']) }}</h4>
+            <h4 class="text-3xl font-bold" style="color: #A85C2E;">{{ number_format($stats['pendingAgents']) }}</h4>
             <p class="text-sm text-gray-500 mt-1">Pending Verifications</p>
             <div class="mt-4 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                 <div class="h-full rounded-full bg-amber-500" style="width: 15%;"></div>
@@ -103,16 +103,16 @@
         <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h4 class="text-lg font-bold" style="color: #001F3F;">Platform Analytics</h4>
+                    <h4 class="text-lg font-bold" style="color: #A85C2E;">Platform Analytics</h4>
                     <p class="text-sm text-gray-500">Users & property growth over the last 6 months</p>
                 </div>
                 <div class="flex items-center space-x-4 text-sm">
                     <div class="flex items-center">
-                        <span class="w-3 h-3 rounded-full mr-2" style="background-color: #001F3F;"></span>
+                        <span class="w-3 h-3 rounded-full mr-2" style="background-color: #A85C2E;"></span>
                         <span class="text-gray-600">Users</span>
                     </div>
                     <div class="flex items-center">
-                        <span class="w-3 h-3 rounded-full mr-2" style="background-color: #C6A664;"></span>
+                        <span class="w-3 h-3 rounded-full mr-2" style="background-color: #2B1810;"></span>
                         <span class="text-gray-600">Properties</span>
                     </div>
                 </div>
@@ -125,8 +125,8 @@
         <!-- Recent Activity Feed -->
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             <div class="flex items-center justify-between mb-6">
-                <h4 class="text-lg font-bold" style="color: #001F3F;">Recent Activity</h4>
-                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium" style="background: rgba(198, 166, 100, 0.12); color: #C6A664;">Live</span>
+                <h4 class="text-lg font-bold" style="color: #A85C2E;">Recent Activity</h4>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium" style="background: rgba(43, 24, 16, 0.12); color: #2B1810;">Live</span>
             </div>
             <div class="flow-root">
                 <ul class="-mb-8">
@@ -135,14 +135,14 @@
                             <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-100" aria-hidden="true"></span>
                             <div class="relative flex items-start space-x-4">
                                 <div class="flex-shrink-0">
-                                    <span class="h-10 w-10 rounded-xl flex items-center justify-center ring-4 ring-white" style="background-color: #001F3F;">
+                                    <span class="h-10 w-10 rounded-xl flex items-center justify-center ring-4 ring-white" style="background-color: #A85C2E;">
                                         <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                                         </svg>
                                     </span>
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-sm text-gray-800 font-medium">New agent <span class="font-bold" style="color: #001F3F;">Sarah Connor</span> registered</p>
+                                    <p class="text-sm text-gray-800 font-medium">New agent <span class="font-bold" style="color: #A85C2E;">Sarah Connor</span> registered</p>
                                     <p class="text-xs text-gray-400 mt-1">1 hour ago</p>
                                 </div>
                             </div>
@@ -153,14 +153,14 @@
                             <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-100" aria-hidden="true"></span>
                             <div class="relative flex items-start space-x-4">
                                 <div class="flex-shrink-0">
-                                    <span class="h-10 w-10 rounded-xl flex items-center justify-center ring-4 ring-white" style="background-color: #C6A664;">
+                                    <span class="h-10 w-10 rounded-xl flex items-center justify-center ring-4 ring-white" style="background-color: #2B1810;">
                                         <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                         </svg>
                                     </span>
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-sm text-gray-800 font-medium">New property <span class="font-bold" style="color: #001F3F;">Luxury Villa</span> listed</p>
+                                    <p class="text-sm text-gray-800 font-medium">New property <span class="font-bold" style="color: #A85C2E;">Luxury Villa</span> listed</p>
                                     <p class="text-xs text-gray-400 mt-1">2 hours ago</p>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                                     </span>
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-sm text-gray-800 font-medium">Agent <span class="font-bold" style="color: #001F3F;">Michael Obi</span> verified</p>
+                                    <p class="text-sm text-gray-800 font-medium">Agent <span class="font-bold" style="color: #A85C2E;">Michael Obi</span> verified</p>
                                     <p class="text-xs text-gray-400 mt-1">4 hours ago</p>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                     </span>
                                 </div>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-sm text-gray-800 font-medium">Report on <span class="font-bold" style="color: #001F3F;">John Doe</span> filed</p>
+                                    <p class="text-sm text-gray-800 font-medium">Report on <span class="font-bold" style="color: #A85C2E;">John Doe</span> filed</p>
                                     <p class="text-xs text-gray-400 mt-1">1 day ago</p>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@
             <div class="p-6">
                 <div class="flex items-center justify-between mb-6">
                     <div>
-                        <h4 class="text-lg font-bold" style="color: #001F3F;">Property Approvals</h4>
+                        <h4 class="text-lg font-bold" style="color: #A85C2E;">Property Approvals</h4>
                         <p class="text-sm text-gray-500">Listings awaiting verification</p>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                                             @endif
                                         </div>
                                         <div class="ml-4 max-w-[200px]">
-                                            <div class="text-sm font-semibold truncate text-[#001F3F]">{{ $property->title }}</div>
+                                            <div class="text-sm font-semibold truncate text-[#A85C2E]">{{ $property->title }}</div>
                                             <div class="text-xs text-gray-500 truncate">{{ $property->city }}, {{ $property->state }}</div>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@
             <div class="p-6 pb-0">
                 <div class="flex items-center justify-between mb-6">
                     <div>
-                        <h4 class="text-lg font-bold" style="color: #001F3F;">Newest Members</h4>
+                        <h4 class="text-lg font-bold" style="color: #A85C2E;">Newest Members</h4>
                         <p class="text-sm text-gray-500">Recent user registrations</p>
                     </div>
                 </div>
@@ -292,10 +292,10 @@
                 <table class="min-w-full">
                     <thead>
                         <tr style="background-color: #F8F9FC;">
-                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">User</th>
-                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Role</th>
-                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Status</th>
-                            <th class="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider" style="color: #001F3F;">Actions</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #A85C2E;">User</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #A85C2E;">Role</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider" style="color: #A85C2E;">Status</th>
+                            <th class="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider" style="color: #A85C2E;">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -303,7 +303,7 @@
                         <tr class="hover:bg-gray-50 transition-colors duration-150">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <div class="h-10 w-10 rounded-xl overflow-hidden shadow-sm border-2" style="border-color: rgba(198, 166, 100, 0.3);">
+                                    <div class="h-10 w-10 rounded-xl overflow-hidden shadow-sm border-2" style="border-color: rgba(43, 24, 16, 0.3);">
                                         @if($user->role === 'agent' && $user->agent_image)
                                             <img class="h-full w-full object-cover" src="{{ asset('storage/' . $user->agent_image) }}" alt="{{ $user->name }}">
                                         @elseif($user->google_avatar)
@@ -315,14 +315,14 @@
                                         @endif
                                     </div>
                                     <div class="ml-4">
-                                        <div class="text-sm font-semibold" style="color: #001F3F;">{{ $user->name }}</div>
+                                        <div class="text-sm font-semibold" style="color: #A85C2E;">{{ $user->name }}</div>
                                         <div class="text-xs text-gray-500">{{ $user->email }}</div>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-lg" 
-                                      style="{{ $user->role === 'agent' ? 'background: rgba(0, 31, 63, 0.08); color: #001F3F;' : 'background: #F3F4F6; color: #4B5563;' }}">
+                                      style="{{ $user->role === 'agent' ? 'background: rgba(168, 92, 46, 0.08); color: #A85C2E;' : 'background: #F3F4F6; color: #4B5563;' }}">
                                     {{ ucfirst($user->role) }}
                                 </span>
                             </td>
@@ -388,12 +388,12 @@
             const ctx = document.getElementById('userGrowthChart').getContext('2d');
             
             const gradient1 = ctx.createLinearGradient(0, 0, 0, 300);
-            gradient1.addColorStop(0, 'rgba(0, 31, 63, 0.15)');
-            gradient1.addColorStop(1, 'rgba(0, 31, 63, 0.01)');
+            gradient1.addColorStop(0, 'rgba(168, 92, 46, 0.15)');
+            gradient1.addColorStop(1, 'rgba(168, 92, 46, 0.01)');
 
             const gradient2 = ctx.createLinearGradient(0, 0, 0, 300);
-            gradient2.addColorStop(0, 'rgba(198, 166, 100, 0.15)');
-            gradient2.addColorStop(1, 'rgba(198, 166, 100, 0.01)');
+            gradient2.addColorStop(0, 'rgba(43, 24, 16, 0.15)');
+            gradient2.addColorStop(1, 'rgba(43, 24, 16, 0.01)');
 
             new Chart(ctx, {
                 type: 'line',
@@ -403,11 +403,11 @@
                         label: 'New Users',
                         data: [120, 190, 150, 250, 220, 310],
                         backgroundColor: gradient1,
-                        borderColor: '#001F3F',
+                        borderColor: '#A85C2E',
                         borderWidth: 3,
                         tension: 0.4,
                         fill: true,
-                        pointBackgroundColor: '#001F3F',
+                        pointBackgroundColor: '#A85C2E',
                         pointBorderColor: '#fff',
                         pointBorderWidth: 2,
                         pointRadius: 5,
@@ -417,11 +417,11 @@
                         label: 'Properties',
                         data: [80, 160, 200, 180, 250, 220],
                         backgroundColor: gradient2,
-                        borderColor: '#C6A664',
+                        borderColor: '#2B1810',
                         borderWidth: 3,
                         tension: 0.4,
                         fill: true,
-                        pointBackgroundColor: '#C6A664',
+                        pointBackgroundColor: '#2B1810',
                         pointBorderColor: '#fff',
                         pointBorderWidth: 2,
                         pointRadius: 5,
@@ -456,7 +456,7 @@
                     labels: ['Apartments', 'Houses', 'Land', 'Shops', 'Warehouses'],
                     datasets: [{
                         data: [42, 28, 18, 8, 4],
-                        backgroundColor: ['#001F3F', '#C6A664', '#10B981', '#F59E0B', '#6366F1'],
+                        backgroundColor: ['#A85C2E', '#2B1810', '#10B981', '#F59E0B', '#6366F1'],
                         borderWidth: 0,
                         hoverOffset: 8
                     }]

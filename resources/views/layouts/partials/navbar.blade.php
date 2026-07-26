@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50 shadow-sm" style="border-color: #C6A664;">
+<nav x-data="{ open: false }" class="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50 shadow-sm" style="border-color: #2B1810;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20">
@@ -6,41 +6,41 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
-                        <img src="{{ asset('images/icons/logo_variant_1.png') }}" alt="MyCrib Africa" class="h-12 w-auto rounded-xl shadow-lg group-hover:shadow-xl transform group-hover:scale-110 transition-all duration-300">
-                        <span class="text-2xl font-bold" style="color: #001F3F;">
-                            MyCrib Africa
+                        <img src="{{ asset('images/icons/logo.png') }}" alt="Villa Africa" class="h-12 w-auto rounded-xl shadow-lg group-hover:shadow-xl transform group-hover:scale-110 transition-all duration-300">
+                        <span class="text-2xl font-bold" style="color: #A85C2E;">
+                            Villa Africa
                         </span>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden lg:ml-10 md:ml-4 lg:flex lg:space-x-6 md:flex md:space-x-3">
-                    <a href="{{ route('home') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#001F3F'; this.style.borderColor='transparent'">
+                    <a href="{{ route('home') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #A85C2E;" onmouseover="this.style.color='#2B1810'; this.style.borderColor='#2B1810'" onmouseout="this.style.color='#A85C2E'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                         </svg>
                         Home
                     </a>
-                    <a href="{{ route('properties.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                    <a href="{{ route('properties.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #2B1810;" onmouseover="this.style.color='#2B1810'; this.style.borderColor='#2B1810'" onmouseout="this.style.color='#2B1810'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                         </svg>
                         Properties
                     </a>
-                    <a href="{{ route('agents.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                    <a href="{{ route('agents.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #2B1810;" onmouseover="this.style.color='#2B1810'; this.style.borderColor='#2B1810'" onmouseout="this.style.color='#2B1810'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
                         </svg>
                         Agents
                     </a>
-                    <a href="{{ route('blog.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                    <a href="{{ route('blog.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #2B1810;" onmouseover="this.style.color='#2B1810'; this.style.borderColor='#2B1810'" onmouseout="this.style.color='#2B1810'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 4v4h4"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h3m-3 4h10m-10 4h10"/>
                         </svg>
                         News & Guides
                     </a>
-                    <a href="{{ route('requests.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                    <a href="{{ route('requests.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #2B1810;" onmouseover="this.style.color='#2B1810'; this.style.borderColor='#2B1810'" onmouseout="this.style.color='#2B1810'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2-2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                         </svg>
@@ -50,10 +50,10 @@
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" 
                                 class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" 
-                                style="color: #1A1A1A;" 
-                                :style="open ? 'color: #C6A664; border-color: #C6A664' : ''"
-                                onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" 
-                                onmouseout="if(!Alpine.find($el)._x_dataStack[0].open) { this.style.color='#1A1A1A'; this.style.borderColor='transparent' }">
+                                style="color: #2B1810;" 
+                                :style="open ? 'color: #2B1810; border-color: #2B1810' : ''"
+                                onmouseover="this.style.color='#2B1810'; this.style.borderColor='#2B1810'" 
+                                onmouseout="if(!Alpine.find($el)._x_dataStack[0].open) { this.style.color='#2B1810'; this.style.borderColor='transparent' }">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
                             </svg>
@@ -70,31 +70,31 @@
                              x-transition:enter-end="opacity-100 scale-100"
                              class="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
                             
-                            <a href="{{ route('properties.categories.hotels') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                            <a href="{{ route('properties.categories.hotels') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#2B1810] transition-colors">
                                 <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                 </svg>
                                 Hotels
                             </a>
-                            <a href="{{ route('properties.categories.lodges') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                            <a href="{{ route('properties.categories.lodges') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#2B1810] transition-colors">
                                 <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                                 </svg>
                                 Lodges
                             </a>
-                            <a href="{{ route('properties.categories.shops') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                            <a href="{{ route('properties.categories.shops') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#2B1810] transition-colors">
                                 <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                                 </svg>
                                 Shops
                             </a>
-                            <a href="{{ route('properties.categories.warehouses') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                            <a href="{{ route('properties.categories.warehouses') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#2B1810] transition-colors">
                                 <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4a2 2 0 012-2m16 0h-2m-2 0H6m-2 0H2m4 0h12"/>
                                 </svg>
                                 Warehouses
                             </a>
-                            <a href="{{ route('properties.categories.land') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                            <a href="{{ route('properties.categories.land') }}" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#2B1810] transition-colors">
                                 <svg class="w-4 h-4 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                 </svg>
@@ -102,14 +102,14 @@
                             </a>
                         </div>
                     </div>
-                    <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #1A1A1A;" onmouseover="this.style.color='#C6A664'; this.style.borderColor='#C6A664'" onmouseout="this.style.color='#1A1A1A'; this.style.borderColor='transparent'">
+                    <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #2B1810;" onmouseover="this.style.color='#2B1810'; this.style.borderColor='#2B1810'" onmouseout="this.style.color='#2B1810'; this.style.borderColor='transparent'">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         About Us
                     </a>
                     @if(auth()->check() && auth()->user()->role === 'admin')
-                        <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #C6A664;" onmouseover="this.style.borderColor='#C6A664'" onmouseout="this.style.borderColor='transparent'">
+                        <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors duration-300 border-b-2 border-transparent" style="color: #2B1810;" onmouseover="this.style.borderColor='#2B1810'" onmouseout="this.style.borderColor='transparent'">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
@@ -121,7 +121,7 @@
 
             <div class="hidden md:flex md:items-center md:space-x-4">
                 <!-- CTA Buttons -->
-                <a href="{{ route('register') }}" class="text-white lg:px-6 md:px-4 py-2 rounded-lg font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl shrink-0" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
+                <a href="{{ route('register') }}" class="text-white lg:px-6 md:px-4 py-2 rounded-lg font-medium transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl shrink-0" style="background-color: #A85C2E;" onmouseover="this.style.backgroundColor='#2B1810'" onmouseout="this.style.backgroundColor='#A85C2E'">
                     Get Started
                 </a>
                 
@@ -130,7 +130,7 @@
                     <div class="flex items-center space-x-2 mr-4">
                         <!-- Notification Dropdown -->
                         <div class="relative" x-data="{ open: false }">
-                            <button @click="open = !open" class="p-2 text-gray-400 hover:text-[#C6A664] transition-colors relative" title="Notifications">
+                            <button @click="open = !open" class="p-2 text-gray-400 hover:text-[#2B1810] transition-colors relative" title="Notifications">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
                                 </svg>
@@ -143,14 +143,14 @@
                                 <div class="px-4 py-2 border-b border-gray-50 mb-2 flex justify-between items-center">
                                     <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Notifications</p>
                                     @if(auth()->user()->unreadNotifications->count() > 0)
-                                        <a href="#" class="text-[10px] font-bold text-[#C6A664] hover:underline uppercase tracking-tighter">Mark all as read</a>
+                                        <a href="#" class="text-[10px] font-bold text-[#2B1810] hover:underline uppercase tracking-tighter">Mark all as read</a>
                                     @endif
                                 </div>
                                 
                                 <div class="max-h-96 overflow-y-auto">
                                     @forelse(auth()->user()->unreadNotifications->take(5) as $notification)
                                         <div class="px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0">
-                                            <p class="text-sm font-semibold text-[#001F3F] mb-1">{{ $notification->data['message'] ?? 'New Notification' }}</p>
+                                            <p class="text-sm font-semibold text-[#A85C2E] mb-1">{{ $notification->data['message'] ?? 'New Notification' }}</p>
                                             <p class="text-xs text-gray-500">{{ $notification->created_at->diffForHumans() }}</p>
                                         </div>
                                     @empty
@@ -162,17 +162,17 @@
                                 </div>
 
                                 <div class="px-4 pt-3 border-t border-gray-50">
-                                    <a href="#" class="block text-center text-xs font-bold text-[#001F3F] hover:text-[#C6A664] transition-colors">View All Notifications</a>
+                                    <a href="#" class="block text-center text-xs font-bold text-[#A85C2E] hover:text-[#2B1810] transition-colors">View All Notifications</a>
                                 </div>
                             </div>
                         </div>
 
-                        <a href="{{ route('chat.index') }}" class="p-2 text-gray-400 hover:text-[#C6A664] transition-colors relative" title="Messages">
+                        <a href="{{ route('chat.index') }}" class="p-2 text-gray-400 hover:text-[#2B1810] transition-colors relative" title="Messages">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                             </svg>
                         </a>
-                        <a href="{{ route('properties.saved') }}" class="p-2 text-gray-400 hover:text-[#C6A664] transition-colors" title="Saved Properties">
+                        <a href="{{ route('properties.saved') }}" class="p-2 text-gray-400 hover:text-[#2B1810] transition-colors" title="Saved Properties">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                             </svg>
@@ -180,11 +180,11 @@
                     </div>
 
                     <div class="relative" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex items-center space-x-3 bg-white border-2 px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-md" style="border-color: #C6A664;" onmouseover="this.style.borderColor='#001F3F'" onmouseout="this.style.borderColor='#C6A664'">
-                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold" style="background-color: #001F3F;">
+                        <button @click="open = !open" class="flex items-center space-x-3 bg-white border-2 px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-md" style="border-color: #2B1810;" onmouseover="this.style.borderColor='#A85C2E'" onmouseout="this.style.borderColor='#2B1810'">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold" style="background-color: #A85C2E;">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
-                            <span class="font-medium" style="color: #1A1A1A;">{{ Auth::user()->name }}</span>
+                            <span class="font-medium" style="color: #2B1810;">{{ Auth::user()->name }}</span>
                             <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
@@ -195,28 +195,28 @@
                                 <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">My Account</p>
                             </div>
                             
-                            <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
+                            <a href="#" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#A85C2E] transition-colors">
                                 <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
                                 <span class="font-semibold text-sm">Profile</span>
                             </a>
 
-                            <a href="{{ route('chat.index') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
+                            <a href="{{ route('chat.index') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#A85C2E] transition-colors">
                                 <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                                 </svg>
                                 <span class="font-semibold text-sm">My Messages</span>
                             </a>
 
-                            <a href="{{ route('properties.saved') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
+                            <a href="{{ route('properties.saved') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#A85C2E] transition-colors">
                                 <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                                 </svg>
                                 <span class="font-semibold text-sm">Saved Properties</span>
                             </a>
 
-                            <a href="{{ route('inquiries.index') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#001F3F] transition-colors">
+                            <a href="{{ route('inquiries.index') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#A85C2E] transition-colors">
                                 <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                                 </svg>
@@ -226,7 +226,7 @@
                             <div class="border-t border-gray-50 my-2"></div>
 
                             @if(auth()->user()->role === 'agent')
-                                <a href="{{ route('agent.dashboard') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#C6A664] transition-colors">
+                                <a href="{{ route('agent.dashboard') }}" class="flex items-center px-4 py-2.5 text-gray-700 hover:bg-gray-50 hover:text-[#2B1810] transition-colors">
                                     <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                                     </svg>
@@ -246,7 +246,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="font-medium transition-colors duration-300" style="color: #1A1A1A;" onmouseover="this.style.color='#001F3F'" onmouseout="this.style.color='#1A1A1A'">
+                    <a href="{{ route('login') }}" class="font-medium transition-colors duration-300" style="color: #2B1810;" onmouseover="this.style.color='#A85C2E'" onmouseout="this.style.color='#2B1810'">
                         Sign In
                     </a>
                 @endauth
@@ -301,11 +301,11 @@
                     </svg>
                 </button>
                 <div x-show="open" class="pl-8 bg-gray-50/50 py-1">
-                    <a href="{{ route('properties.categories.hotels') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Hotels</a>
-                    <a href="{{ route('properties.categories.lodges') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Lodges</a>
-                    <a href="{{ route('properties.categories.shops') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Shops</a>
-                    <a href="{{ route('properties.categories.warehouses') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Warehouses</a>
-                    <a href="{{ route('properties.categories.land') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#C6A664]">Land</a>
+                    <a href="{{ route('properties.categories.hotels') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#2B1810]">Hotels</a>
+                    <a href="{{ route('properties.categories.lodges') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#2B1810]">Lodges</a>
+                    <a href="{{ route('properties.categories.shops') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#2B1810]">Shops</a>
+                    <a href="{{ route('properties.categories.warehouses') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#2B1810]">Warehouses</a>
+                    <a href="{{ route('properties.categories.land') }}" class="block py-2 text-sm font-medium text-gray-600 hover:text-[#2B1810]">Land</a>
                 </div>
             </div>
             <a href="{{ route('about') }}" class="block pl-4 pr-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-indigo-600 transition-colors duration-300">
@@ -361,7 +361,7 @@
                         My Inquiries
                     </a>
                     @if(auth()->user()->role === 'agent')
-                        <a href="{{ route('agent.dashboard') }}" class="block px-3 py-2 text-base font-bold text-[#C6A664] hover:bg-gray-50 rounded-md transition-colors duration-300">
+                        <a href="{{ route('agent.dashboard') }}" class="block px-3 py-2 text-base font-bold text-[#2B1810] hover:bg-gray-50 rounded-md transition-colors duration-300">
                             <svg class="w-5 h-5 inline mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                             </svg>
@@ -379,10 +379,10 @@
         @else
             <div class="border-t border-gray-200 pt-4 pb-3">
                 <div class="px-4 space-y-4">
-                    <a href="{{ route('register') }}" class="block w-full text-white text-center py-3 px-4 rounded-lg font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
+                    <a href="{{ route('register') }}" class="block w-full text-white text-center py-3 px-4 rounded-lg font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" style="background-color: #A85C2E;" onmouseover="this.style.backgroundColor='#2B1810'" onmouseout="this.style.backgroundColor='#A85C2E'">
                         Get Started
                     </a>
-                    <a href="{{ route('login') }}" class="block w-full text-center py-3 px-4 font-medium border rounded-lg transition-colors duration-300" style="color: #1A1A1A; border-color: #C6A664; background-color: #FFFFFF;" onmouseover="this.style.backgroundColor='#F5F5F5'" onmouseout="this.style.backgroundColor='#FFFFFF'">
+                    <a href="{{ route('login') }}" class="block w-full text-center py-3 px-4 font-medium border rounded-lg transition-colors duration-300" style="color: #2B1810; border-color: #2B1810; background-color: #FFFFFF;" onmouseover="this.style.backgroundColor='#F5F5F5'" onmouseout="this.style.backgroundColor='#FFFFFF'">
                         Sign In
                     </a>
                 </div>

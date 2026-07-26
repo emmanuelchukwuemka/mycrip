@@ -3,12 +3,12 @@
         <!-- Left Side: Image -->
         <div class="hidden lg:block relative w-0 flex-1">
             <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Luxury Real Estate">
-            <div class="absolute inset-0" style="background-color: #001F3F; opacity: 0.9;"></div>
+            <div class="absolute inset-0" style="background-color: #A85C2E; opacity: 0.9;"></div>
             <div class="absolute inset-0 bg-black/20"></div>
             <!-- Logo Overlay -->
             <div class="absolute inset-0 flex items-center justify-center p-12">
                 <div class="text-center">
-                    <img src="{{ asset('images/icons/logo_variant_2.png') }}" alt="MyCrib Africa" class="motion-logo w-2/3 h-auto max-w-md mx-auto drop-shadow-2xl">
+                    <img src="{{ asset('images/icons/logo.png') }}" alt="Villa Africa" class="motion-logo w-2/3 h-auto max-w-md mx-auto brightness-0 invert drop-shadow-2xl">
                     <p class="mt-12 text-white text-2xl font-bold tracking-[0.3em] uppercase opacity-80 h-8">
                         <span id="typing-tagline" class="typing-cursor"></span>
                     </p>
@@ -67,8 +67,8 @@
                     100% { transform: translateY(0px) rotate(0deg); }
                 }
                 @keyframes glow {
-                    0%, 100% { filter: drop-shadow(0 0 20px rgba(198, 166, 100, 0.3)); }
-                    50% { filter: drop-shadow(0 0 40px rgba(198, 166, 100, 0.6)); }
+                    0%, 100% { filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)); }
+                    50% { filter: brightness(0) invert(1) drop-shadow(0 0 40px rgba(255, 255, 255, 0.7)); }
                 }
                 @keyframes reveal {
                     from { opacity: 0; transform: scale(0.8) translateY(20px); }
@@ -88,7 +88,7 @@
                     content: '|';
                     animation: blink 1s step-end infinite;
                     margin-left: 4px;
-                    color: #C6A664;
+                    color: #2B1810;
                 }
                 @keyframes blink {
                     from, to { opacity: 1; }
@@ -97,7 +97,7 @@
             </style>
             <div class="mx-auto w-full max-w-md lg:w-96">
                 <div class="text-center mb-8">
-                    <a href="{{ route('home') }}" class="inline-flex items-center transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
+                    <a href="{{ route('home') }}" class="inline-flex items-center transition-colors" style="color: #A85C2E;" onmouseover="this.style.color='#2B1810'" onmouseout="this.style.color='#A85C2E'">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
@@ -108,7 +108,7 @@
                 <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
                     <div class="text-center">
                         <h2 class="text-3xl font-bold text-gray-900 mb-2">
-                            Join MyCrib Africa
+                            Join Villa Africa
                         </h2>
                         <p class="text-gray-600 mb-6">
                             Create your account to get started
@@ -130,14 +130,14 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
-                            <p class="text-sm text-gray-600 mb-4">Select how you want to use MyCrib Africa</p>
+                            <p class="text-sm text-gray-600 mb-4">Select how you want to use Villa Africa</p>
                             <div class="grid grid-cols-2 gap-4">
                                 <label class="relative cursor-pointer group">
                                     <input type="radio" name="role" value="user" {{ request()->get('role') !== 'agent' ? 'checked' : '' }} class="sr-only peer">
-                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#C6A664'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#001F3F" data-checked-bg="rgba(0, 31, 63, 0.05)">
+                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#2B1810'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#A85C2E" data-checked-bg="rgba(168, 92, 46, 0.05)">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3" style="background-color: #F5F5F5;">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #001F3F;">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #A85C2E;">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                                                 </svg>
                                             </div>
@@ -151,16 +151,16 @@
 
                                 <label class="relative cursor-pointer group">
                                     <input type="radio" name="role" value="agent" {{ request()->get('role') === 'agent' ? 'checked' : '' }} class="sr-only peer">
-                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#C6A664'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#001F3F" data-checked-bg="rgba(0, 31, 63, 0.05)">
+                                    <div class="p-4 border-2 border-gray-200 rounded-lg peer-checked:bg-indigo-50/50 transition-all duration-200 group-hover:border-gray-300" style="" onmouseenter="if(!this.previousElementSibling.checked) this.style.borderColor='#2B1810'" onmouseleave="if(!this.previousElementSibling.checked) this.style.borderColor=''" data-checked-border="#A85C2E" data-checked-bg="rgba(168, 92, 46, 0.05)">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mr-3" style="background-color: #F5F5F5;">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #C6A664;">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #2B1810;">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                                 </svg>
                                             </div>
                                             <div>
-                                                <div class="font-medium text-gray-900">Real Estate Agent</div>
-                                                <div class="text-sm text-gray-600">List and manage properties</div>
+                                                <div class="font-medium text-gray-900">Partner</div>
+                                                <div class="text-sm text-gray-600">List and manage properties as an agent or landlord</div>
                                             </div>
                                         </div>
                                     </div>
@@ -216,6 +216,18 @@
 
                         <!-- Agent Details Section (Only shown for agents) -->
                         <div id="agent-profile-section" class="mt-4 hidden space-y-4">
+                            <!-- Partner Type -->
+                            <div>
+                                <label for="partner_type" class="block text-sm font-medium text-gray-700 mb-2">
+                                    I am a...
+                                </label>
+                                <select id="partner_type" name="partner_type"
+                                        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-white/50 backdrop-blur-sm">
+                                    <option value="agent">Real Estate Agent</option>
+                                    <option value="landlord">Landlord</option>
+                                </select>
+                            </div>
+
                             <!-- NIN -->
                             <div>
                                 <label for="agent_id_number" class="block text-sm font-medium text-gray-700 mb-2">
@@ -269,7 +281,7 @@
 
                         <div>
                             <button type="submit" id="submit-btn" 
-                                    class="w-full btn-auth text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#001F3F] focus:ring-offset-2">
+                                    class="w-full btn-auth text-white py-3 px-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#A85C2E] focus:ring-offset-2">
                                 Create Account
                             </button>
                         </div>
@@ -299,7 +311,7 @@
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             Already have an account? 
-                            <a href="{{ route('login') }}" class="font-medium transition-colors" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">
+                            <a href="{{ route('login') }}" class="font-medium transition-colors" style="color: #A85C2E;" onmouseover="this.style.color='#2B1810'" onmouseout="this.style.color='#A85C2E'">
                                 Sign in here
                             </a>
                         </p>

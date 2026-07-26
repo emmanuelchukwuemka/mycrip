@@ -7,13 +7,13 @@
     --text-primary: #1e293b;
     --text-secondary: #64748b;
     --border-color: #e2e8f0;
-    --primary-color: #001F3F;
-    --primary-hover: #001733;
+    --primary-color: #A85C2E;
+    --primary-hover: #8B4A24;
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --danger-color: #ef4444;
-    --accent-color: #C6A664;
-    --dark-bg: #1A1A1A;
+    --accent-color: #2B1810;
+    --dark-bg: #2B1810;
     --light-text: #FFFFFF;
 }
 
@@ -106,7 +106,7 @@ body {
 
 .nav-link.active {
     color: var(--primary-color);
-    background-color: rgba(0, 31, 63, 0.1);
+    background-color: rgba(168, 92, 46, 0.1);
 }
 
 .user-menu {
@@ -163,7 +163,7 @@ body {
 
 /* Auth Buttons */
 .btn-auth {
-    background-color: #001733;
+    background-color: #8B4A24;
     color: white;
 }
 
@@ -225,7 +225,7 @@ body {
 .sidebar-link.active {
     color: var(--primary-color);
     border-left-color: var(--primary-color);
-    background-color: rgba(0, 31, 63, 0.05);
+    background-color: rgba(168, 92, 46, 0.05);
 }
 
 /* Cards */
@@ -277,7 +277,7 @@ body {
 .form-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+    box-shadow: 0 0 0 3px rgba(168, 92, 46, 0.1);
 }
 
 .form-select {
@@ -293,7 +293,7 @@ body {
 .form-select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+    box-shadow: 0 0 0 3px rgba(168, 92, 46, 0.1);
 }
 
 .form-textarea {
@@ -309,7 +309,7 @@ body {
 .form-textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+    box-shadow: 0 0 0 3px rgba(168, 92, 46, 0.1);
 }
 
 .form-error {
@@ -436,7 +436,7 @@ body {
 .search-input input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+    box-shadow: 0 0 0 3px rgba(168, 92, 46, 0.1);
 }
 
 /* Dashboard Stats */
@@ -565,9 +565,9 @@ body {
 }
 
 .alert-info {
-    background-color: rgba(0, 31, 63, 0.1);
-    color: #001733;
-    border-color: rgba(0, 31, 63, 0.3);
+    background-color: rgba(168, 92, 46, 0.1);
+    color: #8B4A24;
+    border-color: rgba(168, 92, 46, 0.3);
 }
 
 /* Responsive */

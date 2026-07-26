@@ -12,7 +12,7 @@
             background-color: #f9f9f9;
         }
         .header {
-            background-color: #001F3F;
+            background-color: #A85C2E;
             color: #ffffff;
             padding: 20px;
             text-align: center;
@@ -27,7 +27,7 @@
             font-size: 32px;
             font-weight: bold;
             letter-spacing: 5px;
-            color: #001F3F;
+            color: #A85C2E;
             margin: 20px 0;
             padding: 15px;
             background-color: #f0f4f8;

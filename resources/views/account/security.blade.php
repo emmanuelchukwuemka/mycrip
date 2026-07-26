@@ -89,7 +89,7 @@
                             
                             <div class="pt-2">
                                 <button type="submit" 
-                                    class="px-8 py-3.5 bg-[#001F3F] text-white rounded-2xl font-bold hover:bg-[#002d5c] hover:shadow-lg hover:shadow-[#001F3F]/20 transition-all duration-300 active:scale-[0.98]">
+                                    class="px-8 py-3.5 bg-[#A85C2E] text-white rounded-2xl font-bold hover:bg-[#002d5c] hover:shadow-lg hover:shadow-[#A85C2E]/20 transition-all duration-300 active:scale-[0.98]">
                                     Update Password
                                 </button>
                             </div>
@@ -98,14 +98,14 @@
                 </div>
 
                 <!-- Two-Factor Authentication Placeholder -->
-                <div class="bg-gradient-to-br from-[#001F3F] to-[#00152B] rounded-3xl shadow-xl overflow-hidden text-white relative group">
+                <div class="bg-gradient-to-br from-[#A85C2E] to-[#2B1810] rounded-3xl shadow-xl overflow-hidden text-white relative group">
                     <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform duration-700">
                         <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     </div>
                     <div class="p-8 relative z-10">
                         <h3 class="text-xl font-bold mb-2">Two-Factor Authentication</h3>
                         <p class="text-white/60 text-sm max-w-md mb-6 leading-relaxed">Add an extra layer of security to your account by requiring more than just a password to log in.</p>
-                        <button class="px-6 py-2.5 bg-amber-500 text-[#001F3F] rounded-xl font-black text-xs uppercase tracking-widest hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20">
+                        <button class="px-6 py-2.5 bg-amber-500 text-[#A85C2E] rounded-xl font-black text-xs uppercase tracking-widest hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20">
                             Enable 2FA
                         </button>
                     </div>

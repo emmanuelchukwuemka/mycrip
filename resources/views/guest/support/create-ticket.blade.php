@@ -102,7 +102,7 @@
                         </div>
                         
                         <button type="submit" 
-                            class="w-full sm:w-auto px-12 py-4 bg-[#001F3F] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] hover:shadow-2xl hover:shadow-[#001F3F]/30 transition-all duration-500 active:scale-[0.98]">
+                            class="w-full sm:w-auto px-12 py-4 bg-[#A85C2E] text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#002d5c] hover:shadow-2xl hover:shadow-[#A85C2E]/30 transition-all duration-500 active:scale-[0.98]">
                             Submit Case
                         </button>
                     </div>

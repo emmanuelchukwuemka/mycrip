@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'MyCrib Africa') }} - Agent Dashboard</title>
+    <title>{{ config('app.name', 'Villa Africa') }} - Agent Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('images/icons/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,7 +19,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <!-- PWA -->
-    <meta name="theme-color" content="#001F3F">
+    <meta name="theme-color" content="#A85C2E">
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/images/icons/icon-192.png">
 
@@ -33,7 +37,7 @@
             <!-- Top Header -->
             <header class="flex justify-between items-center py-4 px-6 bg-white border-b border-gray-100 shadow-sm">
                 <div class="flex items-center">
-                    <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden hover:text-[#001F3F] transition-colors">
+                    <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden hover:text-[#A85C2E] transition-colors">
                         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -46,7 +50,7 @@
                             </svg>
                         </span>
 
-                        <input class="w-32 sm:w-64 rounded-xl pl-10 pr-4 py-2 border border-gray-200 focus:border-[#C6A664] focus:ring-2 focus:ring-[#C6A664]/20 transition-all duration-200 outline-none" type="text" placeholder="Search...">
+                        <input class="w-32 sm:w-64 rounded-xl pl-10 pr-4 py-2 border border-gray-200 focus:border-[#2B1810] focus:ring-2 focus:ring-[#2B1810]/20 transition-all duration-200 outline-none" type="text" placeholder="Search...">
                     </div>
                 </div>
 
@@ -57,11 +61,11 @@
                                 <p class="text-sm font-semibold text-gray-800">{{ Auth::user()->name }}</p>
                                 <p class="text-xs text-gray-500">Real Estate Agent</p>
                             </div>
-                            <div class="relative h-10 w-10 rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-200 border-2 border-gray-100 group-hover:border-[#C6A664]">
+                            <div class="relative h-10 w-10 rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-200 border-2 border-gray-100 group-hover:border-[#2B1810]">
                                 @if(Auth::user()->agent_image)
                                     <img class="h-full w-full object-cover" src="{{ Auth::user()->agent_image_url }}" alt="{{ Auth::user()->name }}">
                                 @else
-                                    <div class="h-full w-full bg-[#001F3F] flex items-center justify-center text-white font-bold">
+                                    <div class="h-full w-full bg-[#A85C2E] flex items-center justify-center text-white font-bold">
                                         {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                                     </div>
                                 @endif

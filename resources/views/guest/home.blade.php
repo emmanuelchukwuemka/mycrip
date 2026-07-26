@@ -1,22 +1,22 @@
 <x-app-layout>
     <!-- Hero Section with Professional Slider -->
-    <div class="relative overflow-hidden" style="background-color: #001F3F;">
+    <div class="relative overflow-hidden" style="background-color: #A85C2E;">
         <!-- Hero Slider -->
         <div class="relative h-screen">
             <!-- Slide 1 -->
-            <div class="absolute inset-0" style="background-color: #001F3F;">
+            <div class="absolute inset-0" style="background-color: #A85C2E;">
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Luxury Apartment" class="w-full h-full object-cover">
             </div>
             
             <!-- Slide 2 -->
-            <div class="absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-color: #001F3F;">
+            <div class="absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-color: #A85C2E;">
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Modern House" class="w-full h-full object-cover">
             </div>
             
             <!-- Slide 3 -->
-            <div class="absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-color: #001F3F;">
+            <div class="absolute inset-0 opacity-0 transition-opacity duration-1000" style="background-color: #A85C2E;">
                 <div class="absolute inset-0 bg-black opacity-40"></div>
                 <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Commercial Property" class="w-full h-full object-cover">
             </div>
@@ -35,7 +35,7 @@
                     <div class="animate-fade-in-up">
                         <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl">
                             <span class="block">Find Your Perfect</span>
-                            <span id="typing-text-home" class="block after:content-['|'] after:animate-ping after:text-[#C6A664] after:ml-1" style="color: #C6A664; min-height: 1.2em;"></span>
+                            <span id="typing-text-home" class="block after:content-['|'] after:animate-ping after:text-[#2B1810] after:ml-1" style="color: #2B1810; min-height: 1.2em;"></span>
                         </h1>
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
@@ -85,7 +85,7 @@
 
                     <!-- Call to Action -->
                     <div class="mt-10 animate-fade-in-up animation-delay-900">
-                        <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" style="background-color: #C6A664;" onmouseover="this.style.backgroundColor='#B89654'" onmouseout="this.style.backgroundColor='#C6A664'">
+                        <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" style="background-color: #2B1810;" onmouseover="this.style.backgroundColor='#A85C2E'" onmouseout="this.style.backgroundColor='#2B1810'">
                             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
@@ -108,8 +108,8 @@
     <div class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in-up">
-                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Featured Properties</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #1A1A1A;">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #A85C2E;">Featured Properties</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #2B1810;">
                     Handpicked premium listings just for you.
                 </p>
             </div>
@@ -122,13 +122,13 @@
                 @empty
                 <div class="col-span-3 text-center py-8">
                     <p class="text-gray-500 text-lg">No featured properties at the moment.</p>
-                    <a href="{{ route('properties.index') }}" class="mt-4 inline-block" style="color: #001F3F;" onmouseover="this.style.color='#C6A664'" onmouseout="this.style.color='#001F3F'">Browse all properties →</a>
+                    <a href="{{ route('properties.index') }}" class="mt-4 inline-block" style="color: #A85C2E;" onmouseover="this.style.color='#2B1810'" onmouseout="this.style.color='#A85C2E'">Browse all properties →</a>
                 </div>
                 @endforelse
             </div>
 
             <div class="mt-16 text-center animate-fade-in-up animation-delay-2100">
-                <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
+                <a href="{{ route('properties.index') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl" style="background-color: #A85C2E;" onmouseover="this.style.backgroundColor='#2B1810'" onmouseout="this.style.backgroundColor='#A85C2E'">
                     View All Properties
                 </a>
             </div>
@@ -140,8 +140,8 @@
     <div class="bg-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in-up">
-                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Recently Added</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #1A1A1A;">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #A85C2E;">Recently Added</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #2B1810;">
                     Check out the latest property listings.
                 </p>
             </div>
@@ -163,12 +163,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center animate-fade-in-up">
                 <div>
-                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Rentals</h2>
-                    <p class="mt-4 text-xl" style="color: #1A1A1A;">
+                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #A85C2E;">Rentals</h2>
+                    <p class="mt-4 text-xl" style="color: #2B1810;">
                         Find properties to rent.
                     </p>
                 </div>
-                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white transition-all duration-300" style="background-color: #001F3F;" onmouseover="this.style.backgroundColor='#00152B'" onmouseout="this.style.backgroundColor='#001F3F'">
+                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white transition-all duration-300" style="background-color: #A85C2E;" onmouseover="this.style.backgroundColor='#2B1810'" onmouseout="this.style.backgroundColor='#A85C2E'">
                     View All
                 </a>
             </div>
@@ -182,7 +182,7 @@
             </div>
             
             <div class="mt-8 text-center md:hidden">
-                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white" style="background-color: #001F3F;">
+                <a href="{{ route('properties.index', ['category' => 'house_rental']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white" style="background-color: #A85C2E;">
                     View All Rentals
                 </a>
             </div>
@@ -196,12 +196,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center animate-fade-in-up">
                 <div>
-                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">For Sale</h2>
-                    <p class="mt-4 text-xl" style="color: #1A1A1A;">
+                    <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #A85C2E;">For Sale</h2>
+                    <p class="mt-4 text-xl" style="color: #2B1810;">
                         Properties available for purchase.
                     </p>
                 </div>
-                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white transition-all duration-300" style="background-color: #C6A664;" onmouseover="this.style.backgroundColor='#B89654'" onmouseout="this.style.backgroundColor='#C6A664'">
+                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="hidden md:inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white transition-all duration-300" style="background-color: #2B1810;" onmouseover="this.style.backgroundColor='#A85C2E'" onmouseout="this.style.backgroundColor='#2B1810'">
                     View All
                 </a>
             </div>
@@ -215,7 +215,7 @@
             </div>
             
             <div class="mt-8 text-center md:hidden">
-                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white" style="background-color: #C6A664;">
+                <a href="{{ route('properties.index', ['category' => 'house_purchase']) }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-semibold rounded-xl text-white" style="background-color: #2B1810;">
                     View All Sales
                 </a>
             </div>
@@ -227,8 +227,8 @@
     <div class="bg-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center animate-fade-in-up">
-                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #001F3F;">Browse by Category</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #1A1A1A;">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl" style="color: #A85C2E;">Browse by Category</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #2B1810;">
                     Find the perfect property type for your needs.
                 </p>
             </div>
@@ -323,10 +323,10 @@
     </div>
 
     <!-- Why Choose Us Section -->
-    <div class="py-20" style="background-color: #001F3F;">
+    <div class="py-20" style="background-color: #A85C2E;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-fade-in-up">
-                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Why Choose MyCrib Africa?</h2>
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Why Choose Villa Africa?</h2>
                 <p class="mt-4 max-w-2xl mx-auto text-xl" style="color: #FFFFFF; opacity: 0.9;">
                     We provide the best real estate experience in Africa.
                 </p>
@@ -335,7 +335,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="animate-fade-in-up animation-delay-300">
                     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #C6A664;">
+                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #2B1810;">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
@@ -349,7 +349,7 @@
 
                 <div class="animate-fade-in-up animation-delay-600">
                     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #C6A664;">
+                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #2B1810;">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
@@ -363,7 +363,7 @@
 
                 <div class="animate-fade-in-up animation-delay-900">
                     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #C6A664;">
+                        <div class="inline-flex items-center justify-center h-16 w-16 rounded-xl text-white mb-6 shadow-lg" style="background-color: #2B1810;">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
                             </svg>
@@ -385,10 +385,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 animate-fade-in-up">
                 <div class="max-w-2xl">
-                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight mb-4">Latest from our <span style="color: #C6A664;">Blog</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tight mb-4">Latest from our <span style="color: #2B1810;">Blog</span></h2>
                     <p class="text-lg text-gray-600 leading-relaxed">Expert insights, market trends, and professional advice to help you navigate the African real estate landscape.</p>
                 </div>
-                <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#001F3F] hover:text-[#C6A664] transition-colors group">
+                <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#A85C2E] hover:text-[#2B1810] transition-colors group">
                     Explore All Articles
                     <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                 </a>
@@ -400,7 +400,7 @@
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{ $post->featured_image_url }}" alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute top-4 left-4">
-                            <span class="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-[#001F3F] shadow-sm">
+                            <span class="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-[#A85C2E] shadow-sm">
                                 Insights
                             </span>
                         </div>
@@ -411,13 +411,13 @@
                             <span class="w-1 h-1 rounded-full bg-gray-300"></span>
                             <span>{{ ceil(str_word_count(strip_tags($post->content)) / 200) }} min read</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#C6A664] transition-colors mb-4 line-clamp-2">
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#2B1810] transition-colors mb-4 line-clamp-2">
                             <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                         </h3>
                         <p class="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">
                             {{ Str::limit(strip_tags($post->content), 120) }}
                         </p>
-                        <a href="{{ route('blog.show', $post->slug) }}" class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#C6A664] hover:text-[#00152B] transition-colors">
+                        <a href="{{ route('blog.show', $post->slug) }}" class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#2B1810] hover:text-[#2B1810] transition-colors">
                             Read Article
                             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
                         </a>
@@ -430,22 +430,22 @@
     @endif
 
     <!-- CTA Section -->
-    <div class="py-20" style="background-color: #000000;">
+    <div class="py-20" style="background-color: #2B1810;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="animate-fade-in-up">
                 <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Ready to Find Your Dream Home?</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-white">
-                    Join thousands of satisfied customers who found their perfect property with MyCrib Africa.
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-white" style="opacity: 0.9;">
+                    Join thousands of satisfied customers who found their perfect property with Villa Africa.
                 </p>
-                
+
                 <div class="mt-12 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex sm:justify-center">
-                    <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" style="background-color: #C6A664;" onmouseover="this.style.backgroundColor='#B89654'" onmouseout="this.style.backgroundColor='#C6A664'">
+                    <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" style="background-color: #FFFFFF; color: #2B1810;" onmouseover="this.style.backgroundColor='#A85C2E'; this.style.color='#FFFFFF'" onmouseout="this.style.backgroundColor='#FFFFFF'; this.style.color='#2B1810'">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                         </svg>
                         Get Started
                     </a>
-                    <a href="{{ route('register', ['role' => 'agent']) }}" class="inline-flex items-center px-8 py-4 border-2 border-[#C6A664] text-base font-semibold rounded-xl text-[#C6A664] hover:bg-[#C6A664] hover:text-white transform hover:scale-105 transition-all duration-300 shadow-xl">
+                    <a href="{{ route('register', ['role' => 'agent']) }}" class="inline-flex items-center px-8 py-4 border-2 border-white text-base font-semibold rounded-xl text-white hover:bg-white hover:text-[#2B1810] transform hover:scale-105 transition-all duration-300 shadow-xl">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>

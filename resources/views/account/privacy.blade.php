@@ -18,7 +18,7 @@
                     </ol>
                 </nav>
                 <h1 class="text-3xl font-black text-gray-900 tracking-tight">Privacy & Data</h1>
-                <p class="mt-2 text-gray-500 font-medium">Take control of your personal information and how it's used on MyCrib.</p>
+                <p class="mt-2 text-gray-500 font-medium">Take control of your personal information and how it's used on Villa Africa.</p>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div>
-                        <a href="{{ route('account.export') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-[#001F3F] text-white rounded-2xl font-bold hover:bg-[#002d5c] hover:shadow-lg hover:shadow-[#001F3F]/20 transition-all duration-300 active:scale-[0.98]">
+                        <a href="{{ route('account.export') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-[#A85C2E] text-white rounded-2xl font-bold hover:bg-[#002d5c] hover:shadow-lg hover:shadow-[#A85C2E]/20 transition-all duration-300 active:scale-[0.98]">
                             Download Archive
                         </a>
                     </div>

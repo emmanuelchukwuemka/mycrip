@@ -123,7 +123,7 @@
 
         <!-- Security Quick Tips -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
-            <div class="p-6 bg-gradient-to-br from-[#001F3F] to-[#00152B] rounded-[2rem] text-white flex items-center gap-6">
+            <div class="p-6 bg-gradient-to-br from-[#A85C2E] to-[#2B1810] rounded-[2rem] text-white flex items-center gap-6">
                 <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 backdrop-blur-md border border-white/10">
                     <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>

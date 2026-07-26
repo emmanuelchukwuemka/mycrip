@@ -7,8 +7,8 @@
                 <p class="text-gray-600 mt-1">Manage your property listings and track their performance</p>
             </div>
             <a href="{{ route('agent.properties.create') }}" 
-               class="inline-flex items-center px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#C6A664]/20" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%); border-bottom: 3px solid #C6A664;">
-                <svg class="w-4 h-4 mr-2 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="inline-flex items-center px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#2B1810]/20" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%); border-bottom: 3px solid #2B1810;">
+                <svg class="w-4 h-4 mr-2 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
                 Upload New Property
@@ -34,9 +34,9 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Properties</p>
-                        <p class="text-3xl font-bold mt-1" style="color: #001F3F;">{{ $properties->total() }}</p>
+                        <p class="text-3xl font-bold mt-1" style="color: #A85C2E;">{{ $properties->total() }}</p>
                     </div>
-                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(0, 31, 63, 0.08); color: #001F3F;">
+                    <div class="p-3 rounded-xl transition-all duration-300" style="background: rgba(168, 92, 46, 0.08); color: #A85C2E;">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
@@ -133,7 +133,7 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-3 py-1 text-xs font-bold rounded-lg uppercase tracking-wider" style="background: rgba(0, 31, 63, 0.08); color: #001F3F;">
+                                <span class="inline-flex px-3 py-1 text-xs font-bold rounded-lg uppercase tracking-wider" style="background: rgba(168, 92, 46, 0.08); color: #A85C2E;">
                                     {{ $property->category_display_name }}
                                 </span>
                             </td>
@@ -153,7 +153,7 @@
                                 @if(!$property->is_featured || (now() > $property->featured_until))
                                     <form action="{{ route('agent.properties.promote', $property->id) }}" method="POST" class="inline">
                                         @csrf
-                                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-[#C6A664] text-[#C6A664] rounded-xl hover:bg-[#C6A664] hover:text-white transition-all duration-300 font-bold text-xs uppercase tracking-wider" title="Promote property using Paystack">
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-[#2B1810] text-[#2B1810] rounded-xl hover:bg-[#2B1810] hover:text-white transition-all duration-300 font-bold text-xs uppercase tracking-wider" title="Promote property using Paystack">
                                             <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                             </svg>
@@ -169,7 +169,7 @@
                                     </span>
                                 @endif
 
-                                <a href="{{ route('agent.properties.edit', $property->id) }}" class="inline-flex items-center px-4 py-2 border border-gray-200 text-gray-500 rounded-xl hover:bg-[#001F3F] hover:text-white hover:border-[#001F3F] transition-all duration-300 font-bold text-xs uppercase tracking-wider">
+                                <a href="{{ route('agent.properties.edit', $property->id) }}" class="inline-flex items-center px-4 py-2 border border-gray-200 text-gray-500 rounded-xl hover:bg-[#A85C2E] hover:text-white hover:border-[#A85C2E] transition-all duration-300 font-bold text-xs uppercase tracking-wider">
                                     <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                     </svg>
@@ -204,8 +204,8 @@
                 <h3 class="mt-4 text-lg font-medium text-gray-900">No properties yet</h3>
                 <p class="mt-2 text-gray-500">Get started by uploading your first property listing.</p>
                 <a href="{{ route('agent.properties.create') }}" 
-                   class="mt-6 inline-flex items-center px-8 py-4 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#C6A664]/20" style="background: linear-gradient(135deg, #001F3F 0%, #00152B 100%); border-bottom: 4px solid #C6A664;">
-                    <svg class="w-5 h-5 mr-3 text-[#C6A664]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   class="mt-6 inline-flex items-center px-8 py-4 text-white font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-[#2B1810]/20" style="background: linear-gradient(135deg, #A85C2E 0%, #2B1810 100%); border-bottom: 4px solid #2B1810;">
+                    <svg class="w-5 h-5 mr-3 text-[#2B1810]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                     </svg>
                     Upload Your First Property

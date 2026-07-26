@@ -11,10 +11,10 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin@mycribafrica.com'],
+            ['email' => 'admin@villaafrica.com'],
             [
-                'name' => 'MyCrib Admin',
-                'email' => 'admin@mycribafrica.com',
+                'name' => 'Villa Africa Admin',
+                'email' => 'admin@villaafrica.com',
                 'password' => Hash::make('Admin@2026'),
                 'role' => 'admin',
                 'email_verified_at' => now(),

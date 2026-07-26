@@ -41,18 +41,18 @@
         {{-- No plans seeded yet — show a placeholder --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach([
-                ['name'=>'Starter','price'=>'₦9,900','interval'=>'monthly','color'=>'#001F3F','features'=>['Up to 5 listings','Basic analytics','Email support','Standard placement']],
-                ['name'=>'Professional','price'=>'₦24,900','interval'=>'monthly','color'=>'#C6A664','features'=>['Up to 25 listings','Advanced analytics','Priority support','Featured placement','Document uploads'],'popular'=>true],
-                ['name'=>'Enterprise','price'=>'₦59,900','interval'=>'monthly','color'=>'#001F3F','features'=>['Unlimited listings','Full analytics suite','Dedicated support','Top featured placement','All premium features']],
+                ['name'=>'Starter','price'=>'₦9,900','interval'=>'monthly','color'=>'#A85C2E','features'=>['Up to 5 listings','Basic analytics','Email support','Standard placement']],
+                ['name'=>'Professional','price'=>'₦24,900','interval'=>'monthly','color'=>'#2B1810','features'=>['Up to 25 listings','Advanced analytics','Priority support','Featured placement','Document uploads'],'popular'=>true],
+                ['name'=>'Enterprise','price'=>'₦59,900','interval'=>'monthly','color'=>'#A85C2E','features'=>['Unlimited listings','Full analytics suite','Dedicated support','Top featured placement','All premium features']],
             ] as $plan)
                 <div class="relative bg-white rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1
                             {{ isset($plan['popular']) ? 'ring-2' : '' }}"
-                     style="{{ isset($plan['popular']) ? 'border-color:#C6A664; ring-color:#C6A664;' : 'border-color:#e5e7eb;' }}">
+                     style="{{ isset($plan['popular']) ? 'border-color:#2B1810; ring-color:#2B1810;' : 'border-color:#e5e7eb;' }}">
                     @if(isset($plan['popular']))
-                        <div class="absolute top-0 inset-x-0 h-0.5" style="background:linear-gradient(90deg,#C6A664,#a8894e)"></div>
+                        <div class="absolute top-0 inset-x-0 h-0.5" style="background:linear-gradient(90deg,#2B1810,#a8894e)"></div>
                         <div class="absolute top-3 right-3">
                             <span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white"
-                                  style="background:linear-gradient(135deg,#C6A664,#a8894e)">Most Popular</span>
+                                  style="background:linear-gradient(135deg,#2B1810,#a8894e)">Most Popular</span>
                         </div>
                     @endif
 
@@ -79,7 +79,7 @@
 
                         <div class="mt-6">
                             <div class="w-full py-2.5 px-4 rounded-xl text-sm font-bold text-center border-2 transition-all duration-200"
-                                 style="{{ isset($plan['popular']) ? 'background:linear-gradient(135deg,#C6A664,#a8894e); color:#001F3F; border-color:transparent;' : 'background:transparent; color:#001F3F; border-color:#001F3F;' }}">
+                                 style="{{ isset($plan['popular']) ? 'background:linear-gradient(135deg,#2B1810,#a8894e); color:#A85C2E; border-color:transparent;' : 'background:transparent; color:#A85C2E; border-color:#A85C2E;' }}">
                                 {{ isset($currentSubscription) && $currentSubscription ? 'Switch Plan' : 'Get Started' }}
                             </div>
                             <p class="text-center text-[11px] text-gray-400 mt-2">Plans coming soon — contact us to subscribe</p>
@@ -94,12 +94,12 @@
                 @php $isCurrentPlan = $currentSubscription && $currentSubscription->plan_id === $plan->id; @endphp
                 <div class="relative bg-white rounded-2xl border shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1
                             {{ $plan->is_featured ? 'ring-2' : '' }}"
-                     style="{{ $plan->is_featured ? 'border-color:#C6A664;' : 'border-color:#e5e7eb;' }}">
+                     style="{{ $plan->is_featured ? 'border-color:#2B1810;' : 'border-color:#e5e7eb;' }}">
                     @if($plan->is_featured)
-                        <div class="absolute top-0 inset-x-0 h-0.5" style="background:linear-gradient(90deg,#C6A664,#a8894e)"></div>
+                        <div class="absolute top-0 inset-x-0 h-0.5" style="background:linear-gradient(90deg,#2B1810,#a8894e)"></div>
                         <div class="absolute top-3 right-3">
                             <span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white"
-                                  style="background:linear-gradient(135deg,#C6A664,#a8894e)">Most Popular</span>
+                                  style="background:linear-gradient(135deg,#2B1810,#a8894e)">Most Popular</span>
                         </div>
                     @endif
 
@@ -119,8 +119,8 @@
                             <div class="mt-5 space-y-2.5">
                                 @foreach(is_array($plan->features) ? $plan->features : json_decode($plan->features, true) ?? [] as $feature)
                                     <div class="flex items-center gap-2.5">
-                                        <div class="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 bg-[#001F3F]/10">
-                                            <svg class="w-2.5 h-2.5 text-[#001F3F]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <div class="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 bg-[#A85C2E]/10">
+                                            <svg class="w-2.5 h-2.5 text-[#A85C2E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
                                             </svg>
                                         </div>
@@ -140,7 +140,7 @@
                                     @csrf
                                     <button type="submit"
                                             class="w-full py-2.5 px-4 rounded-xl text-sm font-bold transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-                                            style="{{ $plan->is_featured ? 'background:linear-gradient(135deg,#C6A664,#a8894e); color:#001F3F;' : 'background:#001F3F; color:white;' }}">
+                                            style="{{ $plan->is_featured ? 'background:linear-gradient(135deg,#2B1810,#a8894e); color:#A85C2E;' : 'background:#A85C2E; color:white;' }}">
                                         {{ $currentSubscription ? 'Switch to ' . $plan->name : 'Get Started' }}
                                     </button>
                                 </form>
@@ -187,9 +187,9 @@
     <div class="text-center py-4">
         <p class="text-xs text-gray-400">
             Questions about plans?
-            <a href="{{ url('/faq') }}" class="font-semibold hover:underline" style="color:#C6A664">Read our FAQ</a>
+            <a href="{{ url('/faq') }}" class="font-semibold hover:underline" style="color:#2B1810">Read our FAQ</a>
             or
-            <a href="{{ url('/support/tickets/create') }}" class="font-semibold hover:underline" style="color:#C6A664">contact support</a>
+            <a href="{{ url('/support/tickets/create') }}" class="font-semibold hover:underline" style="color:#2B1810">contact support</a>
         </p>
     </div>
 
