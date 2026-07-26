@@ -11,6 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Render (and similar PaaS platforms) terminate TLS at the edge and
+        // forward plain HTTP to the container. Without trusting the proxy's
+        // X-Forwarded-Proto header, Laravel generates http:// asset/URL links
+        // on an https:// page, which browsers block as mixed content.
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
