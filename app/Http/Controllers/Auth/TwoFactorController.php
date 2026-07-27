@@ -9,6 +9,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PragmaRX\Google2FA\Google2FA;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 
 class TwoFactorController extends Controller
 {
@@ -41,13 +45,25 @@ class TwoFactorController extends Controller
             $user2fa->secret
         );
 
-        $inlineUrl = $this->google2fa->getQRCodeInline(
-            'Villa Africa',
-            $user->email,
-            $user2fa->secret
-        );
+        $inlineUrl = $this->generateQrCodeSvg($qrCodeUrl);
 
         return view('auth.2fa.setup', compact('user2fa', 'qrCodeUrl', 'inlineUrl'));
+    }
+
+    /**
+     * Render an otpauth:// URL as an inline SVG QR code.
+     */
+    protected function generateQrCodeSvg(string $url): string
+    {
+        $renderer = new ImageRenderer(
+            new RendererStyle(200),
+            new SvgImageBackEnd()
+        );
+
+        $svg = (new Writer($renderer))->writeString($url);
+
+        // Strip the XML prolog so it embeds cleanly inline in HTML.
+        return preg_replace('/^<\?xml[^>]*\?>\s*/', '', $svg);
     }
 
     public function enable(Request $request)
